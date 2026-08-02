@@ -1,0 +1,1858 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+<meta name="googlebot" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Klettersteige north of the Alps — Switzerland</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f6f5f1; --panel:#fffefb; --ink:#1f2724; --soft:#5d6b64; --line:#dcdcd3;
+  --pine:#25543f; --pine-2:#357a5b; --rock:#8a7f6d; --alert:#a8442a; --gold:#d59b1e;
+  --shadow:0 1px 2px #1f27240d, 0 8px 24px #1f27240f;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#14181a; --panel:#1c2225; --ink:#e8ebe7; --soft:#9dada4; --line:#2e3739;
+  --pine:#7fc4a1; --pine-2:#9ad9b8; --rock:#b3a894; --alert:#e8836a; --gold:#e8bb52;
+  --shadow:0 1px 2px #0006, 0 10px 28px #0005;
+}}
+:root[data-theme=dark]{
+  --bg:#14181a; --panel:#1c2225; --ink:#e8ebe7; --soft:#9dada4; --line:#2e3739;
+  --pine:#7fc4a1; --pine-2:#9ad9b8; --rock:#b3a894; --alert:#e8836a; --gold:#e8bb52;
+  --shadow:0 1px 2px #0006, 0 10px 28px #0005;
+}
+:root[data-theme=light]{
+  --bg:#f6f5f1; --panel:#fffefb; --ink:#1f2724; --soft:#5d6b64; --line:#dcdcd3;
+  --pine:#25543f; --pine-2:#357a5b; --rock:#8a7f6d; --alert:#a8442a; --gold:#d59b1e;
+  --shadow:0 1px 2px #1f27240d, 0 8px 24px #1f27240f;
+}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-text-size-adjust:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+a{color:var(--pine-2)}
+
+header.top{border-bottom:1px solid var(--line);background:
+  linear-gradient(180deg,color-mix(in srgb,var(--pine) 9%,transparent),transparent)}
+header.top .wrap{padding-top:52px;padding-bottom:34px}
+.kicker{text-transform:uppercase;letter-spacing:.16em;font-size:.7rem;font-weight:700;color:var(--pine-2);margin:0 0 12px}
+h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.08;margin:0 0 14px;letter-spacing:-.02em;
+   font-family:ui-serif,Georgia,"Iowan Old Style",serif;font-weight:600}
+.lede{max-width:62ch;color:var(--soft);margin:0 0 4px;font-size:1.05rem}
+.scope{max-width:70ch;font-size:.9rem;color:var(--soft);border-left:3px solid var(--line);
+  padding:2px 0 2px 14px;margin:20px 0 0}
+.scope b{color:var(--ink)}
+
+.idbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:24px;font-size:.88rem}
+.idbar input{font:inherit;padding:7px 11px;border:1px solid var(--line);border-radius:7px;
+  background:var(--panel);color:var(--ink);min-width:180px}
+.idbar .who{color:var(--soft)}
+.idbar .who b{color:var(--pine-2)}
+.idbar.anon .who b{color:var(--gold)}
+
+.controls{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.controls .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.tabs{display:flex;gap:2px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:3px}
+.tabs button{font:inherit;font-size:.86rem;font-weight:600;border:0;background:none;color:var(--soft);
+  padding:6px 13px;border-radius:6px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--pine);color:#fff}
+:root[data-theme=dark] .tabs button[aria-selected=true],
+@media (prefers-color-scheme:dark){.tabs button[aria-selected=true]{color:#12211a}}
+.tabs .n{opacity:.7;font-variant-numeric:tabular-nums}
+select,input[type=search]{font:inherit;font-size:.88rem;padding:7px 10px;border:1px solid var(--line);
+  border-radius:7px;background:var(--panel);color:var(--ink)}
+input[type=search]{flex:1;min-width:150px}
+.count{margin-left:auto;font-size:.82rem;color:var(--soft);font-variant-numeric:tabular-nums}
+#themeBtn{font:inherit;font-size:.82rem;border:1px solid var(--line);background:var(--panel);
+  color:var(--soft);border-radius:7px;padding:7px 10px;cursor:pointer}
+
+main .wrap{padding-top:26px;padding-bottom:70px}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;overflow:hidden;
+  box-shadow:var(--shadow);display:flex;flex-direction:column}
+.card.hide{display:none}
+.shot{position:relative;aspect-ratio:16/9;background:color-mix(in srgb,var(--rock) 22%,var(--panel));overflow:hidden}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.credit{position:absolute;right:6px;bottom:5px;font-size:.6rem;line-height:1.3;color:#fff;
+  background:#0009;padding:2px 6px;border-radius:4px;max-width:80%;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.body{padding:16px 17px 15px;display:flex;flex-direction:column;flex:1}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.chip{font-size:.7rem;font-weight:700;letter-spacing:.03em;padding:3px 8px;border-radius:20px;
+  border:1px solid transparent;white-space:nowrap}
+.chip.ghost{background:none;border-color:var(--line);color:var(--soft);font-weight:600}
+.g-easy{background:#2f7d4f1f;color:#2f7d4f;border-color:#2f7d4f4d}
+.g-mid{background:#b8891018;color:#96700c;border-color:#b889103d}
+.g-hard{background:#c1571e1c;color:#b0531f;border-color:#c1571e40}
+.g-extreme{background:#a32f2f1c;color:#9e3030;border-color:#a32f2f40}
+@media (prefers-color-scheme:dark){
+  .g-easy{color:#7fd3a0}.g-mid{color:#e3bd5c}.g-hard{color:#f0916a}.g-extreme{color:#f08a8a}}
+:root[data-theme=dark] .g-easy{color:#7fd3a0}
+:root[data-theme=dark] .g-mid{color:#e3bd5c}
+:root[data-theme=dark] .g-hard{color:#f0916a}
+:root[data-theme=dark] .g-extreme{color:#f08a8a}
+.card h3{margin:0 0 3px;font-size:1.12rem;line-height:1.25;letter-spacing:-.01em;
+  font-family:ui-serif,Georgia,serif;font-weight:600}
+.where{margin:0 0 13px;font-size:.82rem;color:var(--soft)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:0 0 13px;
+  background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.stat{background:var(--panel);padding:7px 10px}
+.stat dt{font-size:.63rem;text-transform:uppercase;letter-spacing:.09em;color:var(--soft);font-weight:700}
+.stat dd{margin:1px 0 0;font-size:.87rem;font-weight:600;font-variant-numeric:tabular-nums}
+.prose{margin:0 0 11px;font-size:.9rem}
+.detail{margin:0 0 5px;font-size:.83rem;color:var(--soft)}
+.detail b{color:var(--ink);font-weight:600}
+.caveat{margin:10px 0 0;font-size:.82rem;color:var(--soft);border-left:3px solid var(--gold);
+  padding:3px 0 3px 11px;background:color-mix(in srgb,var(--gold) 7%,transparent)}
+.thin-warn{margin:9px 0 0;font-size:.79rem;color:var(--alert)}
+.actions{display:flex;gap:7px;align-items:center;margin-top:auto;padding-top:14px}
+.act{font:inherit;font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line);background:none;color:var(--soft)}
+.act:hover{border-color:var(--pine-2);color:var(--pine-2)}
+.act[aria-pressed=true].want{background:var(--gold);border-color:var(--gold);color:#231a02}
+.act[aria-pressed=true].done{background:var(--pine);border-color:var(--pine);color:#fff}
+:root[data-theme=dark] .act[aria-pressed=true].done{color:#12211a}
+@media (prefers-color-scheme:dark){.act[aria-pressed=true].done{color:#12211a}}
+.src{margin-left:auto;font-size:.76rem;color:var(--soft);text-decoration:none}
+.src:hover{color:var(--pine-2)}
+.empty{padding:60px 10px;text-align:center;color:var(--soft)}
+.sync{position:fixed;left:16px;bottom:16px;z-index:60;background:var(--panel);border:1px solid var(--line);
+  border-radius:8px;padding:6px 11px;font-size:.76rem;color:var(--soft);box-shadow:var(--shadow);display:none}
+.sync.show{display:block}
+footer{border-top:1px solid var(--line);background:var(--panel)}
+footer .wrap{padding:34px 20px 60px;font-size:.85rem;color:var(--soft)}
+footer h2{font-size:.95rem;color:var(--ink);margin:0 0 8px}
+footer p{max-width:74ch;margin:0 0 12px}
+@media (max-width:560px){header.top .wrap{padding-top:34px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <p class="kicker">Personal planning page · not indexed</p>
+  <h1>Klettersteige north of the Alps</h1>
+  <p class="lede">Every via ferrata in Switzerland you can simply walk up to and climb — no guide,
+     no ticket, no gate — outside Ticino and the south-facing valleys. 62 routes, with the
+     walk in and the walk out spelled out, because the cable car is optional and the legs are not.</p>
+  <p class="scope"><b>Scope.</b> All of Switzerland except Ticino, the Valais valleys south of the
+     Rhône, and the Italian-facing Graubünden valleys (Bergell, Misox, Puschlav, Val Müstair).
+     Guide-only routes, ticketed ferrata parks and commercial canyon courses are excluded.
+     Where a lift exists it is named, and the on-foot alternative is given wherever one is practical.</p>
+  <div class="idbar" id="idbar">
+    <label for="nameInput">Your name</label>
+    <input id="nameInput" type="text" placeholder="e.g. Lukas" autocomplete="name">
+    <span class="who">Lists are saved for <b id="whoName">nobody yet</b></span>
+  </div>
+</div></header>
+
+<div class="controls"><div class="wrap">
+  <div class="tabs" role="tablist">
+    <button data-view="all" role="tab" aria-selected="true">All</button>
+    <button data-view="want" role="tab" aria-selected="false">Want to go <span class="n" id="nWant">0</span></button>
+    <button data-view="done" role="tab" aria-selected="false">Done <span class="n" id="nDone">0</span></button>
+  </div>
+  <input id="q" type="search" placeholder="Search name, village, canton…">
+  <select id="region"><option value="">All regions</option><option value="Berner Oberland">Berner Oberland</option><option value="Wallis (north of the Rhône)">Wallis (north of the Rhône)</option><option value="Waadt &amp; Freiburg">Waadt &amp; Freiburg</option><option value="Zentralschweiz">Zentralschweiz</option><option value="Ostschweiz">Ostschweiz</option><option value="Graubünden">Graubünden</option><option value="Jura">Jura</option></select>
+  <select id="bandSel">
+    <option value="">Any grade</option>
+    <option value="easy">K1–K2 · gentle</option>
+    <option value="mid">K3 · moderate</option>
+    <option value="hard">K4 · demanding</option>
+    <option value="extreme">K5–K6 · severe</option>
+  </select>
+  <select id="liftSel">
+    <option value="">Lift or not</option>
+    <option value="no">No lift needed</option>
+    <option value="yes">Lift involved</option>
+  </select>
+  <button id="themeBtn" type="button">Theme</button>
+  <span class="count" id="count"></span>
+</div></div>
+
+<main><div class="wrap">
+  <div class="grid">
+<article class="card" id="route-allmenalp" data-id="allmenalp" data-region="Berner Oberland"
+         data-band="hard" data-lift="no"
+         data-text="klettersteig kandersteg–allmenalp kandersteg berner oberland be waterfalls, nepalese bridges, several ladder pitches and a tyrolienne. the crux is an overhanging traverse below the three-cable bridge.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Klettersteig_Kandersteg-Allmenalp_08.jpg/960px-Klettersteig_Kandersteg-Allmenalp_08.jpg" alt="" loading="lazy"><span class="credit">Kent Wang · CC BY 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K3–K4</span><span class="chip ghost">BE</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Klettersteig Kandersteg–Allmenalp</h3>
+    <p class="where">Kandersteg · Berner Oberland · 1723 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>350 m</dd></div><div class="stat"><dt>Walk in</dt><dd>10 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 15</dd></div></dl>
+    <p class="prose">Waterfalls, Nepalese bridges, several ladder pitches and a Tyrolienne. The crux is an overhanging traverse below the three-cable bridge.</p>
+    <p class="detail"><b>Approach.</b> 10 min from the Allmenalp cable-car valley station car park</p>
+    <p class="detail"><b>Descent.</b> 20 min on foot to the Allmenalp top station; walking all the way down to Kandersteg takes about 1 h 15</p>
+    <p class="detail"><b>Lift.</b> Allmenalp cable car (Kandersteg ↔ Allmenalp) — used for the descent, not needed for the approach</p>
+    <p class="detail"><b>Season.</b> Mid-May to late October</p>
+    <p class="caveat">Very popular — go early. The route finishes at the top station, so you can ride down or walk.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/allmenalp/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-chaeligang" data-id="chaeligang" data-region="Berner Oberland"
+         data-band="easy" data-lift="no"
+         data-text="chäligang-klettersteig adelboden / engstligenalp berner oberland be short, generously protected beginner route running right beside the engstligen falls, with a rest platform overlooking the cascade.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Unterer_Engstligenfall4.jpg/960px-Unterer_Engstligenfall4.jpg" alt="" loading="lazy"><span class="credit">No machine-readable author provided. Irmgard assumed (based on copyright claims) · CC BY-SA 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">BE</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Chäligang-Klettersteig</h3>
+    <p class="where">Adelboden / Engstligenalp · Berner Oberland · 1964 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>300 m</dd></div><div class="stat"><dt>Walk in</dt><dd>20 min</dd></div><div class="stat"><dt>Walk out</dt><dd>1 h</dd></div></dl>
+    <p class="prose">Short, generously protected beginner route running right beside the Engstligen falls, with a rest platform overlooking the cascade.</p>
+    <p class="detail"><b>Approach.</b> 20 min from the car park at the Engstligenalp cable-car valley station</p>
+    <p class="detail"><b>Descent.</b> 1 h on foot back down to the car park</p>
+    <p class="detail"><b>Lift.</b> Engstligenalp cable car — optional; the ferrata starts from the valley</p>
+    <p class="detail"><b>Season.</b> Mid-June to mid-October</p>
+    <p class="caveat">Ideal first via ferrata. Wide paths, little exposure.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/chaeligang/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-gantrisch" data-id="gantrisch" data-region="Berner Oberland"
+         data-band="hard" data-lift="no"
+         data-text="gantrisch-klettersteig gurnigel / nünenenberg berner oberland be demanding route with overhangs and deliberately offset iron rungs. the lower küre-wändli and the airy horber-kante near the top are the key sections.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Gantrisch_IMG_3437.jpg/960px-Gantrisch_IMG_3437.jpg" alt="" loading="lazy"><span class="credit">Patric Zbinden · Public domain</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">BE</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Gantrisch-Klettersteig</h3>
+    <p class="where">Gurnigel / Nünenenberg · Berner Oberland · 2175 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h</dd></div><div class="stat"><dt>Climb gain</dt><dd>220 m</dd></div><div class="stat"><dt>Walk in</dt><dd>45 min</dd></div><div class="stat"><dt>Walk out</dt><dd>1 h 30</dd></div></dl>
+    <p class="prose">Demanding route with overhangs and deliberately offset iron rungs. The lower Küre-Wändli and the airy Horber-Kante near the top are the key sections.</p>
+    <p class="detail"><b>Approach.</b> 45 min from the Nünenenberg car park</p>
+    <p class="detail"><b>Descent.</b> 1 h 30 via the Leiterenpass back to the car park</p>
+    <p class="detail"><b>Lift.</b> None — road access only</p>
+    <p class="detail"><b>Season.</b> Mid-June to end of October</p>
+    <p class="caveat">No lift anywhere — entirely a walking day. Rock can be brittle in places.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/gantrisch/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-sunnighorn" data-id="sunnighorn" data-region="Berner Oberland"
+         data-band="easy" data-lift="no"
+         data-text="klettersteig sunnighorn (simmeflue) wimmis berner oberland be a hiking day with beginner ferrata sections spliced in, climbing steeply above lake thun. aimed squarely at people trying via ferrata for the first time.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/ETH-BIB-Wimmis%2C_Burgfluh_Porte_Simmenfluh-Dia_247-12835.tif/lossy-page1-960px-ETH-BIB-Wimmis%2C_Burgfluh_Porte_Simmenfluh-Dia_247-12835.tif.jpg" alt="" loading="lazy"><span class="credit">Leo Wehrli · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">BE</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Klettersteig Sunnighorn (Simmeflue)</h3>
+    <p class="where">Wimmis · Berner Oberland · 1397 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h</dd></div><div class="stat"><dt>Climb gain</dt><dd>770 m</dd></div><div class="stat"><dt>Walk in</dt><dd>20 min</dd></div><div class="stat"><dt>Walk out</dt><dd>1 h 30</dd></div></dl>
+    <p class="prose">A hiking day with beginner ferrata sections spliced in, climbing steeply above Lake Thun. Aimed squarely at people trying via ferrata for the first time.</p>
+    <p class="detail"><b>Approach.</b> 20 min from the Schnitzelscheune (Brodhüsi) car park in Wimmis</p>
+    <p class="detail"><b>Descent.</b> 1 h 30 via Chrindi</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> May to end of October</p>
+    <p class="caveat">Dry conditions only — the descent gets slippery. Big vertical gain for a K2.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/sunnighorn/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-hornflue" data-id="hornflue" data-region="Berner Oberland"
+         data-band="easy" data-lift="no"
+         data-text="übungsklettersteig hornflue saanenmöser / gstaad berner oberland be a tiny practice ferrata — two short lines on the hornflue with big views over the whole saanenland.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Saanenm%C3%B6ser.jpg" alt="" loading="lazy"><span class="credit">Fred · CC BY-SA 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">BE</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Übungsklettersteig Hornflue</h3>
+    <p class="where">Saanenmöser / Gstaad · Berner Oberland · 1870 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>10–15 min</dd></div><div class="stat"><dt>Climb gain</dt><dd>100 m</dd></div><div class="stat"><dt>Walk in</dt><dd>~45 min from Saanenmöser</dd></div><div class="stat"><dt>Walk out</dt><dd>~45 min to Saanenmöser</dd></div></dl>
+    <p class="prose">A tiny practice ferrata — two short lines on the Hornflue with big views over the whole Saanenland.</p>
+    <p class="detail"><b>Approach.</b> Short walk from the Hornberg; reachable by road or by lift from Saanenmöser</p>
+    <p class="detail"><b>Descent.</b> 10–15 min</p>
+    <p class="detail"><b>Lift.</b> Saanenmöser–Hornberg gondola (optional)</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Really a training wall rather than a day out. Good for testing gear or technique.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://klettersteig.de/klettersteig/uebungsklettersteig_hornfluh/1052" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-muerren" data-id="muerren" data-region="Berner Oberland"
+         data-band="mid" data-lift="yes"
+         data-text="klettersteig mürren–gimmelwald mürren berner oberland be a descending ferrata traversing the cliffs above lauterbrunnen with roughly 600 m of air underfoot, finishing on an 80 m nepalese bridge.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/View_to_Lauterbrunnen_valley_at_M%C3%BCrren%2C_Bern%2C_Switzerland%2C_2012_August.jpg/960px-View_to_Lauterbrunnen_valley_at_M%C3%BCrren%2C_Bern%2C_Switzerland%2C_2012_August.jpg" alt="" loading="lazy"><span class="credit">Ximonic (Simo Räsänen) · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">BE</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Mürren–Gimmelwald</h3>
+    <p class="where">Mürren · Berner Oberland · 1645 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~2 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>340 m down</dd></div><div class="stat"><dt>Walk in</dt><dd>15 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~45 min Gimmelwald → Stechelberg</dd></div></dl>
+    <p class="prose">A descending ferrata traversing the cliffs above Lauterbrunnen with roughly 600 m of air underfoot, finishing on an 80 m Nepalese bridge.</p>
+    <p class="detail"><b>Approach.</b> 15 min from Mürren village</p>
+    <p class="detail"><b>Descent.</b> The route itself descends to Gimmelwald; from there the cable car (or a walk) down to Stechelberg</p>
+    <p class="detail"><b>Lift.</b> Schilthornbahn (Stechelberg–Gimmelwald–Mürren) to reach Mürren; Gimmelwald cable car at the finish</p>
+    <p class="detail"><b>Season.</b> ~June to end of October</p>
+    <p class="caveat">Point-to-point and downhill — plan the transport. Earthy, root-covered ledges get slippery when wet.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/muerren/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-eiger-rotstock" data-id="eiger-rotstock" data-region="Berner Oberland"
+         data-band="easy" data-lift="yes"
+         data-text="eiger-rotstock-klettersteig kleine scheidegg / eigergletscher berner oberland be alpine route on the rotstock with the eiger north face as a backdrop. an 1899 iron ladder and steps chiselled into the limestone give it real historical character.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Eiger-Nordwand_2008.jpg/960px-Eiger-Nordwand_2008.jpg" alt="" loading="lazy"><span class="credit">Kurt Ritschard · CC BY-SA 2.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">BE</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Eiger-Rotstock-Klettersteig</h3>
+    <p class="where">Kleine Scheidegg / Eigergletscher · Berner Oberland · 2663 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~1 h 15</dd></div><div class="stat"><dt>Climb gain</dt><dd>260 m</dd></div><div class="stat"><dt>Walk in</dt><dd>45 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h down to Grindelwald Grund</dd></div></dl>
+    <p class="prose">Alpine route on the Rotstock with the Eiger north face as a backdrop. An 1899 iron ladder and steps chiselled into the limestone give it real historical character.</p>
+    <p class="detail"><b>Approach.</b> 45 min from Eigergletscher station</p>
+    <p class="detail"><b>Descent.</b> 45 min from the Rotstock back to Eigergletscher</p>
+    <p class="detail"><b>Lift.</b> Jungfraubahn / Eiger Express to Eigergletscher</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">Loose rock in places; the descent over slabs is adventurous despite the easy grade.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/eiger-rotstock/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-eiger-ostegg" data-id="eiger-ostegg" data-region="Berner Oberland"
+         data-band="hard" data-lift="yes"
+         data-text="klettersteig eiger-ostegghütte alpiglen / grindelwald berner oberland be a hut approach rather than a summit route — a secured line up a gorge with three steep steps, ending at the ostegghütte on its grass balcony high above grindelwald.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Ostegghuette.jpg" alt="" loading="lazy"><span class="credit">Martin Wolff · CC0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K2–K3, crux K3–K4</span><span class="chip ghost">BE</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Eiger-Ostegghütte</h3>
+    <p class="where">Alpiglen / Grindelwald · Berner Oberland · 2317 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~3 h total from Alpiglen to the hut</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>45 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h</dd></div></dl>
+    <p class="prose">A hut approach rather than a summit route — a secured line up a gorge with three steep steps, ending at the Ostegghütte on its grass balcony high above Grindelwald.</p>
+    <p class="detail"><b>Approach.</b> 45 min from Alpiglen station along the Eiger Trail to the junction</p>
+    <p class="detail"><b>Descent.</b> Same way back, ~2 h</p>
+    <p class="detail"><b>Lift.</b> Grindelwald–Alpiglen train (or walk up from Grindelwald)</p>
+    <p class="detail"><b>Season.</b> July to September</p>
+    <p class="caveat">One smooth slab is the crux and much harder than the rest. Needs sure footing and a genuinely good head for heights.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.sac-cas.ch/de/huetten-und-touren/sac-tourenportal/eiger-ostegghuette-2147000085/klettersteig/klettersteig-eiger-ostegg-672/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-schwarzhorn" data-id="schwarzhorn" data-region="Berner Oberland"
+         data-band="mid" data-lift="yes"
+         data-text="schwarzhorn-klettersteig grindelwald first berner oberland be long walk-in, then moderately difficult climbing on very airy offset ladders to a 2928 m summit. about 920 m of total height difference over the day.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Schwarzhorn_und_H%C3%B6he_Sch%C3%B6ne.jpg/960px-Schwarzhorn_und_H%C3%B6he_Sch%C3%B6ne.jpg" alt="" loading="lazy"><span class="credit">Hermann Hammer · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K2–K3</span><span class="chip ghost">BE</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Schwarzhorn-Klettersteig</h3>
+    <p class="where">Grindelwald First · Berner Oberland · 2928 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 15 (Grossi Chrinne → summit)</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>2 h</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h further down to Grindelwald</dd></div></dl>
+    <p class="prose">Long walk-in, then moderately difficult climbing on very airy offset ladders to a 2928 m summit. About 920 m of total height difference over the day.</p>
+    <p class="detail"><b>Approach.</b> 2 h from the First cable-car top station</p>
+    <p class="detail"><b>Descent.</b> 1 h 15 back down to First</p>
+    <p class="detail"><b>Lift.</b> Firstbahn from Grindelwald</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">High and committing — needs settled weather. Roughly 5 h round trip from First.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.sac-cas.ch/de/huetten-und-touren/sac-tourenportal/schwarzhoren-schwarzhorn-be-1741/klettersteig/schwarzhorn-klettersteig-grindelwald-673/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-taelli" data-id="taelli" data-region="Berner Oberland"
+         data-band="mid" data-lift="yes"
+         data-text="tälli-klettersteig gadmen berner oberland be switzerland&#x27;s first modern via ferrata (1993). a 630 m south-facing wall of ladders and traversing bands with genuine alpine flair.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/ETH-BIB-Gadmerflue%2C_Graustock_v._S._aus_4000_m-Inlandfl%C3%BCge-LBS_MH01-002441.tif/lossy-page1-960px-ETH-BIB-Gadmerflue%2C_Graustock_v._S._aus_4000_m-Inlandfl%C3%BCge-LBS_MH01-002441.tif.jpg" alt="" loading="lazy"><span class="credit">Walter Mittelholzer · Public domain</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3 (B/C)</span><span class="chip ghost">BE</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Tälli-Klettersteig</h3>
+    <p class="where">Gadmen · Berner Oberland · 2500 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>3 h</dd></div><div class="stat"><dt>Climb gain</dt><dd>630 m</dd></div><div class="stat"><dt>Walk in</dt><dd>1 h</dd></div><div class="stat"><dt>Walk out</dt><dd>2 h 30</dd></div></dl>
+    <p class="prose">Switzerland&#x27;s first modern via ferrata (1993). A 630 m south-facing wall of ladders and traversing bands with genuine alpine flair.</p>
+    <p class="detail"><b>Approach.</b> 1 h from the Tälli cable-car top station (1726 m)</p>
+    <p class="detail"><b>Descent.</b> 2 h 30, including a counter-ascent to the Sätteli</p>
+    <p class="detail"><b>Lift.</b> Tällibahn from Gadmen (1205 m)</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">The descent is long and involves re-ascending — a full 6½ h day. Old snow can linger at the entry in early summer.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.bergsteigen.com/touren/klettersteig/taelli-klettersteig/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-tierbergli" data-id="tierbergli" data-region="Berner Oberland"
+         data-band="hard" data-lift="no"
+         data-text="tierbergli-klettersteig sustenpass / steingletscher berner oberland be high alpine ferrata with glacier views and a lot of real rock contact — slabs first, then steeper ground with scree and snow patches marked by red dots.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/0x-tierbergli-h-1.jpg/960px-0x-tierbergli-h-1.jpg" alt="" loading="lazy"><span class="credit">Oxensepp (talk) · CC BY-SA 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K2 (part 1), K3–K4 (part 2)</span><span class="chip ghost">BE</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Tierbergli-Klettersteig</h3>
+    <p class="where">Sustenpass / Steingletscher · Berner Oberland · 2795 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>700 m</dd></div><div class="stat"><dt>Walk in</dt><dd>5 min</dd></div><div class="stat"><dt>Walk out</dt><dd>2 h</dd></div></dl>
+    <p class="prose">High alpine ferrata with glacier views and a lot of real rock contact — slabs first, then steeper ground with scree and snow patches marked by red dots.</p>
+    <p class="detail"><b>Approach.</b> 5 min from the Umpol car park at the end of the road past the Steingletscher</p>
+    <p class="detail"><b>Descent.</b> 2 h on the blue-white alpine trail</p>
+    <p class="detail"><b>Lift.</b> None — road access over the Susten pass</p>
+    <p class="detail"><b>Season.</b> July to end of August</p>
+    <p class="caveat">Short season. Snowfields on the upper section; the pass road is closed in winter.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/tierbergli/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-eggishorn" data-id="eggishorn" data-region="Wallis (north of the Rhône)"
+         data-band="mid" data-lift="yes"
+         data-text="klettersteig eggishorn fiesch wallis (north of the rhône) vs traverses blocky ground along the fiescherhorli ridge with a suspension bridge, a three-cable bridge, a timber bridge and an optional zip-line — all above the great aletsch glacier.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/3625_-_Fiescherhorli_viewed_from_southwest.jpg/960px-3625_-_Fiescherhorli_viewed_from_southwest.jpg" alt="" loading="lazy"><span class="credit">Andrew Bossi · CC BY-SA 2.5</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">VS</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Eggishorn</h3>
+    <p class="where">Fiesch · Wallis (north of the Rhône) · 2869 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~2 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>300 m</dd></div><div class="stat"><dt>Walk in</dt><dd>15 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~3 h down to Fiescheralp/Fiesch</dd></div></dl>
+    <p class="prose">Traverses blocky ground along the Fiescherhorli ridge with a suspension bridge, a three-cable bridge, a timber bridge and an optional zip-line — all above the Great Aletsch Glacier.</p>
+    <p class="detail"><b>Approach.</b> 15 min from the Eggishorn top station</p>
+    <p class="detail"><b>Descent.</b> Back down by cable car from Eggishorn station</p>
+    <p class="detail"><b>Lift.</b> Fiesch–Fiescheralp–Eggishorn cable car</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Mid-route exit available after about an hour. Very exposed to weather at 2800 m.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/eggishorn/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-aletsch" data-id="aletsch" data-region="Wallis (north of the Rhône)"
+         data-band="mid" data-lift="no"
+         data-text="klettersteig aletsch (gibidum) blatten bei naters / belalp wallis (north of the rhône) vs about 3 km of ferrata circling the gibidum reservoir, crossing an impressive suspension bridge and a cable crossing, alternating forest with exposed rock right above the water.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Gibidumsee2.JPG/960px-Gibidumsee2.JPG" alt="" loading="lazy"><span class="credit">Wandervogel · CC BY-SA 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">VS</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Klettersteig Aletsch (Gibidum)</h3>
+    <p class="where">Blatten bei Naters / Belalp · Wallis (north of the Rhône) · 1436 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~2 h per bank, ~4 h for the full circuit</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>10 min</dd></div><div class="stat"><dt>Walk out</dt><dd>30 min</dd></div></dl>
+    <p class="prose">About 3 km of ferrata circling the Gibidum reservoir, crossing an impressive suspension bridge and a cable crossing, alternating forest with exposed rock right above the water.</p>
+    <p class="detail"><b>Approach.</b> Short walk from the car park at the Gibidum reservoir dam</p>
+    <p class="detail"><b>Descent.</b> ~30 min back to the dam</p>
+    <p class="detail"><b>Lift.</b> None needed (Belalp cable car nearby)</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">The eastern return leg is the harder half, with iron rungs spaced further apart. Low altitude — good early- and late-season option.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/aletsch/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-gemmi" data-id="gemmi" data-region="Wallis (north of the Rhône)"
+         data-band="hard" data-lift="yes"
+         data-text="erlebnisklettersteig gemmiwand leukerbad wallis (north of the rhône) vs a french-style sports ferrata running roughly horizontally for about 1300 m across the gemmi wall below the wildstrubel restaurant. highlights are a 65 m rope bridge and a ladder that rotates through 540°.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Daubensee.jpg" alt="" loading="lazy"><span class="credit">see below · CC BY-SA 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K3–K4</span><span class="chip ghost">VS</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Erlebnisklettersteig Gemmiwand</h3>
+    <p class="where">Leukerbad · Wallis (north of the Rhône) · 2346 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h–2 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>100 m</dd></div><div class="stat"><dt>Walk in</dt><dd>2–5 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 30 down the Gemmiweg to Leukerbad</dd></div></dl>
+    <p class="prose">A French-style sports ferrata running roughly horizontally for about 1300 m across the Gemmi wall below the Wildstrubel restaurant. Highlights are a 65 m rope bridge and a ladder that rotates through 540°.</p>
+    <p class="detail"><b>Approach.</b> 2–5 min from the Gemmibahn top station</p>
+    <p class="detail"><b>Descent.</b> Back to the top station; or walk down the historic Gemmi trail to Leukerbad</p>
+    <p class="detail"><b>Lift.</b> Gemmibahn, Leukerbad (1401 m) → Gemmipass (2346 m)</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Almost no height gain but sustained and very exposed — arm strength matters more than fitness.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://klettersteig.de/klettersteig/klettersteig_gemmiwand_erlebnisklettersteig_gemmi_leukerbad/1829" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-daubenhorn" data-id="daubenhorn" data-region="Wallis (north of the Rhône)"
+         data-band="extreme" data-lift="no"
+         data-text="leukerbadner klettersteig (daubenhorn) leukerbad wallis (north of the rhône) vs the longest and hardest via ferrata in switzerland: 1100 m of gain, 216 m of ladders and over 2000 m of steel cable, including a ~100 m natural cave passage.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Gemmi-daubenhorn-winter.JPG/960px-Gemmi-daubenhorn-winter.JPG" alt="" loading="lazy"><span class="credit">Luan Baruti · CC BY-SA 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K5–K6</span><span class="chip ghost">VS</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Leukerbadner Klettersteig (Daubenhorn)</h3>
+    <p class="where">Leukerbad · Wallis (north of the Rhône) · 2941 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>6 h+</dd></div><div class="stat"><dt>Climb gain</dt><dd>1100 m</dd></div><div class="stat"><dt>Walk in</dt><dd>+1 h and 650 m extra if you walk up from Leukerbad</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h 30 further down the Gemmi trail to Leukerbad</dd></div></dl>
+    <p class="prose">The longest and hardest via ferrata in Switzerland: 1100 m of gain, 216 m of ladders and over 2000 m of steel cable, including a ~100 m natural cave passage.</p>
+    <p class="detail"><b>Approach.</b> ~30 min from the Gemmibahn top station</p>
+    <p class="detail"><b>Descent.</b> From the summit down to the Gemmi pass and back to the station, ~2 h</p>
+    <p class="detail"><b>Lift.</b> Gemmibahn (optional — the route can be done entirely on foot)</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">A serious full day. An escape route exists roughly a third of the way up; after that you are committed.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.viaferrata-leukerbad.ch/en/klettersteig-daubenhorn" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-baltschieder" data-id="baltschieder" data-region="Wallis (north of the Rhône)"
+         data-band="hard" data-lift="no"
+         data-text="baltschieder klettersteig (wiwannihütte) ausserberg wallis (north of the rhône) vs the finest and hardest way up to the wiwannihütte: steep rock, grass ledges and a striking rock tower. around 5 h for the ascent, 8 h for the whole day.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Wiwannih%C3%BCtte%2C_Wiwannihorn%2C_Gross_%C3%96ugstchummuhorn_and_Chlys_%C3%96ugstchummuhorn.jpg/960px-Wiwannih%C3%BCtte%2C_Wiwannihorn%2C_Gross_%C3%96ugstchummuhorn_and_Chlys_%C3%96ugstchummuhorn.jpg" alt="" loading="lazy"><span class="credit">Capricorn4049 · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">VS</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Baltschieder Klettersteig (Wiwannihütte)</h3>
+    <p class="where">Ausserberg · Wallis (north of the Rhône) · 2470 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~700 m of route</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>~2 h</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 30</dd></div></dl>
+    <p class="prose">The finest and hardest way up to the Wiwannihütte: steep rock, grass ledges and a striking rock tower. Around 5 h for the ascent, 8 h for the whole day.</p>
+    <p class="detail"><b>Approach.</b> ~2 h from Ausserberg station through the Baltschiedertal along the historic Niwärch suone</p>
+    <p class="detail"><b>Descent.</b> ~1 h 30 back down the valley</p>
+    <p class="detail"><b>Lift.</b> None — train to Ausserberg</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">Remote and long. The Niwärch suone approach is itself exposed. No lift, no shortcuts.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.valais.ch/en/explore/activities/other-summer-activities/fixed-rope-routes/baltschieder-via-ferrata-to-wiwannihuette" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-farinetta" data-id="farinetta" data-region="Wallis (north of the Rhône)"
+         data-band="extreme" data-lift="no"
+         data-text="via farinetta saillon wallis (north of the rhône) vs three stacked sections of increasing severity, with cable bridges at the start, a rope-liana passage and a strenuous overhanging final wall. exits after each section.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Saillon_Suisse_HDSR_S5is_IMG_2471.jpg/960px-Saillon_Suisse_HDSR_S5is_IMG_2471.jpg" alt="" loading="lazy"><span class="credit">Hyppolyte de Saint-Rambert · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K3 / K4 / K6 (three sections)</span><span class="chip ghost">VS</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Via Farinetta</h3>
+    <p class="where">Saillon · Wallis (north of the Rhône) · 840 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h 45 for all three sections</dd></div><div class="stat"><dt>Climb gain</dt><dd>400 m</dd></div><div class="stat"><dt>Walk in</dt><dd>30 min</dd></div><div class="stat"><dt>Walk out</dt><dd>1 h</dd></div></dl>
+    <p class="prose">Three stacked sections of increasing severity, with cable bridges at the start, a rope-liana passage and a strenuous overhanging final wall. Exits after each section.</p>
+    <p class="detail"><b>Approach.</b> 30 min from the car park at the Bains de Saillon thermal baths</p>
+    <p class="detail"><b>Descent.</b> 1 h down through the vineyards</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> Usually April to October</p>
+    <p class="caveat">Low, south-facing and hot in summer — best in spring or autumn. Section 3 at K6 is for strong climbers only.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/via-farinetta/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-tiere" data-id="tiere" data-region="Wallis (north of the Rhône)"
+         data-band="hard" data-lift="no"
+         data-text="via ferrata de tière champéry wallis (north of the rhône) vs varied sports ferrata with two suspension bridges at a waterfall; vertical steps alternating with exposed traverses. the crux is slightly overhanging.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Champ%C3%A9ry_depuis_le_Signal_de_Soi.jpg/960px-Champ%C3%A9ry_depuis_le_Signal_de_Soi.jpg" alt="" loading="lazy"><span class="credit">Christian David · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">VS</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Via ferrata de Tière</h3>
+    <p class="where">Champéry · Wallis (north of the Rhône) · 1226 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h</dd></div><div class="stat"><dt>Climb gain</dt><dd>125 m</dd></div><div class="stat"><dt>Walk in</dt><dd>30 min</dd></div><div class="stat"><dt>Walk out</dt><dd>1 h</dd></div></dl>
+    <p class="prose">Varied sports ferrata with two suspension bridges at a waterfall; vertical steps alternating with exposed traverses. The crux is slightly overhanging.</p>
+    <p class="detail"><b>Approach.</b> 30 min from the main car park in Champéry village centre</p>
+    <p class="detail"><b>Descent.</b> 1 h, via the impressive Galerie Defago</p>
+    <p class="detail"><b>Lift.</b> None needed</p>
+    <p class="detail"><b>Season.</b> May to October</p>
+    <p class="caveat">Wet rock near the falls. Low altitude makes it a good shoulder-season option.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/tiere/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-tour-dai" data-id="tour-dai" data-region="Waadt &amp; Freiburg"
+         data-band="hard" data-lift="yes"
+         data-text="via ferrata tour d&#x27;aï leysin waadt &amp; freiburg vd airy limestone route to a proper summit with sweeping views over lake geneva and across to the valais alps.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Tour_d%27A%C3%AF_depuis_La_Forclaz.jpg/960px-Tour_d%27A%C3%AF_depuis_La_Forclaz.jpg" alt="" loading="lazy"><span class="credit">Christian David · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">VD</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Via ferrata Tour d&#x27;Aï</h3>
+    <p class="where">Leysin · Waadt &amp; Freiburg · 2331 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 20</dd></div><div class="stat"><dt>Climb gain</dt><dd>150 m</dd></div><div class="stat"><dt>Walk in</dt><dd>45 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h down to Leysin</dd></div></dl>
+    <p class="prose">Airy limestone route to a proper summit with sweeping views over Lake Geneva and across to the Valais Alps.</p>
+    <p class="detail"><b>Approach.</b> 45 min from the Berneuse top station</p>
+    <p class="detail"><b>Descent.</b> 1 h back to the station</p>
+    <p class="detail"><b>Lift.</b> Berneuse gondola from Leysin (1321 m)</p>
+    <p class="detail"><b>Season.</b> May to October (best)</p>
+    <p class="caveat">Iron rungs are widely spaced in the couloir section — awkward for shorter climbers.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/tour-d-ai/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-tete-aux-chamois" data-id="tete-aux-chamois" data-region="Waadt &amp; Freiburg"
+         data-band="extreme" data-lift="yes"
+         data-text="via ferrata de la tête aux chamois les diablerets / col du pillon waadt &amp; freiburg vd french-style sports ferrata across the north side of the tête aux chamois: a chain of natural ledges that narrow to a single foot-width, plus the notorious rocher jaune traverse.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Sex_Rouge_from_T%C3%AAte_aux_Chamois%2C_Ormont-Dessus%2C_Switzerland.jpg/960px-Sex_Rouge_from_T%C3%AAte_aux_Chamois%2C_Ormont-Dessus%2C_Switzerland.jpg" alt="" loading="lazy"><span class="credit">Christian David · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K5</span><span class="chip ghost">VD</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Via ferrata de la Tête aux Chamois</h3>
+    <p class="where">Les Diablerets / Col du Pillon · Waadt &amp; Freiburg · 2525 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~1 h 30 (about 800 m of route)</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>You climb down to the start</dd></div><div class="stat"><dt>Walk out</dt><dd>long — the lift is effectively required</dd></div></dl>
+    <p class="prose">French-style sports ferrata across the north side of the Tête aux Chamois: a chain of natural ledges that narrow to a single foot-width, plus the notorious Rocher Jaune traverse.</p>
+    <p class="detail"><b>Approach.</b> You climb down to the start from the lift; ~15 min</p>
+    <p class="detail"><b>Descent.</b> Climb back up to the cable car at the finish, ~30 min</p>
+    <p class="detail"><b>Lift.</b> Glacier 3000 cable car from Col du Pillon</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">Technically moderate but ferociously exposed, with strength-sapping overhangs. Escape onto the scree a third of the way along.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myswitzerland.com/en-us/experiences/tete-aux-chamois-via-ferrata/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-cascade-du-dar" data-id="cascade-du-dar" data-region="Waadt &amp; Freiburg"
+         data-band="hard" data-lift="no"
+         data-text="via ferrata de la cascade du dar les diablerets waadt &amp; freiburg vd french-style sports route: an overhanging traverse out to the waterfall, a demanding cable bridge at the very start and a narrow squeeze near the cascade.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Diablerets_1996.jpg/960px-Diablerets_1996.jpg" alt="" loading="lazy"><span class="credit">Alexander Klyuch · Public domain</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">VD</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Via ferrata de la Cascade du Dar</h3>
+    <p class="where">Les Diablerets · Waadt &amp; Freiburg · 1520 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>50 m</dd></div><div class="stat"><dt>Walk in</dt><dd>15 min</dd></div><div class="stat"><dt>Walk out</dt><dd>20 min</dd></div></dl>
+    <p class="prose">French-style sports route: an overhanging traverse out to the waterfall, a demanding cable bridge at the very start and a narrow squeeze near the cascade.</p>
+    <p class="detail"><b>Approach.</b> 15 min from the Glacier 3000 valley station car park at Col du Pillon</p>
+    <p class="detail"><b>Descent.</b> 20 min</p>
+    <p class="detail"><b>Lift.</b> None needed</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Slippery in the spray zone. Very little height gain but sustained on the arms.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/cascade-du-dar/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-pierredar" data-id="pierredar" data-region="Waadt &amp; Freiburg"
+         data-band="hard" data-lift="no"
+         data-text="via ferrata de pierredar (dames anglaises) les diablerets waadt &amp; freiburg vd 430 m of route high above the pierredar refuge, replacing the older pierredar line that was destroyed by rockfall.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Diablerets_3210_m.jpg/960px-Diablerets_3210_m.jpg" alt="" loading="lazy"><span class="credit">Zacharie Grossen · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K2 (with K4 passages)</span><span class="chip ghost">VD</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Via ferrata de Pierredar (Dames Anglaises)</h3>
+    <p class="where">Les Diablerets · Waadt &amp; Freiburg · 2792 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1–2 h</dd></div><div class="stat"><dt>Climb gain</dt><dd>210 m</dd></div><div class="stat"><dt>Walk in</dt><dd>~4 h from Les Diablerets</dd></div><div class="stat"><dt>Walk out</dt><dd>~3 h to Les Diablerets</dd></div></dl>
+    <p class="prose">430 m of route high above the Pierredar refuge, replacing the older Pierredar line that was destroyed by rockfall.</p>
+    <p class="detail"><b>Approach.</b> 45 min–1 h from the Refuge de Pierredar; about 4 h on foot from Les Diablerets</p>
+    <p class="detail"><b>Descent.</b> Back to the refuge, ~45 min</p>
+    <p class="detail"><b>Lift.</b> None — this is a walk-in</p>
+    <p class="detail"><b>Season.</b> July to September</p>
+    <p class="caveat">Long, remote approach — realistically an overnight at the refuge. Officially K2 but with distinctly harder passages.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.visinand.ch/Via_ferrata/Dames_Anglaises/2013_08/Via-Dames_Anglaises.htm" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-planpraz" data-id="planpraz" data-region="Waadt &amp; Freiburg"
+         data-band="extreme" data-lift="no"
+         data-text="via ferrata de plan praz leysin (feydey) waadt &amp; freiburg vd almost no height gain and entirely about difficulty: powerful overhangs, several suspension bridges, beams and ladders on a compact wall right above the village.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Twilight_in_Leysin%2C_Switzerland.jpg/960px-Twilight_in_Leysin%2C_Switzerland.jpg" alt="" loading="lazy"><span class="credit">Deali00 · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K5</span><span class="chip ghost">VD</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Via ferrata de Plan Praz</h3>
+    <p class="where">Leysin (Feydey) · Waadt &amp; Freiburg · 1550 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>30 m</dd></div><div class="stat"><dt>Walk in</dt><dd>20 min</dd></div><div class="stat"><dt>Walk out</dt><dd>30 min</dd></div></dl>
+    <p class="prose">Almost no height gain and entirely about difficulty: powerful overhangs, several suspension bridges, beams and ladders on a compact wall right above the village.</p>
+    <p class="detail"><b>Approach.</b> 20 min from Feydey in Leysin (1398 m)</p>
+    <p class="detail"><b>Descent.</b> 30 min</p>
+    <p class="detail"><b>Lift.</b> None needed</p>
+    <p class="detail"><b>Season.</b> May to October</p>
+    <p class="caveat">For strong, experienced climbers only. Two exit options.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/planpraz/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-lavanchy" data-id="lavanchy" data-region="Waadt &amp; Freiburg"
+         data-band="hard" data-lift="no"
+         data-text="via ferrata du lavanchy pont-de-nant (bex / les plans) waadt &amp; freiburg vd a very short, well-protected sports ferrata in a beautiful setting at the head of the vallon de nant, with mild overhangs and traverses.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/20020805_nant_vue_01.jpg/960px-20020805_nant_vue_01.jpg" alt="" loading="lazy"><span class="credit">Jean Housen · CC BY 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K3–K4</span><span class="chip ghost">VD</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Via ferrata du Lavanchy</h3>
+    <p class="where">Pont-de-Nant (Bex / Les Plans) · Waadt &amp; Freiburg · 1550 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>30 min</dd></div><div class="stat"><dt>Climb gain</dt><dd>50 m</dd></div><div class="stat"><dt>Walk in</dt><dd>1 h</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h</dd></div></dl>
+    <p class="prose">A very short, well-protected sports ferrata in a beautiful setting at the head of the Vallon de Nant, with mild overhangs and traverses.</p>
+    <p class="detail"><b>Approach.</b> 1 h from the Pont-de-Nant car park</p>
+    <p class="detail"><b>Descent.</b> ~1 h</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Short — worth combining with the walk up to the Pont-de-Nant botanical garden. Not a beginner route despite its brevity.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/lavanchy/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-videmanette" data-id="videmanette" data-region="Waadt &amp; Freiburg"
+         data-band="mid" data-lift="yes"
+         data-text="via ferrata de la videmanette (3 routes) rougemont waadt &amp; freiburg vd three parallel routes of increasing difficulty (500 m / 380 m / 400 m) up to the summit of the rubli, with a 360° panorama at the top.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rougemont_mountain.jpg/960px-Rougemont_mountain.jpg" alt="" loading="lazy"><span class="credit">Ian Furst · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">Route 1 easy · Route 2 moderate · Route 3 very difficult</span><span class="chip ghost">VD</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Via ferrata de la Videmanette (3 routes)</h3>
+    <p class="where">Rougemont · Waadt &amp; Freiburg · 2284 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1–2 h depending on route</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>5 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h down to Rougemont</dd></div></dl>
+    <p class="prose">Three parallel routes of increasing difficulty (500 m / 380 m / 400 m) up to the summit of the Rubli, with a 360° panorama at the top.</p>
+    <p class="detail"><b>Approach.</b> 5 min from the La Videmanette top station</p>
+    <p class="detail"><b>Descent.</b> Back to the top station, ~20 min</p>
+    <p class="detail"><b>Lift.</b> Rougemont–La Videmanette cable car</p>
+    <p class="detail"><b>Season.</b> Mid-June to October</p>
+    <p class="caveat">The three grades make it an unusually good place to bring a mixed-ability group.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.vaud.ch/en/tourism/activites/videmanette-via-ferrata-route-1/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-rochers-de-naye" data-id="rochers-de-naye" data-region="Waadt &amp; Freiburg"
+         data-band="extreme" data-lift="yes"
+         data-text="via ferrata des rochers de naye montreux / jaman waadt &amp; freiburg vd steep, famously exposed limestone with the drop running straight down to lake geneva.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Ligne_MGN_et_Rochers_de_Naye.jpg/960px-Ligne_MGN_et_Rochers_de_Naye.jpg" alt="" loading="lazy"><span class="credit">Christian David · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K5</span><span class="chip ghost">VD</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Via ferrata des Rochers de Naye</h3>
+    <p class="where">Montreux / Jaman · Waadt &amp; Freiburg · 2042 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 30–2 h</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>~20 min</dd></div><div class="stat"><dt>Walk out</dt><dd>long — the railway is the sensible option</dd></div></dl>
+    <p class="prose">Steep, famously exposed limestone with the drop running straight down to Lake Geneva.</p>
+    <p class="detail"><b>Approach.</b> ~20 min from Jaman station</p>
+    <p class="detail"><b>Descent.</b> ~45 min back, or take the train down from Rochers-de-Naye</p>
+    <p class="detail"><b>Lift.</b> Montreux–Rochers-de-Naye cog railway (alight at Jaman)</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Has an escape route. Serious grade — not a first ferrata.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.sac-cas.ch/fr/cabanes-et-courses/portail-des-courses-du-cas/rochers-de-naye-1283/via-ferrata/via-ferrata-rochers-de-naye-718/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-moleson" data-id="moleson" data-region="Waadt &amp; Freiburg"
+         data-band="extreme" data-lift="yes"
+         data-text="via ferrata le moléson (le pilier – la face) moléson-sur-gruyères waadt &amp; freiburg fr well-equipped sports route with abundant iron rungs and little direct rock contact. two variants (left is easier), finishing on an exposed overhanging traverse.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Moleson_from_north-east.jpg/960px-Moleson_from_north-east.jpg" alt="" loading="lazy"><span class="credit">Christian David · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K4–K5</span><span class="chip ghost">FR</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Via ferrata Le Moléson (Le Pilier – La Face)</h3>
+    <p class="where">Moléson-sur-Gruyères · Waadt &amp; Freiburg · 2002 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>372 m</dd></div><div class="stat"><dt>Walk in</dt><dd>~1 h 30 from Moléson-Village</dd></div><div class="stat"><dt>Walk out</dt><dd>2 h 30</dd></div></dl>
+    <p class="prose">Well-equipped sports route with abundant iron rungs and little direct rock contact. Two variants (left is easier), finishing on an exposed overhanging traverse.</p>
+    <p class="detail"><b>Approach.</b> 10 min from the Plan-Francey middle station</p>
+    <p class="detail"><b>Descent.</b> 2 h 30 on foot back to the car park, or ride the cable car down from the summit</p>
+    <p class="detail"><b>Lift.</b> Moléson funicular to Plan-Francey, then cable car from the summit</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">North-facing, so cold in the morning. There is a voluntary maintenance donation box — access itself is free.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/moleson/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-charmey" data-id="charmey" data-region="Waadt &amp; Freiburg"
+         data-band="extreme" data-lift="yes"
+         data-text="via ferrata de charmey charmey waadt &amp; freiburg fr cable nets, wire bridges, a cave and a tibetan bridge, with three lines side by side. summit views to the gastlosen and the moléson.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Charmey.jpg" alt="" loading="lazy"><span class="credit">Alps · Public domain</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K3 / K5 / K6 (three lines)</span><span class="chip ghost">FR</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Via ferrata de Charmey</h3>
+    <p class="where">Charmey · Waadt &amp; Freiburg · 1814 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h 45</dd></div><div class="stat"><dt>Climb gain</dt><dd>160 m</dd></div><div class="stat"><dt>Walk in</dt><dd>30 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 30 to Charmey</dd></div></dl>
+    <p class="prose">Cable nets, wire bridges, a cave and a Tibetan bridge, with three lines side by side. Summit views to the Gastlosen and the Moléson.</p>
+    <p class="detail"><b>Approach.</b> 30 min from the Charmey cable-car top station</p>
+    <p class="detail"><b>Descent.</b> 40 min</p>
+    <p class="detail"><b>Lift.</b> Charmey (Vounetz) cable car</p>
+    <p class="detail"><b>Season.</b> May to October</p>
+    <p class="caveat">No intermediate exits — once you start you finish. Pick your line before committing.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/charmey/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-fuerenwand" data-id="fuerenwand" data-region="Zentralschweiz"
+         data-band="extreme" data-lift="yes"
+         data-text="klettersteig fürenwand engelberg zentralschweiz ow one of the undisputed swiss classics: a sheer wall opposite the titlis, with a steep exposed first section and a very airy 20 m rope ladder near the top.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/.00_1061_F%C3%BCrenalp_%28Engelberg%29.jpg/960px-.00_1061_F%C3%BCrenalp_%28Engelberg%29.jpg" alt="" loading="lazy"><span class="credit">W. Bulach · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K4–K5</span><span class="chip ghost">OW</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Fürenwand</h3>
+    <p class="where">Engelberg · Zentralschweiz · 1850 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h 45</dd></div><div class="stat"><dt>Climb gain</dt><dd>550 m</dd></div><div class="stat"><dt>Walk in</dt><dd>20 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 30</dd></div></dl>
+    <p class="prose">One of the undisputed Swiss classics: a sheer wall opposite the Titlis, with a steep exposed first section and a very airy 20 m rope ladder near the top.</p>
+    <p class="detail"><b>Approach.</b> 20 min from the Fürenalp cable-car valley station car park</p>
+    <p class="detail"><b>Descent.</b> By cable car from Fürenalp; walking down takes about 1 h 30</p>
+    <p class="detail"><b>Lift.</b> Fürenalp cable car — used for the descent</p>
+    <p class="detail"><b>Season.</b> May to end of October</p>
+    <p class="caveat">Not for beginners. The rope ladder needs arm strength and nerve — there is no way round it.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/fuerenwand/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-brunnistoeckli" data-id="brunnistoeckli" data-region="Zentralschweiz"
+         data-band="easy" data-lift="yes"
+         data-text="klettersteig brunnistöckli engelberg (brunni) zentralschweiz ow the classic swiss beginner ferrata — short approach, about 200 m of gain and two suspension bridges. popular with families.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Klettersteig_Brunnist%C3%B6ckli_04.jpg/960px-Klettersteig_Brunnist%C3%B6ckli_04.jpg" alt="" loading="lazy"><span class="credit">Kent Wang · CC BY 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">OW</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Brunnistöckli</h3>
+    <p class="where">Engelberg (Brunni) · Zentralschweiz · 2030 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h from the cable-car station to the top</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>~1 h 30 up from Engelberg</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 30 to Engelberg</dd></div></dl>
+    <p class="prose">The classic Swiss beginner ferrata — short approach, about 200 m of gain and two suspension bridges. Popular with families.</p>
+    <p class="detail"><b>Approach.</b> From the Brunni cable-car top station</p>
+    <p class="detail"><b>Descent.</b> 20 min back to the Brunnihütte</p>
+    <p class="detail"><b>Lift.</b> Brunni cable car (Engelberg–Ristis)</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Not recommended for children under 8. Gear rental at the lift (CHF 25).</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://brunni.ch/de/detail/klettersteige" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-zittergrat" data-id="zittergrat" data-region="Zentralschweiz"
+         data-band="hard" data-lift="yes"
+         data-text="klettersteig zittergrat engelberg (brunni) zentralschweiz ow right next to the brunnistöckli and finishing at the same point, but short, steep and genuinely exposed — the hardest of the brunni routes.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/00_3183_Brunni_%28Engelberg%29_-_Alp_Rigidal.jpg/960px-00_3183_Brunni_%28Engelberg%29_-_Alp_Rigidal.jpg" alt="" loading="lazy"><span class="credit">W. Bulach · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">OW</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Zittergrat</h3>
+    <p class="where">Engelberg (Brunni) · Zentralschweiz · 1927 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>40 min from the cable-car station</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>~1 h 30 up from Engelberg</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 30 to Engelberg</dd></div></dl>
+    <p class="prose">Right next to the Brunnistöckli and finishing at the same point, but short, steep and genuinely exposed — the hardest of the Brunni routes.</p>
+    <p class="detail"><b>Approach.</b> From the Brunni cable-car top station</p>
+    <p class="detail"><b>Descent.</b> 20 min</p>
+    <p class="detail"><b>Lift.</b> Brunni cable car</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Needs arm strength and a good head. Often combined with the Brunnistöckli in one outing.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://brunni.ch/61/de/zittergrat" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-rigidalstockgrat" data-id="rigidalstockgrat" data-region="Zentralschweiz"
+         data-band="mid" data-lift="yes"
+         data-text="klettersteig rigidalstockgrat engelberg (brunni) zentralschweiz ow the easier of the two rigidalstock lines and suitable for beginners, but with a serious alpine walk-in and a proper 2577 m summit.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Rigidalstock_and_Walenst%C3%B6cke.jpg/960px-Rigidalstock_and_Walenst%C3%B6cke.jpg" alt="" loading="lazy"><span class="credit">Paradise Chronicle · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">OW</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Rigidalstockgrat</h3>
+    <p class="where">Engelberg (Brunni) · Zentralschweiz · 2577 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>3 h 30 from the cable-car station</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>add ~1 h 30 from Engelberg</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 30 further to Engelberg</dd></div></dl>
+    <p class="prose">The easier of the two Rigidalstock lines and suitable for beginners, but with a serious alpine walk-in and a proper 2577 m summit.</p>
+    <p class="detail"><b>Approach.</b> Long walk-in from the Brunni top station via the Brunni-Pfad</p>
+    <p class="detail"><b>Descent.</b> 1 h 30 from Schonegg back to the Brunnihütte</p>
+    <p class="detail"><b>Lift.</b> Brunni cable car</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">A full day. Often linked with the Brunnistöckli lower down.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://brunni.ch/62/de/rigidalstockgrat-und-wand" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-rigidalstockwand" data-id="rigidalstockwand" data-region="Zentralschweiz"
+         data-band="hard" data-lift="yes"
+         data-text="klettersteig rigidalstockwand engelberg (brunni) zentralschweiz ow the wall variant on the rigidalstock — steeper and harder than the ridge line, and explicitly not a beginner route.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/ETH-BIB-Walenst%C3%B6cke%2C_Titlis-LBS_H1-015419.tif/lossy-page1-960px-ETH-BIB-Walenst%C3%B6cke%2C_Titlis-LBS_H1-015419.tif.jpg" alt="" loading="lazy"><span class="credit">Werner Friedli · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K3–K4</span><span class="chip ghost">OW</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Rigidalstockwand</h3>
+    <p class="where">Engelberg (Brunni) · Zentralschweiz · 2577 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>3 h 30 from the cable-car station</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>add ~1 h 30 from Engelberg</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 30 further to Engelberg</dd></div></dl>
+    <p class="prose">The wall variant on the Rigidalstock — steeper and harder than the ridge line, and explicitly not a beginner route.</p>
+    <p class="detail"><b>Approach.</b> Same walk-in as the Grat route, from the Brunni top station</p>
+    <p class="detail"><b>Descent.</b> 1 h 30 back to the Brunnihütte</p>
+    <p class="detail"><b>Lift.</b> Brunni cable car</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">Long day with a demanding finish. Check conditions at the Brunni lift.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://brunni.ch/62/de/rigidalstockgrat-und-wand" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-graustock" data-id="graustock" data-region="Zentralschweiz"
+         data-band="extreme" data-lift="no"
+         data-text="graustock-klettersteig engstlenalp / jochpass zentralschweiz ow mixed mountain path over slabs linked by steep, exposed ferrata pitches. the crux is short and fierce, and you have to find your own holds.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/CH.OW.Engelberg_2006-07-02_Graustock_89_3x2-R_4K.jpg/960px-CH.OW.Engelberg_2006-07-02_Graustock_89_3x2-R_4K.jpg" alt="" loading="lazy"><span class="credit">Roy Egloff · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K3 (part 1), K4–K5 (part 2)</span><span class="chip ghost">OW</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Graustock-Klettersteig</h3>
+    <p class="where">Engstlenalp / Jochpass · Zentralschweiz · 2662 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>460 m</dd></div><div class="stat"><dt>Walk in</dt><dd>1 h 30</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h</dd></div></dl>
+    <p class="prose">Mixed mountain path over slabs linked by steep, exposed ferrata pitches. The crux is short and fierce, and you have to find your own holds.</p>
+    <p class="detail"><b>Approach.</b> 1 h 10 from Engstlenalp to the Jochpass, plus 20 min; or start at the Jochpass lift station</p>
+    <p class="detail"><b>Descent.</b> ~2 h back down to Engstlenalp</p>
+    <p class="detail"><b>Lift.</b> Jochpass chairlift from Trübsee/Engstlenalp (optional)</p>
+    <p class="detail"><b>Season.</b> Late June to early October</p>
+    <p class="caveat">The second part jumps to K4–K5 — check you are happy before committing past part 1.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/graustock/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-fruttli" data-id="fruttli" data-region="Zentralschweiz"
+         data-band="mid" data-lift="yes"
+         data-text="fruttlisteig (bonistock) melchsee-frutt zentralschweiz ow a tiny route through a rock band up towards the bonistock. its signature is an old chairlift seat bolted to the wall as a viewing perch over the melchsee.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/00_0469_Bonistock_-_Melchsee-Frutt%2C_Schweiz.jpg/960px-00_0469_Bonistock_-_Melchsee-Frutt%2C_Schweiz.jpg" alt="" loading="lazy"><span class="credit">W. Bulach · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">OW</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Fruttlisteig (Bonistock)</h3>
+    <p class="where">Melchsee-Frutt · Zentralschweiz · 2160 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>20 min</dd></div><div class="stat"><dt>Climb gain</dt><dd>60 m</dd></div><div class="stat"><dt>Walk in</dt><dd>30 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 30 down to Stöckalp</dd></div></dl>
+    <p class="prose">A tiny route through a rock band up towards the Bonistock. Its signature is an old chairlift seat bolted to the wall as a viewing perch over the Melchsee.</p>
+    <p class="detail"><b>Approach.</b> 30 min from Melchsee-Frutt</p>
+    <p class="detail"><b>Descent.</b> 30 min</p>
+    <p class="detail"><b>Lift.</b> Stöckalp–Melchsee-Frutt gondola (hourly)</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Very short — best treated as an add-on to a hiking day at Melchsee-Frutt.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/fruttli/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-fruttstaegae" data-id="fruttstaegae" data-region="Zentralschweiz"
+         data-band="hard" data-lift="yes"
+         data-text="klettersteig fruttstägä bürglen (biel-kinzig) zentralschweiz ur short, well-protected route with an exposed sitting bench bolted to a near-vertical wall and a 10 m rope bridge near the finish.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/ETH-BIB-Rosstock%2C_B%C3%BCrglen%2C_Kinzig-LBS_H1-019615.tif/lossy-page1-960px-ETH-BIB-Rosstock%2C_B%C3%BCrglen%2C_Kinzig-LBS_H1-019615.tif.jpg" alt="" loading="lazy"><span class="credit">Werner Friedli · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">UR</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Fruttstägä</h3>
+    <p class="where">Bürglen (Biel-Kinzig) · Zentralschweiz · 2040 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>45 min</dd></div><div class="stat"><dt>Climb gain</dt><dd>100 m</dd></div><div class="stat"><dt>Walk in</dt><dd>1 h</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h</dd></div></dl>
+    <p class="prose">Short, well-protected route with an exposed sitting bench bolted to a near-vertical wall and a 10 m rope bridge near the finish.</p>
+    <p class="detail"><b>Approach.</b> 1 h from the Biel-Kinzig cable-car top station</p>
+    <p class="detail"><b>Descent.</b> ~2 h back to the cable-car station</p>
+    <p class="detail"><b>Lift.</b> Biel-Kinzig cable car from Brügg near Bürglen</p>
+    <p class="detail"><b>Season.</b> Summer (check lift operating times)</p>
+    <p class="caveat">The crux is right above the entry and slightly overhanging — there is an easier alternative line.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/fruttstaegae/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-klewenalp" data-id="klewenalp" data-region="Zentralschweiz"
+         data-band="easy" data-lift="yes"
+         data-text="klettersteig klewenalp–ergglen beckenried zentralschweiz nw a short family route with three wire bridges and a cave-like passage, very well secured with plenty of iron steps, looking out over lake lucerne.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Klewenalp_5096.jpg/960px-Klewenalp_5096.jpg" alt="" loading="lazy"><span class="credit">Badener · CC BY 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">NW</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Klewenalp–Ergglen</h3>
+    <p class="where">Beckenried · Zentralschweiz · 1700 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~20 min</dd></div><div class="stat"><dt>Climb gain</dt><dd>40 m</dd></div><div class="stat"><dt>Walk in</dt><dd>30 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h down to Beckenried</dd></div></dl>
+    <p class="prose">A short family route with three wire bridges and a cave-like passage, very well secured with plenty of iron steps, looking out over Lake Lucerne.</p>
+    <p class="detail"><b>Approach.</b> 30 min from the Klewenalp top station to the Ergglen barbecue site</p>
+    <p class="detail"><b>Descent.</b> 30 min back to the top station</p>
+    <p class="detail"><b>Lift.</b> Beckenried–Klewenalp cable car</p>
+    <p class="detail"><b>Season.</b> Klewenalp–Stockhütte summer season</p>
+    <p class="caveat">Genuinely tiny — a fun stop rather than a day, ideal for first-timers and children.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/klewenalp-ergglen/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-adlerhorst" data-id="adlerhorst" data-region="Zentralschweiz"
+         data-band="hard" data-lift="yes"
+         data-text="klettersteig adlerhorst intschi / arnisee zentralschweiz ur beginner-friendly, solidly protected route in lovely spruce forest surroundings: a short entry ladder, a leftward traverse and a small overhang as the crux.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Arnisee_Lake.JPG/960px-Arnisee_Lake.JPG" alt="" loading="lazy"><span class="credit">Simon Koopmann · CC BY-SA 2.5</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K2–K4</span><span class="chip ghost">UR</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Adlerhorst</h3>
+    <p class="where">Intschi / Arnisee · Zentralschweiz · 1700 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~1 h</dd></div><div class="stat"><dt>Climb gain</dt><dd>140 m</dd></div><div class="stat"><dt>Walk in</dt><dd>20 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 30 down to Intschi</dd></div></dl>
+    <p class="prose">Beginner-friendly, solidly protected route in lovely spruce forest surroundings: a short entry ladder, a leftward traverse and a small overhang as the crux.</p>
+    <p class="detail"><b>Approach.</b> 20 min from the Berggasthaus Alpenblick at Arnisee</p>
+    <p class="detail"><b>Descent.</b> 45 min back to the cable-car station</p>
+    <p class="detail"><b>Lift.</b> Intschi–Arnisee cable car</p>
+    <p class="detail"><b>Season.</b> Early May to end of November</p>
+    <p class="caveat">Has an intermediate exit. Long season thanks to the modest altitude.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/adlerhorst/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-diavolo" data-id="diavolo" data-region="Zentralschweiz"
+         data-band="mid" data-lift="no"
+         data-text="via ferrata del diavolo andermatt / schöllenen zentralschweiz ur exceptionally well-secured granite route above the schöllenen gorge, with views down onto the devil&#x27;s bridge and the road&#x27;s hairpins.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Bei_Stollen_Teufelsbr%C3%BCcke.jpg/960px-Bei_Stollen_Teufelsbr%C3%BCcke.jpg" alt="" loading="lazy"><span class="credit">FFA P-16 · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K2–K3</span><span class="chip ghost">UR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Via ferrata del Diavolo</h3>
+    <p class="where">Andermatt / Schöllenen · Zentralschweiz · 1875 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~2 h</dd></div><div class="stat"><dt>Climb gain</dt><dd>500 m</dd></div><div class="stat"><dt>Walk in</dt><dd>15 min</dd></div><div class="stat"><dt>Walk out</dt><dd>1 h</dd></div></dl>
+    <p class="prose">Exceptionally well-secured granite route above the Schöllenen gorge, with views down onto the Devil&#x27;s Bridge and the road&#x27;s hairpins.</p>
+    <p class="detail"><b>Approach.</b> 15 min from the car park after the roundabout at the entrance to Andermatt</p>
+    <p class="detail"><b>Descent.</b> 1 h on foot</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> Closed 1 December – 30 April (wildlife protection)</p>
+    <p class="caveat">The difficulty is the sheer length rather than any single move; a small overhang near the end is the crux. Gets busy.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/diavolo/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-hexensteig" data-id="hexensteig" data-region="Zentralschweiz"
+         data-band="extreme" data-lift="yes"
+         data-text="hexensteig am pfaffen silenen zentralschweiz ur runs largely through the inside of the mountain, over tree trunks and iron steps, and opens with a tyrolean traverse across a small gorge.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Pfaffen_Spherical_Panorama.jpg/960px-Pfaffen_Spherical_Panorama.jpg" alt="" loading="lazy"><span class="credit">Capricorn4049 · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K5</span><span class="chip ghost">UR</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Hexensteig am Pfaffen</h3>
+    <p class="where">Silenen · Zentralschweiz · 1835 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 15</dd></div><div class="stat"><dt>Climb gain</dt><dd>130 m</dd></div><div class="stat"><dt>Walk in</dt><dd>1 h</dd></div><div class="stat"><dt>Walk out</dt><dd>long — the little cable car is the practical option</dd></div></dl>
+    <p class="prose">Runs largely through the inside of the mountain, over tree trunks and iron steps, and opens with a Tyrolean traverse across a small gorge.</p>
+    <p class="detail"><b>Approach.</b> 1 h from the Chilcherberge cable-car top station</p>
+    <p class="detail"><b>Descent.</b> 45 min</p>
+    <p class="detail"><b>Lift.</b> Open-air Chilcherberge cable car (very limited parking at the valley station)</p>
+    <p class="detail"><b>Season.</b> Summer (check cable-car hours)</p>
+    <p class="caveat">Steep, partly overhanging and dangerous when wet. The tiny open-air cable car has very limited capacity and parking.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/hexensteig/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-krokodil" data-id="krokodil" data-region="Zentralschweiz"
+         data-band="mid" data-lift="no"
+         data-text="klettersteig krokodil (bergsee) göscheneralp zentralschweiz ur 400 m of steel cable over two rock towers, the second of which really does look like a crocodile&#x27;s head. lots of direct rock contact and a wire bridge near the finish.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Dammabergkette_mit_Gletscher.jpg" alt="" loading="lazy"><span class="credit">Bergdohle · CC BY-SA 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">UR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Klettersteig Krokodil (Bergsee)</h3>
+    <p class="where">Göscheneralp · Zentralschweiz · 2527 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>130 m</dd></div><div class="stat"><dt>Walk in</dt><dd>~1 h 20</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 20</dd></div></dl>
+    <p class="prose">400 m of steel cable over two rock towers, the second of which really does look like a crocodile&#x27;s head. Lots of direct rock contact and a wire bridge near the finish.</p>
+    <p class="detail"><b>Approach.</b> 1 h from the Berggasthaus Dammagletscher car park to the Bergseehütte, then 20 min</p>
+    <p class="detail"><b>Descent.</b> 20 min to the hut, then ~1 h back to the car park</p>
+    <p class="detail"><b>Lift.</b> None — road to Göscheneralp</p>
+    <p class="detail"><b>Season.</b> While the Bergseehütte is staffed — contact the hut</p>
+    <p class="caveat">Views over the Bergsee, Göscheneralpsee and Dammagletscher. Best combined with a night at the Bergseehütte.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/krokodil/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-schijen-zwaerg" data-id="schijen-zwaerg" data-region="Zentralschweiz"
+         data-band="mid" data-lift="no"
+         data-text="klettersteig schijen zwärg göscheneralp zentralschweiz ur a short, scenic ferrata spliced into the walk up to the bergseehütte — a neat warm-up for the krokodil route above.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Lac_de_G%C3%B6scheneralp.jpg/960px-Lac_de_G%C3%B6scheneralp.jpg" alt="" loading="lazy"><span class="credit">Bertrand Semelet · CC BY-SA 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3 (C)</span><span class="chip ghost">UR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Klettersteig Schijen Zwärg</h3>
+    <p class="where">Göscheneralp · Zentralschweiz · 2330 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~30 min (about 120 m of route)</dd></div><div class="stat"><dt>Climb gain</dt><dd>80 m</dd></div><div class="stat"><dt>Walk in</dt><dd>~1 h 20</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 20</dd></div></dl>
+    <p class="prose">A short, scenic ferrata spliced into the walk up to the Bergseehütte — a neat warm-up for the Krokodil route above.</p>
+    <p class="detail"><b>Approach.</b> On the T3 path from the Göscheneralpsee up to the Bergseehütte</p>
+    <p class="detail"><b>Descent.</b> Continue to the Bergseehütte, then ~1 h back down</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> Summer, while the hut is staffed</p>
+    <p class="caveat">Very short; only worth it as part of the Bergseehütte day.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.sac-cas.ch/de/huetten-und-touren/sac-tourenportal/bergseehuette-sac-2147000030/klettersteig/klettersteig-schijen-zwaerg-3855/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-salbit" data-id="salbit" data-region="Zentralschweiz"
+         data-band="hard" data-lift="no"
+         data-text="salbit-höhenweg / salbit-kettenweg göschenen zentralschweiz ur not a pure ferrata: a long alpine day mixing hiking, scree and boulders with a 50 m secured wall, plus the spectacular 90 m salbit suspension bridge on the höhenweg to the voralphütte.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Imposante_Salbitbr%C3%BCcke_am_Salbitschijen.jpg/960px-Imposante_Salbitbr%C3%BCcke_am_Salbitschijen.jpg" alt="" loading="lazy"><span class="credit">Uwelino · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K3–K4 (C/D)</span><span class="chip ghost">UR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Salbit-Höhenweg / Salbit-Kettenweg</h3>
+    <p class="where">Göschenen · Zentralschweiz · 2480 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~1 h 30 for the secured wall</dd></div><div class="stat"><dt>Climb gain</dt><dd>350 m</dd></div><div class="stat"><dt>Walk in</dt><dd>~2 h 20</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h 30</dd></div></dl>
+    <p class="prose">Not a pure ferrata: a long alpine day mixing hiking, scree and boulders with a 50 m secured wall, plus the spectacular 90 m Salbit suspension bridge on the Höhenweg to the Voralphütte.</p>
+    <p class="detail"><b>Approach.</b> From the Ulmi car park (1195 m) or the Voralpkehre (1404 m); ~2 h 20 up to the Salbithütte</p>
+    <p class="detail"><b>Descent.</b> ~2 h 30</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> Summer, settled weather</p>
+    <p class="caveat">About 1285 m of total gain and 7 h 30. The Salbithütte at 2105 m breaks it up.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://klettersteig.de/klettersteig/salbit_kettenweg/861" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-husky-lodge" data-id="husky-lodge" data-region="Zentralschweiz"
+         data-band="mid" data-lift="no"
+         data-text="klettersteig husky-lodge &amp; felspfad muotathal zentralschweiz sz two well-protected lines side by side. the felspfad is about as gentle an introduction to via ferrata as exists; the main route goes vertically up the wall, then a ladder, a ledge traverse and a final push.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/ISS022-E-5786_-_View_of_Switzerland_-_Schwyz_-_Brunnen_-_Muotatal_%28Muotathal%29_-_Stoos_SZ_-_Morschach_-_Sisikon_-_lake_Urnersee_-_Gibelhorn_forest_-_Fronalpstock_and_Klingenstock_-_Rophaien_-_Fl%C3%BCelen_-_Isenthal_%28cropped%29.jpg/960px-thumbnail.jpg" alt="" loading="lazy"><span class="credit">Earth Science and Remote Sensing Unit, Lyndon B. Johnson Space Center · Public domain</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K2 (Felspfad) / K3 (Klettersteig)</span><span class="chip ghost">SZ</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Klettersteig Husky-Lodge &amp; Felspfad</h3>
+    <p class="where">Muotathal · Zentralschweiz · 720 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h</dd></div><div class="stat"><dt>Climb gain</dt><dd>100 m</dd></div><div class="stat"><dt>Walk in</dt><dd>10 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~20 min</dd></div></dl>
+    <p class="prose">Two well-protected lines side by side. The Felspfad is about as gentle an introduction to via ferrata as exists; the main route goes vertically up the wall, then a ladder, a ledge traverse and a final push.</p>
+    <p class="detail"><b>Approach.</b> 10 min from the car park at the Erlebniswelt Muotathal</p>
+    <p class="detail"><b>Descent.</b> ~20 min</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> All year — low and south-facing</p>
+    <p class="caveat">Genuinely usable in winter, which is rare. Perfect for a first try or an off-season fix.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/husky-lodge/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-rigi-kulm" data-id="rigi-kulm" data-region="Zentralschweiz"
+         data-band="easy" data-lift="yes"
+         data-text="rigi-kulm-nordwestrippe rigi zentralschweiz sz a short secured rib on the north-west side of the rigi, described in the sac guidebook (route 64). more a curiosity on a rigi walking day than a destination ferrata.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/6645_-_Rigi_Kulm_-_Vierwaldst%C3%A4ttersee.JPG/960px-6645_-_Rigi_Kulm_-_Vierwaldst%C3%A4ttersee.JPG" alt="" loading="lazy"><span class="credit">Andrew Bossi · CC BY-SA 2.5</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K2 (approx.)</span><span class="chip ghost">SZ</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Rigi-Kulm-Nordwestrippe</h3>
+    <p class="where">Rigi · Zentralschweiz · 1798 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>—</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>long walk-up from Weggis or Vitznau</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h</dd></div></dl>
+    <p class="prose">A short secured rib on the north-west side of the Rigi, described in the SAC guidebook (route 64). More a curiosity on a Rigi walking day than a destination ferrata.</p>
+    <p class="detail"><b>Approach.</b> From the Rigi railways / Rigi Kulm</p>
+    <p class="detail"><b>Descent.</b> Rigi railways or on foot</p>
+    <p class="detail"><b>Lift.</b> Rigi cog railways and the Weggis–Rigi Kaltbad cable car</p>
+    <p class="detail"><b>Season.</b> Summer</p>
+    <p class="caveat">Data thin — verify locally before relying on it. Treat the grade as indicative.</p>
+    <p class="thin-warn">Sparse data — verify locally before you commit to this one.</p>
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.sac-cas.ch/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-zingelstoeckli" data-id="zingelstoeckli" data-region="Ostschweiz"
+         data-band="extreme" data-lift="no"
+         data-text="klettersteig zingelstöckli urnerboden ostschweiz ur opened in 2016 on switzerland&#x27;s largest alp. a sporty line with steep and overhanging passages.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Urnerboden2.jpg/960px-Urnerboden2.jpg" alt="" loading="lazy"><span class="credit">Lutz Fischer-Lamprecht · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K4–K5 (D)</span><span class="chip ghost">UR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Klettersteig Zingelstöckli</h3>
+    <p class="where">Urnerboden · Ostschweiz · 1720 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~2 h (about 300 m of route)</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>30 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h</dd></div></dl>
+    <p class="prose">Opened in 2016 on Switzerland&#x27;s largest alp. A sporty line with steep and overhanging passages.</p>
+    <p class="detail"><b>Approach.</b> 30 min on the path behind the former Gasthaus Tell in Urnerboden</p>
+    <p class="detail"><b>Descent.</b> ~1 h back to the village</p>
+    <p class="detail"><b>Lift.</b> None — Klausen pass road</p>
+    <p class="detail"><b>Season.</b> Summer — the Klausen pass is closed in winter</p>
+    <p class="caveat">Strongly advised against in the wet. Not for beginners. Free parking by the church; gear can be hired in the village shop.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.bergsteigen.com/touren/klettersteig/zingelstoeckli-klettersteig/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-braunwald" data-id="braunwald" data-region="Ostschweiz"
+         data-band="extreme" data-lift="yes"
+         data-text="braunwalder klettersteig (eggstöcke) braunwald ostschweiz gl a ridge traverse over four summits of the eggstöcke with escalating difficulty. the k5 section to the rear summit is overhanging with widely spaced holds; two intermediate exits allow a shorter day.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Eggst%C3%B6cke_mit_Gumen.jpg/960px-Eggst%C3%B6cke_mit_Gumen.jpg" alt="" loading="lazy"><span class="credit">Felix Günther FeG · CC BY-SA 2.5</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K3 to K5</span><span class="chip ghost">GL</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Braunwalder Klettersteig (Eggstöcke)</h3>
+    <p class="where">Braunwald · Ostschweiz · 2449 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h 45</dd></div><div class="stat"><dt>Climb gain</dt><dd>670 m</dd></div><div class="stat"><dt>Walk in</dt><dd>~50 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h 30 to Braunwald</dd></div></dl>
+    <p class="prose">A ridge traverse over four summits of the Eggstöcke with escalating difficulty. The K5 section to the rear summit is overhanging with widely spaced holds; two intermediate exits allow a shorter day.</p>
+    <p class="detail"><b>Approach.</b> ~50 min from the Berggasthaus Gumen (1904 m)</p>
+    <p class="detail"><b>Descent.</b> 1 h 30</p>
+    <p class="detail"><b>Lift.</b> Linthal–Braunwald funicular (Braunwald is car-free), then the Gumen chairlift</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Beginner and children&#x27;s variants exist near the mountain restaurant. Braunwald is car-free — factor the funicular into your timing.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/belvedere/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-indianer" data-id="indianer" data-region="Ostschweiz"
+         data-band="hard" data-lift="no"
+         data-text="indianer-klettersteig netstal netstal ostschweiz gl short but varied: a cave, a ladder and a tyrolean traverse with a fixed pulley, finishing on an overhanging push to the top.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Wiggis_vom_Vordergl%C3%A4rnisch.jpg/960px-Wiggis_vom_Vordergl%C3%A4rnisch.jpg" alt="" loading="lazy"><span class="credit">Caumasee · Public domain</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K3–K4</span><span class="chip ghost">GL</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Indianer-Klettersteig Netstal</h3>
+    <p class="where">Netstal · Ostschweiz · 700 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h</dd></div><div class="stat"><dt>Climb gain</dt><dd>70 m</dd></div><div class="stat"><dt>Walk in</dt><dd>30 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~45 min</dd></div></dl>
+    <p class="prose">Short but varied: a cave, a ladder and a Tyrolean traverse with a fixed pulley, finishing on an overhanging push to the top.</p>
+    <p class="detail"><b>Approach.</b> 30 min from the car park near the Schlattstein erratic beside the Linth in Netstal</p>
+    <p class="detail"><b>Descent.</b> ~45 min</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> Early season — usable when higher routes are still snowed in</p>
+    <p class="caveat">Exposed and technically demanding despite the low altitude. There is an emergency exit partway.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/indianer/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-speer" data-id="speer" data-region="Ostschweiz"
+         data-band="easy" data-lift="no"
+         data-text="speer-kletterweg amden / kaltbrunn ostschweiz sg a secured climbing path up europe&#x27;s highest grass-covered peak, above the walensee.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Gulmen_%28Mattstock_Speer%29.JPG/960px-Gulmen_%28Mattstock_Speer%29.JPG" alt="" loading="lazy"><span class="credit">Drdamage · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K2 (B/C)</span><span class="chip ghost">SG</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Speer-Kletterweg</h3>
+    <p class="where">Amden / Kaltbrunn · Ostschweiz · 1951 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~4–5 h to the summit in total</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>1 h 30</dd></div><div class="stat"><dt>Walk out</dt><dd>2 h 30</dd></div></dl>
+    <p class="prose">A secured climbing path up Europe&#x27;s highest grass-covered peak, above the Walensee.</p>
+    <p class="detail"><b>Approach.</b> 1 h 30 from the free Mittelwengi car park (1150 m) via the Obere Rossalpe</p>
+    <p class="detail"><b>Descent.</b> 2 h 30; adding the Bützli descent variant costs about another 2 h 30</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Closer to an exposed alpine route with cables than a modern sports ferrata. Long day.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.bergsteigen.com/touren/klettersteig/speer-kletterweg/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-lisengrat" data-id="lisengrat" data-region="Ostschweiz"
+         data-band="easy" data-lift="yes"
+         data-text="lisengrat &amp; nasenlöcherweg säntis / rotsteinpass ostschweiz ai/sg the famous exposed ridge from the rotsteinpass to the säntis, cable-protected throughout, plus the nasenlöcherweg in the alpstein.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Drahtseilgesicherter_Aufstieg_zum_Lisengrat_beim_S%C3%A4ntis.jpg/960px-Drahtseilgesicherter_Aufstieg_zum_Lisengrat_beim_S%C3%A4ntis.jpg" alt="" loading="lazy"><span class="credit">JoachimKohler-HB · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K1–K2 (secured path)</span><span class="chip ghost">AI/SG</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Lisengrat &amp; Nasenlöcherweg</h3>
+    <p class="where">Säntis / Rotsteinpass · Ostschweiz · 2502 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~2 h Rotsteinpass → Säntis</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>~3 h from Wasserauen to the Rotsteinpass</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h 30 to Schwägalp</dd></div></dl>
+    <p class="prose">The famous exposed ridge from the Rotsteinpass to the Säntis, cable-protected throughout, plus the Nasenlöcherweg in the Alpstein.</p>
+    <p class="detail"><b>Approach.</b> Via Schwägalp or Wasserauen; the Lisengrat links the Rotsteinpass to the Säntis summit</p>
+    <p class="detail"><b>Descent.</b> Säntis cable car, or walk down to Schwägalp</p>
+    <p class="detail"><b>Lift.</b> Säntis-Schwebebahn from Schwägalp; Ebenalp cable car from Wasserauen</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">A secured alpine path rather than a true via ferrata — most walkers do it without a ferrata set, but it is seriously exposed and dangerous in snow or ice.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.sac-cas.ch/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-flaesch" data-id="flaesch" data-region="Graubünden"
+         data-band="easy" data-lift="no"
+         data-text="fläscher leiterliweg fläsch graubünden gr a mini ferrata of ladders on the cliffs above fläsch, with only 10–15 minutes of actual climbing.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Zentralbibliothek_Z%C3%BCrich_-_Fl%C3%A4scherberg_-_991131954299705501.jpg/960px-Zentralbibliothek_Z%C3%BCrich_-_Fl%C3%A4scherberg_-_991131954299705501.jpg" alt="" loading="lazy"><span class="credit">Anonym/e Künstler/in · Public domain</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K1–K2 (A/B)</span><span class="chip ghost">GR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Fläscher Leiterliweg</h3>
+    <p class="where">Fläsch · Graubünden · 900 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>10–15 min</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>~40 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~40 min</dd></div></dl>
+    <p class="prose">A mini ferrata of ladders on the cliffs above Fläsch, with only 10–15 minutes of actual climbing.</p>
+    <p class="detail"><b>Approach.</b> Short walk from Fläsch above the Bündner Herrschaft vineyards</p>
+    <p class="detail"><b>Descent.</b> ~40 min</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> Almost all year — very low and sunny</p>
+    <p class="caveat">Trivially short. Worth it as a warm-up combined with a walk in the Bündner Herrschaft.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.bergsteigen.com/touren/klettersteig/leiterliweg-flaesch/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-pinut" data-id="pinut" data-region="Graubünden"
+         data-band="easy" data-lift="no"
+         data-text="klettersteig pinut flims / fidaz graubünden gr first documented in 1739 and fully renovated in 2007 — the oldest via ferrata in switzerland. ladders and stairs through three rock faces and caves in the flimserstein, separated by the pinut and pardatsch meadows.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flimserstein_S%C3%BCdseite.jpg/960px-Flimserstein_S%C3%BCdseite.jpg" alt="" loading="lazy"><span class="credit">upload by Adrian Michael · CC BY-SA 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K1–K2</span><span class="chip ghost">GR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Klettersteig Pinut</h3>
+    <p class="where">Flims / Fidaz · Graubünden · 2050 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~2 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>700 m</dd></div><div class="stat"><dt>Walk in</dt><dd>30 min from Fidaz</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h 35</dd></div></dl>
+    <p class="prose">First documented in 1739 and fully renovated in 2007 — the oldest via ferrata in Switzerland. Ladders and stairs through three rock faces and caves in the Flimserstein, separated by the Pinut and Pardatsch meadows.</p>
+    <p class="detail"><b>Approach.</b> 30 min up through the forest from Fidaz (200 m of gain); about 1 h 15 from Flims village</p>
+    <p class="detail"><b>Descent.</b> 1 h 15 down to Bargis, then about 2 h back to Fidaz/Flims</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> May to October</p>
+    <p class="caveat">Around 5 h for the whole tour. Easy technically but a long day; free access with a donation box.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="http://www.klettersteig-pinut.ch/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-sulzfluh" data-id="sulzfluh" data-region="Graubünden"
+         data-band="extreme" data-lift="no"
+         data-text="sulzfluh-klettersteig st. antönien / partnun graubünden gr the classic of the three partnun routes: an exemplary south-facing line up brilliant white limestone with abundant rungs, short ladders, a cable bridge and a ladder bridge. 500–600 m of steel cable, and a famous rest ledge — the bankli — halfway.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Sulzfluh_Plateau_Panorama.jpg/960px-Sulzfluh_Plateau_Panorama.jpg" alt="" loading="lazy"><span class="credit">böhringer friedrich · CC BY-SA 2.5</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K4–K5 (C/D)</span><span class="chip ghost">GR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Sulzfluh-Klettersteig</h3>
+    <p class="where">St. Antönien / Partnun · Graubünden · 2817 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>420 m</dd></div><div class="stat"><dt>Walk in</dt><dd>1 h 30</dd></div><div class="stat"><dt>Walk out</dt><dd>2 h 30</dd></div></dl>
+    <p class="prose">The classic of the three Partnun routes: an exemplary south-facing line up brilliant white limestone with abundant rungs, short ladders, a cable bridge and a ladder bridge. 500–600 m of steel cable, and a famous rest ledge — the Bankli — halfway.</p>
+    <p class="detail"><b>Approach.</b> 1 h 30 from the car parks at the head of the Partnun valley (1700 m), on the marked path towards the Carschinahütte</p>
+    <p class="detail"><b>Descent.</b> 2 h 30</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">1150 m of total gain and 6 h 30 for the day. The cable is removed for the winter.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.bergsteigen.com/touren/klettersteig/sulzfluh-klettersteig/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-partnunblick" data-id="partnunblick" data-region="Graubünden"
+         data-band="extreme" data-lift="no"
+         data-text="partnunblick-klettersteig st. antönien / partnun graubünden gr climbs the gemstobelwand with steadily rising difficulty, usually entered via the family route below. the short final wall is d/e and extremely exposed.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Sulzfluh-Weissplatte.jpg/960px-Sulzfluh-Weissplatte.jpg" alt="" loading="lazy"><span class="credit">Vince51 · CC BY 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K4–K5 (D/E)</span><span class="chip ghost">GR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Partnunblick-Klettersteig</h3>
+    <p class="where">St. Antönien / Partnun · Graubünden · 2300 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>2 h 45</dd></div><div class="stat"><dt>Climb gain</dt><dd>320 m</dd></div><div class="stat"><dt>Walk in</dt><dd>2 h</dd></div><div class="stat"><dt>Walk out</dt><dd>2 h 30</dd></div></dl>
+    <p class="prose">Climbs the Gemstobelwand with steadily rising difficulty, usually entered via the family route below. The short final wall is D/E and extremely exposed.</p>
+    <p class="detail"><b>Approach.</b> 2 h from car park no. 6 at Partnun (1631 m)</p>
+    <p class="detail"><b>Descent.</b> 2 h 30</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> May to October</p>
+    <p class="caveat">No emergency exit anywhere, and the crux waits until the very end. Experienced parties only.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.bergsteigen.com/touren/klettersteig/partnunblick-klettersteig/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-familien-partnunblick" data-id="familien-partnunblick" data-region="Graubünden"
+         data-band="easy" data-lift="no"
+         data-text="familien-klettersteig partnunblick st. antönien / partnun graubünden gr about 180 m zig-zagging up the wall with two short cable bridges and two platform pillars to exit from, high above the turquoise partnunsee.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Partnunsee-N.jpg/960px-Partnunsee-N.jpg" alt="" loading="lazy"><span class="credit">FkMohr · CC BY-SA 3.0 de</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-easy">K2 (A/B–B)</span><span class="chip ghost">GR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Familien-Klettersteig Partnunblick</h3>
+    <p class="where">St. Antönien / Partnun · Graubünden · 2100 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>150 m</dd></div><div class="stat"><dt>Walk in</dt><dd>1 h 30</dd></div><div class="stat"><dt>Walk out</dt><dd>1 h 45</dd></div></dl>
+    <p class="prose">About 180 m zig-zagging up the wall with two short cable bridges and two platform pillars to exit from, high above the turquoise Partnunsee.</p>
+    <p class="detail"><b>Approach.</b> 1 h 30 from car park no. 6 at Partnun (1631 m)</p>
+    <p class="detail"><b>Descent.</b> 1 h 45</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> July to September</p>
+    <p class="caveat">Recommended from age 8. 4 h 45 for the round trip — the walking, not the climbing, is the effort.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.bergsteigen.com/touren/klettersteig/familien-klettersteig-partnunblick/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-gauablickhoehle" data-id="gauablickhoehle" data-region="Graubünden"
+         data-band="mid" data-lift="no"
+         data-text="gauablickhöhle-klettersteig st. antönien / partnun graubünden gr a moderate route on the north flank of the sulzfluh whose highlight is entering the gauablickhöhle — a 350 m cave — right in the middle of the climb.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/360%C2%B0_Drei_T%C3%BCrme_und_Sulzfluh.jpg/960px-360%C2%B0_Drei_T%C3%BCrme_und_Sulzfluh.jpg" alt="" loading="lazy"><span class="credit">böhringer friedrich · CC BY-SA 2.5</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3 (C)</span><span class="chip ghost">GR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Gauablickhöhle-Klettersteig</h3>
+    <p class="where">St. Antönien / Partnun · Graubünden · 2600 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~1 h 30 (260 m of route)</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>~3 h</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h 45</dd></div></dl>
+    <p class="prose">A moderate route on the north flank of the Sulzfluh whose highlight is entering the Gauablickhöhle — a 350 m cave — right in the middle of the climb.</p>
+    <p class="detail"><b>Approach.</b> ~3 h, on the north side of the Sulzfluh</p>
+    <p class="detail"><b>Descent.</b> ~2 h 45</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> July to September</p>
+    <p class="caveat">Long approach and descent make this a big day. Take a head torch for the cave.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://klettersteig.de/klettersteig/gauablickhoehle_klettersteig/1508" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-punteglias" data-id="punteglias" data-region="Graubünden"
+         data-band="mid" data-lift="no"
+         data-text="klettersteig punteglias trun (surselva) graubünden gr a remote granite route in the val punteglias above trun, usually combined with a visit to the camona da punteglias. outdooractive gives the full circuit as roughly 12.6 km and 9 h.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Camona_da_Punteglias.jpg/960px-Camona_da_Punteglias.jpg" alt="" loading="lazy"><span class="credit">Andreas Fischler · CC BY 2.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3 (B)</span><span class="chip ghost">GR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Klettersteig Punteglias</h3>
+    <p class="where">Trun (Surselva) · Graubünden · 2400 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>—</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>~3 h</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h 30</dd></div></dl>
+    <p class="prose">A remote granite route in the Val Punteglias above Trun, usually combined with a visit to the Camona da Punteglias. Outdooractive gives the full circuit as roughly 12.6 km and 9 h.</p>
+    <p class="detail"><b>Approach.</b> Long walk-in up the Val Punteglias towards the Camona da Punteglias</p>
+    <p class="detail"><b>Descent.</b> Back down the valley</p>
+    <p class="detail"><b>Lift.</b> None</p>
+    <p class="detail"><b>Season.</b> July to September</p>
+    <p class="caveat">Data thin — verify with the hut before going. Very much a wilderness day.</p>
+    <p class="thin-warn">Sparse data — verify locally before you commit to this one.</p>
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.outdooractive.com/en/via-ferratas/switzerland/via-ferratas-in-switzerland/1443353/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-greitspitz" data-id="greitspitz" data-region="Graubünden"
+         data-band="extreme" data-lift="yes"
+         data-text="greitspitz-klettersteig samnaun graubünden gr built in 2001. a sports ferrata with two variants, one of them extremely exposed and graded k5, on the silvretta border ridge.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Ischgl_-_Greitspitze_BT_01.jpg/960px-Ischgl_-_Greitspitze_BT_01.jpg" alt="" loading="lazy"><span class="credit">Basotxerri · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K3, with a K5 variant</span><span class="chip ghost">GR</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Greitspitz-Klettersteig</h3>
+    <p class="where">Samnaun · Graubünden · 2872 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>150 m</dd></div><div class="stat"><dt>Walk in</dt><dd>30 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h down to Samnaun</dd></div></dl>
+    <p class="prose">Built in 2001. A sports ferrata with two variants, one of them extremely exposed and graded K5, on the Silvretta border ridge.</p>
+    <p class="detail"><b>Approach.</b> 30 min from the Flimsattel lift station</p>
+    <p class="detail"><b>Descent.</b> 30 min back to the lift</p>
+    <p class="detail"><b>Lift.</b> Samnaun cable cars to Alp Trida / Flimsattel</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">Combines well with the easier Flimspitz route on the same lift ticket.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.bergsteigen.com/touren/klettersteig/greitspitz-klettersteig/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-flimspitz" data-id="flimspitz" data-region="Graubünden"
+         data-band="mid" data-lift="yes"
+         data-text="flimspitz-klettersteig samnaun graubünden gr opened in 2004, with enjoyable slab climbing. the easier companion to the greitspitz route next door.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Flimspitz_as_seen_from_Bei_den_Seen.jpg/960px-Flimspitz_as_seen_from_Bei_den_Seen.jpg" alt="" loading="lazy"><span class="credit">Capricorn4049 · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">GR</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Flimspitz-Klettersteig</h3>
+    <p class="where">Samnaun · Graubünden · 2929 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>~1 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>—</dd></div><div class="stat"><dt>Walk in</dt><dd>From the Alp Trida / Flimsattel lift stations</dd></div><div class="stat"><dt>Walk out</dt><dd>~2 h to Samnaun</dd></div></dl>
+    <p class="prose">Opened in 2004, with enjoyable slab climbing. The easier companion to the Greitspitz route next door.</p>
+    <p class="detail"><b>Approach.</b> From the Alp Trida / Flimsattel lift stations</p>
+    <p class="detail"><b>Descent.</b> ~45 min back to the lift</p>
+    <p class="detail"><b>Lift.</b> Samnaun cable cars</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">The Samnaun lifts have limited summer operating dates — check before travelling.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.bergsteigen.com/touren/klettersteig/flimspitze-klettersteig/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-la-resgia" data-id="la-resgia" data-region="Graubünden"
+         data-band="hard" data-lift="no"
+         data-text="klettersteig la resgia pontresina graubünden gr varied climbing with a wire bridge, mesh netting and ladders, and a choice of two difficulty levels partway. the slightly overhanging adlerhorst crux makes you climb round an arête.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pontresina_village_from_train.jpg/960px-Pontresina_village_from_train.jpg" alt="" loading="lazy"><span class="credit">Philip Newton · CC BY 2.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-hard">K3, K4 at the &#x27;Adlerhorst&#x27;</span><span class="chip ghost">GR</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Klettersteig La Resgia</h3>
+    <p class="where">Pontresina · Graubünden · 2198 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 30</dd></div><div class="stat"><dt>Climb gain</dt><dd>370 m</dd></div><div class="stat"><dt>Walk in</dt><dd>15 min</dd></div><div class="stat"><dt>Walk out</dt><dd>30 min</dd></div></dl>
+    <p class="prose">Varied climbing with a wire bridge, mesh netting and ladders, and a choice of two difficulty levels partway. The slightly overhanging Adlerhorst crux makes you climb round an arête.</p>
+    <p class="detail"><b>Approach.</b> 15 min from the car park by the Seiler AG works yard, opposite Hotel Palü</p>
+    <p class="detail"><b>Descent.</b> 30 min</p>
+    <p class="detail"><b>Lift.</b> None — starts from the village</p>
+    <p class="detail"><b>Season.</b> June to October</p>
+    <p class="caveat">Starts straight from Pontresina, so no lift and no logistics — one of the most convenient routes in the Engadin.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/la-resgia/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-piz-trovat" data-id="piz-trovat" data-region="Graubünden"
+         data-band="extreme" data-lift="yes"
+         data-text="klettersteig piz trovat (i &amp; ii) diavolezza / pontresina graubünden gr steep entry ladder, then slabs, a rope bridge and an overhanging crux, with stupendous views over the morteratsch and pers glaciers. piz trovat ii branches off and is savagely strenuous.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/2011-08-02_15-07-48_Switzerland_Diavolezza_11vl.jpg/960px-2011-08-02_15-07-48_Switzerland_Diavolezza_11vl.jpg" alt="" loading="lazy"><span class="credit">NOTE: This image is a panorama of Diavolezza consisting of 11 frames that were m · CC BY-SA 3.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-extreme">K2–K3; variant II up to K6</span><span class="chip ghost">GR</span>
+      <span class="chip ghost">lift</span></div>
+    <h3>Klettersteig Piz Trovat (I &amp; II)</h3>
+    <p class="where">Diavolezza / Pontresina · Graubünden · 3146 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h 20</dd></div><div class="stat"><dt>Climb gain</dt><dd>300 m</dd></div><div class="stat"><dt>Walk in</dt><dd>30 min</dd></div><div class="stat"><dt>Walk out</dt><dd>~1 h 30 down to the Bernina pass road</dd></div></dl>
+    <p class="prose">Steep entry ladder, then slabs, a rope bridge and an overhanging crux, with stupendous views over the Morteratsch and Pers glaciers. Piz Trovat II branches off and is savagely strenuous.</p>
+    <p class="detail"><b>Approach.</b> 30 min from the Diavolezza top station</p>
+    <p class="detail"><b>Descent.</b> 30 min back to the top station</p>
+    <p class="detail"><b>Lift.</b> Diavolezza cable car from the Bernina line station (15 min ride)</p>
+    <p class="detail"><b>Season.</b> July to October</p>
+    <p class="caveat">At 3146 m this is high — weather changes fast. The descent crosses scree and snow patches. Variant II needs Tyrolienne braking gear and real expertise.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/piz-trovat/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article>
+<article class="card" id="route-tichodrome" data-id="tichodrome" data-region="Jura"
+         data-band="mid" data-lift="no"
+         data-text="via ferrata du tichodrome noiraigue (val-de-travers) jura ne mostly a traverse across jura limestone, well secured and generously equipped with holds, looking across the valley to the creux du van.">
+  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Creux_du_Van.png/960px-Creux_du_Van.png" alt="" loading="lazy"><span class="credit">Thinkingoyster · CC BY-SA 4.0</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">NE</span>
+      <span class="chip ghost">no lift</span></div>
+    <h3>Via ferrata du Tichodrome</h3>
+    <p class="where">Noiraigue (Val-de-Travers) · Jura · 1119 m</p>
+    <dl class="stats"><div class="stat"><dt>On the wire</dt><dd>1 h</dd></div><div class="stat"><dt>Climb gain</dt><dd>150 m</dd></div><div class="stat"><dt>Walk in</dt><dd>30 min</dd></div><div class="stat"><dt>Walk out</dt><dd>30 min</dd></div></dl>
+    <p class="prose">Mostly a traverse across Jura limestone, well secured and generously equipped with holds, looking across the valley to the Creux du Van.</p>
+    <p class="detail"><b>Approach.</b> 30 min from Noiraigue station, or 5 min from the Restaurant du Haut de la Côte car park</p>
+    <p class="detail"><b>Descent.</b> 30 min back to the station (or 5 min to the restaurant)</p>
+    <p class="detail"><b>Lift.</b> None — train to Noiraigue</p>
+    <p class="detail"><b>Season.</b> 15 July to 31 December (closed in spring for nesting birds)</p>
+    <p class="caveat">In the Jura rather than the Alps, but genuinely north of them. Closed for much of the first half of the year.</p>
+    
+    <div class="actions">
+      <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
+      <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <a class="src" href="https://www.myferrata.ch/tichodrome/" target="_blank" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</article></div>
+  <p class="empty" id="empty" style="display:none">Nothing matches those filters yet.</p>
+</div></main>
+
+<div class="sync" id="sync"></div>
+
+<footer><div class="wrap">
+  <h2>How to read this, and what not to trust</h2>
+  <p><b>Grades</b> are the Hüsler K-scale (K1 easy → K6 extreme) as used in Switzerland; where a
+     source gave the Schall A–F scale it is shown in brackets. A route's grade is its hardest move,
+     not its average — several K4 routes here are K2 for all but ten metres.</p>
+  <p><b>Times</b> are the source's own figures, not measured. "On the wire" is the secured section
+     alone; the walk in and walk out are separate so you can see what a day actually costs if you
+     skip the lift. Where a source gave no figure the field reads "—" rather than a guess.</p>
+  <p><b>Sources.</b> Route selection follows the SAC/AT-Verlag guidebook <i>Die Klettersteige der
+     Schweiz</i> (Hüsler &amp; Anker, 2020 edition, 100 routes), filtered to the scope above. Per-route
+     figures come from myferrata.ch, bergsteigen.com, klettersteig.de, the SAC Tourenportal and the
+     operators' own pages — each card links its source.</p>
+  <p><b>Photographs</b> are freely licensed images from Wikimedia Commons showing the peak or the
+     area, not necessarily the ferrata itself. Credit is on each image.</p>
+  <p><b>Conditions change.</b> Cables get removed for winter, routes close for rockfall, lifts run to
+     short summer timetables. The Senda ferrada Piz Mitgel above Savognin, for instance, was
+     dismantled and is not listed. Check the operator before you drive.</p>
+  <h2>Comments and lists</h2>
+  <p>Select any text to leave a comment or a suggested edit — the button is bottom-right. Your
+     <i>Want to go</i> and <i>Done</i> marks are keyed to the name you enter at the top and sync to a
+     shared sheet; changes made offline queue up and send when you are back on the network.</p>
+</div></footer>
+
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbyx858xfSCgHQ8RmbfbMsdzcmzrkNs_JZVmqeEBVrH-S6g8YJbI32CY7if-k8oTzg-eyQ/exec";
+const PROJECT  = "klettersteige-ch-status";
+const LS_NAME  = 'ks-name', LS_STATE = 'ks-state', LS_OUT = 'ks-outbox';
+
+const $ = s => document.querySelector(s);
+const cards = [...document.querySelectorAll('.card')];
+let me = localStorage.getItem(LS_NAME) || '';
+let state = JSON.parse(localStorage.getItem(LS_STATE) || '{}');   // id -> 'want'|'done'
+let outbox = JSON.parse(localStorage.getItem(LS_OUT) || '[]');
+let view = 'all';
+let epoch = 0;                        // bumped on every local edit, so a stale server read can't win
+
+/* ---- theme ---- */
+const themeBtn = $('#themeBtn');
+const savedTheme = localStorage.getItem('ks-theme');
+if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+themeBtn.onclick = () => {
+  const cur = document.documentElement.dataset.theme
+    || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('ks-theme', next);
+};
+
+/* ---- identity ---- */
+const nameInput = $('#nameInput');
+function paintName() {
+  nameInput.value = me;
+  $('#whoName').textContent = me || 'nobody yet';
+  $('#idbar').classList.toggle('anon', !me);
+}
+nameInput.addEventListener('change', () => {
+  me = nameInput.value.trim();
+  localStorage.setItem(LS_NAME, me);
+  paintName(); pull();
+});
+
+/* ---- persistence ---- */
+function save() {
+  localStorage.setItem(LS_STATE, JSON.stringify(state));
+  localStorage.setItem(LS_OUT, JSON.stringify(outbox));
+}
+function flash(msg) {
+  const el = $('#sync'); el.textContent = msg; el.classList.add('show');
+  clearTimeout(flash.t); flash.t = setTimeout(() => el.classList.remove('show'), 2600);
+}
+async function post(rec) {
+  const res = await fetch(ENDPOINT, {
+    method: 'POST', headers: {'Content-Type': 'text/plain;charset=utf-8'},
+    body: JSON.stringify(rec), keepalive: true
+  });
+  const j = await res.json();
+  if (!j.ok) throw new Error(j.error || 'rejected');
+}
+let draining = null;
+function drain() {
+  // One sender at a time: concurrent clicks would otherwise post the same record twice
+  // and leave entries stranded in the outbox. Late callers chain onto the running pass.
+  if (draining) { draining = draining.then(drainOnce); return draining; }
+  draining = drainOnce().finally(() => { draining = null; });
+  return draining;
+}
+async function drainOnce() {
+  while (outbox.length) {
+    const rec = outbox[0];
+    try { await post(rec); }
+    catch { flash(outbox.length + ' change(s) waiting to sync'); return; }
+    outbox.shift(); save();
+  }
+  flash('Synced');
+}
+function record(id, value) {
+  const rec = {project: PROJECT, itemId: id, vote: value, voter: me || 'anonymous',
+                session: navigator.userAgent.slice(0, 60)};
+  outbox.push(rec); save(); drain();
+}
+async function pull() {
+  if (!me) return;
+  if (draining) await draining.catch(() => {});   // don't read a snapshot mid-send
+  const at = epoch;                                // ...and don't apply one that edits raced past
+  try {
+    const r = await fetch(ENDPOINT + '?action=rows&project=' + encodeURIComponent(PROJECT));
+    const j = await r.json();
+    if (!j.ok) return;
+    const mine = {};
+    for (const row of j.rows) {                       // oldest first — last write wins
+      if ((row.voter || '').toLowerCase() !== me.toLowerCase()) continue;
+      if (row.vote === 'none') delete mine[row.itemId];
+      else if (row.vote === 'want' || row.vote === 'done') mine[row.itemId] = row.vote;
+    }
+    for (const rec of outbox) {                       // unsynced local wins over the server
+      if ((rec.voter || '').toLowerCase() !== me.toLowerCase()) continue;
+      if (rec.vote === 'none') delete mine[rec.itemId]; else mine[rec.itemId] = rec.vote;
+    }
+    if (epoch !== at) return;                      // a click landed while we were fetching
+    state = mine; save(); paint();
+  } catch { /* offline: keep the local copy */ }
+}
+
+/* ---- rendering ---- */
+function paint() {
+  for (const c of cards) {
+    const s = state[c.dataset.id];
+    c.querySelector('[data-act=want]').setAttribute('aria-pressed', s === 'want');
+    c.querySelector('[data-act=done]').setAttribute('aria-pressed', s === 'done');
+  }
+  filter();
+}
+function filter() {
+  const q = $('#q').value.trim().toLowerCase();
+  const reg = $('#region').value, bnd = $('#bandSel').value, lift = $('#liftSel').value;
+  let shown = 0;
+  for (const c of cards) {
+    const s = state[c.dataset.id];
+    const ok = (view === 'all' || s === view)
+      && (!reg || c.dataset.region === reg)
+      && (!bnd || c.dataset.band === bnd)
+      && (!lift || c.dataset.lift === lift)
+      && (!q || c.dataset.text.includes(q));
+    c.classList.toggle('hide', !ok);
+    if (ok) shown++;
+  }
+  $('#count').textContent = shown + ' of ' + cards.length + ' routes';
+  $('#empty').style.display = shown ? 'none' : 'block';
+  $('#nWant').textContent = Object.values(state).filter(v => v === 'want').length;
+  $('#nDone').textContent = Object.values(state).filter(v => v === 'done').length;
+}
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.act'); if (!btn) return;
+  const card = btn.closest('.card'), id = card.dataset.id, act = btn.dataset.act;
+  if (!me) {
+    flash('Add your name first so your list is yours');
+    nameInput.focus(); return;
+  }
+  const next = state[id] === act ? 'none' : act;
+  if (next === 'none') delete state[id]; else state[id] = next;
+  epoch++; save(); record(id, next); paint();
+});
+
+for (const el of ['#q', '#region', '#bandSel', '#liftSel']) $(el).addEventListener('input', filter);
+document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => {
+  view = b.dataset.view;
+  document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', x === b));
+  filter();
+});
+addEventListener('online', drain);
+
+paintName(); paint(); pull(); drain();
+</script>
+<script>
+(function () {
+  window.HC_CONFIG = { endpoint: "https://script.google.com/macros/s/AKfycbyx858xfSCgHQ8RmbfbMsdzcmzrkNs_JZVmqeEBVrH-S6g8YJbI32CY7if-k8oTzg-eyQ/exec", project: "klettersteige-nordalpen-ch" };
+  var BASE = "https://html-comments.surge.sh/";
+  var link = document.createElement('link');
+  link.rel = 'stylesheet'; link.href = BASE + 'html-comments.css';
+  document.head.appendChild(link);
+  var s = document.createElement('script');
+  s.src = BASE + 'html-comments.js';
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>
