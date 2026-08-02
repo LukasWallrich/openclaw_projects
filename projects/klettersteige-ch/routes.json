@@ -21,7 +21,10 @@
   "src": "https://www.myferrata.ch/allmenalp/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Klettersteig_Kandersteg-Allmenalp_08.jpg/960px-Klettersteig_Kandersteg-Allmenalp_08.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Klettersteig_Kandersteg-Allmenalp_08.jpg",
-  "imgCredit": "Kent Wang · CC BY 4.0"
+  "imgCredit": "Kent Wang · CC BY 4.0",
+  "driveMin": 132,
+  "driveKm": 173,
+  "driveTo": "Kandersteg"
  },
  {
   "id": "chaeligang",
@@ -45,7 +48,10 @@
   "src": "https://www.myferrata.ch/chaeligang/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Unterer_Engstligenfall4.jpg/960px-Unterer_Engstligenfall4.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Unterer_Engstligenfall4.jpg",
-  "imgCredit": "No machine-readable author provided. Irmgard assumed (based on copyright claims) · CC BY-SA 3.0"
+  "imgCredit": "No machine-readable author provided. Irmgard assumed (based on copyright claims) · CC BY-SA 3.0",
+  "driveMin": 140,
+  "driveKm": 180,
+  "driveTo": "Unter dem Birg"
  },
  {
   "id": "gantrisch",
@@ -69,7 +75,10 @@
   "src": "https://www.myferrata.ch/gantrisch/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Gantrisch_IMG_3437.jpg/960px-Gantrisch_IMG_3437.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Gantrisch_IMG_3437.jpg",
-  "imgCredit": "Patric Zbinden · Public domain"
+  "imgCredit": "Patric Zbinden · Public domain",
+  "driveMin": 117,
+  "driveKm": 146,
+  "driveTo": "Gurnigelbad"
  },
  {
   "id": "sunnighorn",
@@ -93,7 +102,10 @@
   "src": "https://www.myferrata.ch/sunnighorn/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/ETH-BIB-Wimmis%2C_Burgfluh_Porte_Simmenfluh-Dia_247-12835.tif/lossy-page1-960px-ETH-BIB-Wimmis%2C_Burgfluh_Porte_Simmenfluh-Dia_247-12835.tif.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Wimmis,_Burgfluh_Porte_Simmenfluh-Dia_247-12835.tif",
-  "imgCredit": "Leo Wehrli · CC BY-SA 4.0"
+  "imgCredit": "Leo Wehrli · CC BY-SA 4.0",
+  "driveMin": 106,
+  "driveKm": 150,
+  "driveTo": "Wimmis"
  },
  {
   "id": "hornflue",
@@ -117,7 +129,10 @@
   "src": "https://klettersteig.de/klettersteig/uebungsklettersteig_hornfluh/1052",
   "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Saanenm%C3%B6ser.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Saanenm%C3%B6ser.jpg",
-  "imgCredit": "Fred · CC BY-SA 3.0"
+  "imgCredit": "Fred · CC BY-SA 3.0",
+  "driveMin": 148,
+  "driveKm": 188,
+  "driveTo": "Saanenmöser"
  },
  {
   "id": "muerren",
@@ -141,7 +156,10 @@
   "src": "https://www.myferrata.ch/muerren/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/View_to_Lauterbrunnen_valley_at_M%C3%BCrren%2C_Bern%2C_Switzerland%2C_2012_August.jpg/960px-View_to_Lauterbrunnen_valley_at_M%C3%BCrren%2C_Bern%2C_Switzerland%2C_2012_August.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:View_to_Lauterbrunnen_valley_at_M%C3%BCrren,_Bern,_Switzerland,_2012_August.jpg",
-  "imgCredit": "Ximonic (Simo Räsänen) · CC BY-SA 4.0"
+  "imgCredit": "Ximonic (Simo Räsänen) · CC BY-SA 4.0",
+  "driveMin": 124,
+  "driveKm": 138,
+  "driveTo": "Stechelberg"
  },
  {
   "id": "eiger-rotstock",
@@ -165,7 +183,10 @@
   "src": "https://www.myferrata.ch/eiger-rotstock/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Eiger-Nordwand_2008.jpg/960px-Eiger-Nordwand_2008.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Eiger-Nordwand_2008.jpg",
-  "imgCredit": "Kurt Ritschard · CC BY-SA 2.0"
+  "imgCredit": "Kurt Ritschard · CC BY-SA 2.0",
+  "driveMin": 124,
+  "driveKm": 139,
+  "driveTo": "Grindelwald"
  },
  {
   "id": "eiger-ostegg",
@@ -189,7 +210,10 @@
   "src": "https://www.sac-cas.ch/de/huetten-und-touren/sac-tourenportal/eiger-ostegghuette-2147000085/klettersteig/klettersteig-eiger-ostegg-672/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/9/92/Ostegghuette.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Ostegghuette.jpg",
-  "imgCredit": "Martin Wolff · CC0"
+  "imgCredit": "Martin Wolff · CC0",
+  "driveMin": 124,
+  "driveKm": 139,
+  "driveTo": "Grindelwald"
  },
  {
   "id": "schwarzhorn",
@@ -213,7 +237,10 @@
   "src": "https://www.sac-cas.ch/de/huetten-und-touren/sac-tourenportal/schwarzhoren-schwarzhorn-be-1741/klettersteig/schwarzhorn-klettersteig-grindelwald-673/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Schwarzhorn_und_H%C3%B6he_Sch%C3%B6ne.jpg/960px-Schwarzhorn_und_H%C3%B6he_Sch%C3%B6ne.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Schwarzhorn_und_H%C3%B6he_Sch%C3%B6ne.jpg",
-  "imgCredit": "Hermann Hammer · CC BY-SA 4.0"
+  "imgCredit": "Hermann Hammer · CC BY-SA 4.0",
+  "driveMin": 124,
+  "driveKm": 139,
+  "driveTo": "Grindelwald"
  },
  {
   "id": "taelli",
@@ -237,7 +264,10 @@
   "src": "https://www.bergsteigen.com/touren/klettersteig/taelli-klettersteig/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/ETH-BIB-Gadmerflue%2C_Graustock_v._S._aus_4000_m-Inlandfl%C3%BCge-LBS_MH01-002441.tif/lossy-page1-960px-ETH-BIB-Gadmerflue%2C_Graustock_v._S._aus_4000_m-Inlandfl%C3%BCge-LBS_MH01-002441.tif.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Gadmerflue,_Graustock_v._S._aus_4000_m-Inlandfl%C3%BCge-LBS_MH01-002441.tif",
-  "imgCredit": "Walter Mittelholzer · Public domain"
+  "imgCredit": "Walter Mittelholzer · Public domain",
+  "driveMin": 116,
+  "driveKm": 128,
+  "driveTo": "Gadmen"
  },
  {
   "id": "tierbergli",
@@ -261,7 +291,10 @@
   "src": "https://www.myferrata.ch/tierbergli/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/0x-tierbergli-h-1.jpg/960px-0x-tierbergli-h-1.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:0x-tierbergli-h-1.jpg",
-  "imgCredit": "Oxensepp (talk) · CC BY-SA 3.0"
+  "imgCredit": "Oxensepp (talk) · CC BY-SA 3.0",
+  "driveMin": 100,
+  "driveKm": 121,
+  "driveTo": "Sustenpass"
  },
  {
   "id": "eggishorn",
@@ -285,7 +318,10 @@
   "src": "https://www.myferrata.ch/eggishorn/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/3625_-_Fiescherhorli_viewed_from_southwest.jpg/960px-3625_-_Fiescherhorli_viewed_from_southwest.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:3625_-_Fiescherhorli_viewed_from_southwest.jpg",
-  "imgCredit": "Andrew Bossi · CC BY-SA 2.5"
+  "imgCredit": "Andrew Bossi · CC BY-SA 2.5",
+  "driveMin": 157,
+  "driveKm": 173,
+  "driveTo": "Fiesch"
  },
  {
   "id": "aletsch",
@@ -309,7 +345,10 @@
   "src": "https://www.myferrata.ch/aletsch/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Gibidumsee2.JPG/960px-Gibidumsee2.JPG",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Gibidumsee2.JPG",
-  "imgCredit": "Wandervogel · CC BY-SA 3.0"
+  "imgCredit": "Wandervogel · CC BY-SA 3.0",
+  "driveMin": 186,
+  "driveKm": 196,
+  "driveTo": "Blatten"
  },
  {
   "id": "gemmi",
@@ -333,7 +372,10 @@
   "src": "https://klettersteig.de/klettersteig/klettersteig_gemmiwand_erlebnisklettersteig_gemmi_leukerbad/1829",
   "img": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Daubensee.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Daubensee.jpg",
-  "imgCredit": "see below · CC BY-SA 3.0"
+  "imgCredit": "see below · CC BY-SA 3.0",
+  "driveMin": 219,
+  "driveKm": 305,
+  "driveTo": "Leukerbad"
  },
  {
   "id": "daubenhorn",
@@ -357,7 +399,10 @@
   "src": "https://www.viaferrata-leukerbad.ch/en/klettersteig-daubenhorn",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Gemmi-daubenhorn-winter.JPG/960px-Gemmi-daubenhorn-winter.JPG",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Gemmi-daubenhorn-winter.JPG",
-  "imgCredit": "Luan Baruti · CC BY-SA 3.0"
+  "imgCredit": "Luan Baruti · CC BY-SA 3.0",
+  "driveMin": 219,
+  "driveKm": 305,
+  "driveTo": "Leukerbad"
  },
  {
   "id": "baltschieder",
@@ -381,7 +426,10 @@
   "src": "https://www.valais.ch/en/explore/activities/other-summer-activities/fixed-rope-routes/baltschieder-via-ferrata-to-wiwannihuette",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Wiwannih%C3%BCtte%2C_Wiwannihorn%2C_Gross_%C3%96ugstchummuhorn_and_Chlys_%C3%96ugstchummuhorn.jpg/960px-Wiwannih%C3%BCtte%2C_Wiwannihorn%2C_Gross_%C3%96ugstchummuhorn_and_Chlys_%C3%96ugstchummuhorn.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Wiwannih%C3%BCtte,_Wiwannihorn,_Gross_%C3%96ugstchummuhorn_and_Chlys_%C3%96ugstchummuhorn.jpg",
-  "imgCredit": "Capricorn4049 · CC BY-SA 4.0"
+  "imgCredit": "Capricorn4049 · CC BY-SA 4.0",
+  "driveMin": 197,
+  "driveKm": 210,
+  "driveTo": "Ausserberg"
  },
  {
   "id": "farinetta",
@@ -405,7 +453,10 @@
   "src": "https://www.myferrata.ch/via-farinetta/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Saillon_Suisse_HDSR_S5is_IMG_2471.jpg/960px-Saillon_Suisse_HDSR_S5is_IMG_2471.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Saillon_Suisse_HDSR_S5is_IMG_2471.jpg",
-  "imgCredit": "Hyppolyte de Saint-Rambert · CC BY-SA 4.0"
+  "imgCredit": "Hyppolyte de Saint-Rambert · CC BY-SA 4.0",
+  "driveMin": 177,
+  "driveKm": 253,
+  "driveTo": "Saillon"
  },
  {
   "id": "tiere",
@@ -429,7 +480,10 @@
   "src": "https://www.myferrata.ch/tiere/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Champ%C3%A9ry_depuis_le_Signal_de_Soi.jpg/960px-Champ%C3%A9ry_depuis_le_Signal_de_Soi.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Champ%C3%A9ry_depuis_le_Signal_de_Soi.jpg",
-  "imgCredit": "Christian David · CC BY-SA 4.0"
+  "imgCredit": "Christian David · CC BY-SA 4.0",
+  "driveMin": 170,
+  "driveKm": 235,
+  "driveTo": "Champéry"
  },
  {
   "id": "tour-dai",
@@ -453,7 +507,10 @@
   "src": "https://www.myferrata.ch/tour-d-ai/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Tour_d%27A%C3%AF_depuis_La_Forclaz.jpg/960px-Tour_d%27A%C3%AF_depuis_La_Forclaz.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Tour_d%27A%C3%AF_depuis_La_Forclaz.jpg",
-  "imgCredit": "Christian David · CC BY-SA 4.0"
+  "imgCredit": "Christian David · CC BY-SA 4.0",
+  "driveMin": 171,
+  "driveKm": 233,
+  "driveTo": "Leysin"
  },
  {
   "id": "tete-aux-chamois",
@@ -477,7 +534,10 @@
   "src": "https://www.myswitzerland.com/en-us/experiences/tete-aux-chamois-via-ferrata/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Sex_Rouge_from_T%C3%AAte_aux_Chamois%2C_Ormont-Dessus%2C_Switzerland.jpg/960px-Sex_Rouge_from_T%C3%AAte_aux_Chamois%2C_Ormont-Dessus%2C_Switzerland.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Sex_Rouge_from_T%C3%AAte_aux_Chamois,_Ormont-Dessus,_Switzerland.jpg",
-  "imgCredit": "Christian David · CC BY-SA 4.0"
+  "imgCredit": "Christian David · CC BY-SA 4.0",
+  "driveMin": 177,
+  "driveKm": 241,
+  "driveTo": "Col du Pillon"
  },
  {
   "id": "cascade-du-dar",
@@ -501,7 +561,10 @@
   "src": "https://www.myferrata.ch/cascade-du-dar/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Diablerets_1996.jpg/960px-Diablerets_1996.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Diablerets_1996.jpg",
-  "imgCredit": "Alexander Klyuch · Public domain"
+  "imgCredit": "Alexander Klyuch · Public domain",
+  "driveMin": 177,
+  "driveKm": 241,
+  "driveTo": "Col du Pillon"
  },
  {
   "id": "pierredar",
@@ -525,7 +588,10 @@
   "src": "https://www.visinand.ch/Via_ferrata/Dames_Anglaises/2013_08/Via-Dames_Anglaises.htm",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Diablerets_3210_m.jpg/960px-Diablerets_3210_m.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Diablerets_3210_m.jpg",
-  "imgCredit": "Zacharie Grossen · CC BY-SA 4.0"
+  "imgCredit": "Zacharie Grossen · CC BY-SA 4.0",
+  "driveMin": 172,
+  "driveKm": 237,
+  "driveTo": "Les Diablerets"
  },
  {
   "id": "planpraz",
@@ -549,7 +615,10 @@
   "src": "https://www.myferrata.ch/planpraz/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Twilight_in_Leysin%2C_Switzerland.jpg/960px-Twilight_in_Leysin%2C_Switzerland.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Twilight_in_Leysin,_Switzerland.jpg",
-  "imgCredit": "Deali00 · CC BY-SA 4.0"
+  "imgCredit": "Deali00 · CC BY-SA 4.0",
+  "driveMin": 171,
+  "driveKm": 233,
+  "driveTo": "Leysin"
  },
  {
   "id": "lavanchy",
@@ -573,7 +642,10 @@
   "src": "https://www.myferrata.ch/lavanchy/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/20020805_nant_vue_01.jpg/960px-20020805_nant_vue_01.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:20020805_nant_vue_01.jpg",
-  "imgCredit": "Jean Housen · CC BY 3.0"
+  "imgCredit": "Jean Housen · CC BY 3.0",
+  "driveMin": 172,
+  "driveKm": 235,
+  "driveTo": "Pont de Nant"
  },
  {
   "id": "videmanette",
@@ -597,7 +669,10 @@
   "src": "https://www.vaud.ch/en/tourism/activites/videmanette-via-ferrata-route-1/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rougemont_mountain.jpg/960px-Rougemont_mountain.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Rougemont_mountain.jpg",
-  "imgCredit": "Ian Furst · CC BY-SA 4.0"
+  "imgCredit": "Ian Furst · CC BY-SA 4.0",
+  "driveMin": 157,
+  "driveKm": 206,
+  "driveTo": "Rougemont"
  },
  {
   "id": "rochers-de-naye",
@@ -621,7 +696,10 @@
   "src": "https://www.sac-cas.ch/fr/cabanes-et-courses/portail-des-courses-du-cas/rochers-de-naye-1283/via-ferrata/via-ferrata-rochers-de-naye-718/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Ligne_MGN_et_Rochers_de_Naye.jpg/960px-Ligne_MGN_et_Rochers_de_Naye.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Ligne_MGN_et_Rochers_de_Naye.jpg",
-  "imgCredit": "Christian David · CC BY-SA 4.0"
+  "imgCredit": "Christian David · CC BY-SA 4.0",
+  "driveMin": 143,
+  "driveKm": 201,
+  "driveTo": "Montreux"
  },
  {
   "id": "moleson",
@@ -645,7 +723,10 @@
   "src": "https://www.myferrata.ch/moleson/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Moleson_from_north-east.jpg/960px-Moleson_from_north-east.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Moleson_from_north-east.jpg",
-  "imgCredit": "Christian David · CC BY-SA 4.0"
+  "imgCredit": "Christian David · CC BY-SA 4.0",
+  "driveMin": 133,
+  "driveKm": 180,
+  "driveTo": "Moléson-sur-Gruyères"
  },
  {
   "id": "charmey",
@@ -669,7 +750,10 @@
   "src": "https://www.myferrata.ch/charmey/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/8/89/Charmey.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Charmey.jpg",
-  "imgCredit": "Alps · Public domain"
+  "imgCredit": "Alps · Public domain",
+  "driveMin": 177,
+  "driveKm": 194,
+  "driveTo": "Charmey"
  },
  {
   "id": "fuerenwand",
@@ -693,7 +777,10 @@
   "src": "https://www.myferrata.ch/fuerenwand/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/.00_1061_F%C3%BCrenalp_%28Engelberg%29.jpg/960px-.00_1061_F%C3%BCrenalp_%28Engelberg%29.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:.00_1061_F%C3%BCrenalp_(Engelberg).jpg",
-  "imgCredit": "W. Bulach · CC BY-SA 4.0"
+  "imgCredit": "W. Bulach · CC BY-SA 4.0",
+  "driveMin": 77,
+  "driveKm": 89,
+  "driveTo": "Engelberg"
  },
  {
   "id": "brunnistoeckli",
@@ -717,7 +804,10 @@
   "src": "https://brunni.ch/de/detail/klettersteige",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Klettersteig_Brunnist%C3%B6ckli_04.jpg/960px-Klettersteig_Brunnist%C3%B6ckli_04.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Klettersteig_Brunnist%C3%B6ckli_04.jpg",
-  "imgCredit": "Kent Wang · CC BY 4.0"
+  "imgCredit": "Kent Wang · CC BY 4.0",
+  "driveMin": 77,
+  "driveKm": 89,
+  "driveTo": "Engelberg"
  },
  {
   "id": "zittergrat",
@@ -741,7 +831,10 @@
   "src": "https://brunni.ch/61/de/zittergrat",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/00_3183_Brunni_%28Engelberg%29_-_Alp_Rigidal.jpg/960px-00_3183_Brunni_%28Engelberg%29_-_Alp_Rigidal.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:00_3183_Brunni_(Engelberg)_-_Alp_Rigidal.jpg",
-  "imgCredit": "W. Bulach · CC BY-SA 4.0"
+  "imgCredit": "W. Bulach · CC BY-SA 4.0",
+  "driveMin": 77,
+  "driveKm": 89,
+  "driveTo": "Engelberg"
  },
  {
   "id": "rigidalstockgrat",
@@ -765,7 +858,10 @@
   "src": "https://brunni.ch/62/de/rigidalstockgrat-und-wand",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Rigidalstock_and_Walenst%C3%B6cke.jpg/960px-Rigidalstock_and_Walenst%C3%B6cke.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Rigidalstock_and_Walenst%C3%B6cke.jpg",
-  "imgCredit": "Paradise Chronicle · CC BY-SA 4.0"
+  "imgCredit": "Paradise Chronicle · CC BY-SA 4.0",
+  "driveMin": 77,
+  "driveKm": 89,
+  "driveTo": "Engelberg"
  },
  {
   "id": "rigidalstockwand",
@@ -789,7 +885,10 @@
   "src": "https://brunni.ch/62/de/rigidalstockgrat-und-wand",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/ETH-BIB-Walenst%C3%B6cke%2C_Titlis-LBS_H1-015419.tif/lossy-page1-960px-ETH-BIB-Walenst%C3%B6cke%2C_Titlis-LBS_H1-015419.tif.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Walenst%C3%B6cke,_Titlis-LBS_H1-015419.tif",
-  "imgCredit": "Werner Friedli · CC BY-SA 4.0"
+  "imgCredit": "Werner Friedli · CC BY-SA 4.0",
+  "driveMin": 77,
+  "driveKm": 89,
+  "driveTo": "Engelberg"
  },
  {
   "id": "graustock",
@@ -813,7 +912,10 @@
   "src": "https://www.myferrata.ch/graustock/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/CH.OW.Engelberg_2006-07-02_Graustock_89_3x2-R_4K.jpg/960px-CH.OW.Engelberg_2006-07-02_Graustock_89_3x2-R_4K.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:CH.OW.Engelberg_2006-07-02_Graustock_89_3x2-R_4K.jpg",
-  "imgCredit": "Roy Egloff · CC BY-SA 4.0"
+  "imgCredit": "Roy Egloff · CC BY-SA 4.0",
+  "driveMin": 130,
+  "driveKm": 119,
+  "driveTo": "Engstlenalp"
  },
  {
   "id": "fruttli",
@@ -837,7 +939,10 @@
   "src": "https://www.myferrata.ch/fruttli/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/00_0469_Bonistock_-_Melchsee-Frutt%2C_Schweiz.jpg/960px-00_0469_Bonistock_-_Melchsee-Frutt%2C_Schweiz.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:00_0469_Bonistock_-_Melchsee-Frutt,_Schweiz.jpg",
-  "imgCredit": "W. Bulach · CC BY-SA 4.0"
+  "imgCredit": "W. Bulach · CC BY-SA 4.0",
+  "driveMin": 79,
+  "driveKm": 87,
+  "driveTo": "Stöckalp"
  },
  {
   "id": "fruttstaegae",
@@ -861,7 +966,10 @@
   "src": "https://www.myferrata.ch/fruttstaegae/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/ETH-BIB-Rosstock%2C_B%C3%BCrglen%2C_Kinzig-LBS_H1-019615.tif/lossy-page1-960px-ETH-BIB-Rosstock%2C_B%C3%BCrglen%2C_Kinzig-LBS_H1-019615.tif.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Rosstock,_B%C3%BCrglen,_Kinzig-LBS_H1-019615.tif",
-  "imgCredit": "Werner Friedli · CC BY-SA 4.0"
+  "imgCredit": "Werner Friedli · CC BY-SA 4.0",
+  "driveMin": 71,
+  "driveKm": 81,
+  "driveTo": "Bürglen"
  },
  {
   "id": "klewenalp",
@@ -885,7 +993,10 @@
   "src": "https://www.myferrata.ch/klewenalp-ergglen/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Klewenalp_5096.jpg/960px-Klewenalp_5096.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Klewenalp_5096.jpg",
-  "imgCredit": "Badener · CC BY 3.0"
+  "imgCredit": "Badener · CC BY 3.0",
+  "driveMin": 62,
+  "driveKm": 77,
+  "driveTo": "Beckenried"
  },
  {
   "id": "adlerhorst",
@@ -909,7 +1020,10 @@
   "src": "https://www.myferrata.ch/adlerhorst/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Arnisee_Lake.JPG/960px-Arnisee_Lake.JPG",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Arnisee_Lake.JPG",
-  "imgCredit": "Simon Koopmann · CC BY-SA 2.5"
+  "imgCredit": "Simon Koopmann · CC BY-SA 2.5",
+  "driveMin": 78,
+  "driveKm": 95,
+  "driveTo": "Intschi"
  },
  {
   "id": "diavolo",
@@ -933,7 +1047,10 @@
   "src": "https://www.myferrata.ch/diavolo/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Bei_Stollen_Teufelsbr%C3%BCcke.jpg/960px-Bei_Stollen_Teufelsbr%C3%BCcke.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Bei_Stollen_Teufelsbr%C3%BCcke.jpg",
-  "imgCredit": "FFA P-16 · CC BY-SA 4.0"
+  "imgCredit": "FFA P-16 · CC BY-SA 4.0",
+  "driveMin": 93,
+  "driveKm": 112,
+  "driveTo": "Andermatt"
  },
  {
   "id": "hexensteig",
@@ -957,7 +1074,10 @@
   "src": "https://www.myferrata.ch/hexensteig/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Pfaffen_Spherical_Panorama.jpg/960px-Pfaffen_Spherical_Panorama.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Pfaffen_Spherical_Panorama.jpg",
-  "imgCredit": "Capricorn4049 · CC BY-SA 4.0"
+  "imgCredit": "Capricorn4049 · CC BY-SA 4.0",
+  "driveMin": 77,
+  "driveKm": 90,
+  "driveTo": "Silenen"
  },
  {
   "id": "krokodil",
@@ -981,7 +1101,10 @@
   "src": "https://www.myferrata.ch/krokodil/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/3/35/Dammabergkette_mit_Gletscher.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Dammabergkette_mit_Gletscher.jpg",
-  "imgCredit": "Bergdohle · CC BY-SA 3.0"
+  "imgCredit": "Bergdohle · CC BY-SA 3.0",
+  "driveMin": 99,
+  "driveKm": 116,
+  "driveTo": "Göscheneralp"
  },
  {
   "id": "schijen-zwaerg",
@@ -1005,7 +1128,10 @@
   "src": "https://www.sac-cas.ch/de/huetten-und-touren/sac-tourenportal/bergseehuette-sac-2147000030/klettersteig/klettersteig-schijen-zwaerg-3855/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Lac_de_G%C3%B6scheneralp.jpg/960px-Lac_de_G%C3%B6scheneralp.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Lac_de_G%C3%B6scheneralp.jpg",
-  "imgCredit": "Bertrand Semelet · CC BY-SA 3.0"
+  "imgCredit": "Bertrand Semelet · CC BY-SA 3.0",
+  "driveMin": 99,
+  "driveKm": 116,
+  "driveTo": "Göscheneralp"
  },
  {
   "id": "salbit",
@@ -1029,7 +1155,10 @@
   "src": "https://klettersteig.de/klettersteig/salbit_kettenweg/861",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Imposante_Salbitbr%C3%BCcke_am_Salbitschijen.jpg/960px-Imposante_Salbitbr%C3%BCcke_am_Salbitschijen.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Imposante_Salbitbr%C3%BCcke_am_Salbitschijen.jpg",
-  "imgCredit": "Uwelino · CC BY-SA 4.0"
+  "imgCredit": "Uwelino · CC BY-SA 4.0",
+  "driveMin": 87,
+  "driveKm": 106,
+  "driveTo": "Göschenen"
  },
  {
   "id": "husky-lodge",
@@ -1053,32 +1182,38 @@
   "src": "https://www.myferrata.ch/husky-lodge/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/ISS022-E-5786_-_View_of_Switzerland_-_Schwyz_-_Brunnen_-_Muotatal_%28Muotathal%29_-_Stoos_SZ_-_Morschach_-_Sisikon_-_lake_Urnersee_-_Gibelhorn_forest_-_Fronalpstock_and_Klingenstock_-_Rophaien_-_Fl%C3%BCelen_-_Isenthal_%28cropped%29.jpg/960px-thumbnail.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:ISS022-E-5786_-_View_of_Switzerland_-_Schwyz_-_Brunnen_-_Muotatal_(Muotathal)_-_Stoos_SZ_-_Morschach_-_Sisikon_-_lake_Urnersee_-_Gibelhorn_forest_-_Fronalpstock_and_Klingenstock_-_Rophaien_-_Fl%C3%BCelen_-_Isenthal_(cropped).jpg",
-  "imgCredit": "Earth Science and Remote Sensing Unit, Lyndon B. Johnson Space Center · Public domain"
+  "imgCredit": "Earth Science and Remote Sensing Unit, Lyndon B. Johnson Space Center · Public domain",
+  "driveMin": 65,
+  "driveKm": 76,
+  "driveTo": "Muotathal"
  },
  {
   "id": "rigi-kulm",
-  "name": "Rigi-Kulm-Nordwestrippe",
+  "name": "Rigi-Kulm-Nordwestrippe (Bänderweg)",
   "region": "Zentralschweiz",
   "canton": "SZ",
-  "base": "Rigi",
+  "base": "Seebodenalp / Küssnacht am Rigi",
   "summitAlt": 1798,
-  "grade": "K2 (approx.)",
-  "gain": null,
-  "ferrataTime": "—",
-  "approach": "From the Rigi railways / Rigi Kulm",
-  "approachFoot": "long walk-up from Weggis or Vitznau",
-  "lift": "Rigi cog railways and the Weggis–Rigi Kaltbad cable car",
-  "descent": "Rigi railways or on foot",
-  "descentFoot": "~2 h",
-  "season": "Summer",
-  "character": "A short secured rib on the north-west side of the Rigi, described in the SAC guidebook (route 64). More a curiosity on a Rigi walking day than a destination ferrata.",
-  "caveat": "Data thin — verify locally before relying on it. Treat the grade as indicative.",
+  "grade": "K2 / T5−",
+  "gain": 320,
+  "ferrataTime": "~2 h",
+  "approach": "30 min from Seebodenalp (1020 m), reached by a narrow road up from Küssnacht am Rigi; parking CHF 8 / 24 h",
+  "approachFoot": "30 min",
+  "lift": "None needed — road to Seebodenalp (a cable car from Küssnacht also serves it)",
+  "descent": "1 h 15 back down to Seebodenalp, or continue to Rigi Kulm and take the cog railway",
+  "descentFoot": "1 h 15",
+  "season": "May to October",
+  "character": "The Bänderweg up the Rigi's north-west rib — three short rock steps and flower-covered ledges to the summit, well away from the cog-railway crowds. The key pitch is a steep 40 m nagelfluh band rigged with a 'pearl chain': steel cable threaded with plastic balls every 10 cm.",
+  "caveat": "Not really a via ferrata. There is no continuous cable to clip into and a set is not needed — the pearl chain actively makes clipping awkward. Graded T5− as an alpine walk. Practically unwaymarked, and the steep grass is dangerous when wet.",
   "peak": "Rigi Kulm",
-  "src": "https://www.sac-cas.ch/",
-  "thin": true,
+  "src": "https://www.bergsteigen.com/touren/klettersteig/baenderweg-rigi/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/6645_-_Rigi_Kulm_-_Vierwaldst%C3%A4ttersee.JPG/960px-6645_-_Rigi_Kulm_-_Vierwaldst%C3%A4ttersee.JPG",
   "imgPage": "https://commons.wikimedia.org/wiki/File:6645_-_Rigi_Kulm_-_Vierwaldst%C3%A4ttersee.JPG",
-  "imgCredit": "Andrew Bossi · CC BY-SA 2.5"
+  "imgCredit": "Andrew Bossi · CC BY-SA 2.5",
+  "driveMin": 45,
+  "driveKm": 51,
+  "driveTo": "Seebodenalp",
+  "type": "secured"
  },
  {
   "id": "zingelstoeckli",
@@ -1102,7 +1237,10 @@
   "src": "https://www.bergsteigen.com/touren/klettersteig/zingelstoeckli-klettersteig/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Urnerboden2.jpg/960px-Urnerboden2.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Urnerboden2.jpg",
-  "imgCredit": "Lutz Fischer-Lamprecht · CC BY-SA 4.0"
+  "imgCredit": "Lutz Fischer-Lamprecht · CC BY-SA 4.0",
+  "driveMin": 101,
+  "driveKm": 114,
+  "driveTo": "Urnerboden"
  },
  {
   "id": "braunwald",
@@ -1126,7 +1264,10 @@
   "src": "https://www.myferrata.ch/belvedere/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Eggst%C3%B6cke_mit_Gumen.jpg/960px-Eggst%C3%B6cke_mit_Gumen.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Eggst%C3%B6cke_mit_Gumen.jpg",
-  "imgCredit": "Felix Günther FeG · CC BY-SA 2.5"
+  "imgCredit": "Felix Günther FeG · CC BY-SA 2.5",
+  "driveMin": 88,
+  "driveKm": 100,
+  "driveTo": "Linthal"
  },
  {
   "id": "indianer",
@@ -1150,7 +1291,10 @@
   "src": "https://www.myferrata.ch/indianer/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Wiggis_vom_Vordergl%C3%A4rnisch.jpg/960px-Wiggis_vom_Vordergl%C3%A4rnisch.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Wiggis_vom_Vordergl%C3%A4rnisch.jpg",
-  "imgCredit": "Caumasee · Public domain"
+  "imgCredit": "Caumasee · Public domain",
+  "driveMin": 63,
+  "driveKm": 81,
+  "driveTo": "Netstal"
  },
  {
   "id": "speer",
@@ -1174,7 +1318,11 @@
   "src": "https://www.bergsteigen.com/touren/klettersteig/speer-kletterweg/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Gulmen_%28Mattstock_Speer%29.JPG/960px-Gulmen_%28Mattstock_Speer%29.JPG",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Gulmen_(Mattstock_Speer).JPG",
-  "imgCredit": "Drdamage · CC BY-SA 4.0"
+  "imgCredit": "Drdamage · CC BY-SA 4.0",
+  "driveMin": 62,
+  "driveKm": 81,
+  "driveTo": "Amden",
+  "type": "secured"
  },
  {
   "id": "lisengrat",
@@ -1198,7 +1346,11 @@
   "src": "https://www.sac-cas.ch/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Drahtseilgesicherter_Aufstieg_zum_Lisengrat_beim_S%C3%A4ntis.jpg/960px-Drahtseilgesicherter_Aufstieg_zum_Lisengrat_beim_S%C3%A4ntis.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Drahtseilgesicherter_Aufstieg_zum_Lisengrat_beim_S%C3%A4ntis.jpg",
-  "imgCredit": "JoachimKohler-HB · CC BY-SA 4.0"
+  "imgCredit": "JoachimKohler-HB · CC BY-SA 4.0",
+  "driveMin": 92,
+  "driveKm": 105,
+  "driveTo": "Schwägalp",
+  "type": "secured"
  },
  {
   "id": "flaesch",
@@ -1222,7 +1374,10 @@
   "src": "https://www.bergsteigen.com/touren/klettersteig/leiterliweg-flaesch/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Zentralbibliothek_Z%C3%BCrich_-_Fl%C3%A4scherberg_-_991131954299705501.jpg/960px-Zentralbibliothek_Z%C3%BCrich_-_Fl%C3%A4scherberg_-_991131954299705501.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Zentralbibliothek_Z%C3%BCrich_-_Fl%C3%A4scherberg_-_991131954299705501.jpg",
-  "imgCredit": "Anonym/e Künstler/in · Public domain"
+  "imgCredit": "Anonym/e Künstler/in · Public domain",
+  "driveMin": 83,
+  "driveKm": 113,
+  "driveTo": "Fläsch"
  },
  {
   "id": "pinut",
@@ -1246,7 +1401,10 @@
   "src": "http://www.klettersteig-pinut.ch/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flimserstein_S%C3%BCdseite.jpg/960px-Flimserstein_S%C3%BCdseite.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Flimserstein_S%C3%BCdseite.jpg",
-  "imgCredit": "upload by Adrian Michael · CC BY-SA 3.0"
+  "imgCredit": "upload by Adrian Michael · CC BY-SA 3.0",
+  "driveMin": 114,
+  "driveKm": 152,
+  "driveTo": "Fidaz"
  },
  {
   "id": "sulzfluh",
@@ -1270,7 +1428,10 @@
   "src": "https://www.bergsteigen.com/touren/klettersteig/sulzfluh-klettersteig/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Sulzfluh_Plateau_Panorama.jpg/960px-Sulzfluh_Plateau_Panorama.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Sulzfluh_Plateau_Panorama.jpg",
-  "imgCredit": "böhringer friedrich · CC BY-SA 2.5"
+  "imgCredit": "böhringer friedrich · CC BY-SA 2.5",
+  "driveMin": 124,
+  "driveKm": 148,
+  "driveTo": "Partnun"
  },
  {
   "id": "partnunblick",
@@ -1294,7 +1455,10 @@
   "src": "https://www.bergsteigen.com/touren/klettersteig/partnunblick-klettersteig/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Sulzfluh-Weissplatte.jpg/960px-Sulzfluh-Weissplatte.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Sulzfluh-Weissplatte.jpg",
-  "imgCredit": "Vince51 · CC BY 3.0"
+  "imgCredit": "Vince51 · CC BY 3.0",
+  "driveMin": 124,
+  "driveKm": 148,
+  "driveTo": "Partnun"
  },
  {
   "id": "familien-partnunblick",
@@ -1318,7 +1482,10 @@
   "src": "https://www.bergsteigen.com/touren/klettersteig/familien-klettersteig-partnunblick/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Partnunsee-N.jpg/960px-Partnunsee-N.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Partnunsee-N.jpg",
-  "imgCredit": "FkMohr · CC BY-SA 3.0 de"
+  "imgCredit": "FkMohr · CC BY-SA 3.0 de",
+  "driveMin": 124,
+  "driveKm": 148,
+  "driveTo": "Partnun"
  },
  {
   "id": "gauablickhoehle",
@@ -1342,7 +1509,10 @@
   "src": "https://klettersteig.de/klettersteig/gauablickhoehle_klettersteig/1508",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/360%C2%B0_Drei_T%C3%BCrme_und_Sulzfluh.jpg/960px-360%C2%B0_Drei_T%C3%BCrme_und_Sulzfluh.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:360%C2%B0_Drei_T%C3%BCrme_und_Sulzfluh.jpg",
-  "imgCredit": "böhringer friedrich · CC BY-SA 2.5"
+  "imgCredit": "böhringer friedrich · CC BY-SA 2.5",
+  "driveMin": 124,
+  "driveKm": 148,
+  "driveTo": "Partnun"
  },
  {
   "id": "punteglias",
@@ -1367,7 +1537,10 @@
   "thin": true,
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Camona_da_Punteglias.jpg/960px-Camona_da_Punteglias.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Camona_da_Punteglias.jpg",
-  "imgCredit": "Andreas Fischler · CC BY 2.0"
+  "imgCredit": "Andreas Fischler · CC BY 2.0",
+  "driveMin": 138,
+  "driveKm": 179,
+  "driveTo": "Trun"
  },
  {
   "id": "greitspitz",
@@ -1391,7 +1564,10 @@
   "src": "https://www.bergsteigen.com/touren/klettersteig/greitspitz-klettersteig/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Ischgl_-_Greitspitze_BT_01.jpg/960px-Ischgl_-_Greitspitze_BT_01.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Ischgl_-_Greitspitze_BT_01.jpg",
-  "imgCredit": "Basotxerri · CC BY-SA 4.0"
+  "imgCredit": "Basotxerri · CC BY-SA 4.0",
+  "driveMin": 207,
+  "driveKm": 243,
+  "driveTo": "Samnaun"
  },
  {
   "id": "flimspitz",
@@ -1415,7 +1591,10 @@
   "src": "https://www.bergsteigen.com/touren/klettersteig/flimspitze-klettersteig/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Flimspitz_as_seen_from_Bei_den_Seen.jpg/960px-Flimspitz_as_seen_from_Bei_den_Seen.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Flimspitz_as_seen_from_Bei_den_Seen.jpg",
-  "imgCredit": "Capricorn4049 · CC BY-SA 4.0"
+  "imgCredit": "Capricorn4049 · CC BY-SA 4.0",
+  "driveMin": 207,
+  "driveKm": 243,
+  "driveTo": "Samnaun"
  },
  {
   "id": "la-resgia",
@@ -1439,7 +1618,10 @@
   "src": "https://www.myferrata.ch/la-resgia/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pontresina_village_from_train.jpg/960px-Pontresina_village_from_train.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Pontresina_village_from_train.jpg",
-  "imgCredit": "Philip Newton · CC BY 2.0"
+  "imgCredit": "Philip Newton · CC BY 2.0",
+  "driveMin": 178,
+  "driveKm": 221,
+  "driveTo": "Pontresina"
  },
  {
   "id": "piz-trovat",
@@ -1463,7 +1645,10 @@
   "src": "https://www.myferrata.ch/piz-trovat/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/2011-08-02_15-07-48_Switzerland_Diavolezza_11vl.jpg/960px-2011-08-02_15-07-48_Switzerland_Diavolezza_11vl.jpg",
   "imgPage": "https://commons.wikimedia.org/wiki/File:2011-08-02_15-07-48_Switzerland_Diavolezza_11vl.jpg",
-  "imgCredit": "NOTE: This image is a panorama of Diavolezza consisting of 11 frames that were m · CC BY-SA 3.0"
+  "imgCredit": "NOTE: This image is a panorama of Diavolezza consisting of 11 frames that were m · CC BY-SA 3.0",
+  "driveMin": 185,
+  "driveKm": 229,
+  "driveTo": "Bernina Diavolezza"
  },
  {
   "id": "tichodrome",
@@ -1487,6 +1672,9 @@
   "src": "https://www.myferrata.ch/tichodrome/",
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Creux_du_Van.png/960px-Creux_du_Van.png",
   "imgPage": "https://commons.wikimedia.org/wiki/File:Creux_du_Van.png",
-  "imgCredit": "Thinkingoyster · CC BY-SA 4.0"
+  "imgCredit": "Thinkingoyster · CC BY-SA 4.0",
+  "driveMin": 131,
+  "driveKm": 162,
+  "driveTo": "Noiraigue"
  }
 ]

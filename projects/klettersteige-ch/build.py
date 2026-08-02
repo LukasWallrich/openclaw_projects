@@ -28,14 +28,18 @@ def esc(x):
     return html.escape(str(x)) if x is not None else ""
 
 cards = []
-for r in routes:
+for i, r in enumerate(routes):
     b, blabel = band(r["grade"])
     lift = r.get("lift") or "—"
     # "lift" chip means the lift is effectively required — optional lifts don't count.
     ll = lift.lower()
     lift_needed = not (re.match(r"^\s*(none|no\b)", ll)
                        or "optional" in ll or "not needed" in ll or "none needed" in ll)
+    dm = r.get("driveMin")
+    drive_txt = (f"{dm // 60} h {dm % 60:02d}" if dm and dm >= 60 else (f"{dm} min" if dm else "—"))
     stats = [
+        ("Drive there", drive_txt),
+        ("Distance", f'{r["driveKm"]} km' if r.get("driveKm") else "—"),
         ("On the wire", r.get("ferrataTime") or "—"),
         ("Climb gain", (f'{r["gain"]} m' if isinstance(r.get("gain"), int) and r["gain"] > 0
                         else (f'{abs(r["gain"])} m down' if isinstance(r.get("gain"), int) else "—"))),
@@ -50,11 +54,14 @@ for r in routes:
     cards.append(f'''
 <article class="card" id="route-{esc(r["id"])}" data-id="{esc(r["id"])}" data-region="{esc(r["region"])}"
          data-band="{b}" data-lift="{'yes' if lift_needed else 'no'}"
+         data-drive="{r.get('driveMin') or 9999}" data-type="{r.get('type') or 'ferrata'}"
+         style="order:{i}"
          data-text="{esc((r['name'] + ' ' + r['base'] + ' ' + r['region'] + ' ' + r['canton'] + ' ' + (r.get('character') or '')).lower())}">
   <div class="shot">{f'<img src="{esc(r["img"])}" alt="" loading="lazy">' if r.get("img") else ""}{credit}</div>
   <div class="body">
     <div class="chips"><span class="chip g-{b}">{esc(r["grade"])}</span><span class="chip ghost">{esc(r["canton"])}</span>
-      {'<span class="chip ghost">lift</span>' if lift_needed else '<span class="chip ghost">no lift</span>'}</div>
+      {'<span class="chip ghost">lift</span>' if lift_needed else '<span class="chip ghost">no lift</span>'}
+      {'<span class="chip warn">secured path, not a ferrata</span>' if r.get("type") == "secured" else ''}</div>
     <h3>{esc(r["name"])}</h3>
     <p class="where">{esc(r["base"])} · {esc(r["region"])}{f' · {r["summitAlt"]} m' if r.get("summitAlt") else ""}</p>
     <dl class="stats">{statrow}</dl>
@@ -154,6 +161,8 @@ main .wrap{padding-top:26px;padding-bottom:70px}
 .chip{font-size:.7rem;font-weight:700;letter-spacing:.03em;padding:3px 8px;border-radius:20px;
   border:1px solid transparent;white-space:nowrap}
 .chip.ghost{background:none;border-color:var(--line);color:var(--soft);font-weight:600}
+.chip.warn{background:color-mix(in srgb,var(--alert) 12%,transparent);color:var(--alert);
+  border-color:color-mix(in srgb,var(--alert) 40%,transparent)}
 .g-easy{background:#2f7d4f1f;color:#2f7d4f;border-color:#2f7d4f4d}
 .g-mid{background:#b8891018;color:#96700c;border-color:#b889103d}
 .g-hard{background:#c1571e1c;color:#b0531f;border-color:#c1571e40}
@@ -167,7 +176,7 @@ main .wrap{padding-top:26px;padding-bottom:70px}
 .card h3{margin:0 0 3px;font-size:1.12rem;line-height:1.25;letter-spacing:-.01em;
   font-family:ui-serif,Georgia,serif;font-weight:600}
 .where{margin:0 0 13px;font-size:.82rem;color:var(--soft)}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:0 0 13px;
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;margin:0 0 13px;
   background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .stat{background:var(--panel);padding:7px 10px}
 .stat dt{font-size:.63rem;text-transform:uppercase;letter-spacing:.09em;color:var(--soft);font-weight:700}
@@ -206,6 +215,7 @@ const LS_NAME  = 'ks-name', LS_STATE = 'ks-state', LS_OUT = 'ks-outbox';
 
 const $ = s => document.querySelector(s);
 const cards = [...document.querySelectorAll('.card')];
+cards.forEach((c, i) => c.dataset.order = i);
 let me = localStorage.getItem(LS_NAME) || '';
 let state = JSON.parse(localStorage.getItem(LS_STATE) || '{{}}');   // id -> 'want'|'done'
 let outbox = JSON.parse(localStorage.getItem(LS_OUT) || '[]');
@@ -311,10 +321,13 @@ function paint() {{
 function filter() {{
   const q = $('#q').value.trim().toLowerCase();
   const reg = $('#region').value, bnd = $('#bandSel').value, lift = $('#liftSel').value;
+  const drv = $('#driveSel').value;
+  sortCards();
   let shown = 0;
   for (const c of cards) {{
     const s = state[c.dataset.id];
     const ok = (view === 'all' || s === view)
+      && (!drv || +c.dataset.drive <= +drv)
       && (!reg || c.dataset.region === reg)
       && (!bnd || c.dataset.band === bnd)
       && (!lift || c.dataset.lift === lift)
@@ -340,7 +353,22 @@ document.addEventListener('click', e => {{
   epoch++; save(); record(id, next); paint();
 }});
 
-for (const el of ['#q', '#region', '#bandSel', '#liftSel']) $(el).addEventListener('input', filter);
+const BAND_RANK = {{easy: 0, mid: 1, hard: 2, extreme: 3}};
+function sortCards() {{
+  const how = $('#sortSel').value;
+  const key = c => {{
+    switch (how) {{
+      case 'drive':     return +c.dataset.drive;
+      case 'driveDesc': return -c.dataset.drive;
+      case 'grade':     return BAND_RANK[c.dataset.band] * 1000 + +c.dataset.drive / 100;
+      case 'gradeDesc': return -BAND_RANK[c.dataset.band] * 1000 + +c.dataset.drive / 100;
+      default:          return +c.dataset.order;
+    }}
+  }};
+  [...cards].sort((a, b) => key(a) - key(b)).forEach((c, i) => c.style.order = i);
+}}
+for (const el of ['#q', '#region', '#bandSel', '#liftSel', '#driveSel', '#sortSel'])
+  $(el).addEventListener('input', filter);
 document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => {{
   view = b.dataset.view;
   document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', x === b));
@@ -368,8 +396,9 @@ HTML = f"""<!doctype html>
   <p class="kicker">Personal planning page · not indexed</p>
   <h1>Klettersteige north of the Alps</h1>
   <p class="lede">Every via ferrata in Switzerland you can simply walk up to and climb — no guide,
-     no ticket, no gate — outside Ticino and the south-facing valleys. {len(routes)} routes, with the
-     walk in and the walk out spelled out, because the cable car is optional and the legs are not.</p>
+     no ticket, no gate — outside Ticino and the south-facing valleys. {len(routes)} routes, each with the drive
+     from Bergdietikon and the walk in and walk out spelled out, because the cable car is optional
+     and the legs are not.</p>
   <p class="scope"><b>Scope.</b> All of Switzerland except Ticino, the Valais valleys south of the
      Rhône, and the Italian-facing Graubünden valleys (Bergell, Misox, Puschlav, Val Müstair).
      Guide-only routes, ticketed ferrata parks and commercial canyon courses are excluded.
@@ -395,6 +424,20 @@ HTML = f"""<!doctype html>
     <option value="mid">K3 · moderate</option>
     <option value="hard">K4 · demanding</option>
     <option value="extreme">K5–K6 · severe</option>
+  </select>
+  <select id="driveSel">
+    <option value="">Any drive</option>
+    <option value="60">≤ 1 h away</option>
+    <option value="90">≤ 1½ h away</option>
+    <option value="120">≤ 2 h away</option>
+    <option value="180">≤ 3 h away</option>
+  </select>
+  <select id="sortSel">
+    <option value="region">By region</option>
+    <option value="drive">Nearest first</option>
+    <option value="driveDesc">Furthest first</option>
+    <option value="grade">Easiest first</option>
+    <option value="gradeDesc">Hardest first</option>
   </select>
   <select id="liftSel">
     <option value="">Lift or not</option>
@@ -424,6 +467,12 @@ HTML = f"""<!doctype html>
      Schweiz</i> (Hüsler &amp; Anker, 2020 edition, 100 routes), filtered to the scope above. Per-route
      figures come from myferrata.ch, bergsteigen.com, klettersteig.de, the SAC Tourenportal and the
      operators' own pages — each card links its source.</p>
+  <p><b>Drive times</b> are road-routing from Bergdietikon AG to the nearest car park, via OSRM on
+     OpenStreetMap data — free-flow, so no traffic, and optimistic on a summer Saturday. Car-free
+     resorts point at the valley station you actually park at: Mürren → Stechelberg, Braunwald →
+     Linthal, Melchsee-Frutt → Stöckalp. Leukerbad is routed entirely by road at 305 km; the
+     Lötschberg car train from Kandersteg cuts that substantially. Alpine passes are assumed open,
+     which for these summer routes is usually fair — but check Susten, Klausen and Grimsel in June.</p>
   <p><b>Photographs</b> are freely licensed images from Wikimedia Commons showing the peak or the
      area, not necessarily the ferrata itself. Credit is on each image.</p>
   <p><b>Conditions change.</b> Cables get removed for winter, routes close for rockfall, lifts run to
