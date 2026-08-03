@@ -380,6 +380,8 @@ paintName(); paint(); pull(); drain();
 """
 
 HTML = f"""<!doctype html>
+<!-- GENERATED FILE — do not edit. Edit routes.json, then run: python3 build.py
+     Adding photos? See AGENTS.md in this folder. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
