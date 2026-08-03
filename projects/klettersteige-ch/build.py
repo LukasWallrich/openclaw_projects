@@ -50,14 +50,29 @@ for i, r in enumerate(routes):
         f'<div class="stat"><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in stats
     )
     thin = '<p class="thin-warn">Sparse data — verify locally before you commit to this one.</p>' if r.get("thin") else ""
-    credit = f'<span class="credit">{esc(r.get("imgCredit") or "Wikimedia Commons")}</span>' if r.get("img") else ""
+    images = r.get("imgs") or ([r["img"]] if r.get("img") else [])
+    credit = f'<span class="credit">{esc(r.get("imgCredit") or "Wikimedia Commons")}</span>' if images else ""
+    if len(images) > 1:
+        slides = "".join(
+            f'<img class="slide{" active" if j == 0 else ""}" src="{esc(url)}" alt="" '
+            f'loading="{"eager" if j == 0 else "lazy"}">' for j, url in enumerate(images)
+        )
+        dots = "".join(
+            f'<button class="gallery-dot{" active" if j == 0 else ""}" type="button" '
+            f'data-slide="{j}" aria-label="Photo {j + 1} of {len(images)}" '
+            f'aria-pressed="{"true" if j == 0 else "false"}"></button>'
+            for j in range(len(images))
+        )
+        shot = f'<div class="shot gallery" data-gallery="{len(images)}">{slides}<div class="gallery-dots">{dots}</div>{credit}</div>'
+    else:
+        shot = f'<div class="shot">{f'<img src="{esc(images[0])}" alt="" loading="lazy">' if images else ""}{credit}</div>'
     cards.append(f'''
 <article class="card" id="route-{esc(r["id"])}" data-id="{esc(r["id"])}" data-region="{esc(r["region"])}"
          data-band="{b}" data-lift="{'yes' if lift_needed else 'no'}"
          data-drive="{r.get('driveMin') or 9999}" data-type="{r.get('type') or 'ferrata'}"
          style="order:{i}"
          data-text="{esc((r['name'] + ' ' + r['base'] + ' ' + r['region'] + ' ' + r['canton'] + ' ' + (r.get('character') or '')).lower())}">
-  <div class="shot">{f'<img src="{esc(r["img"])}" alt="" loading="lazy">' if r.get("img") else ""}{credit}</div>
+  {shot}
   <div class="body">
     <div class="chips"><span class="chip g-{b}">{esc(r["grade"])}</span><span class="chip ghost">{esc(r["canton"])}</span>
       {'<span class="chip ghost">lift</span>' if lift_needed else '<span class="chip ghost">no lift</span>'}
@@ -153,6 +168,12 @@ main .wrap{padding-top:26px;padding-bottom:70px}
 .card.hide{display:none}
 .shot{position:relative;aspect-ratio:16/9;background:color-mix(in srgb,var(--rock) 22%,var(--panel));overflow:hidden}
 .shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot.gallery .slide{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
+.shot.gallery .slide.active{opacity:1}
+.gallery-dots{position:absolute;left:7px;bottom:6px;display:flex;gap:5px}
+.gallery-dot{width:8px;height:8px;padding:0;border:1px solid #fff;background:#fff8;border-radius:50%;cursor:pointer}
+.gallery-dot.active{background:#fff}
+@media (prefers-reduced-motion:reduce){.shot.gallery .slide{transition:none}}
 .credit{position:absolute;right:6px;bottom:5px;font-size:.6rem;line-height:1.3;color:#fff;
   background:#0009;padding:2px 6px;border-radius:4px;max-width:80%;overflow:hidden;
   text-overflow:ellipsis;white-space:nowrap}
@@ -211,6 +232,7 @@ footer p{max-width:74ch;margin:0 0 12px}
 JS = f"""
 const ENDPOINT = {json.dumps(ENDPOINT)};
 const PROJECT  = {json.dumps(STATUS_PROJECT)};
+const DEFAULT_DONE = {json.dumps({r["id"]: {"names": r.get("doneFor", []), "date": r.get("doneDate")} for r in routes if r.get("doneFor")})};
 const LS_NAME  = 'ks-name', LS_STATE = 'ks-state', LS_OUT = 'ks-outbox';
 
 const $ = s => document.querySelector(s);
@@ -221,6 +243,41 @@ let state = JSON.parse(localStorage.getItem(LS_STATE) || '{{}}');   // id -> 'wa
 let outbox = JSON.parse(localStorage.getItem(LS_OUT) || '[]');
 let view = 'all';
 let epoch = 0;                        // bumped on every local edit, so a stale server read can't win
+
+function applyDefaultDone() {{
+  if (!me) return;
+  for (const [id, entry] of Object.entries(DEFAULT_DONE)) {{
+    if (entry.names.some(name => name.toLowerCase() === me.toLowerCase()) && !state[id])
+      state[id] = 'done';
+  }}
+}}
+
+/* ---- mini photo rotations ---- */
+for (const gallery of document.querySelectorAll('.gallery')) {{
+  const slides = [...gallery.querySelectorAll('.slide')];
+  const dots = [...gallery.querySelectorAll('.gallery-dot')];
+  let index = 0, timer = null;
+  const show = next => {{
+    index = (next + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+    dots.forEach((dot, i) => {{
+      dot.classList.toggle('active', i === index);
+      dot.setAttribute('aria-pressed', i === index);
+    }});
+  }};
+  const stop = () => {{ if (timer) {{ clearInterval(timer); timer = null; }} }};
+  const start = () => {{
+    stop();
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches)
+      timer = setInterval(() => show(index + 1), 3500);
+  }};
+  dots.forEach((dot, i) => dot.addEventListener('click', () => {{ stop(); show(i); start(); }}));
+  gallery.addEventListener('mouseenter', stop);
+  gallery.addEventListener('mouseleave', start);
+  gallery.addEventListener('focusin', stop);
+  gallery.addEventListener('focusout', start);
+  start();
+}}
 
 /* ---- theme ---- */
 const themeBtn = $('#themeBtn');
@@ -244,7 +301,7 @@ function paintName() {{
 nameInput.addEventListener('change', () => {{
   me = nameInput.value.trim();
   localStorage.setItem(LS_NAME, me);
-  paintName(); pull();
+  paintName(); applyDefaultDone(); paint(); pull();
 }});
 
 /* ---- persistence ---- */
@@ -305,7 +362,7 @@ async function pull() {{
       if (rec.vote === 'none') delete mine[rec.itemId]; else mine[rec.itemId] = rec.vote;
     }}
     if (epoch !== at) return;                      // a click landed while we were fetching
-    state = mine; save(); paint();
+    state = mine; applyDefaultDone(); save(); paint();
   }} catch {{ /* offline: keep the local copy */ }}
 }}
 
@@ -376,7 +433,7 @@ document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => {{
 }});
 addEventListener('online', drain);
 
-paintName(); paint(); pull(); drain();
+paintName(); applyDefaultDone(); paint(); pull(); drain();
 """
 
 HTML = f"""<!doctype html>
@@ -475,8 +532,8 @@ HTML = f"""<!doctype html>
      Linthal, Melchsee-Frutt → Stöckalp. Leukerbad is routed entirely by road at 305 km; the
      Lötschberg car train from Kandersteg cuts that substantially. Alpine passes are assumed open,
      which for these summer routes is usually fair — but check Susten, Klausen and Grimsel in June.</p>
-  <p><b>Photographs</b> are freely licensed images from Wikimedia Commons showing the peak or the
-     area, not necessarily the ferrata itself. Credit is on each image.</p>
+  <p><b>Photographs</b> are mostly freely licensed images from Wikimedia Commons showing the peak or the
+     area, not necessarily the ferrata itself. Personal photos are labelled and credited on the image.</p>
   <p><b>Conditions change.</b> Cables get removed for winter, routes close for rockfall, lifts run to
      short summer timetables. The Senda ferrada Piz Mitgel above Savognin, for instance, was
      dismantled and is not listed. Check the operator before you drive.</p>
@@ -504,4 +561,4 @@ HTML = f"""<!doctype html>
 """
 
 (HERE / "index.html").write_text(HTML, encoding="utf-8")
-print(f"wrote index.html — {len(routes)} routes, {sum(1 for r in routes if r.get('img'))} images")
+print(f"wrote index.html — {len(routes)} routes, {sum(len(r.get('imgs') or ([r['img']] if r.get('img') else [])) for r in routes)} images")

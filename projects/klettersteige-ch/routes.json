@@ -289,9 +289,15 @@
   "caveat": "Short season. Snowfields on the upper section; the pass road is closed in winter.",
   "peak": "Tierberglihütte Susten",
   "src": "https://www.myferrata.ch/tierbergli/",
-  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/0x-tierbergli-h-1.jpg/960px-0x-tierbergli-h-1.jpg",
-  "imgPage": "https://commons.wikimedia.org/wiki/File:0x-tierbergli-h-1.jpg",
-  "imgCredit": "Oxensepp (talk) · CC BY-SA 3.0",
+  "img": "photos/tierbergli-1.jpg",
+  "imgs": [
+   "photos/tierbergli-1.jpg",
+   "photos/tierbergli-2.jpg",
+   "photos/tierbergli-3.jpg"
+  ],
+  "imgCredit": "Lukas Wallrich · personal photos",
+  "doneFor": ["Lukas"],
+  "doneDate": "2026-08-03",
   "driveMin": 100,
   "driveKm": 121,
   "driveTo": "Sustenpass"
