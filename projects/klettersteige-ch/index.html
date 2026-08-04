@@ -1944,7 +1944,6 @@ footer p{max-width:74ch;margin:0 0 12px}
 <script>
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbyx858xfSCgHQ8RmbfbMsdzcmzrkNs_JZVmqeEBVrH-S6g8YJbI32CY7if-k8oTzg-eyQ/exec";
 const PROJECT  = "klettersteige-ch-status";
-const DEFAULT_DONE = {"tierbergli": {"names": ["Lukas"], "date": "2026-08-03"}};
 const LS_NAME  = 'ks-name', LS_STATE = 'ks-state', LS_OUT = 'ks-outbox';
 
 const $ = s => document.querySelector(s);
@@ -1955,18 +1954,6 @@ let state = JSON.parse(localStorage.getItem(LS_STATE) || '{}');   // id -> 'want
 let outbox = JSON.parse(localStorage.getItem(LS_OUT) || '[]');
 let view = 'all';
 let epoch = 0;                        // bumped on every local edit, so a stale server read can't win
-
-let touched = new Set();   // ids this person has explicitly set OR cleared
-
-function applyDefaultDone() {
-  // A doneFor seed must not resurrect a mark the person deliberately removed: on the server
-  // "cleared" looks identical to "never set", so we track explicit actions separately.
-  if (!me) return;
-  for (const [id, entry] of Object.entries(DEFAULT_DONE)) {
-    if (touched.has(id) || state[id]) continue;
-    if (entry.names.some(name => name.toLowerCase() === me.toLowerCase())) state[id] = 'done';
-  }
-}
 
 /* ---- mini photo rotations ---- */
 for (const gallery of document.querySelectorAll('.gallery')) {
@@ -2018,8 +2005,7 @@ function paintName() {
 nameInput.addEventListener('change', () => {
   me = nameInput.value.trim();
   localStorage.setItem(LS_NAME, me);
-  touched = new Set();
-  paintName(); applyDefaultDone(); paint(); pull();
+  paintName(); paint(); pull();
 });
 
 /* ---- persistence ---- */
@@ -2069,20 +2055,18 @@ async function pull() {
     const r = await fetch(ENDPOINT + '?action=rows&project=' + encodeURIComponent(PROJECT));
     const j = await r.json();
     if (!j.ok) return;
-    const mine = {}; const seen = new Set();
+    const mine = {};
     for (const row of j.rows) {                       // oldest first — last write wins
       if ((row.voter || '').toLowerCase() !== me.toLowerCase()) continue;
-      seen.add(row.itemId);
       if (row.vote === 'none') delete mine[row.itemId];
       else if (row.vote === 'want' || row.vote === 'done') mine[row.itemId] = row.vote;
     }
     for (const rec of outbox) {                       // unsynced local wins over the server
       if ((rec.voter || '').toLowerCase() !== me.toLowerCase()) continue;
-      seen.add(rec.itemId);
       if (rec.vote === 'none') delete mine[rec.itemId]; else mine[rec.itemId] = rec.vote;
     }
     if (epoch !== at) return;                      // a click landed while we were fetching
-    state = mine; touched = seen; applyDefaultDone(); save(); paint();
+    state = mine; save(); paint();
   } catch { /* offline: keep the local copy */ }
 }
 
@@ -2127,7 +2111,7 @@ document.addEventListener('click', e => {
   }
   const next = state[id] === act ? 'none' : act;
   if (next === 'none') delete state[id]; else state[id] = next;
-  touched.add(id); epoch++; save(); record(id, next); paint();
+  epoch++; save(); record(id, next); paint();
 });
 
 const BAND_RANK = {easy: 0, mid: 1, hard: 2, extreme: 3};
@@ -2222,7 +2206,7 @@ lb.addEventListener('touchend', e => {
   if (Math.abs(dx) > 45 && lbSrcs.length > 1) lbShow(lbAt + (dx < 0 ? 1 : -1));
 }, {passive: true});
 
-paintName(); applyDefaultDone(); paint(); pull(); drain();
+paintName(); paint(); pull(); drain();
 </script>
 <script>
 (function () {
