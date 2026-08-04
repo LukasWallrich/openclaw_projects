@@ -103,6 +103,24 @@ mechanism used to sync them.
 Comments and suggested edits work the same way — they are records in project
 `klettersteige-nordalpen-ch`, written by the overlay on the page. Never transcribe them into source.
 
+**`itemId` means different things in the two projects. This is a trap.**
+
+| project | `itemId` is | reused? |
+|---|---|---|
+| `klettersteige-ch-status` | the **route id** (`tierbergli`) | yes — replayed, last write wins |
+| `klettersteige-nordalpen-ch` | the **record's own unique id** | never — the target goes in `note.parentId` |
+
+The comment overlay dedupes incoming rows by `itemId` and keeps only the first. So a comment,
+reply, resolve or delete that reuses an existing `itemId` is **silently dropped before it is
+ever interpreted** — the endpoint returns `{"ok":true}`, the row sits in the sheet, and nothing
+happens on the page. To delete comment `hc-demo-1` you post a *new* id whose note points at it:
+
+```bash
+curl -sL "$ENDPOINT" -H 'Content-Type: text/plain;charset=utf-8' --data \
+ '{"project":"klettersteige-nordalpen-ch","itemId":"hc-del-1","vote":"delete",
+   "note":"{\"v\":1,\"parentId\":\"hc-demo-1\"}"}'
+```
+
 ## The lightbox
 
 Every card image is clickable and opens a full-screen viewer showing the photo **uncropped**
