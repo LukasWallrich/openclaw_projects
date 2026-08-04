@@ -51,6 +51,7 @@ for i, r in enumerate(routes):
     )
     thin = '<p class="thin-warn">Sparse data — verify locally before you commit to this one.</p>' if r.get("thin") else ""
     images = r.get("imgs") or ([r["img"]] if r.get("img") else [])
+    pos = f' style="--imgpos:{esc(r["imgPos"])}"' if r.get("imgPos") else ""
     credit = f'<span class="credit">{esc(r.get("imgCredit") or "Wikimedia Commons")}</span>' if images else ""
     if len(images) > 1:
         slides = "".join(
@@ -63,9 +64,15 @@ for i, r in enumerate(routes):
             f'aria-pressed="{"true" if j == 0 else "false"}"></button>'
             for j in range(len(images))
         )
-        shot = f'<div class="shot gallery" data-gallery="{len(images)}">{slides}<div class="gallery-dots">{dots}</div>{credit}</div>'
+        shot = (f'<div class="shot gallery" data-gallery="{len(images)}" tabindex="0" role="button" '
+                f'aria-label="Open photos of {esc(r["name"])} full size"{pos}>'
+                f'{slides}<span class="expand" aria-hidden="true">⤢</span>'
+                f'<div class="gallery-dots">{dots}</div>{credit}</div>')
     else:
-        shot = f'<div class="shot">{f'<img src="{esc(images[0])}" alt="" loading="lazy">' if images else ""}{credit}</div>'
+        inner = f'<img src="{esc(images[0])}" alt="" loading="lazy">' if images else ""
+        attrs = (f' tabindex="0" role="button" aria-label="Open photo of {esc(r["name"])} full size"{pos}'
+                 if images else "")
+        shot = f'<div class="shot"{attrs}>{inner}{"<span class=\'expand\' aria-hidden=\'true\'>⤢</span>" if images else ""}{credit}</div>'
     cards.append(f'''
 <article class="card" id="route-{esc(r["id"])}" data-id="{esc(r["id"])}" data-region="{esc(r["region"])}"
          data-band="{b}" data-lift="{'yes' if lift_needed else 'no'}"
@@ -167,7 +174,14 @@ main .wrap{padding-top:26px;padding-bottom:70px}
   box-shadow:var(--shadow);display:flex;flex-direction:column}
 .card.hide{display:none}
 .shot{position:relative;aspect-ratio:16/9;background:color-mix(in srgb,var(--rock) 22%,var(--panel));overflow:hidden}
-.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:var(--imgpos,center);display:block}
+.shot[role=button]{cursor:zoom-in}
+.shot .expand{position:absolute;right:7px;top:7px;width:26px;height:26px;border-radius:7px;
+  background:#0009;color:#fff;display:grid;place-items:center;font-size:.82rem;line-height:1;
+  opacity:0;transition:opacity .18s;pointer-events:none}
+.shot:hover .expand,.shot:focus-visible .expand{opacity:1}
+.shot:focus-visible{outline:2px solid var(--pine-2);outline-offset:2px}
+@media (hover:none){.shot .expand{opacity:.85}}
 .shot.gallery .slide{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
 .shot.gallery .slide.active{opacity:1}
 .gallery-dots{position:absolute;left:7px;bottom:6px;display:flex;gap:5px}
@@ -222,6 +236,24 @@ main .wrap{padding-top:26px;padding-bottom:70px}
 .sync{position:fixed;left:16px;bottom:16px;z-index:60;background:var(--panel);border:1px solid var(--line);
   border-radius:8px;padding:6px 11px;font-size:.76rem;color:var(--soft);box-shadow:var(--shadow);display:none}
 .sync.show{display:block}
+.lb{position:fixed;inset:0;z-index:2000;background:#0b0e0ff7;display:none;align-items:center;
+  justify-content:center;padding:56px 16px 92px}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;
+  border-radius:5px;box-shadow:0 18px 60px #000a}
+.lb button{position:absolute;background:#ffffff1a;border:1px solid #ffffff33;color:#fff;
+  border-radius:10px;cursor:pointer;font:inherit;line-height:1}
+.lb button:hover{background:#ffffff2e}
+.lb-close{top:14px;right:16px;width:42px;height:42px;font-size:1.4rem}
+.lb-nav{top:50%;transform:translateY(-50%);width:46px;height:64px;font-size:1.5rem}
+.lb-prev{left:14px}.lb-next{right:14px}
+.lb-cap{position:absolute;left:0;right:0;bottom:0;padding:16px 20px 22px;color:#cfd8d3;
+  text-align:center;font-size:.83rem;background:linear-gradient(transparent,#000000cc);
+  pointer-events:none}
+.lb-cap b{display:block;font-size:1rem;font-weight:600;color:#fff;margin-bottom:3px;
+  font-family:ui-serif,Georgia,serif}
+.lb-count{opacity:.65;font-variant-numeric:tabular-nums;margin-left:8px}
+@media (max-width:560px){.lb{padding:52px 8px 88px}.lb-nav{width:38px;height:54px}}
 footer{border-top:1px solid var(--line);background:var(--panel)}
 footer .wrap{padding:34px 20px 60px;font-size:.85rem;color:var(--soft)}
 footer h2{font-size:.95rem;color:var(--ink);margin:0 0 8px}
@@ -244,11 +276,15 @@ let outbox = JSON.parse(localStorage.getItem(LS_OUT) || '[]');
 let view = 'all';
 let epoch = 0;                        // bumped on every local edit, so a stale server read can't win
 
+let touched = new Set();   // ids this person has explicitly set OR cleared
+
 function applyDefaultDone() {{
+  // A doneFor seed must not resurrect a mark the person deliberately removed: on the server
+  // "cleared" looks identical to "never set", so we track explicit actions separately.
   if (!me) return;
   for (const [id, entry] of Object.entries(DEFAULT_DONE)) {{
-    if (entry.names.some(name => name.toLowerCase() === me.toLowerCase()) && !state[id])
-      state[id] = 'done';
+    if (touched.has(id) || state[id]) continue;
+    if (entry.names.some(name => name.toLowerCase() === me.toLowerCase())) state[id] = 'done';
   }}
 }}
 
@@ -272,6 +308,7 @@ for (const gallery of document.querySelectorAll('.gallery')) {{
       timer = setInterval(() => show(index + 1), 3500);
   }};
   dots.forEach((dot, i) => dot.addEventListener('click', () => {{ stop(); show(i); start(); }}));
+  gallery._stop = stop; gallery._start = start;   // the lightbox pauses rotation while open
   gallery.addEventListener('mouseenter', stop);
   gallery.addEventListener('mouseleave', start);
   gallery.addEventListener('focusin', stop);
@@ -301,6 +338,7 @@ function paintName() {{
 nameInput.addEventListener('change', () => {{
   me = nameInput.value.trim();
   localStorage.setItem(LS_NAME, me);
+  touched = new Set();
   paintName(); applyDefaultDone(); paint(); pull();
 }});
 
@@ -351,18 +389,20 @@ async function pull() {{
     const r = await fetch(ENDPOINT + '?action=rows&project=' + encodeURIComponent(PROJECT));
     const j = await r.json();
     if (!j.ok) return;
-    const mine = {{}};
+    const mine = {{}}; const seen = new Set();
     for (const row of j.rows) {{                       // oldest first — last write wins
       if ((row.voter || '').toLowerCase() !== me.toLowerCase()) continue;
+      seen.add(row.itemId);
       if (row.vote === 'none') delete mine[row.itemId];
       else if (row.vote === 'want' || row.vote === 'done') mine[row.itemId] = row.vote;
     }}
     for (const rec of outbox) {{                       // unsynced local wins over the server
       if ((rec.voter || '').toLowerCase() !== me.toLowerCase()) continue;
+      seen.add(rec.itemId);
       if (rec.vote === 'none') delete mine[rec.itemId]; else mine[rec.itemId] = rec.vote;
     }}
     if (epoch !== at) return;                      // a click landed while we were fetching
-    state = mine; applyDefaultDone(); save(); paint();
+    state = mine; touched = seen; applyDefaultDone(); save(); paint();
   }} catch {{ /* offline: keep the local copy */ }}
 }}
 
@@ -407,7 +447,7 @@ document.addEventListener('click', e => {{
   }}
   const next = state[id] === act ? 'none' : act;
   if (next === 'none') delete state[id]; else state[id] = next;
-  epoch++; save(); record(id, next); paint();
+  touched.add(id); epoch++; save(); record(id, next); paint();
 }});
 
 const BAND_RANK = {{easy: 0, mid: 1, hard: 2, extreme: 3}};
@@ -432,6 +472,75 @@ document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => {{
   filter();
 }});
 addEventListener('online', drain);
+
+/* ---- lightbox: cards crop to 16:9, this shows the whole frame ---- */
+const lb = $('#lb'), lbImg = $('#lbImg');
+let lbSrcs = [], lbAt = 0, lbReturn = null, lbGallery = null;
+
+function lbShow(i) {{
+  lbAt = (i + lbSrcs.length) % lbSrcs.length;
+  lbImg.src = lbSrcs[lbAt];
+  $('#lbCount').textContent = lbSrcs.length > 1 ? `${{lbAt + 1}} / ${{lbSrcs.length}}` : '';
+  const multi = lbSrcs.length > 1 ? '' : 'none';
+  $('#lbPrev').style.display = multi; $('#lbNext').style.display = multi;
+}}
+function lbOpen(shot, i) {{
+  const imgs = [...shot.querySelectorAll('img')];
+  if (!imgs.length) return;
+  lbSrcs = imgs.map(im => im.currentSrc || im.src);
+  $('#lbTitle').textContent = shot.closest('.card').querySelector('h3').textContent;
+  $('#lbCredit').textContent = shot.querySelector('.credit')?.textContent || '';
+  lbGallery = shot.classList.contains('gallery') ? shot : null;
+  lbGallery?._stop?.();                       // don't rotate underneath the viewer
+  lbReturn = document.activeElement;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbShow(i || 0);
+  $('#lbClose').focus();
+}}
+function lbClose() {{
+  if (!lb.classList.contains('open')) return;
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  lbImg.removeAttribute('src');
+  lbGallery?._start?.(); lbGallery = null;
+  lbReturn?.focus?.(); lbReturn = null;
+}}
+function openFromShot(shot) {{
+  const slides = [...shot.querySelectorAll('.slide')];
+  const active = slides.findIndex(s => s.classList.contains('active'));
+  lbOpen(shot, active > 0 ? active : 0);      // open on whatever the carousel is showing
+}}
+
+document.addEventListener('click', e => {{
+  if (e.target.closest('.gallery-dot')) return;          // dots switch slides, not open the viewer
+  if (e.target.closest('.lb')) {{
+    if (e.target.closest('#lbClose')) return lbClose();
+    if (e.target.closest('#lbPrev'))  return lbShow(lbAt - 1);
+    if (e.target.closest('#lbNext'))  return lbShow(lbAt + 1);
+    if (e.target !== lbImg) lbClose();                   // click the backdrop to dismiss
+    return;
+  }}
+  const shot = e.target.closest('.shot[role=button]');
+  if (shot) openFromShot(shot);
+}});
+document.addEventListener('keydown', e => {{
+  if (lb.classList.contains('open')) {{
+    if (e.key === 'Escape') lbClose();
+    else if (e.key === 'ArrowRight') lbShow(lbAt + 1);
+    else if (e.key === 'ArrowLeft') lbShow(lbAt - 1);
+    return;
+  }}
+  const shot = e.target.closest?.('.shot[role=button]');
+  if (shot && (e.key === 'Enter' || e.key === ' ')) {{ e.preventDefault(); openFromShot(shot); }}
+}});
+let lbX = null;
+lb.addEventListener('touchstart', e => {{ lbX = e.changedTouches[0].clientX; }}, {{passive: true}});
+lb.addEventListener('touchend', e => {{
+  if (lbX === null) return;
+  const dx = e.changedTouches[0].clientX - lbX; lbX = null;
+  if (Math.abs(dx) > 45 && lbSrcs.length > 1) lbShow(lbAt + (dx < 0 ? 1 : -1));
+}}, {{passive: true}});
 
 paintName(); applyDefaultDone(); paint(); pull(); drain();
 """
@@ -513,6 +622,14 @@ HTML = f"""<!doctype html>
 </div></main>
 
 <div class="sync" id="sync"></div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <img id="lbImg" alt="">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close (Esc)">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="Previous photo">&#8249;</button>
+  <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="Next photo">&#8250;</button>
+  <p class="lb-cap"><b id="lbTitle"></b><span id="lbCredit"></span><span class="lb-count" id="lbCount"></span></p>
+</div>
 
 <footer><div class="wrap">
   <h2>How to read this, and what not to trust</h2>

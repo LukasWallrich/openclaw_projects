@@ -15,32 +15,40 @@ Workflow for any change: edit `routes.json` → `python3 build.py` → open `ind
 
 ## Adding or replacing a photo
 
-Each route object carries three image fields:
+Image fields on a route object:
 
 ```json
-"img":       "https://upload.wikimedia.org/.../800px-Sulzfluh.jpg",
+"img":       "photos/tierbergli-1.jpg",
+"imgs":      ["photos/tierbergli-1.jpg", "photos/tierbergli-2.jpg"],
+"imgCredit": "Lukas Wallrich · personal photos",
 "imgPage":   "https://commons.wikimedia.org/wiki/File:Sulzfluh.jpg",
-"imgCredit": "Photographer name · CC BY-SA 4.0"
+"imgPos":    "center 30%"
 ```
 
-- `img` is what renders. It may be an absolute URL **or** a repo-relative path.
-- `imgCredit` renders as the caption chip on the image. Always fill it in.
-- `imgPage` is provenance only. Optional for own photos.
+- **`imgs`** (array) — two or more photos become a **carousel**: it cross-fades every 3.5 s,
+  gets clickable dots, and pauses on hover/focus and while the lightbox is open. Respects
+  `prefers-reduced-motion`. Set `img` to the first one as well, for anything reading a single image.
+- **`img`** (string) — used when there is no `imgs`. Absolute URL **or** repo-relative path.
+- **`imgCredit`** — renders as the chip on the image and as the lightbox caption. Always fill it in.
+- **`imgPage`** — provenance only. Optional for own photos.
+- **`imgPos`** — optional `object-position` for the card crop, e.g. `"center 30%"` to bias the
+  visible band upward. Only needed to rescue an awkward crop; see below.
 
-**For a photo Lukas supplies**, put the file in `photos/` and use a relative path:
+### Landscape, please
 
-```json
-"img": "photos/sulzfluh-2026.jpg",
-"imgCredit": "Lukas Wallrich"
-```
+Cards crop to **16:9**, so a portrait photo loses most of its height in the thumbnail.
+The lightbox always shows the full uncropped frame, so nothing is lost — but the card
+still reads better with landscape. **Prefer landscape shots.** If a portrait one has to go
+in and the crop lands badly, nudge it with `imgPos` rather than editing CSS.
 
-Name files `<route-id>.jpg` (the `id` field of the route) so they stay matchable.
-Resize to about 1200 px on the long edge and strip EXIF before committing —
+**For a photo Lukas supplies**, put the file in `photos/` and use a relative path.
+Name files `<route-id>-<n>.jpg` (the route's `id`) so they stay matchable.
+Resize to about 1600 px on the long edge and strip EXIF before committing —
 phone originals are 4–8 MB each and will bloat the repo:
 
 ```bash
-sips -Z 1200 -s format jpeg in.jpg --out photos/<route-id>.jpg   # macOS, also drops most EXIF
-exiftool -all= photos/<route-id>.jpg                              # if available, to be sure
+sips -Z 1600 -s format jpeg in.jpg --out photos/<route-id>-1.jpg   # macOS, also drops most EXIF
+exiftool -all= photos/<route-id>-1.jpg                              # if available, to be sure
 ```
 
 **For a replacement from the web**, prefer Wikimedia Commons (`upload.wikimedia.org`
@@ -59,6 +67,24 @@ setTimeout(() => console.log('broken:',
     .map(i => i.closest('.card').dataset.id)), 8000);
 ```
 
+## The lightbox
+
+Every card image is clickable and opens a full-screen viewer showing the photo **uncropped**
+(`object-fit: contain`). It is automatic — there is nothing to configure per route. It picks up
+whatever is in `img` / `imgs`, and the caption comes from the route name plus `imgCredit`.
+
+Behaviour, if you touch it: opens on click, Enter or Space (each `.shot` is `tabindex="0"
+role="button"`); arrows and swipe move between a carousel's photos; Escape, the backdrop, or
+the × closes it and returns focus to the card. Arrows and the counter hide for single-image
+routes. Opening pauses the carousel and locks page scroll; closing restores both.
+
+Two traps if you edit the overlay CSS:
+
+- **No `backdrop-filter` on the full-screen overlay.** Blurring a 62-card page behind it is
+  expensive enough to lock the renderer. The background is 97% opaque; the blur bought nothing.
+- Keep `.lb img` on `object-fit: contain`. `cover` would reintroduce the exact crop the
+  lightbox exists to escape.
+
 ## Two things that are easy to get wrong
 
 1. **The repo is public.** Anything in `photos/` is public, regardless of the page's
@@ -75,3 +101,25 @@ setTimeout(() => console.log('broken:',
   ferrata (no continuous cable to clip). Renders a red badge.
 - `thin: true` — marks a route whose figures could not be verified. Renders a warning.
 - `grade` drives the colour band automatically; the highest K-number in the string wins.
+- `doneFor` / `doneDate` — `doneFor: ["Lukas"]` pre-marks the route as Done for anyone who
+  enters that name, without needing a click. `doneDate` is a record for us, not rendered.
+  Server state still wins: if that person later un-marks it, their click sticks.
+
+## Verifying a change
+
+`index.html` is heavy enough that the browser extension sometimes reports the tab as frozen
+right after load; it is usually just busy. Headless Chrome is the reliable way to test
+interaction — append a small script to a copy of the page, then read the result out of the DOM:
+
+```bash
+python3 build.py
+python3 -m http.server 8777 &
+# copy index.html to scratch_test.html with a <script> that clicks and writes to #TESTOUT
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu \
+  --virtual-time-budget=12000 --dump-dom http://localhost:8777/scratch_test.html \
+  | grep -o 'id="TESTOUT"[^>]*>[^<]*'
+```
+
+Dispatch keyboard events on `document.activeElement`, not `window` — events fired at `window`
+never reach the `document` listeners, so working code will look broken. Delete `scratch_*.html`
+afterwards.

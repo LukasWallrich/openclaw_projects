@@ -78,7 +78,14 @@ main .wrap{padding-top:26px;padding-bottom:70px}
   box-shadow:var(--shadow);display:flex;flex-direction:column}
 .card.hide{display:none}
 .shot{position:relative;aspect-ratio:16/9;background:color-mix(in srgb,var(--rock) 22%,var(--panel));overflow:hidden}
-.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:var(--imgpos,center);display:block}
+.shot[role=button]{cursor:zoom-in}
+.shot .expand{position:absolute;right:7px;top:7px;width:26px;height:26px;border-radius:7px;
+  background:#0009;color:#fff;display:grid;place-items:center;font-size:.82rem;line-height:1;
+  opacity:0;transition:opacity .18s;pointer-events:none}
+.shot:hover .expand,.shot:focus-visible .expand{opacity:1}
+.shot:focus-visible{outline:2px solid var(--pine-2);outline-offset:2px}
+@media (hover:none){.shot .expand{opacity:.85}}
 .shot.gallery .slide{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
 .shot.gallery .slide.active{opacity:1}
 .gallery-dots{position:absolute;left:7px;bottom:6px;display:flex;gap:5px}
@@ -133,6 +140,24 @@ main .wrap{padding-top:26px;padding-bottom:70px}
 .sync{position:fixed;left:16px;bottom:16px;z-index:60;background:var(--panel);border:1px solid var(--line);
   border-radius:8px;padding:6px 11px;font-size:.76rem;color:var(--soft);box-shadow:var(--shadow);display:none}
 .sync.show{display:block}
+.lb{position:fixed;inset:0;z-index:2000;background:#0b0e0ff7;display:none;align-items:center;
+  justify-content:center;padding:56px 16px 92px}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;
+  border-radius:5px;box-shadow:0 18px 60px #000a}
+.lb button{position:absolute;background:#ffffff1a;border:1px solid #ffffff33;color:#fff;
+  border-radius:10px;cursor:pointer;font:inherit;line-height:1}
+.lb button:hover{background:#ffffff2e}
+.lb-close{top:14px;right:16px;width:42px;height:42px;font-size:1.4rem}
+.lb-nav{top:50%;transform:translateY(-50%);width:46px;height:64px;font-size:1.5rem}
+.lb-prev{left:14px}.lb-next{right:14px}
+.lb-cap{position:absolute;left:0;right:0;bottom:0;padding:16px 20px 22px;color:#cfd8d3;
+  text-align:center;font-size:.83rem;background:linear-gradient(transparent,#000000cc);
+  pointer-events:none}
+.lb-cap b{display:block;font-size:1rem;font-weight:600;color:#fff;margin-bottom:3px;
+  font-family:ui-serif,Georgia,serif}
+.lb-count{opacity:.65;font-variant-numeric:tabular-nums;margin-left:8px}
+@media (max-width:560px){.lb{padding:52px 8px 88px}.lb-nav{width:38px;height:54px}}
 footer{border-top:1px solid var(--line);background:var(--panel)}
 footer .wrap{padding:34px 20px 60px;font-size:.85rem;color:var(--soft)}
 footer h2{font-size:.95rem;color:var(--ink);margin:0 0 8px}
@@ -205,7 +230,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="132" data-type="ferrata"
          style="order:0"
          data-text="klettersteig kandersteg–allmenalp kandersteg berner oberland be waterfalls, nepalese bridges, several ladder pitches and a tyrolienne. the crux is an overhanging traverse below the three-cable bridge.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Klettersteig_Kandersteg-Allmenalp_08.jpg/960px-Klettersteig_Kandersteg-Allmenalp_08.jpg" alt="" loading="lazy"><span class="credit">Kent Wang · CC BY 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Kandersteg–Allmenalp full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Klettersteig_Kandersteg-Allmenalp_08.jpg/960px-Klettersteig_Kandersteg-Allmenalp_08.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Kent Wang · CC BY 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K3–K4</span><span class="chip ghost">BE</span>
       <span class="chip ghost">no lift</span>
@@ -232,7 +257,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="140" data-type="ferrata"
          style="order:1"
          data-text="chäligang-klettersteig adelboden / engstligenalp berner oberland be short, generously protected beginner route running right beside the engstligen falls, with a rest platform overlooking the cascade.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Unterer_Engstligenfall4.jpg/960px-Unterer_Engstligenfall4.jpg" alt="" loading="lazy"><span class="credit">No machine-readable author provided. Irmgard assumed (based on copyright claims) · CC BY-SA 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Chäligang-Klettersteig full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Unterer_Engstligenfall4.jpg/960px-Unterer_Engstligenfall4.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">No machine-readable author provided. Irmgard assumed (based on copyright claims) · CC BY-SA 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">BE</span>
       <span class="chip ghost">no lift</span>
@@ -259,7 +284,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="117" data-type="ferrata"
          style="order:2"
          data-text="gantrisch-klettersteig gurnigel / nünenenberg berner oberland be demanding route with overhangs and deliberately offset iron rungs. the lower küre-wändli and the airy horber-kante near the top are the key sections.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Gantrisch_IMG_3437.jpg/960px-Gantrisch_IMG_3437.jpg" alt="" loading="lazy"><span class="credit">Patric Zbinden · Public domain</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Gantrisch-Klettersteig full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Gantrisch_IMG_3437.jpg/960px-Gantrisch_IMG_3437.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Patric Zbinden · Public domain</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">BE</span>
       <span class="chip ghost">no lift</span>
@@ -286,7 +311,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="106" data-type="ferrata"
          style="order:3"
          data-text="klettersteig sunnighorn (simmeflue) wimmis berner oberland be a hiking day with beginner ferrata sections spliced in, climbing steeply above lake thun. aimed squarely at people trying via ferrata for the first time.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/ETH-BIB-Wimmis%2C_Burgfluh_Porte_Simmenfluh-Dia_247-12835.tif/lossy-page1-960px-ETH-BIB-Wimmis%2C_Burgfluh_Porte_Simmenfluh-Dia_247-12835.tif.jpg" alt="" loading="lazy"><span class="credit">Leo Wehrli · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Sunnighorn (Simmeflue) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/ETH-BIB-Wimmis%2C_Burgfluh_Porte_Simmenfluh-Dia_247-12835.tif/lossy-page1-960px-ETH-BIB-Wimmis%2C_Burgfluh_Porte_Simmenfluh-Dia_247-12835.tif.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Leo Wehrli · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">BE</span>
       <span class="chip ghost">no lift</span>
@@ -313,7 +338,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="148" data-type="ferrata"
          style="order:4"
          data-text="übungsklettersteig hornflue saanenmöser / gstaad berner oberland be a tiny practice ferrata — two short lines on the hornflue with big views over the whole saanenland.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Saanenm%C3%B6ser.jpg" alt="" loading="lazy"><span class="credit">Fred · CC BY-SA 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Übungsklettersteig Hornflue full size"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Saanenm%C3%B6ser.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Fred · CC BY-SA 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">BE</span>
       <span class="chip ghost">no lift</span>
@@ -340,7 +365,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="124" data-type="ferrata"
          style="order:5"
          data-text="klettersteig mürren–gimmelwald mürren berner oberland be a descending ferrata traversing the cliffs above lauterbrunnen with roughly 600 m of air underfoot, finishing on an 80 m nepalese bridge.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/View_to_Lauterbrunnen_valley_at_M%C3%BCrren%2C_Bern%2C_Switzerland%2C_2012_August.jpg/960px-View_to_Lauterbrunnen_valley_at_M%C3%BCrren%2C_Bern%2C_Switzerland%2C_2012_August.jpg" alt="" loading="lazy"><span class="credit">Ximonic (Simo Räsänen) · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Mürren–Gimmelwald full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/View_to_Lauterbrunnen_valley_at_M%C3%BCrren%2C_Bern%2C_Switzerland%2C_2012_August.jpg/960px-View_to_Lauterbrunnen_valley_at_M%C3%BCrren%2C_Bern%2C_Switzerland%2C_2012_August.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Ximonic (Simo Räsänen) · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">BE</span>
       <span class="chip ghost">lift</span>
@@ -367,7 +392,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="124" data-type="ferrata"
          style="order:6"
          data-text="eiger-rotstock-klettersteig kleine scheidegg / eigergletscher berner oberland be alpine route on the rotstock with the eiger north face as a backdrop. an 1899 iron ladder and steps chiselled into the limestone give it real historical character.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Eiger-Nordwand_2008.jpg/960px-Eiger-Nordwand_2008.jpg" alt="" loading="lazy"><span class="credit">Kurt Ritschard · CC BY-SA 2.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Eiger-Rotstock-Klettersteig full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Eiger-Nordwand_2008.jpg/960px-Eiger-Nordwand_2008.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Kurt Ritschard · CC BY-SA 2.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">BE</span>
       <span class="chip ghost">lift</span>
@@ -394,7 +419,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="124" data-type="ferrata"
          style="order:7"
          data-text="klettersteig eiger-ostegghütte alpiglen / grindelwald berner oberland be a hut approach rather than a summit route — a secured line up a gorge with three steep steps, ending at the ostegghütte on its grass balcony high above grindelwald.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Ostegghuette.jpg" alt="" loading="lazy"><span class="credit">Martin Wolff · CC0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Eiger-Ostegghütte full size"><img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Ostegghuette.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Martin Wolff · CC0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K2–K3, crux K3–K4</span><span class="chip ghost">BE</span>
       <span class="chip ghost">lift</span>
@@ -421,7 +446,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="124" data-type="ferrata"
          style="order:8"
          data-text="schwarzhorn-klettersteig grindelwald first berner oberland be long walk-in, then moderately difficult climbing on very airy offset ladders to a 2928 m summit. about 920 m of total height difference over the day.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Schwarzhorn_und_H%C3%B6he_Sch%C3%B6ne.jpg/960px-Schwarzhorn_und_H%C3%B6he_Sch%C3%B6ne.jpg" alt="" loading="lazy"><span class="credit">Hermann Hammer · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Schwarzhorn-Klettersteig full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Schwarzhorn_und_H%C3%B6he_Sch%C3%B6ne.jpg/960px-Schwarzhorn_und_H%C3%B6he_Sch%C3%B6ne.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Hermann Hammer · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K2–K3</span><span class="chip ghost">BE</span>
       <span class="chip ghost">lift</span>
@@ -448,7 +473,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="116" data-type="ferrata"
          style="order:9"
          data-text="tälli-klettersteig gadmen berner oberland be switzerland&#x27;s first modern via ferrata (1993). a 630 m south-facing wall of ladders and traversing bands with genuine alpine flair.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/ETH-BIB-Gadmerflue%2C_Graustock_v._S._aus_4000_m-Inlandfl%C3%BCge-LBS_MH01-002441.tif/lossy-page1-960px-ETH-BIB-Gadmerflue%2C_Graustock_v._S._aus_4000_m-Inlandfl%C3%BCge-LBS_MH01-002441.tif.jpg" alt="" loading="lazy"><span class="credit">Walter Mittelholzer · Public domain</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Tälli-Klettersteig full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/ETH-BIB-Gadmerflue%2C_Graustock_v._S._aus_4000_m-Inlandfl%C3%BCge-LBS_MH01-002441.tif/lossy-page1-960px-ETH-BIB-Gadmerflue%2C_Graustock_v._S._aus_4000_m-Inlandfl%C3%BCge-LBS_MH01-002441.tif.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Walter Mittelholzer · Public domain</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3 (B/C)</span><span class="chip ghost">BE</span>
       <span class="chip ghost">lift</span>
@@ -475,7 +500,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="100" data-type="ferrata"
          style="order:10"
          data-text="tierbergli-klettersteig sustenpass / steingletscher berner oberland be high alpine ferrata with glacier views and a lot of real rock contact — slabs first, then steeper ground with scree and snow patches marked by red dots.">
-  <div class="shot gallery" data-gallery="3"><img class="slide active" src="photos/tierbergli-1.jpg" alt="" loading="eager"><img class="slide" src="photos/tierbergli-2.jpg" alt="" loading="lazy"><img class="slide" src="photos/tierbergli-3.jpg" alt="" loading="lazy"><div class="gallery-dots"><button class="gallery-dot active" type="button" data-slide="0" aria-label="Photo 1 of 3" aria-pressed="true"></button><button class="gallery-dot" type="button" data-slide="1" aria-label="Photo 2 of 3" aria-pressed="false"></button><button class="gallery-dot" type="button" data-slide="2" aria-label="Photo 3 of 3" aria-pressed="false"></button></div><span class="credit">Lukas Wallrich · personal photos</span></div>
+  <div class="shot gallery" data-gallery="3" tabindex="0" role="button" aria-label="Open photos of Tierbergli-Klettersteig full size"><img class="slide active" src="photos/tierbergli-1.jpg" alt="" loading="eager"><img class="slide" src="photos/tierbergli-2.jpg" alt="" loading="lazy"><img class="slide" src="photos/tierbergli-3.jpg" alt="" loading="lazy"><span class="expand" aria-hidden="true">⤢</span><div class="gallery-dots"><button class="gallery-dot active" type="button" data-slide="0" aria-label="Photo 1 of 3" aria-pressed="true"></button><button class="gallery-dot" type="button" data-slide="1" aria-label="Photo 2 of 3" aria-pressed="false"></button><button class="gallery-dot" type="button" data-slide="2" aria-label="Photo 3 of 3" aria-pressed="false"></button></div><span class="credit">Lukas Wallrich · personal photos</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K2 (part 1), K3–K4 (part 2)</span><span class="chip ghost">BE</span>
       <span class="chip ghost">no lift</span>
@@ -502,7 +527,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="157" data-type="ferrata"
          style="order:11"
          data-text="klettersteig eggishorn fiesch wallis (north of the rhône) vs traverses blocky ground along the fiescherhorli ridge with a suspension bridge, a three-cable bridge, a timber bridge and an optional zip-line — all above the great aletsch glacier.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/3625_-_Fiescherhorli_viewed_from_southwest.jpg/960px-3625_-_Fiescherhorli_viewed_from_southwest.jpg" alt="" loading="lazy"><span class="credit">Andrew Bossi · CC BY-SA 2.5</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Eggishorn full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/3625_-_Fiescherhorli_viewed_from_southwest.jpg/960px-3625_-_Fiescherhorli_viewed_from_southwest.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Andrew Bossi · CC BY-SA 2.5</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">VS</span>
       <span class="chip ghost">lift</span>
@@ -529,7 +554,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="186" data-type="ferrata"
          style="order:12"
          data-text="klettersteig aletsch (gibidum) blatten bei naters / belalp wallis (north of the rhône) vs about 3 km of ferrata circling the gibidum reservoir, crossing an impressive suspension bridge and a cable crossing, alternating forest with exposed rock right above the water.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Gibidumsee2.JPG/960px-Gibidumsee2.JPG" alt="" loading="lazy"><span class="credit">Wandervogel · CC BY-SA 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Aletsch (Gibidum) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Gibidumsee2.JPG/960px-Gibidumsee2.JPG" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Wandervogel · CC BY-SA 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">VS</span>
       <span class="chip ghost">no lift</span>
@@ -556,7 +581,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="219" data-type="ferrata"
          style="order:13"
          data-text="erlebnisklettersteig gemmiwand leukerbad wallis (north of the rhône) vs a french-style sports ferrata running roughly horizontally for about 1300 m across the gemmi wall below the wildstrubel restaurant. highlights are a 65 m rope bridge and a ladder that rotates through 540°.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Daubensee.jpg" alt="" loading="lazy"><span class="credit">see below · CC BY-SA 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Erlebnisklettersteig Gemmiwand full size"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Daubensee.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">see below · CC BY-SA 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K3–K4</span><span class="chip ghost">VS</span>
       <span class="chip ghost">lift</span>
@@ -583,7 +608,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="219" data-type="ferrata"
          style="order:14"
          data-text="leukerbadner klettersteig (daubenhorn) leukerbad wallis (north of the rhône) vs the longest and hardest via ferrata in switzerland: 1100 m of gain, 216 m of ladders and over 2000 m of steel cable, including a ~100 m natural cave passage.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Gemmi-daubenhorn-winter.JPG/960px-Gemmi-daubenhorn-winter.JPG" alt="" loading="lazy"><span class="credit">Luan Baruti · CC BY-SA 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Leukerbadner Klettersteig (Daubenhorn) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Gemmi-daubenhorn-winter.JPG/960px-Gemmi-daubenhorn-winter.JPG" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Luan Baruti · CC BY-SA 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K5–K6</span><span class="chip ghost">VS</span>
       <span class="chip ghost">no lift</span>
@@ -610,7 +635,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="197" data-type="ferrata"
          style="order:15"
          data-text="baltschieder klettersteig (wiwannihütte) ausserberg wallis (north of the rhône) vs the finest and hardest way up to the wiwannihütte: steep rock, grass ledges and a striking rock tower. around 5 h for the ascent, 8 h for the whole day.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Wiwannih%C3%BCtte%2C_Wiwannihorn%2C_Gross_%C3%96ugstchummuhorn_and_Chlys_%C3%96ugstchummuhorn.jpg/960px-Wiwannih%C3%BCtte%2C_Wiwannihorn%2C_Gross_%C3%96ugstchummuhorn_and_Chlys_%C3%96ugstchummuhorn.jpg" alt="" loading="lazy"><span class="credit">Capricorn4049 · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Baltschieder Klettersteig (Wiwannihütte) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Wiwannih%C3%BCtte%2C_Wiwannihorn%2C_Gross_%C3%96ugstchummuhorn_and_Chlys_%C3%96ugstchummuhorn.jpg/960px-Wiwannih%C3%BCtte%2C_Wiwannihorn%2C_Gross_%C3%96ugstchummuhorn_and_Chlys_%C3%96ugstchummuhorn.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Capricorn4049 · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">VS</span>
       <span class="chip ghost">no lift</span>
@@ -637,7 +662,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="177" data-type="ferrata"
          style="order:16"
          data-text="via farinetta saillon wallis (north of the rhône) vs three stacked sections of increasing severity, with cable bridges at the start, a rope-liana passage and a strenuous overhanging final wall. exits after each section.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Saillon_Suisse_HDSR_S5is_IMG_2471.jpg/960px-Saillon_Suisse_HDSR_S5is_IMG_2471.jpg" alt="" loading="lazy"><span class="credit">Hyppolyte de Saint-Rambert · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via Farinetta full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Saillon_Suisse_HDSR_S5is_IMG_2471.jpg/960px-Saillon_Suisse_HDSR_S5is_IMG_2471.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Hyppolyte de Saint-Rambert · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K3 / K4 / K6 (three sections)</span><span class="chip ghost">VS</span>
       <span class="chip ghost">no lift</span>
@@ -664,7 +689,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="170" data-type="ferrata"
          style="order:17"
          data-text="via ferrata de tière champéry wallis (north of the rhône) vs varied sports ferrata with two suspension bridges at a waterfall; vertical steps alternating with exposed traverses. the crux is slightly overhanging.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Champ%C3%A9ry_depuis_le_Signal_de_Soi.jpg/960px-Champ%C3%A9ry_depuis_le_Signal_de_Soi.jpg" alt="" loading="lazy"><span class="credit">Christian David · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata de Tière full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Champ%C3%A9ry_depuis_le_Signal_de_Soi.jpg/960px-Champ%C3%A9ry_depuis_le_Signal_de_Soi.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Christian David · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">VS</span>
       <span class="chip ghost">no lift</span>
@@ -691,7 +716,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="171" data-type="ferrata"
          style="order:18"
          data-text="via ferrata tour d&#x27;aï leysin waadt &amp; freiburg vd airy limestone route to a proper summit with sweeping views over lake geneva and across to the valais alps.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Tour_d%27A%C3%AF_depuis_La_Forclaz.jpg/960px-Tour_d%27A%C3%AF_depuis_La_Forclaz.jpg" alt="" loading="lazy"><span class="credit">Christian David · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata Tour d&#x27;Aï full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Tour_d%27A%C3%AF_depuis_La_Forclaz.jpg/960px-Tour_d%27A%C3%AF_depuis_La_Forclaz.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Christian David · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">VD</span>
       <span class="chip ghost">lift</span>
@@ -718,7 +743,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="177" data-type="ferrata"
          style="order:19"
          data-text="via ferrata de la tête aux chamois les diablerets / col du pillon waadt &amp; freiburg vd french-style sports ferrata across the north side of the tête aux chamois: a chain of natural ledges that narrow to a single foot-width, plus the notorious rocher jaune traverse.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Sex_Rouge_from_T%C3%AAte_aux_Chamois%2C_Ormont-Dessus%2C_Switzerland.jpg/960px-Sex_Rouge_from_T%C3%AAte_aux_Chamois%2C_Ormont-Dessus%2C_Switzerland.jpg" alt="" loading="lazy"><span class="credit">Christian David · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata de la Tête aux Chamois full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Sex_Rouge_from_T%C3%AAte_aux_Chamois%2C_Ormont-Dessus%2C_Switzerland.jpg/960px-Sex_Rouge_from_T%C3%AAte_aux_Chamois%2C_Ormont-Dessus%2C_Switzerland.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Christian David · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K5</span><span class="chip ghost">VD</span>
       <span class="chip ghost">lift</span>
@@ -745,7 +770,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="177" data-type="ferrata"
          style="order:20"
          data-text="via ferrata de la cascade du dar les diablerets waadt &amp; freiburg vd french-style sports route: an overhanging traverse out to the waterfall, a demanding cable bridge at the very start and a narrow squeeze near the cascade.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Diablerets_1996.jpg/960px-Diablerets_1996.jpg" alt="" loading="lazy"><span class="credit">Alexander Klyuch · Public domain</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata de la Cascade du Dar full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Diablerets_1996.jpg/960px-Diablerets_1996.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Alexander Klyuch · Public domain</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">VD</span>
       <span class="chip ghost">no lift</span>
@@ -772,7 +797,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="172" data-type="ferrata"
          style="order:21"
          data-text="via ferrata de pierredar (dames anglaises) les diablerets waadt &amp; freiburg vd 430 m of route high above the pierredar refuge, replacing the older pierredar line that was destroyed by rockfall.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Diablerets_3210_m.jpg/960px-Diablerets_3210_m.jpg" alt="" loading="lazy"><span class="credit">Zacharie Grossen · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata de Pierredar (Dames Anglaises) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Diablerets_3210_m.jpg/960px-Diablerets_3210_m.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Zacharie Grossen · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K2 (with K4 passages)</span><span class="chip ghost">VD</span>
       <span class="chip ghost">no lift</span>
@@ -799,7 +824,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="171" data-type="ferrata"
          style="order:22"
          data-text="via ferrata de plan praz leysin (feydey) waadt &amp; freiburg vd almost no height gain and entirely about difficulty: powerful overhangs, several suspension bridges, beams and ladders on a compact wall right above the village.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Twilight_in_Leysin%2C_Switzerland.jpg/960px-Twilight_in_Leysin%2C_Switzerland.jpg" alt="" loading="lazy"><span class="credit">Deali00 · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata de Plan Praz full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Twilight_in_Leysin%2C_Switzerland.jpg/960px-Twilight_in_Leysin%2C_Switzerland.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Deali00 · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K5</span><span class="chip ghost">VD</span>
       <span class="chip ghost">no lift</span>
@@ -826,7 +851,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="172" data-type="ferrata"
          style="order:23"
          data-text="via ferrata du lavanchy pont-de-nant (bex / les plans) waadt &amp; freiburg vd a very short, well-protected sports ferrata in a beautiful setting at the head of the vallon de nant, with mild overhangs and traverses.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/20020805_nant_vue_01.jpg/960px-20020805_nant_vue_01.jpg" alt="" loading="lazy"><span class="credit">Jean Housen · CC BY 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata du Lavanchy full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/20020805_nant_vue_01.jpg/960px-20020805_nant_vue_01.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Jean Housen · CC BY 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K3–K4</span><span class="chip ghost">VD</span>
       <span class="chip ghost">no lift</span>
@@ -853,7 +878,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="157" data-type="ferrata"
          style="order:24"
          data-text="via ferrata de la videmanette (3 routes) rougemont waadt &amp; freiburg vd three parallel routes of increasing difficulty (500 m / 380 m / 400 m) up to the summit of the rubli, with a 360° panorama at the top.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rougemont_mountain.jpg/960px-Rougemont_mountain.jpg" alt="" loading="lazy"><span class="credit">Ian Furst · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata de la Videmanette (3 routes) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rougemont_mountain.jpg/960px-Rougemont_mountain.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Ian Furst · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">Route 1 easy · Route 2 moderate · Route 3 very difficult</span><span class="chip ghost">VD</span>
       <span class="chip ghost">lift</span>
@@ -880,7 +905,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="143" data-type="ferrata"
          style="order:25"
          data-text="via ferrata des rochers de naye montreux / jaman waadt &amp; freiburg vd steep, famously exposed limestone with the drop running straight down to lake geneva.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Ligne_MGN_et_Rochers_de_Naye.jpg/960px-Ligne_MGN_et_Rochers_de_Naye.jpg" alt="" loading="lazy"><span class="credit">Christian David · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata des Rochers de Naye full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Ligne_MGN_et_Rochers_de_Naye.jpg/960px-Ligne_MGN_et_Rochers_de_Naye.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Christian David · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K5</span><span class="chip ghost">VD</span>
       <span class="chip ghost">lift</span>
@@ -907,7 +932,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="133" data-type="ferrata"
          style="order:26"
          data-text="via ferrata le moléson (le pilier – la face) moléson-sur-gruyères waadt &amp; freiburg fr well-equipped sports route with abundant iron rungs and little direct rock contact. two variants (left is easier), finishing on an exposed overhanging traverse.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Moleson_from_north-east.jpg/960px-Moleson_from_north-east.jpg" alt="" loading="lazy"><span class="credit">Christian David · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata Le Moléson (Le Pilier – La Face) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Moleson_from_north-east.jpg/960px-Moleson_from_north-east.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Christian David · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K4–K5</span><span class="chip ghost">FR</span>
       <span class="chip ghost">lift</span>
@@ -934,7 +959,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="177" data-type="ferrata"
          style="order:27"
          data-text="via ferrata de charmey charmey waadt &amp; freiburg fr cable nets, wire bridges, a cave and a tibetan bridge, with three lines side by side. summit views to the gastlosen and the moléson.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Charmey.jpg" alt="" loading="lazy"><span class="credit">Alps · Public domain</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata de Charmey full size"><img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Charmey.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Alps · Public domain</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K3 / K5 / K6 (three lines)</span><span class="chip ghost">FR</span>
       <span class="chip ghost">lift</span>
@@ -961,7 +986,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="77" data-type="ferrata"
          style="order:28"
          data-text="klettersteig fürenwand engelberg zentralschweiz ow one of the undisputed swiss classics: a sheer wall opposite the titlis, with a steep exposed first section and a very airy 20 m rope ladder near the top.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/.00_1061_F%C3%BCrenalp_%28Engelberg%29.jpg/960px-.00_1061_F%C3%BCrenalp_%28Engelberg%29.jpg" alt="" loading="lazy"><span class="credit">W. Bulach · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Fürenwand full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/.00_1061_F%C3%BCrenalp_%28Engelberg%29.jpg/960px-.00_1061_F%C3%BCrenalp_%28Engelberg%29.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">W. Bulach · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K4–K5</span><span class="chip ghost">OW</span>
       <span class="chip ghost">lift</span>
@@ -988,7 +1013,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="77" data-type="ferrata"
          style="order:29"
          data-text="klettersteig brunnistöckli engelberg (brunni) zentralschweiz ow the classic swiss beginner ferrata — short approach, about 200 m of gain and two suspension bridges. popular with families.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Klettersteig_Brunnist%C3%B6ckli_04.jpg/960px-Klettersteig_Brunnist%C3%B6ckli_04.jpg" alt="" loading="lazy"><span class="credit">Kent Wang · CC BY 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Brunnistöckli full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Klettersteig_Brunnist%C3%B6ckli_04.jpg/960px-Klettersteig_Brunnist%C3%B6ckli_04.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Kent Wang · CC BY 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">OW</span>
       <span class="chip ghost">lift</span>
@@ -1015,7 +1040,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="77" data-type="ferrata"
          style="order:30"
          data-text="klettersteig zittergrat engelberg (brunni) zentralschweiz ow right next to the brunnistöckli and finishing at the same point, but short, steep and genuinely exposed — the hardest of the brunni routes.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/00_3183_Brunni_%28Engelberg%29_-_Alp_Rigidal.jpg/960px-00_3183_Brunni_%28Engelberg%29_-_Alp_Rigidal.jpg" alt="" loading="lazy"><span class="credit">W. Bulach · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Zittergrat full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/00_3183_Brunni_%28Engelberg%29_-_Alp_Rigidal.jpg/960px-00_3183_Brunni_%28Engelberg%29_-_Alp_Rigidal.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">W. Bulach · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">OW</span>
       <span class="chip ghost">lift</span>
@@ -1042,7 +1067,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="77" data-type="ferrata"
          style="order:31"
          data-text="klettersteig rigidalstockgrat engelberg (brunni) zentralschweiz ow the easier of the two rigidalstock lines and suitable for beginners, but with a serious alpine walk-in and a proper 2577 m summit.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Rigidalstock_and_Walenst%C3%B6cke.jpg/960px-Rigidalstock_and_Walenst%C3%B6cke.jpg" alt="" loading="lazy"><span class="credit">Paradise Chronicle · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Rigidalstockgrat full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Rigidalstock_and_Walenst%C3%B6cke.jpg/960px-Rigidalstock_and_Walenst%C3%B6cke.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Paradise Chronicle · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">OW</span>
       <span class="chip ghost">lift</span>
@@ -1069,7 +1094,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="77" data-type="ferrata"
          style="order:32"
          data-text="klettersteig rigidalstockwand engelberg (brunni) zentralschweiz ow the wall variant on the rigidalstock — steeper and harder than the ridge line, and explicitly not a beginner route.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/ETH-BIB-Walenst%C3%B6cke%2C_Titlis-LBS_H1-015419.tif/lossy-page1-960px-ETH-BIB-Walenst%C3%B6cke%2C_Titlis-LBS_H1-015419.tif.jpg" alt="" loading="lazy"><span class="credit">Werner Friedli · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Rigidalstockwand full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/ETH-BIB-Walenst%C3%B6cke%2C_Titlis-LBS_H1-015419.tif/lossy-page1-960px-ETH-BIB-Walenst%C3%B6cke%2C_Titlis-LBS_H1-015419.tif.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Werner Friedli · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K3–K4</span><span class="chip ghost">OW</span>
       <span class="chip ghost">lift</span>
@@ -1096,7 +1121,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="130" data-type="ferrata"
          style="order:33"
          data-text="graustock-klettersteig engstlenalp / jochpass zentralschweiz ow mixed mountain path over slabs linked by steep, exposed ferrata pitches. the crux is short and fierce, and you have to find your own holds.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/CH.OW.Engelberg_2006-07-02_Graustock_89_3x2-R_4K.jpg/960px-CH.OW.Engelberg_2006-07-02_Graustock_89_3x2-R_4K.jpg" alt="" loading="lazy"><span class="credit">Roy Egloff · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Graustock-Klettersteig full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/CH.OW.Engelberg_2006-07-02_Graustock_89_3x2-R_4K.jpg/960px-CH.OW.Engelberg_2006-07-02_Graustock_89_3x2-R_4K.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Roy Egloff · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K3 (part 1), K4–K5 (part 2)</span><span class="chip ghost">OW</span>
       <span class="chip ghost">no lift</span>
@@ -1123,7 +1148,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="79" data-type="ferrata"
          style="order:34"
          data-text="fruttlisteig (bonistock) melchsee-frutt zentralschweiz ow a tiny route through a rock band up towards the bonistock. its signature is an old chairlift seat bolted to the wall as a viewing perch over the melchsee.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/00_0469_Bonistock_-_Melchsee-Frutt%2C_Schweiz.jpg/960px-00_0469_Bonistock_-_Melchsee-Frutt%2C_Schweiz.jpg" alt="" loading="lazy"><span class="credit">W. Bulach · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Fruttlisteig (Bonistock) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/00_0469_Bonistock_-_Melchsee-Frutt%2C_Schweiz.jpg/960px-00_0469_Bonistock_-_Melchsee-Frutt%2C_Schweiz.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">W. Bulach · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">OW</span>
       <span class="chip ghost">lift</span>
@@ -1150,7 +1175,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="71" data-type="ferrata"
          style="order:35"
          data-text="klettersteig fruttstägä bürglen (biel-kinzig) zentralschweiz ur short, well-protected route with an exposed sitting bench bolted to a near-vertical wall and a 10 m rope bridge near the finish.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/ETH-BIB-Rosstock%2C_B%C3%BCrglen%2C_Kinzig-LBS_H1-019615.tif/lossy-page1-960px-ETH-BIB-Rosstock%2C_B%C3%BCrglen%2C_Kinzig-LBS_H1-019615.tif.jpg" alt="" loading="lazy"><span class="credit">Werner Friedli · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Fruttstägä full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/ETH-BIB-Rosstock%2C_B%C3%BCrglen%2C_Kinzig-LBS_H1-019615.tif/lossy-page1-960px-ETH-BIB-Rosstock%2C_B%C3%BCrglen%2C_Kinzig-LBS_H1-019615.tif.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Werner Friedli · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K4</span><span class="chip ghost">UR</span>
       <span class="chip ghost">lift</span>
@@ -1177,7 +1202,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="62" data-type="ferrata"
          style="order:36"
          data-text="klettersteig klewenalp–ergglen beckenried zentralschweiz nw a short family route with three wire bridges and a cave-like passage, very well secured with plenty of iron steps, looking out over lake lucerne.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Klewenalp_5096.jpg/960px-Klewenalp_5096.jpg" alt="" loading="lazy"><span class="credit">Badener · CC BY 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Klewenalp–Ergglen full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Klewenalp_5096.jpg/960px-Klewenalp_5096.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Badener · CC BY 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-easy">K2</span><span class="chip ghost">NW</span>
       <span class="chip ghost">lift</span>
@@ -1204,7 +1229,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="78" data-type="ferrata"
          style="order:37"
          data-text="klettersteig adlerhorst intschi / arnisee zentralschweiz ur beginner-friendly, solidly protected route in lovely spruce forest surroundings: a short entry ladder, a leftward traverse and a small overhang as the crux.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Arnisee_Lake.JPG/960px-Arnisee_Lake.JPG" alt="" loading="lazy"><span class="credit">Simon Koopmann · CC BY-SA 2.5</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Adlerhorst full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Arnisee_Lake.JPG/960px-Arnisee_Lake.JPG" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Simon Koopmann · CC BY-SA 2.5</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K2–K4</span><span class="chip ghost">UR</span>
       <span class="chip ghost">lift</span>
@@ -1231,7 +1256,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="93" data-type="ferrata"
          style="order:38"
          data-text="via ferrata del diavolo andermatt / schöllenen zentralschweiz ur exceptionally well-secured granite route above the schöllenen gorge, with views down onto the devil&#x27;s bridge and the road&#x27;s hairpins.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Bei_Stollen_Teufelsbr%C3%BCcke.jpg/960px-Bei_Stollen_Teufelsbr%C3%BCcke.jpg" alt="" loading="lazy"><span class="credit">FFA P-16 · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata del Diavolo full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Bei_Stollen_Teufelsbr%C3%BCcke.jpg/960px-Bei_Stollen_Teufelsbr%C3%BCcke.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">FFA P-16 · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K2–K3</span><span class="chip ghost">UR</span>
       <span class="chip ghost">no lift</span>
@@ -1258,7 +1283,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="77" data-type="ferrata"
          style="order:39"
          data-text="hexensteig am pfaffen silenen zentralschweiz ur runs largely through the inside of the mountain, over tree trunks and iron steps, and opens with a tyrolean traverse across a small gorge.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Pfaffen_Spherical_Panorama.jpg/960px-Pfaffen_Spherical_Panorama.jpg" alt="" loading="lazy"><span class="credit">Capricorn4049 · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Hexensteig am Pfaffen full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Pfaffen_Spherical_Panorama.jpg/960px-Pfaffen_Spherical_Panorama.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Capricorn4049 · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K5</span><span class="chip ghost">UR</span>
       <span class="chip ghost">lift</span>
@@ -1285,7 +1310,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="99" data-type="ferrata"
          style="order:40"
          data-text="klettersteig krokodil (bergsee) göscheneralp zentralschweiz ur 400 m of steel cable over two rock towers, the second of which really does look like a crocodile&#x27;s head. lots of direct rock contact and a wire bridge near the finish.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Dammabergkette_mit_Gletscher.jpg" alt="" loading="lazy"><span class="credit">Bergdohle · CC BY-SA 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Krokodil (Bergsee) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Dammabergkette_mit_Gletscher.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Bergdohle · CC BY-SA 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">UR</span>
       <span class="chip ghost">no lift</span>
@@ -1312,7 +1337,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="99" data-type="ferrata"
          style="order:41"
          data-text="klettersteig schijen zwärg göscheneralp zentralschweiz ur a short, scenic ferrata spliced into the walk up to the bergseehütte — a neat warm-up for the krokodil route above.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Lac_de_G%C3%B6scheneralp.jpg/960px-Lac_de_G%C3%B6scheneralp.jpg" alt="" loading="lazy"><span class="credit">Bertrand Semelet · CC BY-SA 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Schijen Zwärg full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Lac_de_G%C3%B6scheneralp.jpg/960px-Lac_de_G%C3%B6scheneralp.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Bertrand Semelet · CC BY-SA 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3 (C)</span><span class="chip ghost">UR</span>
       <span class="chip ghost">no lift</span>
@@ -1339,7 +1364,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="87" data-type="ferrata"
          style="order:42"
          data-text="salbit-höhenweg / salbit-kettenweg göschenen zentralschweiz ur not a pure ferrata: a long alpine day mixing hiking, scree and boulders with a 50 m secured wall, plus the spectacular 90 m salbit suspension bridge on the höhenweg to the voralphütte.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Imposante_Salbitbr%C3%BCcke_am_Salbitschijen.jpg/960px-Imposante_Salbitbr%C3%BCcke_am_Salbitschijen.jpg" alt="" loading="lazy"><span class="credit">Uwelino · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Salbit-Höhenweg / Salbit-Kettenweg full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Imposante_Salbitbr%C3%BCcke_am_Salbitschijen.jpg/960px-Imposante_Salbitbr%C3%BCcke_am_Salbitschijen.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Uwelino · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K3–K4 (C/D)</span><span class="chip ghost">UR</span>
       <span class="chip ghost">no lift</span>
@@ -1366,7 +1391,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="65" data-type="ferrata"
          style="order:43"
          data-text="klettersteig husky-lodge &amp; felspfad muotathal zentralschweiz sz two well-protected lines side by side. the felspfad is about as gentle an introduction to via ferrata as exists; the main route goes vertically up the wall, then a ladder, a ledge traverse and a final push.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/ISS022-E-5786_-_View_of_Switzerland_-_Schwyz_-_Brunnen_-_Muotatal_%28Muotathal%29_-_Stoos_SZ_-_Morschach_-_Sisikon_-_lake_Urnersee_-_Gibelhorn_forest_-_Fronalpstock_and_Klingenstock_-_Rophaien_-_Fl%C3%BCelen_-_Isenthal_%28cropped%29.jpg/960px-thumbnail.jpg" alt="" loading="lazy"><span class="credit">Earth Science and Remote Sensing Unit, Lyndon B. Johnson Space Center · Public domain</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Husky-Lodge &amp; Felspfad full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/ISS022-E-5786_-_View_of_Switzerland_-_Schwyz_-_Brunnen_-_Muotatal_%28Muotathal%29_-_Stoos_SZ_-_Morschach_-_Sisikon_-_lake_Urnersee_-_Gibelhorn_forest_-_Fronalpstock_and_Klingenstock_-_Rophaien_-_Fl%C3%BCelen_-_Isenthal_%28cropped%29.jpg/960px-thumbnail.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Earth Science and Remote Sensing Unit, Lyndon B. Johnson Space Center · Public domain</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K2 (Felspfad) / K3 (Klettersteig)</span><span class="chip ghost">SZ</span>
       <span class="chip ghost">no lift</span>
@@ -1393,7 +1418,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="45" data-type="secured"
          style="order:44"
          data-text="rigi-kulm-nordwestrippe (bänderweg) seebodenalp / küssnacht am rigi zentralschweiz sz the bänderweg up the rigi&#x27;s north-west rib — three short rock steps and flower-covered ledges to the summit, well away from the cog-railway crowds. the key pitch is a steep 40 m nagelfluh band rigged with a &#x27;pearl chain&#x27;: steel cable threaded with plastic balls every 10 cm.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/6645_-_Rigi_Kulm_-_Vierwaldst%C3%A4ttersee.JPG/960px-6645_-_Rigi_Kulm_-_Vierwaldst%C3%A4ttersee.JPG" alt="" loading="lazy"><span class="credit">Andrew Bossi · CC BY-SA 2.5</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Rigi-Kulm-Nordwestrippe (Bänderweg) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/6645_-_Rigi_Kulm_-_Vierwaldst%C3%A4ttersee.JPG/960px-6645_-_Rigi_Kulm_-_Vierwaldst%C3%A4ttersee.JPG" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Andrew Bossi · CC BY-SA 2.5</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K2 / T5−</span><span class="chip ghost">SZ</span>
       <span class="chip ghost">no lift</span>
@@ -1420,7 +1445,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="101" data-type="ferrata"
          style="order:45"
          data-text="klettersteig zingelstöckli urnerboden ostschweiz ur opened in 2016 on switzerland&#x27;s largest alp. a sporty line with steep and overhanging passages.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Urnerboden2.jpg/960px-Urnerboden2.jpg" alt="" loading="lazy"><span class="credit">Lutz Fischer-Lamprecht · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Zingelstöckli full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Urnerboden2.jpg/960px-Urnerboden2.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Lutz Fischer-Lamprecht · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K4–K5 (D)</span><span class="chip ghost">UR</span>
       <span class="chip ghost">no lift</span>
@@ -1447,7 +1472,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="88" data-type="ferrata"
          style="order:46"
          data-text="braunwalder klettersteig (eggstöcke) braunwald ostschweiz gl a ridge traverse over four summits of the eggstöcke with escalating difficulty. the k5 section to the rear summit is overhanging with widely spaced holds; two intermediate exits allow a shorter day.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Eggst%C3%B6cke_mit_Gumen.jpg/960px-Eggst%C3%B6cke_mit_Gumen.jpg" alt="" loading="lazy"><span class="credit">Felix Günther FeG · CC BY-SA 2.5</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Braunwalder Klettersteig (Eggstöcke) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Eggst%C3%B6cke_mit_Gumen.jpg/960px-Eggst%C3%B6cke_mit_Gumen.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Felix Günther FeG · CC BY-SA 2.5</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K3 to K5</span><span class="chip ghost">GL</span>
       <span class="chip ghost">lift</span>
@@ -1474,7 +1499,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="63" data-type="ferrata"
          style="order:47"
          data-text="indianer-klettersteig netstal netstal ostschweiz gl short but varied: a cave, a ladder and a tyrolean traverse with a fixed pulley, finishing on an overhanging push to the top.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Wiggis_vom_Vordergl%C3%A4rnisch.jpg/960px-Wiggis_vom_Vordergl%C3%A4rnisch.jpg" alt="" loading="lazy"><span class="credit">Caumasee · Public domain</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Indianer-Klettersteig Netstal full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Wiggis_vom_Vordergl%C3%A4rnisch.jpg/960px-Wiggis_vom_Vordergl%C3%A4rnisch.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Caumasee · Public domain</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K3–K4</span><span class="chip ghost">GL</span>
       <span class="chip ghost">no lift</span>
@@ -1501,7 +1526,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="62" data-type="secured"
          style="order:48"
          data-text="speer-kletterweg amden / kaltbrunn ostschweiz sg a secured climbing path up europe&#x27;s highest grass-covered peak, above the walensee.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Gulmen_%28Mattstock_Speer%29.JPG/960px-Gulmen_%28Mattstock_Speer%29.JPG" alt="" loading="lazy"><span class="credit">Drdamage · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Speer-Kletterweg full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Gulmen_%28Mattstock_Speer%29.JPG/960px-Gulmen_%28Mattstock_Speer%29.JPG" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Drdamage · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-easy">K2 (B/C)</span><span class="chip ghost">SG</span>
       <span class="chip ghost">no lift</span>
@@ -1528,7 +1553,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="92" data-type="secured"
          style="order:49"
          data-text="lisengrat &amp; nasenlöcherweg säntis / rotsteinpass ostschweiz ai/sg the famous exposed ridge from the rotsteinpass to the säntis, cable-protected throughout, plus the nasenlöcherweg in the alpstein.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Drahtseilgesicherter_Aufstieg_zum_Lisengrat_beim_S%C3%A4ntis.jpg/960px-Drahtseilgesicherter_Aufstieg_zum_Lisengrat_beim_S%C3%A4ntis.jpg" alt="" loading="lazy"><span class="credit">JoachimKohler-HB · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Lisengrat &amp; Nasenlöcherweg full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Drahtseilgesicherter_Aufstieg_zum_Lisengrat_beim_S%C3%A4ntis.jpg/960px-Drahtseilgesicherter_Aufstieg_zum_Lisengrat_beim_S%C3%A4ntis.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">JoachimKohler-HB · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-easy">K1–K2 (secured path)</span><span class="chip ghost">AI/SG</span>
       <span class="chip ghost">lift</span>
@@ -1555,7 +1580,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="83" data-type="ferrata"
          style="order:50"
          data-text="fläscher leiterliweg fläsch graubünden gr a mini ferrata of ladders on the cliffs above fläsch, with only 10–15 minutes of actual climbing.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Zentralbibliothek_Z%C3%BCrich_-_Fl%C3%A4scherberg_-_991131954299705501.jpg/960px-Zentralbibliothek_Z%C3%BCrich_-_Fl%C3%A4scherberg_-_991131954299705501.jpg" alt="" loading="lazy"><span class="credit">Anonym/e Künstler/in · Public domain</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Fläscher Leiterliweg full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Zentralbibliothek_Z%C3%BCrich_-_Fl%C3%A4scherberg_-_991131954299705501.jpg/960px-Zentralbibliothek_Z%C3%BCrich_-_Fl%C3%A4scherberg_-_991131954299705501.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Anonym/e Künstler/in · Public domain</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-easy">K1–K2 (A/B)</span><span class="chip ghost">GR</span>
       <span class="chip ghost">no lift</span>
@@ -1582,7 +1607,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="114" data-type="ferrata"
          style="order:51"
          data-text="klettersteig pinut flims / fidaz graubünden gr first documented in 1739 and fully renovated in 2007 — the oldest via ferrata in switzerland. ladders and stairs through three rock faces and caves in the flimserstein, separated by the pinut and pardatsch meadows.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flimserstein_S%C3%BCdseite.jpg/960px-Flimserstein_S%C3%BCdseite.jpg" alt="" loading="lazy"><span class="credit">upload by Adrian Michael · CC BY-SA 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Pinut full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flimserstein_S%C3%BCdseite.jpg/960px-Flimserstein_S%C3%BCdseite.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">upload by Adrian Michael · CC BY-SA 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-easy">K1–K2</span><span class="chip ghost">GR</span>
       <span class="chip ghost">no lift</span>
@@ -1609,7 +1634,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="124" data-type="ferrata"
          style="order:52"
          data-text="sulzfluh-klettersteig st. antönien / partnun graubünden gr the classic of the three partnun routes: an exemplary south-facing line up brilliant white limestone with abundant rungs, short ladders, a cable bridge and a ladder bridge. 500–600 m of steel cable, and a famous rest ledge — the bankli — halfway.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Sulzfluh_Plateau_Panorama.jpg/960px-Sulzfluh_Plateau_Panorama.jpg" alt="" loading="lazy"><span class="credit">böhringer friedrich · CC BY-SA 2.5</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Sulzfluh-Klettersteig full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Sulzfluh_Plateau_Panorama.jpg/960px-Sulzfluh_Plateau_Panorama.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">böhringer friedrich · CC BY-SA 2.5</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K4–K5 (C/D)</span><span class="chip ghost">GR</span>
       <span class="chip ghost">no lift</span>
@@ -1636,7 +1661,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="124" data-type="ferrata"
          style="order:53"
          data-text="partnunblick-klettersteig st. antönien / partnun graubünden gr climbs the gemstobelwand with steadily rising difficulty, usually entered via the family route below. the short final wall is d/e and extremely exposed.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Sulzfluh-Weissplatte.jpg/960px-Sulzfluh-Weissplatte.jpg" alt="" loading="lazy"><span class="credit">Vince51 · CC BY 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Partnunblick-Klettersteig full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Sulzfluh-Weissplatte.jpg/960px-Sulzfluh-Weissplatte.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Vince51 · CC BY 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K4–K5 (D/E)</span><span class="chip ghost">GR</span>
       <span class="chip ghost">no lift</span>
@@ -1663,7 +1688,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="124" data-type="ferrata"
          style="order:54"
          data-text="familien-klettersteig partnunblick st. antönien / partnun graubünden gr about 180 m zig-zagging up the wall with two short cable bridges and two platform pillars to exit from, high above the turquoise partnunsee.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Partnunsee-N.jpg/960px-Partnunsee-N.jpg" alt="" loading="lazy"><span class="credit">FkMohr · CC BY-SA 3.0 de</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Familien-Klettersteig Partnunblick full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Partnunsee-N.jpg/960px-Partnunsee-N.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">FkMohr · CC BY-SA 3.0 de</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-easy">K2 (A/B–B)</span><span class="chip ghost">GR</span>
       <span class="chip ghost">no lift</span>
@@ -1690,7 +1715,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="124" data-type="ferrata"
          style="order:55"
          data-text="gauablickhöhle-klettersteig st. antönien / partnun graubünden gr a moderate route on the north flank of the sulzfluh whose highlight is entering the gauablickhöhle — a 350 m cave — right in the middle of the climb.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/360%C2%B0_Drei_T%C3%BCrme_und_Sulzfluh.jpg/960px-360%C2%B0_Drei_T%C3%BCrme_und_Sulzfluh.jpg" alt="" loading="lazy"><span class="credit">böhringer friedrich · CC BY-SA 2.5</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Gauablickhöhle-Klettersteig full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/360%C2%B0_Drei_T%C3%BCrme_und_Sulzfluh.jpg/960px-360%C2%B0_Drei_T%C3%BCrme_und_Sulzfluh.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">böhringer friedrich · CC BY-SA 2.5</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3 (C)</span><span class="chip ghost">GR</span>
       <span class="chip ghost">no lift</span>
@@ -1717,7 +1742,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="138" data-type="ferrata"
          style="order:56"
          data-text="klettersteig punteglias trun (surselva) graubünden gr a remote granite route in the val punteglias above trun, usually combined with a visit to the camona da punteglias. outdooractive gives the full circuit as roughly 12.6 km and 9 h.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Camona_da_Punteglias.jpg/960px-Camona_da_Punteglias.jpg" alt="" loading="lazy"><span class="credit">Andreas Fischler · CC BY 2.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Punteglias full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Camona_da_Punteglias.jpg/960px-Camona_da_Punteglias.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Andreas Fischler · CC BY 2.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3 (B)</span><span class="chip ghost">GR</span>
       <span class="chip ghost">no lift</span>
@@ -1744,7 +1769,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="207" data-type="ferrata"
          style="order:57"
          data-text="greitspitz-klettersteig samnaun graubünden gr built in 2001. a sports ferrata with two variants, one of them extremely exposed and graded k5, on the silvretta border ridge.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Ischgl_-_Greitspitze_BT_01.jpg/960px-Ischgl_-_Greitspitze_BT_01.jpg" alt="" loading="lazy"><span class="credit">Basotxerri · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Greitspitz-Klettersteig full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Ischgl_-_Greitspitze_BT_01.jpg/960px-Ischgl_-_Greitspitze_BT_01.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Basotxerri · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K3, with a K5 variant</span><span class="chip ghost">GR</span>
       <span class="chip ghost">lift</span>
@@ -1771,7 +1796,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="207" data-type="ferrata"
          style="order:58"
          data-text="flimspitz-klettersteig samnaun graubünden gr opened in 2004, with enjoyable slab climbing. the easier companion to the greitspitz route next door.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Flimspitz_as_seen_from_Bei_den_Seen.jpg/960px-Flimspitz_as_seen_from_Bei_den_Seen.jpg" alt="" loading="lazy"><span class="credit">Capricorn4049 · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Flimspitz-Klettersteig full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Flimspitz_as_seen_from_Bei_den_Seen.jpg/960px-Flimspitz_as_seen_from_Bei_den_Seen.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Capricorn4049 · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">GR</span>
       <span class="chip ghost">lift</span>
@@ -1798,7 +1823,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="178" data-type="ferrata"
          style="order:59"
          data-text="klettersteig la resgia pontresina graubünden gr varied climbing with a wire bridge, mesh netting and ladders, and a choice of two difficulty levels partway. the slightly overhanging adlerhorst crux makes you climb round an arête.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pontresina_village_from_train.jpg/960px-Pontresina_village_from_train.jpg" alt="" loading="lazy"><span class="credit">Philip Newton · CC BY 2.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig La Resgia full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pontresina_village_from_train.jpg/960px-Pontresina_village_from_train.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Philip Newton · CC BY 2.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-hard">K3, K4 at the &#x27;Adlerhorst&#x27;</span><span class="chip ghost">GR</span>
       <span class="chip ghost">no lift</span>
@@ -1825,7 +1850,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="185" data-type="ferrata"
          style="order:60"
          data-text="klettersteig piz trovat (i &amp; ii) diavolezza / pontresina graubünden gr steep entry ladder, then slabs, a rope bridge and an overhanging crux, with stupendous views over the morteratsch and pers glaciers. piz trovat ii branches off and is savagely strenuous.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/2011-08-02_15-07-48_Switzerland_Diavolezza_11vl.jpg/960px-2011-08-02_15-07-48_Switzerland_Diavolezza_11vl.jpg" alt="" loading="lazy"><span class="credit">NOTE: This image is a panorama of Diavolezza consisting of 11 frames that were m · CC BY-SA 3.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Klettersteig Piz Trovat (I &amp; II) full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/2011-08-02_15-07-48_Switzerland_Diavolezza_11vl.jpg/960px-2011-08-02_15-07-48_Switzerland_Diavolezza_11vl.jpg" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">NOTE: This image is a panorama of Diavolezza consisting of 11 frames that were m · CC BY-SA 3.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-extreme">K2–K3; variant II up to K6</span><span class="chip ghost">GR</span>
       <span class="chip ghost">lift</span>
@@ -1852,7 +1877,7 @@ footer p{max-width:74ch;margin:0 0 12px}
          data-drive="131" data-type="ferrata"
          style="order:61"
          data-text="via ferrata du tichodrome noiraigue (val-de-travers) jura ne mostly a traverse across jura limestone, well secured and generously equipped with holds, looking across the valley to the creux du van.">
-  <div class="shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Creux_du_Van.png/960px-Creux_du_Van.png" alt="" loading="lazy"><span class="credit">Thinkingoyster · CC BY-SA 4.0</span></div>
+  <div class="shot" tabindex="0" role="button" aria-label="Open photo of Via ferrata du Tichodrome full size"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Creux_du_Van.png/960px-Creux_du_Van.png" alt="" loading="lazy"><span class='expand' aria-hidden='true'>⤢</span><span class="credit">Thinkingoyster · CC BY-SA 4.0</span></div>
   <div class="body">
     <div class="chips"><span class="chip g-mid">K3</span><span class="chip ghost">NE</span>
       <span class="chip ghost">no lift</span>
@@ -1878,6 +1903,14 @@ footer p{max-width:74ch;margin:0 0 12px}
 </div></main>
 
 <div class="sync" id="sync"></div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <img id="lbImg" alt="">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close (Esc)">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="Previous photo">&#8249;</button>
+  <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="Next photo">&#8250;</button>
+  <p class="lb-cap"><b id="lbTitle"></b><span id="lbCredit"></span><span class="lb-count" id="lbCount"></span></p>
+</div>
 
 <footer><div class="wrap">
   <h2>How to read this, and what not to trust</h2>
@@ -1923,11 +1956,15 @@ let outbox = JSON.parse(localStorage.getItem(LS_OUT) || '[]');
 let view = 'all';
 let epoch = 0;                        // bumped on every local edit, so a stale server read can't win
 
+let touched = new Set();   // ids this person has explicitly set OR cleared
+
 function applyDefaultDone() {
+  // A doneFor seed must not resurrect a mark the person deliberately removed: on the server
+  // "cleared" looks identical to "never set", so we track explicit actions separately.
   if (!me) return;
   for (const [id, entry] of Object.entries(DEFAULT_DONE)) {
-    if (entry.names.some(name => name.toLowerCase() === me.toLowerCase()) && !state[id])
-      state[id] = 'done';
+    if (touched.has(id) || state[id]) continue;
+    if (entry.names.some(name => name.toLowerCase() === me.toLowerCase())) state[id] = 'done';
   }
 }
 
@@ -1951,6 +1988,7 @@ for (const gallery of document.querySelectorAll('.gallery')) {
       timer = setInterval(() => show(index + 1), 3500);
   };
   dots.forEach((dot, i) => dot.addEventListener('click', () => { stop(); show(i); start(); }));
+  gallery._stop = stop; gallery._start = start;   // the lightbox pauses rotation while open
   gallery.addEventListener('mouseenter', stop);
   gallery.addEventListener('mouseleave', start);
   gallery.addEventListener('focusin', stop);
@@ -1980,6 +2018,7 @@ function paintName() {
 nameInput.addEventListener('change', () => {
   me = nameInput.value.trim();
   localStorage.setItem(LS_NAME, me);
+  touched = new Set();
   paintName(); applyDefaultDone(); paint(); pull();
 });
 
@@ -2030,18 +2069,20 @@ async function pull() {
     const r = await fetch(ENDPOINT + '?action=rows&project=' + encodeURIComponent(PROJECT));
     const j = await r.json();
     if (!j.ok) return;
-    const mine = {};
+    const mine = {}; const seen = new Set();
     for (const row of j.rows) {                       // oldest first — last write wins
       if ((row.voter || '').toLowerCase() !== me.toLowerCase()) continue;
+      seen.add(row.itemId);
       if (row.vote === 'none') delete mine[row.itemId];
       else if (row.vote === 'want' || row.vote === 'done') mine[row.itemId] = row.vote;
     }
     for (const rec of outbox) {                       // unsynced local wins over the server
       if ((rec.voter || '').toLowerCase() !== me.toLowerCase()) continue;
+      seen.add(rec.itemId);
       if (rec.vote === 'none') delete mine[rec.itemId]; else mine[rec.itemId] = rec.vote;
     }
     if (epoch !== at) return;                      // a click landed while we were fetching
-    state = mine; applyDefaultDone(); save(); paint();
+    state = mine; touched = seen; applyDefaultDone(); save(); paint();
   } catch { /* offline: keep the local copy */ }
 }
 
@@ -2086,7 +2127,7 @@ document.addEventListener('click', e => {
   }
   const next = state[id] === act ? 'none' : act;
   if (next === 'none') delete state[id]; else state[id] = next;
-  epoch++; save(); record(id, next); paint();
+  touched.add(id); epoch++; save(); record(id, next); paint();
 });
 
 const BAND_RANK = {easy: 0, mid: 1, hard: 2, extreme: 3};
@@ -2111,6 +2152,75 @@ document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => {
   filter();
 });
 addEventListener('online', drain);
+
+/* ---- lightbox: cards crop to 16:9, this shows the whole frame ---- */
+const lb = $('#lb'), lbImg = $('#lbImg');
+let lbSrcs = [], lbAt = 0, lbReturn = null, lbGallery = null;
+
+function lbShow(i) {
+  lbAt = (i + lbSrcs.length) % lbSrcs.length;
+  lbImg.src = lbSrcs[lbAt];
+  $('#lbCount').textContent = lbSrcs.length > 1 ? `${lbAt + 1} / ${lbSrcs.length}` : '';
+  const multi = lbSrcs.length > 1 ? '' : 'none';
+  $('#lbPrev').style.display = multi; $('#lbNext').style.display = multi;
+}
+function lbOpen(shot, i) {
+  const imgs = [...shot.querySelectorAll('img')];
+  if (!imgs.length) return;
+  lbSrcs = imgs.map(im => im.currentSrc || im.src);
+  $('#lbTitle').textContent = shot.closest('.card').querySelector('h3').textContent;
+  $('#lbCredit').textContent = shot.querySelector('.credit')?.textContent || '';
+  lbGallery = shot.classList.contains('gallery') ? shot : null;
+  lbGallery?._stop?.();                       // don't rotate underneath the viewer
+  lbReturn = document.activeElement;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbShow(i || 0);
+  $('#lbClose').focus();
+}
+function lbClose() {
+  if (!lb.classList.contains('open')) return;
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  lbImg.removeAttribute('src');
+  lbGallery?._start?.(); lbGallery = null;
+  lbReturn?.focus?.(); lbReturn = null;
+}
+function openFromShot(shot) {
+  const slides = [...shot.querySelectorAll('.slide')];
+  const active = slides.findIndex(s => s.classList.contains('active'));
+  lbOpen(shot, active > 0 ? active : 0);      // open on whatever the carousel is showing
+}
+
+document.addEventListener('click', e => {
+  if (e.target.closest('.gallery-dot')) return;          // dots switch slides, not open the viewer
+  if (e.target.closest('.lb')) {
+    if (e.target.closest('#lbClose')) return lbClose();
+    if (e.target.closest('#lbPrev'))  return lbShow(lbAt - 1);
+    if (e.target.closest('#lbNext'))  return lbShow(lbAt + 1);
+    if (e.target !== lbImg) lbClose();                   // click the backdrop to dismiss
+    return;
+  }
+  const shot = e.target.closest('.shot[role=button]');
+  if (shot) openFromShot(shot);
+});
+document.addEventListener('keydown', e => {
+  if (lb.classList.contains('open')) {
+    if (e.key === 'Escape') lbClose();
+    else if (e.key === 'ArrowRight') lbShow(lbAt + 1);
+    else if (e.key === 'ArrowLeft') lbShow(lbAt - 1);
+    return;
+  }
+  const shot = e.target.closest?.('.shot[role=button]');
+  if (shot && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openFromShot(shot); }
+});
+let lbX = null;
+lb.addEventListener('touchstart', e => { lbX = e.changedTouches[0].clientX; }, {passive: true});
+lb.addEventListener('touchend', e => {
+  if (lbX === null) return;
+  const dx = e.changedTouches[0].clientX - lbX; lbX = null;
+  if (Math.abs(dx) > 45 && lbSrcs.length > 1) lbShow(lbAt + (dx < 0 ? 1 : -1));
+}, {passive: true});
 
 paintName(); applyDefaultDone(); paint(); pull(); drain();
 </script>
