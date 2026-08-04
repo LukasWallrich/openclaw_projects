@@ -9,7 +9,7 @@ photos/       <- local images, if any
 index.html    <- GENERATED OUTPUT
 ```
 
-Who wants to go where, who has climbed what, and every comment live in the Google Sheet
+Who wants to go where, who has climbed what, and all route notes live in the Google Sheet
 behind the collect endpoint — **not in this repo**. See "Want to go / Done" below.
 
 Workflow for any change: edit `routes.json` → `python3 build.py` → open `index.html` and
@@ -100,26 +100,30 @@ indistinguishable from an unset one when state is rebuilt from the server, it si
 the mark whenever it was unchecked. Two sources of truth for the same fact is the bug, not the
 mechanism used to sync them.
 
-Comments and suggested edits work the same way — they are records in project
-`klettersteige-nordalpen-ch`, written by the overlay on the page. Never transcribe them into source.
+### Route notes
 
-**`itemId` means different things in the two projects. This is a trap.**
-
-| project | `itemId` is | reused? |
-|---|---|---|
-| `klettersteige-ch-status` | the **route id** (`tierbergli`) | yes — replayed, last write wins |
-| `klettersteige-nordalpen-ch` | the **record's own unique id** | never — the target goes in `note.parentId` |
-
-The comment overlay dedupes incoming rows by `itemId` and keeps only the first. So a comment,
-reply, resolve or delete that reuses an existing `itemId` is **silently dropped before it is
-ever interpreted** — the endpoint returns `{"ok":true}`, the row sits in the sheet, and nothing
-happens on the page. To delete comment `hc-demo-1` you post a *new* id whose note points at it:
+Each card has a **Notes** button opening a dialog of notes for that one route — conditions, gear,
+who you went with. They are shared, not private, and live in project `klettersteige-ch-notes`:
 
 ```bash
+# add a note.  session = a unique id for this note, needed so it can be deleted later
 curl -sL "$ENDPOINT" -H 'Content-Type: text/plain;charset=utf-8' --data \
- '{"project":"klettersteige-nordalpen-ch","itemId":"hc-del-1","vote":"delete",
-   "note":"{\"v\":1,\"parentId\":\"hc-demo-1\"}"}'
+ '{"project":"klettersteige-ch-notes","itemId":"sulzfluh","vote":"note",
+   "note":"Cable is removed for the winter.","voter":"Lukas","session":"n-2026-08-04-a"}'
+
+# remove one: vote note-delete, with the target note's id in `note`
+curl -sL "$ENDPOINT" -H 'Content-Type: text/plain;charset=utf-8' --data \
+ '{"project":"klettersteige-ch-notes","itemId":"sulzfluh","vote":"note-delete",
+   "note":"n-2026-08-04-a","voter":"Lukas"}'
 ```
+
+`itemId` is the **route id** and repeats — every note on a route shares it. The note's own identity
+lives in `session`. Rows without a matching `note-delete` are shown, oldest first; the Delete link
+only appears on notes whose `voter` matches the name you have entered.
+
+There is **no page-wide comment layer any more.** The old html-comments overlay — select text,
+floating button, sidebar — was removed on 4 Aug 2026; `klettersteige-nordalpen-ch` is dead and its
+two rows are ignored. Do not re-add it, and do not load anything from `html-comments.surge.sh`.
 
 ## The lightbox
 
