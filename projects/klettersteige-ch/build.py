@@ -5,7 +5,7 @@ import json, html, pathlib, re
 HERE = pathlib.Path(__file__).parent
 routes = json.load(open(HERE / "routes.json"))
 
-ENDPOINT = "https://script.google.com/macros/s/AKfycbyx858xfSCgHQ8RmbfbMsdzcmzrkNs_JZVmqeEBVrH-S6g8YJbI32CY7if-k8oTzg-eyQ/exec"
+ENDPOINT = "https://script.google.com/macros/s/AKfycbxWIpG_nDPGadPapQRFe1vtuPGIzZtubCZSwRQJSWQgvGnJ2rQQicNtJYNahN1kJyzIdQ/exec"
 STATUS_PROJECT = "klettersteige-ch-status"
 NOTES_PROJECT  = "klettersteige-ch-notes"
 

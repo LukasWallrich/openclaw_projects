@@ -77,7 +77,7 @@ describes routes; it does not record who has climbed them. If you are asked to m
 done or wanted, **submit a record** — do not add a field.
 
 ```bash
-ENDPOINT='https://script.google.com/macros/s/AKfycbyx858xfSCgHQ8RmbfbMsdzcmzrkNs_JZVmqeEBVrH-S6g8YJbI32CY7if-k8oTzg-eyQ/exec'
+ENDPOINT='https://script.google.com/macros/s/AKfycbxWIpG_nDPGadPapQRFe1vtuPGIzZtubCZSwRQJSWQgvGnJ2rQQicNtJYNahN1kJyzIdQ/exec'
 curl -sL "$ENDPOINT" -H 'Content-Type: text/plain;charset=utf-8' \
   --data '{"project":"klettersteige-ch-status","itemId":"tierbergli","vote":"done","voter":"Lukas"}'
 # vote is one of: want | done | none   (none clears)   itemId is the route id
