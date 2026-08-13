@@ -5,10 +5,9 @@ import json, html, pathlib, re
 HERE = pathlib.Path(__file__).parent
 routes = json.load(open(HERE / "routes.json"))
 
-ENDPOINT = "https://script.google.com/macros/s/AKfycbyx858xfSCgHQ8RmbfbMsdzcmzrkNs_JZVmqeEBVrH-S6g8YJbI32CY7if-k8oTzg-eyQ/exec"
-COMMENT_PROJECT = "klettersteige-nordalpen-ch"
+ENDPOINT = "https://script.google.com/macros/s/AKfycbxWIpG_nDPGadPapQRFe1vtuPGIzZtubCZSwRQJSWQgvGnJ2rQQicNtJYNahN1kJyzIdQ/exec"
 STATUS_PROJECT = "klettersteige-ch-status"
-ASSET_BASE = "https://html-comments.surge.sh/"
+NOTES_PROJECT  = "klettersteige-ch-notes"
 
 REGION_ORDER = [
     "Berner Oberland", "Wallis (north of the Rhône)", "Waadt & Freiburg",
@@ -51,6 +50,7 @@ for i, r in enumerate(routes):
     )
     thin = '<p class="thin-warn">Sparse data — verify locally before you commit to this one.</p>' if r.get("thin") else ""
     images = r.get("imgs") or ([r["img"]] if r.get("img") else [])
+    pos = f' style="--imgpos:{esc(r["imgPos"])}"' if r.get("imgPos") else ""
     credit = f'<span class="credit">{esc(r.get("imgCredit") or "Wikimedia Commons")}</span>' if images else ""
     if len(images) > 1:
         slides = "".join(
@@ -63,9 +63,15 @@ for i, r in enumerate(routes):
             f'aria-pressed="{"true" if j == 0 else "false"}"></button>'
             for j in range(len(images))
         )
-        shot = f'<div class="shot gallery" data-gallery="{len(images)}">{slides}<div class="gallery-dots">{dots}</div>{credit}</div>'
+        shot = (f'<div class="shot gallery" data-gallery="{len(images)}" tabindex="0" role="button" '
+                f'aria-label="Open photos of {esc(r["name"])} full size"{pos}>'
+                f'{slides}<span class="expand" aria-hidden="true">⤢</span>'
+                f'<div class="gallery-dots">{dots}</div>{credit}</div>')
     else:
-        shot = f'<div class="shot">{f'<img src="{esc(images[0])}" alt="" loading="lazy">' if images else ""}{credit}</div>'
+        inner = f'<img src="{esc(images[0])}" alt="" loading="lazy">' if images else ""
+        attrs = (f' tabindex="0" role="button" aria-label="Open photo of {esc(r["name"])} full size"{pos}'
+                 if images else "")
+        shot = f'<div class="shot"{attrs}>{inner}{"<span class=\'expand\' aria-hidden=\'true\'>⤢</span>" if images else ""}{credit}</div>'
     cards.append(f'''
 <article class="card" id="route-{esc(r["id"])}" data-id="{esc(r["id"])}" data-region="{esc(r["region"])}"
          data-band="{b}" data-lift="{'yes' if lift_needed else 'no'}"
@@ -90,6 +96,8 @@ for i, r in enumerate(routes):
     <div class="actions">
       <button class="act want" data-act="want" aria-pressed="false">Want to go</button>
       <button class="act done" data-act="done" aria-pressed="false">Done</button>
+      <button class="act notes" data-act="notes" aria-label="Notes for this route">
+        <span aria-hidden="true">&#9998;</span> Notes<span class="nbadge"></span></button>
       <a class="src" href="{esc(r.get("src"))}" target="_blank" rel="noopener">source ↗</a>
     </div>
   </div>
@@ -167,7 +175,14 @@ main .wrap{padding-top:26px;padding-bottom:70px}
   box-shadow:var(--shadow);display:flex;flex-direction:column}
 .card.hide{display:none}
 .shot{position:relative;aspect-ratio:16/9;background:color-mix(in srgb,var(--rock) 22%,var(--panel));overflow:hidden}
-.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:var(--imgpos,center);display:block}
+.shot[role=button]{cursor:zoom-in}
+.shot .expand{position:absolute;right:7px;top:7px;width:26px;height:26px;border-radius:7px;
+  background:#0009;color:#fff;display:grid;place-items:center;font-size:.82rem;line-height:1;
+  opacity:0;transition:opacity .18s;pointer-events:none}
+.shot:hover .expand,.shot:focus-visible .expand{opacity:1}
+.shot:focus-visible{outline:2px solid var(--pine-2);outline-offset:2px}
+@media (hover:none){.shot .expand{opacity:.85}}
 .shot.gallery .slide{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
 .shot.gallery .slide.active{opacity:1}
 .gallery-dots{position:absolute;left:7px;bottom:6px;display:flex;gap:5px}
@@ -222,6 +237,63 @@ main .wrap{padding-top:26px;padding-bottom:70px}
 .sync{position:fixed;left:16px;bottom:16px;z-index:60;background:var(--panel);border:1px solid var(--line);
   border-radius:8px;padding:6px 11px;font-size:.76rem;color:var(--soft);box-shadow:var(--shadow);display:none}
 .sync.show{display:block}
+.lb{position:fixed;inset:0;z-index:2000;background:#0b0e0ff7;display:none;align-items:center;
+  justify-content:center;padding:56px 16px 92px}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;
+  border-radius:5px;box-shadow:0 18px 60px #000a}
+.lb button{position:absolute;background:#ffffff1a;border:1px solid #ffffff33;color:#fff;
+  border-radius:10px;cursor:pointer;font:inherit;line-height:1}
+.lb button:hover{background:#ffffff2e}
+.lb-close{top:14px;right:16px;width:42px;height:42px;font-size:1.4rem}
+.lb-nav{top:50%;transform:translateY(-50%);width:46px;height:64px;font-size:1.5rem}
+.lb-prev{left:14px}.lb-next{right:14px}
+.lb-cap{position:absolute;left:0;right:0;bottom:0;padding:16px 20px 22px;color:#cfd8d3;
+  text-align:center;font-size:.83rem;background:linear-gradient(transparent,#000000cc);
+  pointer-events:none}
+.lb-cap b{display:block;font-size:1rem;font-weight:600;color:#fff;margin-bottom:3px;
+  font-family:ui-serif,Georgia,serif}
+.lb-count{opacity:.65;font-variant-numeric:tabular-nums;margin-left:8px}
+@media (max-width:560px){.lb{padding:52px 8px 88px}.lb-nav{width:38px;height:54px}}
+.act.notes{margin-left:2px}
+.nbadge{display:none;margin-left:5px;background:var(--pine);color:#fff;border-radius:20px;
+  padding:0 6px;font-size:.68rem;font-variant-numeric:tabular-nums}
+.nbadge.has{display:inline-block}
+:root[data-theme=dark] .nbadge{color:#12211a}
+@media (prefers-color-scheme:dark){.nbadge{color:#12211a}}
+.nt{position:fixed;inset:0;z-index:2100;background:#0b0e0fcc;display:none;
+  align-items:center;justify-content:center;padding:24px 16px}
+.nt.open{display:flex}
+.nt-box{background:var(--panel);border:1px solid var(--line);border-radius:13px;width:min(600px,100%);
+  max-height:min(86vh,760px);display:flex;flex-direction:column;box-shadow:0 24px 70px #0007;overflow:hidden}
+.nt-head{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+.nt-head h2{margin:0;font-size:1.05rem;font-family:ui-serif,Georgia,serif;font-weight:600;flex:1}
+.nt-close{font:inherit;font-size:1.35rem;line-height:1;border:1px solid var(--line);background:none;
+  color:var(--soft);border-radius:8px;width:34px;height:34px;cursor:pointer;flex:none}
+.nt-close:hover{color:var(--ink)}
+.nt-list{padding:6px 18px;overflow-y:auto;flex:1;min-height:60px}
+.nt-item{padding:12px 0;border-bottom:1px solid var(--line)}
+.nt-item:last-child{border-bottom:0}
+.nt-meta{font-size:.73rem;color:var(--soft);margin-bottom:3px}
+.nt-meta b{color:var(--pine-2);font-weight:700}
+.nt-body{white-space:pre-wrap;font-size:.92rem;margin:0}
+.nt-del{font:inherit;font-size:.72rem;border:0;background:none;color:var(--soft);cursor:pointer;
+  padding:4px 0 0;text-decoration:underline;text-underline-offset:2px}
+.nt-del:hover{color:var(--alert)}
+.nt-empty{color:var(--soft);font-size:.9rem;padding:16px 0 18px}
+.nt-pending{opacity:.55}
+.nt-add{border-top:1px solid var(--line);padding:12px 18px 14px;background:var(--bg)}
+.nt-add textarea{width:100%;font:inherit;font-size:.92rem;padding:9px 11px;border:1px solid var(--line);
+  border-radius:8px;background:var(--panel);color:var(--ink);resize:vertical}
+.nt-foot{display:flex;align-items:center;gap:10px;margin-top:9px}
+.nt-who{font-size:.78rem;color:var(--soft);flex:1}
+.nt-who b{color:var(--pine-2)}
+.nt-who.anon b{color:var(--gold)}
+#ntSave{font:inherit;font-size:.84rem;font-weight:600;padding:7px 15px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--pine);background:var(--pine);color:#fff}
+#ntSave:disabled{opacity:.45;cursor:not-allowed}
+:root[data-theme=dark] #ntSave{color:#12211a}
+@media (prefers-color-scheme:dark){#ntSave{color:#12211a}}
 footer{border-top:1px solid var(--line);background:var(--panel)}
 footer .wrap{padding:34px 20px 60px;font-size:.85rem;color:var(--soft)}
 footer h2{font-size:.95rem;color:var(--ink);margin:0 0 8px}
@@ -232,7 +304,7 @@ footer p{max-width:74ch;margin:0 0 12px}
 JS = f"""
 const ENDPOINT = {json.dumps(ENDPOINT)};
 const PROJECT  = {json.dumps(STATUS_PROJECT)};
-const DEFAULT_DONE = {json.dumps({r["id"]: {"names": r.get("doneFor", []), "date": r.get("doneDate")} for r in routes if r.get("doneFor")})};
+const NOTES    = {json.dumps(NOTES_PROJECT)};
 const LS_NAME  = 'ks-name', LS_STATE = 'ks-state', LS_OUT = 'ks-outbox';
 
 const $ = s => document.querySelector(s);
@@ -243,14 +315,6 @@ let state = JSON.parse(localStorage.getItem(LS_STATE) || '{{}}');   // id -> 'wa
 let outbox = JSON.parse(localStorage.getItem(LS_OUT) || '[]');
 let view = 'all';
 let epoch = 0;                        // bumped on every local edit, so a stale server read can't win
-
-function applyDefaultDone() {{
-  if (!me) return;
-  for (const [id, entry] of Object.entries(DEFAULT_DONE)) {{
-    if (entry.names.some(name => name.toLowerCase() === me.toLowerCase()) && !state[id])
-      state[id] = 'done';
-  }}
-}}
 
 /* ---- mini photo rotations ---- */
 for (const gallery of document.querySelectorAll('.gallery')) {{
@@ -272,6 +336,7 @@ for (const gallery of document.querySelectorAll('.gallery')) {{
       timer = setInterval(() => show(index + 1), 3500);
   }};
   dots.forEach((dot, i) => dot.addEventListener('click', () => {{ stop(); show(i); start(); }}));
+  gallery._stop = stop; gallery._start = start;   // the lightbox pauses rotation while open
   gallery.addEventListener('mouseenter', stop);
   gallery.addEventListener('mouseleave', start);
   gallery.addEventListener('focusin', stop);
@@ -301,7 +366,7 @@ function paintName() {{
 nameInput.addEventListener('change', () => {{
   me = nameInput.value.trim();
   localStorage.setItem(LS_NAME, me);
-  paintName(); applyDefaultDone(); paint(); pull();
+  paintName(); paint(); pull();
 }});
 
 /* ---- persistence ---- */
@@ -358,11 +423,12 @@ async function pull() {{
       else if (row.vote === 'want' || row.vote === 'done') mine[row.itemId] = row.vote;
     }}
     for (const rec of outbox) {{                       // unsynced local wins over the server
+      if (rec.project !== PROJECT) continue;
       if ((rec.voter || '').toLowerCase() !== me.toLowerCase()) continue;
       if (rec.vote === 'none') delete mine[rec.itemId]; else mine[rec.itemId] = rec.vote;
     }}
     if (epoch !== at) return;                      // a click landed while we were fetching
-    state = mine; applyDefaultDone(); save(); paint();
+    state = mine; save(); paint();
   }} catch {{ /* offline: keep the local copy */ }}
 }}
 
@@ -401,6 +467,7 @@ function filter() {{
 document.addEventListener('click', e => {{
   const btn = e.target.closest('.act'); if (!btn) return;
   const card = btn.closest('.card'), id = card.dataset.id, act = btn.dataset.act;
+  if (act === 'notes') return openNotes(id);
   if (!me) {{
     flash('Add your name first so your list is yours');
     nameInput.focus(); return;
@@ -433,7 +500,187 @@ document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => {{
 }});
 addEventListener('online', drain);
 
-paintName(); applyDefaultDone(); paint(); pull(); drain();
+/* ---- lightbox: cards crop to 16:9, this shows the whole frame ---- */
+const lb = $('#lb'), lbImg = $('#lbImg');
+let lbSrcs = [], lbAt = 0, lbReturn = null, lbGallery = null;
+
+function lbShow(i) {{
+  lbAt = (i + lbSrcs.length) % lbSrcs.length;
+  lbImg.src = lbSrcs[lbAt];
+  $('#lbCount').textContent = lbSrcs.length > 1 ? `${{lbAt + 1}} / ${{lbSrcs.length}}` : '';
+  const multi = lbSrcs.length > 1 ? '' : 'none';
+  $('#lbPrev').style.display = multi; $('#lbNext').style.display = multi;
+}}
+function lbOpen(shot, i) {{
+  const imgs = [...shot.querySelectorAll('img')];
+  if (!imgs.length) return;
+  lbSrcs = imgs.map(im => im.currentSrc || im.src);
+  $('#lbTitle').textContent = shot.closest('.card').querySelector('h3').textContent;
+  $('#lbCredit').textContent = shot.querySelector('.credit')?.textContent || '';
+  lbGallery = shot.classList.contains('gallery') ? shot : null;
+  lbGallery?._stop?.();                       // don't rotate underneath the viewer
+  lbReturn = document.activeElement;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbShow(i || 0);
+  $('#lbClose').focus();
+}}
+function lbClose() {{
+  if (!lb.classList.contains('open')) return;
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  lbImg.removeAttribute('src');
+  lbGallery?._start?.(); lbGallery = null;
+  lbReturn?.focus?.(); lbReturn = null;
+}}
+function openFromShot(shot) {{
+  const slides = [...shot.querySelectorAll('.slide')];
+  const active = slides.findIndex(s => s.classList.contains('active'));
+  lbOpen(shot, active > 0 ? active : 0);      // open on whatever the carousel is showing
+}}
+
+document.addEventListener('click', e => {{
+  if (e.target.closest('.gallery-dot')) return;          // dots switch slides, not open the viewer
+  if (e.target.closest('.lb')) {{
+    if (e.target.closest('#lbClose')) return lbClose();
+    if (e.target.closest('#lbPrev'))  return lbShow(lbAt - 1);
+    if (e.target.closest('#lbNext'))  return lbShow(lbAt + 1);
+    if (e.target !== lbImg) lbClose();                   // click the backdrop to dismiss
+    return;
+  }}
+  const shot = e.target.closest('.shot[role=button]');
+  if (shot) openFromShot(shot);
+}});
+document.addEventListener('keydown', e => {{
+  if (lb.classList.contains('open')) {{
+    if (e.key === 'Escape') lbClose();
+    else if (e.key === 'ArrowRight') lbShow(lbAt + 1);
+    else if (e.key === 'ArrowLeft') lbShow(lbAt - 1);
+    return;
+  }}
+  const shot = e.target.closest?.('.shot[role=button]');
+  if (shot && (e.key === 'Enter' || e.key === ' ')) {{ e.preventDefault(); openFromShot(shot); }}
+}});
+let lbX = null;
+lb.addEventListener('touchstart', e => {{ lbX = e.changedTouches[0].clientX; }}, {{passive: true}});
+lb.addEventListener('touchend', e => {{
+  if (lbX === null) return;
+  const dx = e.changedTouches[0].clientX - lbX; lbX = null;
+  if (Math.abs(dx) > 45 && lbSrcs.length > 1) lbShow(lbAt + (dx < 0 ? 1 : -1));
+}}, {{passive: true}});
+
+/* ---- per-route notes ---- */
+const nt = $('#nt');
+let noteLog = {{}};        // routeId -> [{{ts, voter, text, pending}}]
+let ntId = null, ntReturn = null;
+
+function noteCount(id) {{ return (noteLog[id] || []).length; }}
+function paintNoteCounts() {{
+  for (const c of cards) {{
+    const n = noteCount(c.dataset.id), b = c.querySelector('.nbadge');
+    b.textContent = n || ''; b.classList.toggle('has', n > 0);
+  }}
+}}
+function fmtDate(ts) {{
+  const d = new Date(ts);
+  return isNaN(d) ? '' : d.toLocaleDateString(undefined, {{day: 'numeric', month: 'short', year: 'numeric'}});
+}}
+function renderNotes() {{
+  const list = $('#ntList'), items = noteLog[ntId] || [];
+  list.innerHTML = '';
+  if (!items.length) {{
+    const p = document.createElement('p');
+    p.className = 'nt-empty'; p.textContent = 'No notes yet.';
+    list.appendChild(p);
+  }}
+  for (const n of items) {{
+    const wrap = document.createElement('div');
+    wrap.className = 'nt-item' + (n.pending ? ' nt-pending' : '');
+    const meta = document.createElement('p');
+    meta.className = 'nt-meta';
+    meta.innerHTML = '<b></b><span></span>';
+    meta.querySelector('b').textContent = n.voter || 'anonymous';
+    meta.querySelector('span').textContent =
+      ' · ' + fmtDate(n.ts) + (n.pending ? ' · not saved yet' : '');
+    const body = document.createElement('p');
+    body.className = 'nt-body'; body.textContent = n.text;   // textContent: never inject markup
+    wrap.append(meta, body);
+    if (n.id && me && (n.voter || '').toLowerCase() === me.toLowerCase()) {{
+      const del = document.createElement('button');
+      del.type = 'button'; del.className = 'nt-del'; del.textContent = 'Delete';
+      del.addEventListener('click', () => deleteNote(n.id));
+      wrap.appendChild(del);
+    }}
+    list.appendChild(wrap);
+  }}
+  const who = $('#ntWho');
+  who.innerHTML = me ? 'Posting as <b></b>' : 'Add your name at the top to post';
+  if (me) who.querySelector('b').textContent = me;
+  who.classList.toggle('anon', !me);
+  $('#ntSave').disabled = !me;
+}}
+function openNotes(id) {{
+  ntId = id;
+  $('#ntTitle').textContent =
+    document.getElementById('route-' + id).querySelector('h3').textContent;
+  $('#ntText').value = '';
+  renderNotes();
+  ntReturn = document.activeElement;
+  nt.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  (me ? $('#ntText') : $('#ntClose')).focus();
+}}
+function closeNotes() {{
+  if (!nt.classList.contains('open')) return;
+  nt.classList.remove('open');
+  document.body.style.overflow = '';
+  ntId = null;
+  ntReturn?.focus?.(); ntReturn = null;
+}}
+$('#ntClose').addEventListener('click', closeNotes);
+nt.addEventListener('click', e => {{ if (e.target === nt) closeNotes(); }});
+$('#ntAdd').addEventListener('submit', e => {{
+  e.preventDefault();
+  const text = $('#ntText').value.trim();
+  if (!text || !me || !ntId) return;
+  const nid = 'n' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  const rec = {{project: NOTES, itemId: ntId, vote: 'note', note: text, voter: me, session: nid}};
+  (noteLog[ntId] = noteLog[ntId] || []).push(
+    {{id: nid, ts: new Date().toISOString(), voter: me, text, pending: true}});
+  outbox.push(rec); save(); drain();
+  $('#ntText').value = '';
+  renderNotes(); paintNoteCounts();
+}});
+function deleteNote(nid) {{
+  const id = ntId;
+  noteLog[id] = (noteLog[id] || []).filter(n => n.id !== nid);
+  outbox.push({{project: NOTES, itemId: id, vote: 'note-delete', note: nid, voter: me}});
+  save(); drain(); renderNotes(); paintNoteCounts();
+}}
+async function pullNotes() {{
+  try {{
+    const r = await fetch(ENDPOINT + '?action=rows&project=' + encodeURIComponent(NOTES));
+    const j = await r.json();
+    if (!j.ok) return;
+    const map = {{}}, gone = new Set();
+    const all = j.rows.concat(outbox.filter(r => r.project === NOTES));
+    for (const row of all) if (row.vote === 'note-delete') gone.add(row.note);
+    for (const row of all) {{
+      if (row.vote !== 'note' || !row.note || gone.has(row.session)) continue;
+      (map[row.itemId] = map[row.itemId] || []).push({{
+        id: row.session, ts: row.ts || new Date().toISOString(),
+        voter: row.voter || 'anonymous', text: row.note, pending: !row.ts}});
+    }}
+    noteLog = map;
+    paintNoteCounts();
+    if (nt.classList.contains('open')) renderNotes();
+  }} catch {{ /* offline: keep what we have */ }}
+}}
+document.addEventListener('keydown', e => {{
+  if (e.key === 'Escape' && nt.classList.contains('open')) closeNotes();
+}});
+
+paintName(); paint(); pull(); pullNotes(); drain();
 """
 
 HTML = f"""<!doctype html>
@@ -514,6 +761,29 @@ HTML = f"""<!doctype html>
 
 <div class="sync" id="sync"></div>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <img id="lbImg" alt="">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close (Esc)">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="Previous photo">&#8249;</button>
+  <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="Next photo">&#8250;</button>
+  <p class="lb-cap"><b id="lbTitle"></b><span id="lbCredit"></span><span class="lb-count" id="lbCount"></span></p>
+</div>
+
+<div class="nt" id="nt" role="dialog" aria-modal="true" aria-labelledby="ntTitle">
+  <div class="nt-box">
+    <div class="nt-head">
+      <h2 id="ntTitle"></h2>
+      <button class="nt-close" id="ntClose" type="button" aria-label="Close (Esc)">&times;</button>
+    </div>
+    <div class="nt-list" id="ntList"></div>
+    <form class="nt-add" id="ntAdd">
+      <textarea id="ntText" rows="3" placeholder="Conditions, gear, who you went with, what to do differently&hellip;"></textarea>
+      <div class="nt-foot"><span class="nt-who" id="ntWho"></span>
+        <button type="submit" id="ntSave">Save note</button></div>
+    </form>
+  </div>
+</div>
+
 <footer><div class="wrap">
   <h2>How to read this, and what not to trust</h2>
   <p><b>Grades</b> are the Hüsler K-scale (K1 easy → K6 extreme) as used in Switzerland; where a
@@ -537,25 +807,15 @@ HTML = f"""<!doctype html>
   <p><b>Conditions change.</b> Cables get removed for winter, routes close for rockfall, lifts run to
      short summer timetables. The Senda ferrada Piz Mitgel above Savognin, for instance, was
      dismantled and is not listed. Check the operator before you drive.</p>
-  <h2>Comments and lists</h2>
-  <p>Select any text to leave a comment or a suggested edit — the button is bottom-right. Your
-     <i>Want to go</i> and <i>Done</i> marks are keyed to the name you enter at the top and sync to a
-     shared sheet; changes made offline queue up and send when you are back on the network.</p>
+  <h2>Notes and lists</h2>
+  <p>Every route card has a <b>Notes</b> button for route-specific notes — conditions, gear, who you
+     were with, what to do differently. They are shared, not private to you, and show up for anyone
+     opening that route. Your <i>Want to go</i> and <i>Done</i> marks are keyed to the name you enter
+     at the top. Everything syncs to a shared sheet; changes made offline queue up and send when you
+     are back on the network.</p>
 </div></footer>
 
 <script>{JS}</script>
-<script>
-(function () {{
-  window.HC_CONFIG = {{ endpoint: {json.dumps(ENDPOINT)}, project: {json.dumps(COMMENT_PROJECT)} }};
-  var BASE = {json.dumps(ASSET_BASE)};
-  var link = document.createElement('link');
-  link.rel = 'stylesheet'; link.href = BASE + 'html-comments.css';
-  document.head.appendChild(link);
-  var s = document.createElement('script');
-  s.src = BASE + 'html-comments.js';
-  document.head.appendChild(s);
-}})();
-</script>
 </body>
 </html>
 """
