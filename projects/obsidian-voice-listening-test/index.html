@@ -15,6 +15,7 @@
     .note{background:var(--panel);border:1px solid var(--line);border-radius:6px;margin:16px 0;box-shadow:var(--shadow);overflow:hidden}.note-head{padding:16px 18px 10px;border-bottom:1px solid var(--line)}.note-head h2{font-size:20px;margin:4px 0}.note-meta{color:var(--muted);font-size:13px}.label{display:inline-block;border-radius:2em;padding:2px 9px;font-size:12px;font-weight:600;margin-right:5px}.label.eu{background:#ddf4ff;color:#0550ae}.label.us{background:#fff1e5;color:var(--orange)}.label.method{background:#fbefff;color:#8250df}
     .note-body{padding:14px 18px}.note-body p{margin:0 0 10px}.note-body blockquote{margin:12px 0;padding:10px 14px;border-left:3px solid var(--line);color:#424a53;background:#f6f8fa}.source{font-size:13px;color:var(--muted)}
     .variants{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:15px}.variant{border:1px solid var(--line);border-radius:6px;padding:13px;background:#fafbfc}.variant h3{font-size:14px;margin:0 0 8px}.variant h3 span{color:var(--muted);font-weight:400}.variant audio{width:100%;height:38px;margin:5px 0 2px}.variant .transcript{font-size:13px;color:var(--muted);margin:8px 0 0}.variant .status{font-size:12px;color:var(--green);font-weight:600}.pending{color:var(--orange)!important}
+    .lab{margin:26px 0;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:6px}.lab h2{font-size:20px;margin:0 0 5px}.lab-intro{color:var(--muted);margin:0 0 14px}.pronunciation-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}.pronunciation-card{border:1px solid var(--line);border-radius:6px;padding:12px;background:#fafbfc}.pronunciation-card h3{font-size:14px;margin:0}.pronunciation-card .voice-note{font-size:12px;color:var(--muted);margin:2px 0 7px}.pronunciation-card audio{width:100%;height:36px}.pronunciation-card .status{font-size:12px;color:var(--green);font-weight:600}.script{margin:14px 0 0;padding:10px 12px;border-left:3px solid var(--purple);background:#f6f8fa;color:#424a53;font-size:13px}.model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-top:14px}.model{border:1px solid var(--line);border-radius:6px;padding:11px 13px;background:#fafbfc}.model h3{font-size:14px;margin:0 0 3px}.model p{font-size:13px;color:var(--muted);margin:0}.price{color:var(--green);font-weight:600}.small{font-size:12px;color:var(--muted)}
     .rubric{margin-top:28px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:6px}.rubric h2{font-size:18px;margin:0 0 8px}.rubric ul{margin:8px 0 0;padding-left:22px}.footer{margin-top:28px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
     @media(max-width:620px){.shell{padding:20px 12px 50px}.hero h1{font-size:27px}.count{width:100%;margin-left:0}}
   </style>
@@ -25,9 +26,35 @@
   <section class="hero">
     <div class="eyebrow">Resources / Saved · experimental note</div>
     <h1>AI policy notes, read aloud</h1>
-    <p>A small listening test for cheap spoken summaries: five current policy notes, two rewrite styles, one deliberately consistent voice. Listen for naturalness, pronunciation, pacing, and whether the script preserves legal status and uncertainty.</p>
+  <p>A listening test for cheap spoken summaries: five current policy notes, paired rewrite styles, and a matched pronunciation lab. Listen for naturalness, pronunciation, pacing, and whether the script preserves legal status and uncertainty.</p>
   </section>
-  <div class="notice"><strong>How to test:</strong> listen to A and B for the same note before moving on. The scripts are short excerpts, not production summaries. Audio is generated with Kokoro; the page remains useful as a script-review fixture if audio is pending.</div>
+  <div class="notice"><strong>How to test:</strong> start with the pronunciation lab: the text is identical across voices, so differences are mostly synthesis and voice quality. Then listen to A and B for the same note. These are short excerpts, not production summaries. Audio is generated locally with Kokoro; the model shortlist below is ready for an OpenRouter run.</div>
+
+  <section class="lab">
+    <h2>Pronunciation lab · same script, four voices</h2>
+    <p class="lab-intro">This deliberately dense sentence checks policy names, acronyms, numbers, punctuation, and legal qualifications. Play the same script across voices and note misreadings rather than judging the writing.</p>
+    <div class="pronunciation-grid">
+      <section class="pronunciation-card"><h3>bf_emma</h3><p class="voice-note">British · female</p><audio controls preload="none" src="audio/pronunciation-bf-emma.wav"></audio><div class="status" data-audio-status="pronunciation-bf-emma.wav">Kokoro · local fixture</div></section>
+      <section class="pronunciation-card"><h3>bm_george</h3><p class="voice-note">British · male</p><audio controls preload="none" src="audio/pronunciation-bm-george.wav"></audio><div class="status" data-audio-status="pronunciation-bm-george.wav">Kokoro · local fixture</div></section>
+      <section class="pronunciation-card"><h3>af_heart</h3><p class="voice-note">American · female</p><audio controls preload="none" src="audio/pronunciation-af-heart.wav"></audio><div class="status" data-audio-status="pronunciation-af-heart.wav">Kokoro · local fixture</div></section>
+      <section class="pronunciation-card"><h3>am_michael</h3><p class="voice-note">American · male</p><audio controls preload="none" src="audio/pronunciation-am-michael.wav"></audio><div class="status" data-audio-status="pronunciation-am-michael.wav">Kokoro · local fixture</div></section>
+    </div>
+    <p class="script"><strong>Test script:</strong> “Article 50 of the European Union AI Act covers GPAI, or general-purpose artificial intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organisations. A 24.5 percent change is not the same as 2.45 percent. The proposal is voluntary, not mandatory; and a legislative recommendation is not a law. Check the URL, example dot org slash AI dash policy.”</p>
+  </section>
+
+  <section class="lab">
+    <h2>Cheap model shortlist</h2>
+    <p class="lab-intro">These are the candidates worth generating through OpenRouter with the exact pronunciation script above. Prices are current catalogue figures per million input characters/tokens as applicable; quality needs a blind listening run.</p>
+    <div class="model-list">
+      <section class="model"><h3><a href="https://openrouter.ai/hexgrad/kokoro-82m">Kokoro 82M</a></h3><p><span class="price">$0.62/M characters</span> · open-weight, 54 voices. Cheapest serious baseline; local samples above.</p></section>
+      <section class="model"><h3><a href="https://openrouter.ai/deepgram/flux-tts:free">Deepgram Flux TTS</a></h3><p><span class="price">Free</span> · worth testing for zero-cost bulk generation, but availability and quality need checking.</p></section>
+      <section class="model"><h3><a href="https://openrouter.ai/fish-audio/s2.1-pro-free:free">Fish Audio S2.1 Pro Free</a></h3><p><span class="price">Free</span> · potentially more expressive; test pronunciation and queue reliability before depending on it.</p></section>
+      <section class="model"><h3><a href="https://openrouter.ai/qwen/qwen-audio-3.0-tts-flash">Qwen Audio 3.0 TTS Flash</a></h3><p><span class="price">$15/M characters</span> · sensible quality/control candidate while staying below the 10¢ page budget.</p></section>
+      <section class="model"><h3>Microsoft MAI-Voice-2-Flash</h3><p><span class="price">$15/M characters</span> · promising paid comparison; include if pronunciation stability beats Kokoro.</p></section>
+      <section class="model"><h3>Gemini 3.1 Flash TTS</h3><p><span class="price">$1/M input + $20/M audio tokens</span> · likely higher quality, but probably too costly as the default.</p></section>
+    </div>
+    <p class="small">OpenRouter’s live speech catalogue is the source of the current candidate list and prices. Free models should be treated as experiments, not production dependencies.</p>
+  </section>
   <div class="toolbar" aria-label="Filter notes">
     <button class="active" data-filter="all">All notes</button><button data-filter="briefing">Clear briefing</button><button data-filter="conversational">Conversational</button><button data-filter="skeptical">Sceptical</button><span class="count" id="count"></span>
   </div>
