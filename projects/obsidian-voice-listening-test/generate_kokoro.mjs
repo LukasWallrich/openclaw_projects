@@ -13,6 +13,14 @@ for (const [voice, filename] of [["bf_emma", "pronunciation-bf-emma.wav"], ["bm_
   jobs.push({ filename, voice, transcript: pronunciationText });
 }
 
+const acronymVariants = [
+  ["acronyms-spaces-bf-emma.wav", "G P A I. N I S T. H E P I. U R L. Article 50. Twenty-four point five percent. Voluntary, not mandatory."],
+  ["acronyms-dots-bf-emma.wav", "G. P. A. I. N. I. S. T. H. E. P. I. U. R. L. Article 50. Twenty-four point five percent. Voluntary, not mandatory."],
+  ["acronyms-spoken-bf-emma.wav", "Gee pee ay eye. En eye ess tee. Aitch ee pee eye. You are ell. Article fifty. Twenty-four point five percent. Voluntary, not mandatory."],
+  ["acronyms-expanded-bf-emma.wav", "General-purpose artificial intelligence, abbreviated G P A I. The National Institute of Standards and Technology, or N I S T. The Higher Education Policy Institute, or H E P I. The uniform resource locator, or U R L. Article 50. Twenty-four point five percent. Voluntary, not mandatory."],
+];
+for (const [filename, transcript] of acronymVariants) jobs.push({ filename, voice: "bf_emma", transcript });
+
 if (jobs.length === 0) throw new Error("No audio/transcript pairs found in index.html");
 
 const tts = await KokoroTTS.from_pretrained("onnx-community/Kokoro-82M-v1.0-ONNX", {
@@ -20,8 +28,7 @@ const tts = await KokoroTTS.from_pretrained("onnx-community/Kokoro-82M-v1.0-ONNX
   device: "cpu",
 });
 
-for (const { filename, transcript } of jobs) {
-  const voice = jobs.find((job) => job.filename === filename).voice;
+for (const { filename, voice, transcript } of jobs) {
   const audio = await tts.generate(transcript, { voice });
   await audio.save(new URL(`audio/${filename}`, project));
   console.log(`${filename}\t${voice}\t${transcript.length} characters`);

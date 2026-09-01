@@ -26,7 +26,7 @@
   <section class="hero">
     <div class="eyebrow">Resources / Saved · experimental note</div>
     <h1>AI policy notes, read aloud</h1>
-  <p>A listening test for cheap spoken summaries: five current policy notes, paired rewrite styles, and a matched pronunciation lab. Listen for naturalness, pronunciation, pacing, and whether the script preserves legal status and uncertainty.</p>
+  <p>A listening test for cheap spoken summaries: five current policy notes, paired rewrite styles, and focused pronunciation labs. Listen for naturalness, pronunciation, pacing, and whether the script preserves legal status and uncertainty.</p>
   </section>
   <div class="notice"><strong>How to test:</strong> start with the pronunciation lab: the text is identical across voices, so differences are mostly synthesis and voice quality. Then listen to A and B for the same note. These are short excerpts, not production summaries. Audio is generated locally with Kokoro; the model shortlist below is ready for an OpenRouter run.</div>
 
@@ -43,17 +43,28 @@
   </section>
 
   <section class="lab">
-    <h2>Cheap model shortlist</h2>
-    <p class="lab-intro">These are the candidates worth generating through OpenRouter with the exact pronunciation script above. Prices are current catalogue figures per million input characters/tokens as applicable; quality needs a blind listening run.</p>
+    <h2>Acronym lab · what spelling actually works?</h2>
+    <p class="lab-intro">Kokoro has no semantic instruction such as “read this token letter by letter”. These four equivalent phrasings test the practical workarounds. Spaces are the first thing to try; explicit spoken letters or an expansion are safer for important terms.</p>
+    <div class="pronunciation-grid">
+      <section class="pronunciation-card"><h3>Spaces</h3><p class="voice-note">G P A I · N I S T · H E P I · U R L</p><audio controls preload="none" src="audio/acronyms-spaces-bf-emma.wav"></audio><div class="status" data-audio-status="acronyms-spaces-bf-emma.wav">Kokoro · local fixture</div></section>
+      <section class="pronunciation-card"><h3>Periods</h3><p class="voice-note">G. P. A. I. · N. I. S. T.</p><audio controls preload="none" src="audio/acronyms-dots-bf-emma.wav"></audio><div class="status" data-audio-status="acronyms-dots-bf-emma.wav">Kokoro · local fixture</div></section>
+      <section class="pronunciation-card"><h3>Spoken letters</h3><p class="voice-note">“gee pee ay eye” · “en eye ess tee”</p><audio controls preload="none" src="audio/acronyms-spoken-bf-emma.wav"></audio><div class="status" data-audio-status="acronyms-spoken-bf-emma.wav">Kokoro · local fixture</div></section>
+      <section class="pronunciation-card"><h3>Expand once</h3><p class="voice-note">full term, then the abbreviation</p><audio controls preload="none" src="audio/acronyms-expanded-bf-emma.wav"></audio><div class="status" data-audio-status="acronyms-expanded-bf-emma.wav">Kokoro · local fixture</div></section>
+    </div>
+    <p class="script"><strong>Production rule:</strong> normalize all-caps tokens to spaced letters, but expand high-risk or unfamiliar abbreviations on first use. Keep a per-voice pronunciation override because spaces and periods are model-dependent heuristics, not a guarantee.</p>
+  </section>
+
+  <section class="lab">
+    <h2>Small-model shortlist</h2>
+    <p class="lab-intro">I’ve narrowed the primary comparison to small or free models. Generate the exact pronunciation scripts above through OpenRouter; quality, pronunciation stability, and availability should be scored together.</p>
     <div class="model-list">
       <section class="model"><h3><a href="https://openrouter.ai/hexgrad/kokoro-82m">Kokoro 82M</a></h3><p><span class="price">$0.62/M characters</span> · open-weight, 54 voices. Cheapest serious baseline; local samples above.</p></section>
       <section class="model"><h3><a href="https://openrouter.ai/deepgram/flux-tts:free">Deepgram Flux TTS</a></h3><p><span class="price">Free</span> · worth testing for zero-cost bulk generation, but availability and quality need checking.</p></section>
       <section class="model"><h3><a href="https://openrouter.ai/fish-audio/s2.1-pro-free:free">Fish Audio S2.1 Pro Free</a></h3><p><span class="price">Free</span> · potentially more expressive; test pronunciation and queue reliability before depending on it.</p></section>
-      <section class="model"><h3><a href="https://openrouter.ai/qwen/qwen-audio-3.0-tts-flash">Qwen Audio 3.0 TTS Flash</a></h3><p><span class="price">$15/M characters</span> · sensible quality/control candidate while staying below the 10¢ page budget.</p></section>
-      <section class="model"><h3>Microsoft MAI-Voice-2-Flash</h3><p><span class="price">$15/M characters</span> · promising paid comparison; include if pronunciation stability beats Kokoro.</p></section>
-      <section class="model"><h3>Gemini 3.1 Flash TTS</h3><p><span class="price">$1/M input + $20/M audio tokens</span> · likely higher quality, but probably too costly as the default.</p></section>
+      <section class="model"><h3><a href="https://openrouter.ai/canopylabs/orpheus-3b-0.1-ft">Orpheus 3B</a></h3><p><span class="price">$7/M characters</span> · small expressive English model with seven preset voices.</p></section>
+      <section class="model"><h3><a href="https://openrouter.ai/sesame/csm-1b">Sesame CSM 1B</a></h3><p><span class="price">$7/M characters</span> · compact conversational model with seven voices; promising pleasantness check.</p></section>
     </div>
-    <p class="small">OpenRouter’s live speech catalogue is the source of the current candidate list and prices. Free models should be treated as experiments, not production dependencies.</p>
+    <p class="small">OpenRouter’s live speech catalogue is the source of the current candidate list and prices. Free models should be treated as experiments, not production dependencies. Larger paid models remain fallback benchmarks, not the default path.</p>
   </section>
   <div class="toolbar" aria-label="Filter notes">
     <button class="active" data-filter="all">All notes</button><button data-filter="briefing">Clear briefing</button><button data-filter="conversational">Conversational</button><button data-filter="skeptical">Sceptical</button><span class="count" id="count"></span>
