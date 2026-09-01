@@ -44,14 +44,14 @@
 
   <section class="lab">
     <h2>Acronym lab · what spelling actually works?</h2>
-    <p class="lab-intro">Kokoro has no semantic instruction such as “read this token letter by letter”. These four equivalent phrasings test the practical workarounds. Spaces are the first thing to try; explicit spoken letters or an expansion are safer for important terms.</p>
+    <p class="lab-intro">Kokoro has no semantic instruction such as “read this token letter by letter”. These four equivalent phrasings test the practical workarounds. In this run, spaces work; periods create run-on behaviour and are marked as a failure.</p>
     <div class="pronunciation-grid">
       <section class="pronunciation-card"><h3>Spaces</h3><p class="voice-note">G P A I · N I S T · H E P I · U R L</p><audio controls preload="none" src="audio/acronyms-spaces-bf-emma.wav"></audio><div class="status" data-audio-status="acronyms-spaces-bf-emma.wav">Kokoro · local fixture</div></section>
-      <section class="pronunciation-card"><h3>Periods</h3><p class="voice-note">G. P. A. I. · N. I. S. T.</p><audio controls preload="none" src="audio/acronyms-dots-bf-emma.wav"></audio><div class="status" data-audio-status="acronyms-dots-bf-emma.wav">Kokoro · local fixture</div></section>
+      <section class="pronunciation-card"><h3>Periods <span class="small">· failed</span></h3><p class="voice-note">G. P. A. I. · N. I. S. T.</p><audio controls preload="none" src="audio/acronyms-dots-bf-emma.wav"></audio><div class="status pending" data-audio-status="acronyms-dots-bf-emma.wav">Observed: run-on issues</div></section>
       <section class="pronunciation-card"><h3>Spoken letters</h3><p class="voice-note">“gee pee ay eye” · “en eye ess tee”</p><audio controls preload="none" src="audio/acronyms-spoken-bf-emma.wav"></audio><div class="status" data-audio-status="acronyms-spoken-bf-emma.wav">Kokoro · local fixture</div></section>
       <section class="pronunciation-card"><h3>Expand once</h3><p class="voice-note">full term, then the abbreviation</p><audio controls preload="none" src="audio/acronyms-expanded-bf-emma.wav"></audio><div class="status" data-audio-status="acronyms-expanded-bf-emma.wav">Kokoro · local fixture</div></section>
     </div>
-    <p class="script"><strong>Production rule:</strong> normalize all-caps tokens to spaced letters, but expand high-risk or unfamiliar abbreviations on first use. Keep a per-voice pronunciation override because spaces and periods are model-dependent heuristics, not a guarantee.</p>
+    <p class="script"><strong>Verdict:</strong> normalize all-caps tokens to spaced letters; do not insert periods between letters. Expand high-risk or unfamiliar abbreviations on first use. Keep a per-voice pronunciation override because this behaviour is model-dependent.</p>
   </section>
 
   <section class="lab">

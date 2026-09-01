@@ -17,7 +17,7 @@ The generator uses the same Kokoro ONNX model for every sample. The paired note 
 
 ## Acronyms in production
 
-Spaces are a useful first heuristic, but Kokoro does not expose a guaranteed “spell this token” switch. For all-caps tokens, a normalizer can try spaced letters and let the verifier or a per-voice exception list catch failures:
+Spaces work for the checked `bf_emma` Kokoro fixture. Periods between letters caused run-on issues, so they should not be used as the default. Kokoro does not expose a guaranteed “spell this token” switch. For all-caps tokens, a normalizer can use spaced letters and let the verifier or a per-voice exception list catch failures:
 
 ```js
 const spellAcronyms = (text) => text.replace(/\b[A-Z]{2,}\b/g, (token) => [...token].join(" "));
