@@ -21,6 +21,11 @@ END = "<!-- VOICE-LAB:END -->"
 
 BRIEF_CHARACTERS = 5900  # a 1,000-word spoken brief
 
+# The OpenAI speech endpoint returns no usage figures. This rate comes from a
+# gpt-audio-mini call that reported 190 audio tokens for 9.6 seconds of speech;
+# both models bill against the same $12 / 1M audio-token meter.
+OPENAI_AUDIO_TOKENS_PER_SECOND = 190 / 9.6
+
 # model -> (display name, link, price note, cost of one 1,000-word brief)
 # Character prices are OpenRouter endpoint prices; OpenAI and Google prices are
 # from their own pricing pages. Gemini bills audio output by token, so its brief
@@ -73,9 +78,13 @@ PRICING = {
         "link": "https://developers.openai.com/api/docs/pricing",
         "route": "OpenAI API",
         "price": "$0.60 / 1M input characters + $12 / 1M audio tokens",
-        "per_million_characters": None,
-        "cost_note": "OpenAI publishes no audio-tokens-per-second figure, so the "
-                     "brief cost cannot be derived from the price list.",
+        "per_million_characters": 0.60,
+        "per_million_audio_tokens": 12.0,
+        "audio_tokens_per_second": OPENAI_AUDIO_TOKENS_PER_SECOND,
+        "cost_note": "OpenAI publishes no tokens-per-second figure for speech, so the audio "
+                     "half is priced at the 19.8 tokens per second measured from a "
+                     "gpt-audio-mini call, which bills on the same audio-token meter. That "
+                     "works out at $0.014 per minute.",
     },
     "gemini-3.1-flash-tts-preview": {
         "name": "Gemini 3.1 Flash TTS",
@@ -95,19 +104,26 @@ PRICING = {
 
 
 def brief_cost(model, samples, characters):
-    """Cost of one 1,000-word spoken brief, or None when it cannot be derived."""
+    """Cost of one 1,000-word spoken brief, or None when it cannot be derived.
+
+    Models that bill audio output by token are priced from how long these
+    samples actually run, so the estimate uses each model's own speaking rate.
+    """
     entry = PRICING[model]
-    if entry.get("per_million_characters") is not None:
-        return entry["per_million_characters"] * BRIEF_CHARACTERS / 1e6
-    if entry.get("per_million_audio_tokens") is not None:
+    cost = (entry.get("per_million_characters") or 0.0) * BRIEF_CHARACTERS / 1e6
+    if entry.get("per_million_audio_tokens") is None:
+        return cost if entry.get("per_million_characters") is not None else None
+
+    tokens_per_second = entry.get("audio_tokens_per_second")
+    if tokens_per_second is None:
         rates = [s["usage"]["candidatesTokenCount"] / s["duration"]
                  for s in samples if s.get("usage") and s.get("duration")]
         if not rates:
             return None
-        seconds_per_character = sum(s["duration"] for s in samples) / (len(samples) * characters)
-        tokens = sum(rates) / len(rates) * seconds_per_character * BRIEF_CHARACTERS
-        return entry["per_million_audio_tokens"] * tokens / 1e6
-    return None
+        tokens_per_second = sum(rates) / len(rates)
+    seconds_per_character = sum(s["duration"] for s in samples) / (len(samples) * characters)
+    tokens = tokens_per_second * seconds_per_character * BRIEF_CHARACTERS
+    return cost + entry["per_million_audio_tokens"] * tokens / 1e6
 
 
 def money(value):

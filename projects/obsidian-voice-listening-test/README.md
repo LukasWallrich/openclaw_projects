@@ -36,8 +36,16 @@ The local Kokoro fixtures come from `node generate_kokoro.mjs` after
 Prices are OpenRouter endpoint rates for the hosted open models and the
 providers' own rates for OpenAI and Google. A 1,000-word brief (about six
 minutes of speech) costs nothing on the Deepgram Flux and Fish Audio free tiers,
-$0.004 on Kokoro, $0.09 on OpenAI TTS-1, and $0.12–$0.29 on the Gemini TTS
-models. Kokoro run locally costs nothing and needs no network call.
+$0.004 on Kokoro, $0.09 on OpenAI TTS-1, $0.11 on GPT-4o mini TTS, $0.12 on
+Gemini 2.5 Flash TTS, $0.18 on Deepgram Aura-2, and $0.29 on Gemini 3.1 Flash
+TTS. Kokoro run locally costs nothing and needs no network call.
+
+Models that bill audio output by the token are priced from how fast they
+actually speak in these samples. OpenAI's speech endpoint returns no usage
+figures, so the audio half of GPT-4o mini TTS uses the 19.8 tokens per second
+measured from a `gpt-audio-mini` call on the same audio-token meter — $0.014 a
+minute, which matches the figure OpenAI users report. At these speaking rates
+GPT-4o mini TTS costs slightly more per brief than the older TTS-1.
 
 Pronunciation is scored by transcribing each sample with Whisper and checking
 seven terms a policy summary must not mangle: GPAI, NIST, HEPI, Article 50,
@@ -45,8 +53,24 @@ seven terms a policy summary must not mangle: GPAI, NIST, HEPI, Article 50,
 are near-misses — "HEP" for HEPI, "GPA1" for GPAI — and they differ by model
 rather than by voice.
 
-Sesame CSM 1B returns HTTP 400 on the 470-character script although it succeeds
-on a 90-character one, so it cannot serve a brief.
+Sesame CSM 1B returns HTTP 400 on the full script although it succeeds on a
+90-character one, so it cannot serve a brief.
+
+## The free tiers in practice
+
+OpenRouter allows 20 requests a minute and 1,000 a day on `:free` models once an
+account has bought credits, so one brief a day is far inside the budget. Length
+and speed decide it instead. Deepgram Flux TTS returns HTTP 413 above about
+2,000 characters, so a brief needs three or four calls stitched together, and
+its latency swings — the same 1,500-character request took 8 seconds once and
+195 seconds another time. Fish Audio S2.1 Pro read a 2,796-character passage in
+one 37-second call. Kokoro did the same passage in 5.7 seconds for about a tenth
+of a cent.
+
+Free capacity is shared and unpriced, so neither latency figure is a promise,
+and neither model has a paid endpoint under the same name to fall back to.
+Anything sent to a free variant also reaches a provider on its own retention
+terms, which matters more for personal notes than for this policy fixture.
 
 ## Acronyms in production
 
