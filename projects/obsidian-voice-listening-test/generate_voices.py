@@ -201,13 +201,17 @@ def main():
         document = json.loads(RESULTS.read_text())
         previous = {entry["slug"]: entry for entry in document["samples"]}
 
-    results, failures = [], []
+    recorded_failures = [line for line in
+                         (FAILURES.read_text().splitlines() if FAILURES.exists() else [])
+                         if line.strip()]
+    attempted, results, failures = set(), [], []
     for slug, provider, model, voice, character in MANIFEST:
         if args.only and slug not in args.only:
             if slug in previous:
                 results.append(previous[slug])
             continue
 
+        attempted.add(slug)
         destination = AUDIO_DIR / f"{slug}.mp3"
         duration = probe_duration(destination) if destination.exists() else None
         if duration and duration >= MIN_DURATION and not args.force:
@@ -244,6 +248,10 @@ def main():
     # Keep whatever check_pronunciation.py added at the top level.
     document.update({"script": SCRIPT_TEXT, "characters": len(SCRIPT_TEXT), "samples": results})
     RESULTS.write_text(json.dumps(document, indent=2) + "\n")
+    # Keep failure records for slugs this run did not touch, so an --only or a
+    # skipped run never quietly drops a known-bad model.
+    failures = [line for line in recorded_failures
+                if line.split("\t", 1)[0] not in attempted] + failures
     FAILURES.write_text("\n".join(failures) + ("\n" if failures else ""))
     print(f"\n{len(results)} samples in {RESULTS.name}, {len(failures)} failures in {FAILURES.name}")
 
