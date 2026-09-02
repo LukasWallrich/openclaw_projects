@@ -1,0 +1,307 @@
+{
+  "script": "Article 50 of the European Union AI Act covers G P A I, or general-purpose artificial intelligence. The European Commission published its guidance in 2026. N I S T and H E P I are separate organisations. A 24.5 percent change is not the same as 2.45 percent. The proposal is voluntary, not mandatory; and a legislative recommendation is not a law. Check the URL, example dot org slash AI dash policy.",
+  "characters": 400,
+  "samples": [
+    {
+      "slug": "kokoro-bf-emma",
+      "provider": "openrouter",
+      "model": "hexgrad/kokoro-82m",
+      "voice": "bf_emma",
+      "character": "British \u00b7 female",
+      "file": "audio/voices/kokoro-bf-emma.mp3",
+      "duration": 31.51,
+      "bytes": 252333,
+      "measured_cost_usd": 0.0,
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEP are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org.ai-policy",
+      "misread": [
+        "HEPI"
+      ]
+    },
+    {
+      "slug": "kokoro-bm-george",
+      "provider": "openrouter",
+      "model": "hexgrad/kokoro-82m",
+      "voice": "bm_george",
+      "character": "British \u00b7 male",
+      "file": "audio/voices/kokoro-bm-george.mp3",
+      "duration": 35.64,
+      "bytes": 285357,
+      "measured_cost_usd": 0.0,
+      "transcript": "Article 50 of the European Union AI Act covers GPAI or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEP are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org.ai-policy",
+      "misread": [
+        "HEPI"
+      ]
+    },
+    {
+      "slug": "kokoro-af-heart",
+      "provider": "openrouter",
+      "model": "hexgrad/kokoro-82m",
+      "voice": "af_heart",
+      "character": "American \u00b7 female",
+      "file": "audio/voices/kokoro-af-heart.mp3",
+      "duration": 32.95,
+      "bytes": 263853,
+      "measured_cost_usd": 0.0,
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEP are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org.ai-policy",
+      "misread": [
+        "HEPI"
+      ]
+    },
+    {
+      "slug": "flux-bree",
+      "provider": "openrouter",
+      "model": "deepgram/flux-tts:free",
+      "voice": "flux-bree-en",
+      "character": "American \u00b7 female",
+      "file": "audio/voices/flux-bree.mp3",
+      "duration": 37.39,
+      "bytes": 299373,
+      "measured_cost_usd": 0.0,
+      "transcript": "Article 50 of the European Union AI Act covers GPAI or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org slash ai-policy",
+      "misread": []
+    },
+    {
+      "slug": "flux-wes",
+      "provider": "openrouter",
+      "model": "deepgram/flux-tts:free",
+      "voice": "flux-wes-en",
+      "character": "American \u00b7 male",
+      "file": "audio/voices/flux-wes.mp3",
+      "duration": 37.06,
+      "bytes": 296685,
+      "measured_cost_usd": 0.000744,
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org slash ai dash policy.",
+      "misread": []
+    },
+    {
+      "slug": "flux-maeve",
+      "provider": "openrouter",
+      "model": "deepgram/flux-tts:free",
+      "voice": "flux-maeve-en",
+      "character": "American \u00b7 female",
+      "file": "audio/voices/flux-maeve.mp3",
+      "duration": 28.18,
+      "bytes": 225645,
+      "measured_cost_usd": 0.0,
+      "transcript": "Article 50 of the European Union AI Act covers DPAI or General Person Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org.ai-policy",
+      "misread": [
+        "GPAI"
+      ]
+    },
+    {
+      "slug": "aura2-thalia",
+      "provider": "openrouter",
+      "model": "deepgram/aura-2",
+      "voice": "aura-2-thalia-en",
+      "character": "American \u00b7 female",
+      "file": "audio/voices/aura2-thalia.mp3",
+      "duration": 30.86,
+      "bytes": 247149,
+      "measured_cost_usd": 0.0,
+      "transcript": "Article 50 of the European Union AI Act covers GPA1 or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org.ai-policy",
+      "misread": [
+        "GPAI"
+      ]
+    },
+    {
+      "slug": "aura2-apollo",
+      "provider": "openrouter",
+      "model": "deepgram/aura-2",
+      "voice": "aura-2-apollo-en",
+      "character": "American \u00b7 male",
+      "file": "audio/voices/aura2-apollo.mp3",
+      "duration": 42.46,
+      "bytes": 339885,
+      "measured_cost_usd": 0.0,
+      "transcript": "Article 50 of the European Union AI Act covers GPA1 or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org.ai-policy",
+      "misread": [
+        "GPAI"
+      ]
+    },
+    {
+      "slug": "fish-s21",
+      "provider": "openrouter",
+      "model": "fish-audio/s2.1-pro-free:free",
+      "voice": "alloy",
+      "character": "American \u00b7 neutral",
+      "file": "audio/voices/fish-s21.mp3",
+      "duration": 29.54,
+      "bytes": 236589,
+      "measured_cost_usd": 0.0,
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory. And a legislative recommendation is not a law. Check the URL example.org.ai-policy.",
+      "misread": []
+    },
+    {
+      "slug": "openai-mini-fable",
+      "provider": "openai",
+      "model": "gpt-4o-mini-tts",
+      "voice": "fable",
+      "character": "British \u00b7 male",
+      "file": "audio/voices/openai-mini-fable.mp3",
+      "duration": 33.5,
+      "bytes": 268269,
+      "measured_cost_usd": null,
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organisations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org slash ai dash policy",
+      "misread": []
+    },
+    {
+      "slug": "openai-mini-nova",
+      "provider": "openai",
+      "model": "gpt-4o-mini-tts",
+      "voice": "nova",
+      "character": "American \u00b7 female",
+      "file": "audio/voices/openai-mini-nova.mp3",
+      "duration": 29.57,
+      "bytes": 236781,
+      "measured_cost_usd": null,
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL, example.org slash AI dash policy.",
+      "misread": []
+    },
+    {
+      "slug": "openai-mini-onyx",
+      "provider": "openai",
+      "model": "gpt-4o-mini-tts",
+      "voice": "onyx",
+      "character": "American \u00b7 male",
+      "file": "audio/voices/openai-mini-onyx.mp3",
+      "duration": 30.86,
+      "bytes": 247149,
+      "measured_cost_usd": null,
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. See URL example.org.ai-policy",
+      "misread": []
+    },
+    {
+      "slug": "openai-tts1-fable",
+      "provider": "openai",
+      "model": "tts-1",
+      "voice": "fable",
+      "character": "British \u00b7 male",
+      "file": "audio/voices/openai-tts1-fable.mp3",
+      "duration": 27.24,
+      "bytes": 218157,
+      "measured_cost_usd": null,
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organisations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory. And a legislative recommendation is not a law. Check the URL, example.org slash AI-policy.",
+      "misread": []
+    },
+    {
+      "slug": "openai-tts1-nova",
+      "provider": "openai",
+      "model": "tts-1",
+      "voice": "nova",
+      "character": "American \u00b7 female",
+      "file": "audio/voices/openai-tts1-nova.mp3",
+      "duration": 26.93,
+      "bytes": 215661,
+      "measured_cost_usd": null,
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organizations, a 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL, example.org slash ai-policy.",
+      "misread": []
+    },
+    {
+      "slug": "gemini31-kore",
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-tts-preview",
+      "voice": "Kore",
+      "character": "American \u00b7 female",
+      "file": "audio/voices/gemini31-kore.mp3",
+      "duration": 31.49,
+      "bytes": 252141,
+      "measured_cost_usd": null,
+      "usage": {
+        "promptTokenCount": 98,
+        "candidatesTokenCount": 1007,
+        "totalTokenCount": 1105,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 98
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "AUDIO",
+            "tokenCount": 1007
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPP are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org slash ai-policy.",
+      "misread": [
+        "HEPI"
+      ]
+    },
+    {
+      "slug": "gemini31-puck",
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-tts-preview",
+      "voice": "Puck",
+      "character": "American \u00b7 male",
+      "file": "audio/voices/gemini31-puck.mp3",
+      "duration": 30.46,
+      "bytes": 243885,
+      "measured_cost_usd": null,
+      "usage": {
+        "promptTokenCount": 98,
+        "candidatesTokenCount": 973,
+        "totalTokenCount": 1071,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 98
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "AUDIO",
+            "tokenCount": 973
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIST and HEPI are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org.ai-policy.",
+      "misread": []
+    },
+    {
+      "slug": "gemini25-kore",
+      "provider": "gemini",
+      "model": "gemini-2.5-flash-preview-tts",
+      "voice": "Kore",
+      "character": "American \u00b7 female",
+      "file": "audio/voices/gemini25-kore.mp3",
+      "duration": 32.23,
+      "bytes": 258093,
+      "measured_cost_usd": null,
+      "usage": {
+        "promptTokenCount": 98,
+        "candidatesTokenCount": 804,
+        "totalTokenCount": 902,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 98
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "AUDIO",
+            "tokenCount": 804
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "transcript": "Article 50 of the European Union AI Act covers GPAI, or General Purpose Artificial Intelligence. The European Commission published its guidance in 2026. NIS and HEPI are separate organizations. A 24.5% change is not the same as 2.45%. The proposal is voluntary, not mandatory, and a legislative recommendation is not a law. Check the URL example.org.ai-policy",
+      "misread": [
+        "NIST"
+      ]
+    }
+  ],
+  "pronunciation_checks": [
+    "GPAI",
+    "NIST",
+    "HEPI",
+    "Article 50",
+    "24.5%",
+    "2.45%",
+    "URL"
+  ],
+  "transcription_model": "whisper-1"
+}
