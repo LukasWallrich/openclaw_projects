@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const { pathToFileURL } = require('url');
 const path = require('path');
 
-const prototypeUrl = pathToFileURL(path.resolve(__dirname, '..', 'index.html')).href;
+const prototypeUrl = process.env.CROSSROADS_URL || pathToFileURL(path.resolve(__dirname, '..', 'index.html')).href;
 
 test.beforeEach(async ({ page }) => {
   await page.goto(prototypeUrl);

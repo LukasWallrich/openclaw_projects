@@ -32,6 +32,8 @@ npm install
 npm test
 ```
 
+Set `CROSSROADS_URL` to run the same tests against a deployment.
+
 ## License
 
 MIT. See `LICENSE`.
