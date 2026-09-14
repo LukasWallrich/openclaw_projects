@@ -1,0 +1,12 @@
+{
+  "name": "crossroads-lobby-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An adaptive spatial lobby for self-sorting event conversations.",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}

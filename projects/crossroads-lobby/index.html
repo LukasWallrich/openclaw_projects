@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Crossroads is an adaptive spatial lobby prototype for self-sorting conversations in persistent Google Meet rooms.">
+  <meta name="theme-color" content="#171c19">
+  <title>Crossroads — adaptive conversations</title>
+  <style>
+    :root {
+      --ink:#172019; --muted:#657069; --paper:#f4f1e8; --card:#fffdf7; --line:#d9d3c4;
+      --green:#1f7654; --green-soft:#dceee2; --blue:#3974a8; --blue-soft:#dfeaf4;
+      --amber:#c87921; --amber-soft:#f6e4c8; --coral:#c85240; --coral-soft:#f7ddd7;
+      --night:#171c19; --road:#e8e2d4; --road-line:#cfc6b4; --shadow:0 18px 50px #25312818;
+      --serif:Iowan Old Style,Palatino Linotype,Book Antiqua,Palatino,Georgia,serif;
+      --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:15px/1.5 var(--sans); }
+    button,input { font:inherit; }
+    button { color:inherit; }
+    a { color:inherit; }
+    .topbar { background:var(--night); color:#fffdf7; }
+    .topbar-inner { width:min(1440px,100% - 36px); min-height:64px; margin:auto; display:flex; align-items:center; gap:22px; }
+    .brand { display:flex; align-items:center; gap:11px; font-weight:800; letter-spacing:.01em; }
+    .brand-mark { width:30px; height:30px; border:1px solid #ffffff50; border-radius:50%; display:grid; place-items:center; position:relative; }
+    .brand-mark::before,.brand-mark::after { content:""; position:absolute; background:#f0c34d; }
+    .brand-mark::before { width:18px; height:2px; }
+    .brand-mark::after { width:2px; height:18px; }
+    .demo-pill { margin-left:auto; color:#f4d77d; border:1px solid #f4d77d65; border-radius:99px; padding:5px 10px; font-size:.73rem; font-weight:800; text-transform:uppercase; letter-spacing:.09em; }
+    .top-action { border:0; background:transparent; color:#fff; opacity:.82; cursor:pointer; padding:8px; }
+    .top-action:hover,.top-action:focus-visible { opacity:1; text-decoration:underline; text-underline-offset:4px; }
+
+    .shell { width:min(1440px,100% - 36px); margin:0 auto; padding:26px 0 64px; }
+    .hero { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(270px,.6fr); gap:26px; align-items:end; margin:8px 0 23px; }
+    .eyebrow { margin:0 0 8px; font-size:.74rem; font-weight:850; letter-spacing:.13em; text-transform:uppercase; color:var(--green); }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { max-width:780px; margin-bottom:8px; font:clamp(2.35rem,5vw,5.15rem)/.95 var(--serif); letter-spacing:-.055em; }
+    .hero-copy { margin:0; max-width:67ch; color:var(--muted); font-size:1.03rem; }
+    .session-card { border-left:3px solid var(--green); padding:8px 0 8px 17px; }
+    .session-card strong { display:block; font-size:.95rem; }
+    .session-card span { color:var(--muted); font-size:.86rem; }
+
+    .controls { display:flex; flex-wrap:wrap; align-items:center; gap:9px; margin-bottom:13px; }
+    .control-label { color:var(--muted); font-size:.8rem; font-weight:750; margin-right:2px; }
+    .segmented { display:flex; padding:3px; border:1px solid var(--line); background:#ebe6da; border-radius:11px; }
+    .segment { border:0; border-radius:8px; background:transparent; padding:7px 11px; font-size:.78rem; font-weight:750; cursor:pointer; }
+    .segment[aria-pressed="true"] { background:var(--card); box-shadow:0 2px 9px #17201916; }
+    .status-line { margin-left:auto; display:flex; align-items:center; gap:8px; font-size:.8rem; color:var(--muted); }
+    .live-dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 4px var(--green-soft); }
+
+    .workspace { display:grid; grid-template-columns:minmax(620px,1fr) 340px; min-height:650px; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:var(--card); box-shadow:var(--shadow); }
+    .map-wrap { min-width:0; position:relative; background:#eeeadf; border-right:1px solid var(--line); }
+    .map-toolbar { height:55px; padding:0 16px; display:flex; align-items:center; gap:15px; background:#f9f6eeec; border-bottom:1px solid var(--line); }
+    .map-toolbar strong { font-size:.87rem; }
+    .legend { display:flex; gap:12px; margin-left:auto; color:var(--muted); font-size:.7rem; }
+    .legend span { display:flex; align-items:center; gap:5px; }
+    .swatch { width:9px; height:9px; border-radius:50%; }
+    .swatch.open { background:var(--green); } .swatch.lively { background:var(--amber); } .swatch.full { background:var(--coral); }
+    .map-scroller { overflow:auto; height:595px; }
+    .map-stage { position:relative; min-width:800px; min-height:595px; overflow:hidden; isolation:isolate; outline:none; }
+    .map-stage::before { content:""; position:absolute; inset:0; opacity:.38; pointer-events:none; background-image:radial-gradient(#667168 1px,transparent 1px); background-size:22px 22px; }
+    .avenue,.street { position:absolute; z-index:0; background:var(--road); box-shadow:inset 0 0 0 1px #fff7; }
+    .avenue { top:0; bottom:0; width:68px; transform:translateX(-50%); border-left:1px dashed var(--road-line); border-right:1px dashed var(--road-line); }
+    .street { left:0; right:0; height:68px; transform:translateY(-50%); border-top:1px dashed var(--road-line); border-bottom:1px dashed var(--road-line); }
+    .road-label { position:absolute; z-index:1; font-size:.68rem; font-weight:850; letter-spacing:.085em; text-transform:uppercase; color:#6c746d; background:#f6f2e9d9; border:1px solid #d7d0c2; border-radius:99px; padding:4px 9px; white-space:nowrap; }
+    .avenue-label { top:11px; transform:translateX(-50%); }
+    .street-label { left:12px; transform:translateY(-50%); }
+    .park { position:absolute; left:2%; bottom:3%; width:17%; height:17%; border:1px solid #b8cdbb; border-radius:45% 55% 43% 57%; background:#dbe8d6; color:#657a68; font:italic .75rem var(--serif); display:grid; place-items:center; transform:rotate(-2deg); }
+    .pond { position:absolute; right:2%; top:4%; width:11%; height:14%; background:#d7e7e9; border:1px solid #b8d0d2; border-radius:58% 42% 53% 47%; }
+    .room { position:absolute; z-index:4; width:116px; min-height:90px; transform:translate(-50%,-50%); border:2px solid var(--green); border-radius:14px; padding:8px 7px 7px; text-align:left; cursor:pointer; background:var(--card); box-shadow:0 6px 18px #17201920; transition:transform .18s ease,box-shadow .18s ease,opacity .18s ease; }
+    .room:hover,.room:focus-visible,.room.selected { transform:translate(-50%,-50%) scale(1.045); box-shadow:0 9px 26px #17201930; outline:3px solid #fff; }
+    .room.quiet { border-color:var(--blue); } .room.lively { border-color:var(--amber); } .room.full { border-color:var(--coral); }
+    .room.closed { border:1px dashed #9da49e; background:#e5e2daee; color:#727a74; box-shadow:none; opacity:.78; }
+    .room-kicker { display:block; font-size:.58rem; letter-spacing:.08em; font-weight:850; text-transform:uppercase; opacity:.7; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .room-name { display:block; margin-top:2px; font:700 .89rem/1.05 var(--serif); min-height:30px; }
+    .occupancy { display:flex; align-items:center; gap:5px; margin-top:5px; font-size:.69rem; font-weight:800; }
+    .faces { display:flex; padding-left:3px; }
+    .face { width:17px; height:17px; margin-left:-3px; border-radius:50%; border:2px solid var(--card); background:var(--face,#9db59f); display:grid; place-items:center; color:#173023; font-size:.48rem; }
+    .closed .faces { display:none; }
+    .user-avatar { position:absolute; z-index:7; width:44px; height:52px; transform:translate(-50%,-50%); transition:left .75s cubic-bezier(.2,.8,.2,1),top .75s cubic-bezier(.2,.8,.2,1); pointer-events:none; }
+    .user-avatar::before { content:""; position:absolute; left:9px; top:2px; width:25px; height:25px; border-radius:50%; background:#f1cbb3; border:3px solid var(--night); }
+    .user-avatar::after { content:""; position:absolute; left:7px; top:25px; width:30px; height:24px; border-radius:8px 8px 13px 13px; background:#f0c34d; border:3px solid var(--night); }
+    .you-label { position:absolute; left:50%; bottom:-15px; transform:translateX(-50%); padding:1px 6px; border-radius:99px; background:var(--night); color:white; font-size:.55rem; font-weight:850; letter-spacing:.05em; }
+    .map-tip { position:absolute; z-index:8; left:17px; bottom:15px; max-width:310px; padding:8px 11px; border-radius:9px; background:#171c19e8; color:white; font-size:.68rem; box-shadow:0 5px 18px #0003; }
+
+    .panel { display:flex; flex-direction:column; background:var(--card); }
+    .panel-head { padding:18px 19px 13px; border-bottom:1px solid var(--line); }
+    .panel-head p { margin:0; color:var(--muted); font-size:.76rem; }
+    .panel-body { padding:20px 19px; flex:1; overflow:auto; }
+    .room-status { display:inline-flex; align-items:center; gap:7px; margin-bottom:11px; padding:4px 8px; border-radius:99px; background:var(--green-soft); color:var(--green); font-size:.67rem; font-weight:850; letter-spacing:.05em; text-transform:uppercase; }
+    .room-status.quiet { color:var(--blue); background:var(--blue-soft); } .room-status.lively { color:#92510d; background:var(--amber-soft); } .room-status.full { color:var(--coral); background:var(--coral-soft); } .room-status.closed { color:#68706a; background:#e8e6df; }
+    .panel h2 { margin:0 0 8px; font:700 2rem/1.02 var(--serif); letter-spacing:-.035em; }
+    .panel-desc { min-height:48px; color:var(--muted); font-size:.88rem; }
+    .people-block { margin:19px 0; padding:13px; background:#f4f1e8; border-radius:11px; }
+    .people-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:.72rem; font-weight:850; text-transform:uppercase; letter-spacing:.07em; }
+    .people-list { display:flex; flex-wrap:wrap; gap:6px; }
+    .person-chip { padding:4px 7px; border:1px solid var(--line); border-radius:99px; background:var(--card); color:#4e5a52; font-size:.68rem; }
+    .prompt { padding:12px 13px; border-left:3px solid var(--amber); background:#f8edda; font:italic .86rem/1.45 var(--serif); }
+    .panel-actions { display:grid; gap:9px; padding:16px 19px 19px; border-top:1px solid var(--line); }
+    .btn { border:1px solid var(--line); border-radius:10px; padding:10px 13px; background:var(--card); font-weight:800; cursor:pointer; text-align:center; text-decoration:none; }
+    .btn:hover,.btn:focus-visible { border-color:#949c96; outline:3px solid #dae9df; }
+    .btn.primary { border-color:var(--green); background:var(--green); color:white; }
+    .btn.dark { border-color:var(--night); background:var(--night); color:white; }
+    .btn:disabled { opacity:.46; cursor:not-allowed; }
+    .random-btn { display:flex; justify-content:center; gap:8px; }
+
+    .below { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin-top:22px; }
+    .note-card { border-top:1px solid var(--line); padding-top:18px; }
+    .note-card .num { color:var(--green); font-weight:850; font-size:.71rem; letter-spacing:.1em; }
+    .note-card h3 { margin:6px 0; font:700 1.2rem var(--serif); }
+    .note-card p { color:var(--muted); font-size:.82rem; }
+    .footer { display:flex; justify-content:space-between; gap:20px; margin-top:44px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:.72rem; }
+
+    .modal { position:fixed; z-index:30; inset:0; display:none; place-items:center; padding:20px; background:#111813bb; backdrop-filter:blur(4px); }
+    .modal.open { display:grid; }
+    .modal-card { width:min(520px,100%); border-radius:17px; background:var(--card); box-shadow:0 24px 80px #0007; padding:24px; }
+    .modal-card h2 { margin:0 0 8px; font:700 2rem/1 var(--serif); }
+    .modal-card p { color:var(--muted); }
+    .modal-actions { display:flex; gap:9px; justify-content:flex-end; margin-top:20px; }
+    .field-label { display:block; margin:17px 0 5px; font-size:.72rem; font-weight:850; text-transform:uppercase; letter-spacing:.07em; }
+    .name-input { width:100%; border:1px solid var(--line); border-radius:9px; background:white; padding:10px 11px; }
+    .interest-grid { display:flex; flex-wrap:wrap; gap:7px; }
+    .interest { border:1px solid var(--line); border-radius:99px; background:white; padding:6px 9px; font-size:.75rem; cursor:pointer; }
+    .interest[aria-pressed="true"] { color:var(--green); border-color:var(--green); background:var(--green-soft); }
+    .toast { position:fixed; z-index:40; left:50%; bottom:24px; transform:translate(-50%,20px); opacity:0; max-width:calc(100% - 30px); border-radius:10px; padding:10px 14px; background:var(--night); color:white; box-shadow:0 10px 40px #0005; font-size:.8rem; transition:.22s ease; pointer-events:none; }
+    .toast.show { opacity:1; transform:translate(-50%,0); }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+    @media (max-width:1050px) {
+      .workspace { grid-template-columns:minmax(540px,1fr) 300px; }
+      .map-scroller { height:570px; } .map-stage { min-height:570px; } .workspace { min-height:625px; }
+    }
+    @media (max-width:820px) {
+      .shell,.topbar-inner { width:min(100% - 24px,1440px); }
+      .hero { grid-template-columns:1fr; } .session-card { display:none; }
+      .workspace { display:block; min-height:0; }
+      .map-wrap { border-right:0; border-bottom:1px solid var(--line); }
+      .map-scroller { height:520px; } .map-stage { min-height:520px; }
+      .panel { min-height:420px; } .below { grid-template-columns:1fr; gap:8px; }
+      .status-line { width:100%; margin:2px 0 0; }
+    }
+    @media (max-width:520px) {
+      .topbar-inner { gap:10px; } .top-action { display:none; }
+      .shell { padding-top:18px; } h1 { font-size:3rem; }
+      .map-toolbar { align-items:flex-start; height:auto; min-height:55px; padding:11px 13px; flex-direction:column; gap:5px; }
+      .legend { margin:0; } .map-scroller { height:455px; } .map-stage { min-height:455px; }
+      .controls { margin-bottom:12px; } .control-label { width:100%; }
+      .segment { padding:7px 9px; }
+      .footer { flex-direction:column; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      * { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span>Crossroads</div>
+      <span class="demo-pill">Live prototype · synthetic people</span>
+      <button class="top-action" id="profileButton" type="button">Edit your profile</button>
+      <button class="top-action" id="aboutButton" type="button">How it works</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">AI × Metascience · conversation commons</p>
+        <h1>Find the conversation you didn’t know you needed.</h1>
+        <p class="hero-copy">Walk to an intersection to see who is there. Rooms stay put; people choose where to go. Quiet rooms welcome arrivals, lively rooms make their energy visible, and new rooms open only when the crowd needs them.</p>
+      </div>
+      <div class="session-card">
+        <strong>Networking commons · 48 minutes</strong>
+        <span>Come and go freely. A gentle reset is suggested every 12 minutes.</span>
+      </div>
+    </section>
+
+    <div class="controls" aria-label="Prototype scenario controls">
+      <span class="control-label">Try an attendance scenario:</span>
+      <div class="segmented" role="group" aria-label="Number of attendees">
+        <button class="segment" data-scenario="0" aria-pressed="false" type="button">18 people</button>
+        <button class="segment" data-scenario="1" aria-pressed="true" type="button">38 people</button>
+        <button class="segment" data-scenario="2" aria-pressed="false" type="button">72 people</button>
+      </div>
+      <div class="status-line"><span class="live-dot"></span><span id="scenarioStatus">32 in conversations · 6 in the lobby · 7 rooms open</span></div>
+    </div>
+
+    <section class="workspace" aria-label="Crossroads spatial lobby">
+      <div class="map-wrap">
+        <div class="map-toolbar">
+          <strong>Conversation map</strong>
+          <span class="control-label">Topic streets × intention avenues</span>
+          <div class="legend" aria-label="Room occupancy legend">
+            <span><i class="swatch open"></i>welcoming</span>
+            <span><i class="swatch lively"></i>lively</span>
+            <span><i class="swatch full"></i>full</span>
+          </div>
+        </div>
+        <div class="map-scroller">
+          <div class="map-stage" id="map" tabindex="0" aria-label="Spatial conversation map. Use arrow keys to select a room and Enter to walk there.">
+            <div class="avenue" style="left:25%"></div><div class="avenue" style="left:50%"></div><div class="avenue" style="left:75%"></div>
+            <div class="street" style="top:25%"></div><div class="street" style="top:50%"></div><div class="street" style="top:75%"></div>
+            <div class="road-label avenue-label" style="left:25%">Bring a puzzle Ave.</div>
+            <div class="road-label avenue-label" style="left:50%">Compare methods Ave.</div>
+            <div class="road-label avenue-label" style="left:75%">Find collaborators Ave.</div>
+            <div class="road-label street-label" style="top:25%">Research practice St.</div>
+            <div class="road-label street-label" style="top:50%">Evaluation St.</div>
+            <div class="road-label street-label" style="top:75%">Community &amp; policy St.</div>
+            <div class="park">Quiet corner</div><div class="pond" aria-hidden="true"></div>
+            <div id="rooms"></div>
+            <div class="user-avatar" id="avatar" style="left:50%;top:92%" aria-hidden="true"><span class="you-label">YOU</span></div>
+            <div class="map-tip">Click a room to inspect it · use arrow keys + Enter to move</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel" aria-live="polite">
+        <div class="panel-head"><strong>Your next conversation</strong><p id="yourStatus">You are in the lobby · browsing freely</p></div>
+        <div class="panel-body">
+          <span class="room-status" id="detailStatus">Welcoming · 4 of 6</span>
+          <h2 id="detailTitle">Open workflows</h2>
+          <p class="panel-desc" id="detailDescription">Swap practical ways to use open tools and reproducible workflows without creating extra burden.</p>
+          <div class="people-block">
+            <div class="people-head"><span>Here now</span><span id="detailCount">4 people</span></div>
+            <div class="people-list" id="peopleList"></div>
+          </div>
+          <div class="prompt" id="detailPrompt">“What part of your current workflow would you most like to make easier for others to reproduce?”</div>
+        </div>
+        <div class="panel-actions">
+          <button class="btn primary" id="walkButton" type="button">Walk to this room</button>
+          <button class="btn dark" id="meetButton" type="button" disabled>Open Google Meet ↗</button>
+          <button class="btn random-btn" id="randomButton" type="button"><span aria-hidden="true">✦</span> Take me somewhere</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="below" aria-label="Prototype design notes">
+      <article class="note-card"><span class="num">01 · SELF-SORTING</span><h3>No attendance spreadsheet</h3><p>People see the available conversations and choose. The organiser curates prompts and capacity—not assignments.</p></article>
+      <article class="note-card"><span class="num">02 · ADAPTIVE</span><h3>Supply follows the crowd</h3><p>Switch between the scenarios above. Empty intersections remain dormant until enough people arrive to sustain another room.</p></article>
+      <article class="note-card"><span class="num">03 · BORING VIDEO</span><h3>Meet does the media</h3><p>The lobby coordinates presence; each active intersection hands off to an existing Google Meet link in a new tab.</p></article>
+    </section>
+
+    <footer class="footer">
+      <span>Crossroads prototype · no accounts, tracking, backend, or real Meet links</span>
+      <span>Open-source community concept · September 2026</span>
+    </footer>
+  </main>
+
+  <div class="modal" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+    <div class="modal-card">
+      <h2 id="profileTitle">What brings you here?</h2>
+      <p>Your interests help “Take me somewhere” suggest a useful under-filled room. They are not used to lock you into a track.</p>
+      <label class="field-label" for="displayName">Display name</label>
+      <input class="name-input" id="displayName" value="You" maxlength="40">
+      <span class="field-label">Interests</span>
+      <div class="interest-grid" id="interestGrid"></div>
+      <div class="modal-actions"><button class="btn" data-close="profileModal" type="button">Cancel</button><button class="btn primary" id="saveProfile" type="button">Save profile</button></div>
+    </div>
+  </div>
+
+  <div class="modal" id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <div class="modal-card">
+      <h2 id="aboutTitle">What this prototype proves</h2>
+      <p><strong>Real now:</strong> adaptive room rules, occupancy cues, routing, responsive interaction, keyboard control, and the Meet handoff journey.</p>
+      <p><strong>Synthetic for now:</strong> the other attendees and room counts. A production version would replace the in-page scenario data with ephemeral presence from Supabase Realtime and gate the room URLs behind attendee access.</p>
+      <p><strong>Deliberately absent:</strong> video, permanent profiles, tracking, and organiser-heavy matchmaking.</p>
+      <div class="modal-actions"><button class="btn primary" data-close="aboutModal" type="button">Back to the map</button></div>
+    </div>
+  </div>
+
+  <div class="modal" id="meetModal" role="dialog" aria-modal="true" aria-labelledby="meetTitle">
+    <div class="modal-card">
+      <p class="eyebrow">Prototype handoff</p>
+      <h2 id="meetTitle">Meet opens next</h2>
+      <p id="meetCopy">In production, this would open the room’s gated Google Meet link in a new tab while your avatar remains parked at the intersection.</p>
+      <div class="modal-actions"><button class="btn" data-close="meetModal" type="button">Stay here</button><button class="btn primary" id="simulateMeet" type="button">Simulate opening Meet ↗</button></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const rooms = [
+      {id:'workflow',row:0,col:0,title:'Open workflows',topic:'Research practice',intent:'Bring a puzzle',tags:['Open science','Methods'],desc:'Swap practical ways to use open tools and reproducible workflows without creating extra burden.',prompt:'What part of your current workflow would you most like to make easier for others to reproduce?'},
+      {id:'automation',row:0,col:1,title:'Human-centred automation',topic:'Research practice',intent:'Compare methods',tags:['AI tools','Methods'],desc:'Compare where automation genuinely helps research practice—and where human judgement must remain visible.',prompt:'Where has automation saved real time, and what still needs a careful human?'},
+      {id:'collab',row:0,col:2,title:'Build something together',topic:'Research practice',intent:'Find collaborators',tags:['Collaboration','Open science'],desc:'Find people interested in turning a shared research frustration into a small, useful project.',prompt:'What could a tiny team make in a month that would unblock many researchers?'},
+      {id:'eval',row:1,col:0,title:'Evaluation headaches',topic:'Evaluation',intent:'Bring a puzzle',tags:['Evaluation','AI tools'],desc:'Bring an unresolved measurement or validation problem and let the room help sharpen it.',prompt:'What are you measuring because it is available rather than because it is right?'},
+      {id:'benchmarks',row:1,col:1,title:'Beyond benchmarks',topic:'Evaluation',intent:'Compare methods',tags:['Evaluation','Methods'],desc:'Compare approaches to evaluating AI-enabled research beyond single-number performance scores.',prompt:'What evidence would actually change your mind about whether a tool works?'},
+      {id:'replication',row:1,col:2,title:'Replication partners',topic:'Evaluation',intent:'Find collaborators',tags:['Evaluation','Collaboration'],desc:'Connect around replications, robustness checks, shared datasets, and adversarial collaborations.',prompt:'Which influential result or tool most needs an independent stress test?'},
+      {id:'incentives',row:2,col:0,title:'Broken incentives clinic',topic:'Community & policy',intent:'Bring a puzzle',tags:['Policy','Community'],desc:'Diagnose incentive problems in publishing, funding, hiring, and research assessment.',prompt:'Which individually rational behaviour creates the worst collective outcome in your field?'},
+      {id:'governance',row:2,col:1,title:'Governance patterns',topic:'Community & policy',intent:'Compare methods',tags:['Policy','Community'],desc:'Compare practical models for community governance, participation, and responsible oversight.',prompt:'What decision should your community make differently—and who needs a voice in it?'},
+      {id:'coalitions',row:2,col:2,title:'Coalition corner',topic:'Community & policy',intent:'Find collaborators',tags:['Collaboration','Policy'],desc:'Find allies for cross-institution initiatives, shared standards, advocacy, or community infrastructure.',prompt:'What would become possible if three institutions coordinated instead of acting alone?'}
+    ];
+    const names = ['Maya','Jonas','Priya','Sam','Noor','Elliot','Ada','Luis','Mei','Tariq','Zoe','Anika','Ravi','Leah','Omar','Nina','Alex','Inez','Theo','June','Ari','Marta','Dev','Sara','Finn','Yuki','Lina','Ben','Rosa','Kofi','Elena','Max'];
+    const colours = ['#a7c7b1','#e6b892','#9dbbd5','#d6a9b7','#d7c77f','#9fc7c4','#b5afd8'];
+    const scenarios = [
+      {total:18, lobby:3, active:4, counts:[4,0,3,5,3,0,0,0,0]},
+      {total:38, lobby:6, active:7, counts:[4,5,4,5,5,5,4,0,0]},
+      {total:72, lobby:13, active:9, counts:[6,7,6,7,7,6,7,6,7]}
+    ];
+    const activationOrder = ['workflow','eval','collab','automation','benchmarks','replication','incentives','governance','coalitions'];
+    let scenarioIndex = 1;
+    let selectedId = 'workflow';
+    let userRoom = null;
+    let userInterests = ['Collaboration','Evaluation'];
+    let displayName = 'You';
+    let toastTimer;
+
+    const byId = id => document.getElementById(id);
+    const roomById = id => rooms.find(room => room.id === id);
+    const position = room => ({x:25 + room.col * 25,y:25 + room.row * 25});
+    const activeIds = () => new Set(activationOrder.slice(0,scenarios[scenarioIndex].active));
+    const countFor = room => scenarios[scenarioIndex].counts[rooms.indexOf(room)] + (userRoom === room.id ? 1 : 0);
+    const statusFor = (room) => {
+      if (!activeIds().has(room.id)) return {key:'closed',label:'Waiting for more people'};
+      const count = countFor(room);
+      if (count <= 2) return {key:'quiet',label:'Quiet · welcomes arrivals'};
+      if (count <= 4) return {key:'open',label:'Welcoming'};
+      if (count <= 5) return {key:'lively',label:'Lively'};
+      return {key:'full',label:'Full · try another'};
+    };
+    const peopleFor = room => {
+      const count = countFor(room);
+      const start = (rooms.indexOf(room) * 3 + scenarioIndex * 5) % names.length;
+      const people = Array.from({length:Math.min(count,6)},(_,i) => names[(start+i) % names.length]);
+      if (userRoom === room.id) people[Math.max(0,people.length-1)] = displayName;
+      return people;
+    };
+    const showToast = message => {
+      const toast = byId('toast'); toast.textContent = message; toast.classList.add('show');
+      clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'),2800);
+    };
+
+    function renderRooms() {
+      const container = byId('rooms'); container.innerHTML = '';
+      rooms.forEach(room => {
+        const pos = position(room), status = statusFor(room), count = countFor(room), people = peopleFor(room);
+        const button = document.createElement('button');
+        button.type = 'button'; button.className = `room ${status.key}${selectedId === room.id ? ' selected' : ''}`;
+        button.dataset.id = room.id; button.style.left = pos.x+'%'; button.style.top = pos.y+'%';
+        button.setAttribute('aria-label',`${room.title}. ${status.label}. ${status.key === 'closed' ? 'Closed' : count+' people here'}.`);
+        button.innerHTML = `<span class="room-kicker">${room.intent}</span><span class="room-name">${room.title}</span><span class="occupancy"><span class="faces">${people.slice(0,4).map((name,i)=>`<i class="face" style="--face:${colours[(i+rooms.indexOf(room))%colours.length]}">${name[0]}</i>`).join('')}</span>${status.key === 'closed' ? 'opens later' : count+' / 6'}</span>`;
+        button.addEventListener('click',() => selectRoom(room.id));
+        container.appendChild(button);
+      });
+      renderDetail();
+    }
+
+    function renderDetail() {
+      const room = roomById(selectedId), status = statusFor(room), count = countFor(room), active = status.key !== 'closed';
+      byId('detailStatus').className = `room-status ${status.key}`;
+      byId('detailStatus').textContent = active ? `${status.label} · ${count} of 6` : status.label;
+      byId('detailTitle').textContent = room.title;
+      byId('detailDescription').textContent = room.desc;
+      byId('detailPrompt').textContent = '“'+room.prompt+'”';
+      byId('detailCount').textContent = active ? `${count} ${count === 1 ? 'person' : 'people'}` : 'Room closed';
+      byId('peopleList').innerHTML = active ? peopleFor(room).map(name=>`<span class="person-chip">${name}</span>`).join('') : '<span class="person-chip">Opens automatically as attendance grows</span>';
+      const here = userRoom === room.id;
+      byId('walkButton').disabled = !active || status.key === 'full' || here;
+      byId('walkButton').textContent = here ? 'You are here' : status.key === 'full' ? 'Room is full' : active ? 'Walk to this room' : 'Not open yet';
+      byId('meetButton').disabled = !here;
+      byId('yourStatus').textContent = userRoom ? `You are at ${roomById(userRoom).title}` : 'You are in the lobby · browsing freely';
+    }
+
+    function selectRoom(id) {
+      selectedId = id; renderRooms();
+    }
+
+    function walkTo(id, automatic=false) {
+      const room = roomById(id), status = statusFor(room);
+      if (status.key === 'closed' || status.key === 'full') return;
+      selectedId = id; userRoom = id;
+      const pos = position(room), avatar = byId('avatar'); avatar.style.left = pos.x+'%'; avatar.style.top = (pos.y+8)+'%';
+      renderRooms();
+      showToast(`${automatic ? 'Suggested and joined' : 'You walked to'} “${room.title}” · Meet is ready when you are.`);
+    }
+
+    function chooseRoom() {
+      const candidates = rooms.filter(room => {
+        const status = statusFor(room); return status.key !== 'closed' && status.key !== 'full' && room.id !== userRoom;
+      });
+      const scored = candidates.map(room => ({room,score:userInterests.filter(tag=>room.tags.includes(tag)).length*3 - countFor(room)}));
+      scored.sort((a,b)=>b.score-a.score || countFor(a.room)-countFor(b.room));
+      if (scored[0]) walkTo(scored[0].room.id,true);
+    }
+
+    function setScenario(index) {
+      scenarioIndex = index;
+      const active = activeIds();
+      if (userRoom && !active.has(userRoom)) { userRoom = null; byId('avatar').style.left='50%'; byId('avatar').style.top='92%'; }
+      if (!active.has(selectedId)) selectedId = activationOrder[0];
+      document.querySelectorAll('.segment').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.scenario)===index)));
+      const scenario = scenarios[index], talking = scenario.total-scenario.lobby;
+      byId('scenarioStatus').textContent = `${talking} in conversations · ${scenario.lobby} in the lobby · ${scenario.active} rooms open`;
+      renderRooms(); showToast(`Scenario changed: ${scenario.total} attendees. Room supply adapted automatically.`);
+    }
+
+    function openModal(id) { const modal=byId(id); modal.classList.add('open'); setTimeout(()=>modal.querySelector('button,input')?.focus(),20); }
+    function closeModal(id) { byId(id).classList.remove('open'); }
+
+    document.querySelectorAll('.segment').forEach(button=>button.addEventListener('click',()=>setScenario(Number(button.dataset.scenario))));
+    byId('walkButton').addEventListener('click',()=>walkTo(selectedId));
+    byId('randomButton').addEventListener('click',chooseRoom);
+    byId('meetButton').addEventListener('click',()=>openModal('meetModal'));
+    byId('profileButton').addEventListener('click',()=>openModal('profileModal'));
+    byId('aboutButton').addEventListener('click',()=>openModal('aboutModal'));
+    byId('simulateMeet').addEventListener('click',()=>{ closeModal('meetModal'); showToast('Meet handoff simulated · your place remains visible on the map.'); });
+    document.querySelectorAll('[data-close]').forEach(button=>button.addEventListener('click',()=>closeModal(button.dataset.close)));
+    document.querySelectorAll('.modal').forEach(modal=>modal.addEventListener('click',event=>{ if(event.target===modal) closeModal(modal.id); }));
+    document.addEventListener('keydown',event=>{ if(event.key==='Escape') document.querySelectorAll('.modal.open').forEach(modal=>closeModal(modal.id)); });
+
+    const allInterests = ['AI tools','Evaluation','Open science','Methods','Policy','Community','Collaboration'];
+    byId('interestGrid').innerHTML = allInterests.map(item=>`<button type="button" class="interest" data-interest="${item}" aria-pressed="${userInterests.includes(item)}">${item}</button>`).join('');
+    byId('interestGrid').addEventListener('click',event=>{
+      const button=event.target.closest('.interest'); if(!button) return;
+      const interest=button.dataset.interest, has=userInterests.includes(interest);
+      userInterests=has?userInterests.filter(item=>item!==interest):[...userInterests,interest];
+      button.setAttribute('aria-pressed',String(!has));
+    });
+    byId('saveProfile').addEventListener('click',()=>{
+      displayName=byId('displayName').value.trim()||'You'; closeModal('profileModal'); renderRooms(); showToast('Profile saved for this prototype session.');
+    });
+
+    byId('map').addEventListener('keydown',event=>{
+      if (!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter',' '].includes(event.key)) return;
+      event.preventDefault();
+      if (event.key==='Enter' || event.key===' ') { walkTo(selectedId); return; }
+      const current=roomById(selectedId); let row=current.row,col=current.col;
+      if(event.key==='ArrowUp') row=Math.max(0,row-1); if(event.key==='ArrowDown') row=Math.min(2,row+1);
+      if(event.key==='ArrowLeft') col=Math.max(0,col-1); if(event.key==='ArrowRight') col=Math.min(2,col+1);
+      const next=rooms.find(room=>room.row===row&&room.col===col); if(next) selectRoom(next.id);
+    });
+
+    renderRooms();
+  </script>
+</body>
+</html>
