@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="A decision report on participant directories, asynchronous discussion, and live networking for a 100-person online AI and meta-science conference.">
+  <title>Designing networking for a 100-person online research conference</title>
+  <style>
+    :root {
+      --paper: #f4f1e8;
+      --paper-2: #ebe6d8;
+      --ink: #16231f;
+      --muted: #5b6862;
+      --line: #cbc6b8;
+      --pine: #174f43;
+      --pine-2: #0f3b33;
+      --mint: #d9e9df;
+      --coral: #d95f4b;
+      --coral-pale: #f5ddd7;
+      --gold: #e1aa31;
+      --blue: #2b6683;
+      --white: #fffdf8;
+      --shadow: 0 14px 36px rgba(22,35,31,.09);
+      --radius: 16px;
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font: 16px/1.62 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    a { color: var(--blue); text-underline-offset: 3px; }
+    a:hover { color: var(--coral); }
+    h1,h2,h3,h4 { font-family: Georgia,"Times New Roman",serif; line-height: 1.12; margin: 0; }
+    h1 { max-width: 13ch; font-size: clamp(3rem,8vw,6.7rem); letter-spacing: -.055em; }
+    h2 { font-size: clamp(2rem,4vw,3.25rem); letter-spacing: -.035em; }
+    h3 { font-size: 1.42rem; }
+    h4 { font-size: 1.06rem; }
+    p { margin: .65em 0; }
+    .wrap { width: min(var(--max),calc(100% - 36px)); margin: auto; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-weight: 800; font-size: .73rem; color: var(--coral); }
+    .hero { background: var(--pine); color: var(--white); overflow: hidden; position: relative; }
+    .hero::after { content:""; position:absolute; width:520px; height:520px; border:1px solid rgba(255,255,255,.18); border-radius:50%; right:-120px; top:-210px; box-shadow:0 0 0 55px rgba(255,255,255,.035),0 0 0 110px rgba(255,255,255,.025); }
+    .hero-inner { position:relative; z-index:1; min-height:720px; display:grid; grid-template-columns:1.55fr .8fr; gap:60px; align-items:end; padding:76px 0 70px; }
+    .hero .eyebrow { color: #ffb39f; }
+    .dek { max-width: 54ch; font-size: clamp(1.15rem,2vw,1.38rem); color: #d8e5df; margin: 28px 0 0; }
+    .hero-meta { align-self:center; border-left:1px solid rgba(255,255,255,.3); padding-left:30px; }
+    .hero-meta strong { display:block; font: 700 1.9rem/1.1 Georgia,serif; margin-bottom:5px; color:white; }
+    .hero-meta span { display:block; color:#c7d8d1; margin-bottom:24px; }
+    .nav { position:sticky; top:0; z-index:10; background:rgba(244,241,232,.95); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+    .nav .wrap { display:flex; gap:22px; overflow:auto; padding:12px 0; scrollbar-width:none; }
+    .nav a { color:var(--ink); text-decoration:none; white-space:nowrap; font-size:.84rem; font-weight:750; }
+    .nav a:hover { color:var(--coral); }
+    main section { padding:82px 0; border-bottom:1px solid var(--line); }
+    .section-head { display:grid; grid-template-columns:220px 1fr; gap:42px; margin-bottom:42px; }
+    .section-no { font:700 4rem/1 Georgia,serif; color:var(--coral); }
+    .lead { max-width:68ch; color:var(--muted); font-size:1.11rem; }
+    .recommendation { margin-top:-72px; position:relative; z-index:3; }
+    .rec-card { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); display:grid; grid-template-columns:1.2fr .8fr; overflow:hidden; }
+    .rec-main { padding:38px 42px; }
+    .rec-side { background:var(--coral-pale); padding:38px 36px; }
+    .rec-title { font-size:2rem; margin:8px 0 16px; }
+    .stack { display:grid; gap:12px; margin-top:22px; }
+    .stack-row { display:grid; grid-template-columns:36px 1fr; gap:12px; align-items:start; }
+    .stack-row b { width:31px; height:31px; display:grid; place-items:center; border-radius:50%; background:var(--pine); color:white; }
+    .price { font:700 2.5rem/1 Georgia,serif; color:var(--pine); }
+    .small { font-size:.88rem; color:var(--muted); }
+    .callout { border-left:4px solid var(--gold); background:#f8edcb; padding:17px 20px; margin:24px 0; }
+    .principles { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .principle { background:var(--white); padding:22px; border:1px solid var(--line); border-radius:12px; }
+    .principle .num { color:var(--coral); font-weight:900; font-size:.82rem; }
+    .principle h3 { margin:8px 0 10px; font-size:1.2rem; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .track { background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:26px; position:relative; }
+    .track.recommended { border:2px solid var(--pine); }
+    .badge { display:inline-block; padding:4px 9px; border-radius:999px; background:var(--mint); color:var(--pine-2); font-size:.72rem; font-weight:850; letter-spacing:.04em; text-transform:uppercase; }
+    .badge.coral { background:var(--coral-pale); color:#8a2f22; }
+    .badge.grey { background:#e7e5df; color:#505955; }
+    .track h3 { margin:14px 0 8px; }
+    .track ul,.compact { padding-left:19px; margin:14px 0 0; }
+    .track li,.compact li { margin:5px 0; }
+    .verdict { margin-top:18px; padding-top:15px; border-top:1px solid var(--line); font-size:.93rem; }
+    .subhead { margin:38px 0 16px; }
+    .subhead.wide-gap { margin-top:42px; }
+    .top-gap { margin-top:22px; }
+    .field-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px 24px; background:var(--pine); color:white; border-radius:var(--radius); padding:28px 32px; }
+    .field { border-bottom:1px solid rgba(255,255,255,.18); padding:9px 0 12px; }
+    .field b { color:#ffb39f; }
+    .channel-plan { display:grid; grid-template-columns:.8fr 1.2fr; gap:28px; }
+    .channels { background:var(--white); border-radius:var(--radius); padding:28px; border:1px solid var(--line); }
+    .channels code { background:var(--mint); color:var(--pine-2); padding:3px 6px; border-radius:4px; font-weight:750; }
+    .timeline { position:relative; padding-left:28px; }
+    .timeline::before { content:""; position:absolute; left:6px; top:7px; bottom:8px; width:2px; background:var(--line); }
+    .timeitem { position:relative; margin-bottom:22px; }
+    .timeitem::before { content:""; position:absolute; width:12px; height:12px; border-radius:50%; background:var(--coral); left:-27px; top:7px; border:3px solid var(--paper); }
+    .timeitem b { color:var(--pine); }
+    .runshow { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+    .runrow { display:grid; grid-template-columns:100px 1fr 1fr; border-bottom:1px solid var(--line); }
+    .runrow:last-child { border:0; }
+    .runrow > div { padding:17px 20px; }
+    .runrow .mins { background:var(--pine); color:white; font-weight:850; }
+    .runrow .action { font-weight:750; }
+    .filters { display:flex; flex-wrap:wrap; gap:8px; margin:24px 0; }
+    .filter { appearance:none; border:1px solid var(--line); background:var(--white); color:var(--ink); padding:8px 13px; border-radius:999px; font:inherit; font-size:.84rem; font-weight:750; cursor:pointer; }
+    .filter.active { background:var(--pine); color:white; border-color:var(--pine); }
+    .tool-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .tool { background:var(--white); border:1px solid var(--line); border-radius:14px; padding:24px; }
+    .tool.hide { display:none; }
+    .tool-top { display:flex; align-items:start; justify-content:space-between; gap:12px; }
+    .tool h3 { margin-bottom:3px; }
+    .cost { font-weight:850; color:var(--coral); text-align:right; white-space:nowrap; }
+    .scores { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:16px 0; }
+    .score { background:var(--paper); padding:8px 9px; border-radius:7px; font-size:.78rem; }
+    .score b { display:block; color:var(--pine); }
+    table { width:100%; border-collapse:collapse; background:var(--white); font-size:.91rem; }
+    th,td { padding:13px 14px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line); }
+    th { background:var(--pine); color:white; position:sticky; top:48px; }
+    tr:last-child td { border-bottom:0; }
+    .table-scroll { overflow:auto; border-radius:12px; border:1px solid var(--line); }
+    .risk-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+    .risk { background:var(--white); padding:22px; border-radius:12px; border:1px solid var(--line); }
+    .risk h3 { font-size:1.18rem; margin-bottom:7px; }
+    .checklist { counter-reset:item; display:grid; grid-template-columns:repeat(2,1fr); gap:12px; padding:0; list-style:none; }
+    .checklist li { counter-increment:item; background:var(--white); border:1px solid var(--line); border-radius:10px; padding:17px 18px 17px 55px; position:relative; }
+    .checklist li::before { content:counter(item); position:absolute; left:17px; top:16px; width:26px; height:26px; display:grid; place-items:center; border-radius:50%; background:var(--coral); color:white; font-weight:850; }
+    .sources { columns:2; column-gap:38px; padding-left:20px; }
+    .sources li { break-inside:avoid; margin:0 0 11px; padding-left:4px; }
+    .footer { background:var(--pine-2); color:#c8d7d1; padding:46px 0; }
+    .footer strong { color:white; }
+    @media (max-width:850px) {
+      .hero-inner,.rec-card,.section-head,.channel-plan { grid-template-columns:1fr; }
+      .hero-inner { min-height:auto; padding:64px 0 120px; }
+      .hero-meta { border-left:0; border-top:1px solid rgba(255,255,255,.3); padding:24px 0 0; display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+      .principles,.grid-3 { grid-template-columns:repeat(2,1fr); }
+      .section-no { font-size:2rem; }
+      .runrow { grid-template-columns:80px 1fr; }
+      .runrow .why { grid-column:2; padding-top:0; color:var(--muted); }
+    }
+    @media (max-width:600px) {
+      .wrap { width:min(100% - 24px,var(--max)); }
+      h1 { font-size:3.25rem; }
+      main section { padding:60px 0; }
+      .hero-meta,.principles,.grid-3,.tool-grid,.risk-grid,.checklist,.field-grid { grid-template-columns:1fr; }
+      .rec-main,.rec-side { padding:28px 24px; }
+      .sources { columns:1; }
+      .runrow { grid-template-columns:68px 1fr; font-size:.91rem; }
+      .runrow > div { padding:14px 12px; }
+    }
+    @media print {
+      .nav,.filters { display:none; }
+      body { background:white; font-size:11pt; }
+      .hero { print-color-adjust:exact; }
+      main section { break-inside:avoid; padding:32px 0; }
+      .recommendation { margin-top:0; }
+      a { color:inherit; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <p class="eyebrow">Decision report · 14 September 2026</p>
+        <h1>Make 100 researchers meet</h1>
+        <p class="dek">A practical networking design for an online conference on AI and meta-science—covering a participant directory, asynchronous exchange, and one live networking session.</p>
+      </div>
+      <div class="hero-meta" role="group" aria-label="Report scope">
+        <div><strong>100</strong><span>registered participants</span></div>
+        <div><strong>3</strong><span>layers that reinforce each other</span></div>
+        <div><strong>£0–low</strong><span>recommended marginal spend</span></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Report sections"><div class="wrap">
+    <a href="#answer">Recommendation</a><a href="#design">Design principles</a><a href="#directory">Directory</a><a href="#async">Async exchange</a><a href="#live">Live session</a><a href="#tools">Tool comparison</a><a href="#safeguards">Safeguards</a><a href="#plan">Implementation</a><a href="#sources">Sources</a>
+  </div></nav>
+
+  <main>
+    <section class="recommendation" id="answer"><div class="wrap">
+      <article class="rec-card">
+        <div class="rec-main">
+          <p class="eyebrow">Recommended stack</p>
+          <h2 class="rec-title">Keep the technology familiar; add structure.</h2>
+          <p>Use one opt-in, searchable directory; turn the existing Slack into a deliberately hosted community; and run a 60-minute sequence of small-group conversations in Google Meet. This solves the three distinct jobs without asking every attendee to learn a new venue.</p>
+          <div class="stack">
+            <div class="stack-row"><b>1</b><div><strong>Directory:</strong> Google Form → attendee-only Google Sheet, or Airtable if a card-style view matters.</div></div>
+            <div class="stack-row"><b>2</b><div><strong>Asynchronous:</strong> existing Slack with five purposeful channels, named discussion hosts, and a short prompt calendar.</div></div>
+            <div class="stack-row"><b>3</b><div><strong>Live:</strong> Google Meet breakout rooms—three 12-minute rounds in groups of four, using directory interests for one round.</div></div>
+          </div>
+        </div>
+        <aside class="rec-side">
+          <span class="badge">Best fit</span>
+          <p class="price">~£0</p>
+          <p>incremental platform cost, assuming the existing Google Workspace edition supports breakout-room creation and at least 150 connections.</p>
+          <p class="small"><strong>Human cost:</strong> roughly 8–12 organizer hours to collect profiles, configure channels, make assignments, test, facilitate, and follow up.</p>
+          <div class="callout"><strong>If you want “conference magic”:</strong> add one optional Gather 1.0 social hour. At 100 concurrent places, current list price is $300 for one reserved day; educational/non-profit discounts may be available.<sup><a href="#s14">14</a></sup></div>
+        </aside>
+      </article>
+    </div></section>
+
+    <section id="design"><div class="wrap">
+      <div class="section-head"><div class="section-no">01</div><div><p class="eyebrow">What the evidence says</p><h2>Design the social system, not just the room</h2><p class="lead">Research and experience reports converge on a few durable lessons. ACM’s guide explicitly treats fewer than 200 people as a small conference / large workshop and proposes a video meeting plus Slack, with small random groups during unstructured sessions.<sup><a href="#s1">1</a></sup></p></div></div>
+      <div class="principles">
+        <article class="principle"><span class="num">01</span><h3>Structure beats hope</h3><p>Virtual “coffee breaks” rarely self-start. Put social events in the official programme, assign a prompt and a host, and make the first interaction easy.</p></article>
+        <article class="principle"><span class="num">02</span><h3>Small groups create airtime</h3><p>Groups of 3–5 let everyone speak. Combine purposeful matching with one random or cross-topic round to avoid reinforcing existing clusters.</p></article>
+        <article class="principle"><span class="num">03</span><h3>Choice matters</h3><p>Offer speaking, text, camera-off and asynchronous routes. Keep networking opt-in and provide a genuine break for people who need one.</p></article>
+        <article class="principle"><span class="num">04</span><h3>Connections need a bridge</h3><p>The directory makes people discoverable; the live session lowers the cost of first contact; Slack carries the conversation beyond the hour.</p></article>
+      </div>
+      <div class="callout"><strong>Useful empirical anchor:</strong> MIT’s Minglr deployments produced 80 ad-hoc conversations at a 275-person conference; 76% of registered users were successfully matched, but the most common reason for non-use was simply wanting a break.<sup><a href="#s3">3</a></sup> Treat networking as attractive and scheduled—not compulsory.</div>
+    </div></section>
+
+    <section id="directory"><div class="wrap">
+      <div class="section-head"><div class="section-no">02</div><div><p class="eyebrow">Layer one</p><h2>A participant directory people can actually use</h2><p class="lead">The directory should answer three questions quickly: “Who is here?”, “Who shares my interests?”, and “How may I contact them?” Collect only what will be shown, require explicit opt-in, and remove the directory after a stated period.</p></div></div>
+      <div class="grid-3">
+        <article class="track recommended"><span class="badge">Recommended</span><h3>Google Form → restricted Sheet</h3><p><strong>Cost:</strong> no likely incremental cost.</p><ul><li>Lowest setup burden; works with the conference’s Google stack.</li><li>Filter by topic, career stage, timezone and “asks/offers.”</li><li>Share the response view only with registered attendee accounts or a Google Group.</li></ul><p class="verdict"><strong>Trade-off:</strong> utilitarian rather than beautiful; access control can create friction for non-Google identities.</p></article>
+        <article class="track"><span class="badge">Best presentation</span><h3>Airtable form + shared view</h3><p><strong>Cost:</strong> free for a link-only view; $24 for one month of Team if password protection is needed.</p><ul><li>Card/gallery views and strong filters make browsing pleasant.</li><li>Free plan permits 1,000 records per base and unlimited read-only collaborators.<sup><a href="#s8">8</a></sup></li><li>Shared views are excluded from search engines, but anyone with the link can open them; password protection is paid-only.</li></ul><p class="verdict"><strong>Trade-off:</strong> one more service and privacy agreement; a random link is not strong access control.</p></article>
+        <article class="track"><span class="badge grey">Minimal</span><h3>Slack introductions only</h3><p><strong>Cost:</strong> already available.</p><ul><li>Ask every attendee to post from a fixed template in <code>#introductions</code>.</li><li>Replies and DMs start naturally.</li><li>No roster synchronization.</li></ul><p class="verdict"><strong>Trade-off:</strong> difficult to scan and systematically filter; on Slack Free, only 90 days are searchable and data older than a year is deleted.<sup><a href="#s9">9</a></sup></p></article>
+      </div>
+      <h3 class="subhead">Copy-ready profile fields</h3>
+      <div class="field-grid">
+        <div class="field"><b>Name</b> · displayed name</div><div class="field"><b>Affiliation &amp; role</b> · one line</div>
+        <div class="field"><b>Timezone</b> · UTC offset + region</div><div class="field"><b>Career stage</b> · optional, broad categories</div>
+        <div class="field"><b>Three topic tags</b> · controlled list plus “other”</div><div class="field"><b>What I can offer</b> · 140 characters</div>
+        <div class="field"><b>What I’m looking for</b> · 140 characters</div><div class="field"><b>Current question/project</b> · 240 characters</div>
+        <div class="field"><b>Contact route</b> · Slack / email / website, participant’s choice</div><div class="field"><b>Opt-ins</b> · directory, matching, mentoring—separate checkboxes</div>
+      </div>
+      <p class="small">Do not collect personal email for display by default. Keep the raw form response file organizer-only; publish a curated sheet/view containing only fields participants agreed to share. Google Forms now supports responder access for individual accounts or Google Groups.<sup><a href="#s7">7</a></sup></p>
+    </div></section>
+
+    <section id="async"><div class="wrap">
+      <div class="section-head"><div class="section-no">03</div><div><p class="eyebrow">Layer two</p><h2>Turn Slack into an event, not a filing cabinet</h2><p class="lead">A new forum will split attention. The better move is to use the existing Slack, reduce channel sprawl, and schedule a handful of visible rituals. Tools do not create discussion; prompts, hosts, and response norms do.</p></div></div>
+      <div class="channel-plan">
+        <div class="channels">
+          <h3>Five channels are enough</h3>
+          <p><code>#start-here</code><br><span class="small">Schedule, norms, help, directory link.</span></p>
+          <p><code>#introductions</code><br><span class="small">Same short profile template for everyone.</span></p>
+          <p><code>#asks-and-offers</code><br><span class="small">Specific requests, skills, datasets, collaborations.</span></p>
+          <p><code>#ai-metascience-ideas</code><br><span class="small">One idea per top-level post; discussion in threads.</span></p>
+          <p><code>#hallway</code><br><span class="small">Informal links, reactions, photos, lightweight chat.</span></p>
+          <p class="small"><strong>Add topic channels only after demand appears.</strong> Empty channels make the community feel empty.</p>
+        </div>
+        <div class="timeline">
+          <div class="timeitem"><b>7 days before</b><h3>Open with visible hosts</h3><p>Organizers and speakers seed introductions first. Ask each person to reply to two others: one shared interest, one unexpected connection.</p></div>
+          <div class="timeitem"><b>5 days before</b><h3>Post the “unsolved problem” prompt</h3><p>“What bottleneck in AI-enabled meta-science would you most like help with?” One idea per thread; add reactions to signal interest.</p></div>
+          <div class="timeitem"><b>2 days before</b><h3>Publish an asks/offers digest</h3><p>A human curator highlights 8–12 complementary asks and offers and tags people—with consent, never as an automated surprise.</p></div>
+          <div class="timeitem"><b>Conference day</b><h3>Route live conversations back to Slack</h3><p>Every breakout receives one thread for links and next steps. The facilitator reminds participants to DM or reply before leaving.</p></div>
+          <div class="timeitem"><b>1–2 days after</b><h3>Close with commitments</h3><p>Prompt: “Who will you follow up with, and what is the smallest next action?” Post a short public-to-attendees summary.</p></div>
+        </div>
+      </div>
+      <div class="callout"><strong>Optional “idea market”:</strong> use one Miro board only if spatial clustering and voting add real value. Miro Starter is $8/month per organizer billed yearly and allows free no-account visitor editing; the free tier does not allow visitor editing.<sup><a href="#s10">10</a></sup> A simple Google Sheet with columns “idea / evidence / help wanted / owner” is usually enough.</div>
+    </div></section>
+
+    <section id="live"><div class="wrap">
+      <div class="section-head"><div class="section-no">04</div><div><p class="eyebrow">Layer three</p><h2>A live session engineered for useful first contact</h2><p class="lead">Recommended default: one focused 60-minute Google Meet, repeated in a second timezone if the audience is global. Use groups of four—not pairs for the whole hour and not rooms of ten—and change the organizing principle each round.</p></div></div>
+      <div class="runshow">
+        <div class="runrow"><div class="mins">00–06</div><div class="action">Welcome + norms</div><div class="why">Explain the three rounds, camera-optional participation, confidentiality, and the one concrete output: one follow-up contact.</div></div>
+        <div class="runrow"><div class="mins">06–18</div><div class="action">Round 1 · shared interests</div><div class="why">Pre-matched groups of four. Prompt: “What are you working on, and what question is alive for you?”</div></div>
+        <div class="runrow"><div class="mins">18–30</div><div class="action">Round 2 · cross-pollination</div><div class="why">Shuffle across topic or seniority. Prompt: “What assumption in your area would benefit from an outsider’s view?”</div></div>
+        <div class="runrow"><div class="mins">30–42</div><div class="action">Round 3 · asks &amp; offers</div><div class="why">Prompt: “Name one thing you can help with and one thing you need.” A volunteer records only opt-in connections.</div></div>
+        <div class="runrow"><div class="mins">42–53</div><div class="action">Self-selected topic rooms</div><div class="why">Offer 5–7 named rooms, including “quiet follow-up / exchange contacts” and “take a real break.”</div></div>
+        <div class="runrow"><div class="mins">53–60</div><div class="action">Commit + close</div><div class="why">Participants post one next step in Slack; organizers share follow-up link and 2-question pulse survey.</div></div>
+      </div>
+      <div class="grid-3 top-gap">
+        <article class="track"><span class="badge">Facilitation</span><h3>Staff it visibly</h3><p>One lead host, one breakout operator, one help/moderation host, plus 6–8 roaming facilitators if possible. Rooms receive the prompt in chat and a 2-minute warning.</p></article>
+        <article class="track"><span class="badge">Inclusion</span><h3>Make the rules explicit</h3><p>Use “step up / step back”; invite concise turns; allow camera-off and chat; do not record breakout rooms; include a leave/rejoin route and an actual break option.</p></article>
+        <article class="track"><span class="badge">Meet caveat</span><h3>Check the edition</h3><p>Meet can create up to 100 breakout rooms, but creation is edition-dependent. Participant caps are 100, 150 or 500 by Workspace edition; hosts count as connections.<sup><a href="#s5">5</a></sup><sup><a href="#s6">6</a></sup></p></article>
+      </div>
+    </div></section>
+
+    <section id="tools"><div class="wrap">
+      <div class="section-head"><div class="section-no">05</div><div><p class="eyebrow">Current market scan</p><h2>Tools worth considering—and what 100 people cost</h2><p class="lead">Prices below are public list prices checked on 14 September 2026, before VAT, discounts or contract terms. “From” and sales-quote pricing should be confirmed directly. Filter the shortlist by job.</p></div></div>
+      <div class="filters" role="group" aria-label="Filter tools">
+        <button type="button" class="filter active" data-filter="all">All</button><button type="button" class="filter" data-filter="directory">Directory</button><button type="button" class="filter" data-filter="async">Async</button><button type="button" class="filter" data-filter="live">Live</button><button type="button" class="filter" data-filter="premium">Premium</button>
+      </div>
+      <div class="tool-grid">
+        <article class="tool" data-tags="directory"><div class="tool-top"><div><h3>Google Forms + Sheets</h3><span class="badge">Default directory</span></div><div class="cost">£0*</div></div><p>Fast collection, familiar access, sortable attendee-only roster. Separate raw responses from displayed fields.</p><div class="scores"><span class="score"><b>Friction</b>Low–medium</span><span class="score"><b>Control</b>Strong</span><span class="score"><b>Setup</b>1–2 h</span></div><p class="small">*Assumes existing Google Workspace. Restrict via individual accounts or Google Group; test with an external attendee.</p></article>
+        <article class="tool" data-tags="directory"><div class="tool-top"><div><h3>Airtable</h3><span class="badge">Polished directory</span></div><div class="cost">Free / $24 mo</div></div><p>Form plus grid/gallery view. Free capacity is ample for 100 participants; a free shared view is unindexed but link-accessible. Password-protecting that view requires a paid plan.<sup><a href="#s8">8</a></sup></p><div class="scores"><span class="score"><b>Friction</b>Low</span><span class="score"><b>Control</b>Medium</span><span class="score"><b>Setup</b>2–3 h</span></div></article>
+        <article class="tool" data-tags="async"><div class="tool-top"><div><h3>Slack</h3><span class="badge">Default async</span></div><div class="cost">Existing</div></div><p>Best because participants are already there. Use threads and a small number of named channels. Free huddles are only 1:1 and searchable history is 90 days.<sup><a href="#s9">9</a></sup></p><div class="scores"><span class="score"><b>Friction</b>Lowest</span><span class="score"><b>Longevity</b>Limited*</span><span class="score"><b>Setup</b>2 h</span></div></article>
+        <article class="tool" data-tags="async"><div class="tool-top"><div><h3>Discourse</h3><span class="badge grey">Only for a lasting community</span></div><div class="cost">Free / $100 mo</div></div><p>Better than Slack for durable, searchable, long-form discussion. Hosted Free launched in 2026; Pro adds unlimited categories, tags, custom groups and private categories.<sup><a href="#s11">11</a></sup></p><div class="scores"><span class="score"><b>Friction</b>Medium</span><span class="score"><b>Longevity</b>Excellent</span><span class="score"><b>Setup</b>4–8 h</span></div></article>
+        <article class="tool" data-tags="live"><div class="tool-top"><div><h3>Google Meet</h3><span class="badge">Default live</span></div><div class="cost">£0*</div></div><p>Familiar and reliable; breakout creation is available on named Workspace editions and supports up to 100 rooms. Pre-assignment works best when participants are individually invited.<sup><a href="#s5">5</a></sup></p><div class="scores"><span class="score"><b>Friction</b>Lowest</span><span class="score"><b>Serendipity</b>Designed</span><span class="score"><b>Setup</b>3–5 h</span></div></article>
+        <article class="tool" data-tags="live"><div class="tool-top"><div><h3>Gather 1.0 reservation</h3><span class="badge coral">Best optional “venue”</span></div><div class="cost">$300 / day</div></div><p>Avatar movement, proximity conversations and spatial play. At 100 concurrent users: $3/user/day for 1–5 days; $15/user/month beyond five days. Education/non-profit discounts may be available.<sup><a href="#s14">14</a></sup></p><div class="scores"><span class="score"><b>Friction</b>Medium–high</span><span class="score"><b>Serendipity</b>High</span><span class="score"><b>Setup</b>6–12 h</span></div></article>
+        <article class="tool" data-tags="live"><div class="tool-top"><div><h3>WorkAdventure</h3><span class="badge">Gather alternative</span></div><div class="cost">from €400 / day</div></div><p>Open-source-rooted pixel venue with proximity video, meeting zones, embedded sites and a Google Meet handoff. Event pricing starts at €4/user/day; free is capped at 10 concurrent users.<sup><a href="#s15">15</a></sup></p><div class="scores"><span class="score"><b>Friction</b>Medium–high</span><span class="score"><b>Serendipity</b>High</span><span class="score"><b>Setup</b>6–12 h</span></div></article>
+        <article class="tool" data-tags="live"><div class="tool-top"><div><h3>SpatialChat</h3><span class="badge">Spatial without avatars</span></div><div class="cost">$750 day / $799 mo</div></div><p>Participants move between proximity-audio clusters. Current 100-user options are a $750 day pass or $799/month Business plan; free testing is limited to 12 participants and two hours daily.<sup><a href="#s16">16</a></sup></p><div class="scores"><span class="score"><b>Friction</b>Medium</span><span class="score"><b>Serendipity</b>High</span><span class="score"><b>Setup</b>4–8 h</span></div></article>
+        <article class="tool" data-tags="live premium"><div class="tool-top"><div><h3>Conversation Starter</h3><span class="badge grey">Managed matchmaking</span></div><div class="cost">Quote</div></div><p>Browser-based profiles, guest-list access and scheduled relevant 1:1 meetings. The vendor explicitly recommends 100+ participants for general-event networking and supports up to 5,000.<sup><a href="#s17">17</a></sup></p><div class="scores"><span class="score"><b>Friction</b>Low–medium</span><span class="score"><b>Matching</b>Excellent</span><span class="score"><b>Setup</b>Vendor-assisted</span></div></article>
+        <article class="tool" data-tags="live premium async directory"><div class="tool-top"><div><h3>RingCentral Events</h3><span class="badge grey">All-in-one</span></div><div class="cost">from $99 / org mo</div></div><p>Formerly Hopin: registration, event pages, engagement and networking in one product, with unlimited events and attendees. Pricing starts at $99 per organizer per month, with commitment terms to confirm.<sup><a href="#s18">18</a></sup></p><div class="scores"><span class="score"><b>Friction</b>Medium</span><span class="score"><b>Scope</b>Broad</span><span class="score"><b>Fit</b>Overkill</span></div></article>
+        <article class="tool" data-tags="live premium async directory"><div class="tool-top"><div><h3>Airmeet / Grip / Brella</h3><span class="badge grey">Enterprise event stack</span></div><div class="cost">$167 mo / quotes</div></div><p>Advanced registration, matchmaking, sponsor and analytics features. Airmeet webinars start at $167/month for 100 attendees; full Events is quote-based. Grip and Brella do not publish a simple small-event price.<sup><a href="#s19">19</a></sup></p><div class="scores"><span class="score"><b>Friction</b>Medium–high</span><span class="score"><b>Features</b>Excellent</span><span class="score"><b>Fit</b>Poor at 100</span></div></article>
+        <article class="tool" data-tags="live"><div class="tool-top"><div><h3>Minglr (open source)</h3><span class="badge grey">Research prototype</span></div><div class="cost">Hosting + labour</div></div><p>Purpose-built ad-hoc private video conversations with published CHI evidence. The public repository remains available, but deployment requires multiple services/OAuth integrations and technical ownership.<sup><a href="#s4">4</a></sup></p><div class="scores"><span class="score"><b>Friction</b>Medium</span><span class="score"><b>Evidence</b>Strong</span><span class="score"><b>Risk</b>High</span></div></article>
+      </div>
+      <h3 class="subhead wide-gap">Fast comparison of live choices</h3>
+      <div class="table-scroll"><table>
+        <thead><tr><th>Option</th><th>100-person list price</th><th>What it optimizes</th><th>Main drawback</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Google Meet</strong></td><td>Existing subscription</td><td>Reliability, access, structured rounds</td><td>Little spontaneous movement</td><td><strong>Use as default</strong></td></tr>
+          <tr><td><strong>Gather 1.0</strong></td><td>$300 per reserved day</td><td>Playful presence and self-directed mingling</td><td>Learning/accessibility burden</td><td>Best optional upgrade</td></tr>
+          <tr><td><strong>WorkAdventure</strong></td><td>from €400 per day</td><td>Custom pixel world, proximity, embeds</td><td>Setup and map design</td><td>Worth a small pilot</td></tr>
+          <tr><td><strong>SpatialChat</strong></td><td>$750 day or $799 month</td><td>Fluid proximity conversations</td><td>Higher price than Gather</td><td>Good, not best value</td></tr>
+          <tr><td><strong>Matchmaking platform</strong></td><td>Quote</td><td>High-value scheduled 1:1s</td><td>Vendor process and likely spend</td><td>Only if networking is the main product</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small">Not shortlisted: <strong>Kumospace</strong> limits free and Business spaces to 50 guests (guests are capped at four hours/week), so 100 attendees require an Enterprise conversation.<sup><a href="#s20">20</a></sup> <strong>Butter</strong>, once an attractive workshop platform, announced it would sunset after its Miro acquisition; its old domain now refers to a different video product.<sup><a href="#s21">21</a></sup></p>
+    </div></section>
+
+    <section id="safeguards"><div class="wrap">
+      <div class="section-head"><div class="section-no">06</div><div><p class="eyebrow">Trust, access and failure modes</p><h2>Guardrails are part of the experience</h2><p class="lead">Networking asks participants to make themselves visible. Protect that choice, minimize friction, and maintain a low-tech path through every activity.</p></div></div>
+      <div class="risk-grid">
+        <article class="risk"><h3>Privacy and consent</h3><p>Separate consent to appear in the directory from consent to be algorithmically or manually matched. State who can see the data, why it is collected, when it is deleted, and how to withdraw. Never publish participant contact details on an open web page.</p></article>
+        <article class="risk"><h3>Accessibility</h3><p>Send prompts in advance; use captions; allow camera-off/chat responses; avoid mandatory drag-and-drop or avatar navigation; provide a plain-link alternative. Automated captions can struggle with specialist vocabulary, so share key terms and correct important records.<sup><a href="#s1">1</a></sup></p></article>
+        <article class="risk"><h3>Safety and moderation</h3><p>Publish conduct norms and a private help route. Assign a named responder. Give hosts clear removal/escalation authority. Do not record small-group networking; tell participants before rooms open.</p></article>
+        <article class="risk"><h3>Capacity and technology</h3><p>A meeting cap of exactly 100 leaves no room for hosts if all participants attend. Confirm the Meet edition, run a 20-person pilot, prepare static room assignments, and keep a fallback main-room activity.</p></article>
+        <article class="risk"><h3>Status and hierarchy</h3><p>Do not let seniority determine airtime. Cross seniority deliberately, but also offer an early-career-only room. Use equal timed introductions and “step up / step back” guidance.</p></article>
+        <article class="risk"><h3>Timezone and fatigue</h3><p>Repeat the live session at two times or record only the plenary instructions—not breakouts. Schedule networking as programme time, not as a sacrifice of the only real break.</p></article>
+      </div>
+    </div></section>
+
+    <section id="plan"><div class="wrap">
+      <div class="section-head"><div class="section-no">07</div><div><p class="eyebrow">Two-week implementation</p><h2>A small operational plan</h2><p class="lead">This can be launched without procurement. The critical work is assigning owners, getting early participation from visible people, and rehearsing the breakout transitions.</p></div></div>
+      <ol class="checklist">
+        <li><strong>T−14 days · decide and assign.</strong><br>Confirm Meet edition/capacity, choose Google Sheet or Airtable, appoint directory, Slack and live-session owners.</li>
+        <li><strong>T−12 · build and privacy-test.</strong><br>Create the opt-in form, curated directory view, deletion date and withdrawal route. Test with an external account.</li>
+        <li><strong>T−10 · simplify Slack.</strong><br>Create/rename the five channels, pin one start-here post, publish conduct norms and seed organizer introductions.</li>
+        <li><strong>T−7 · open the directory.</strong><br>Invite profiles, showing a good example. Ask speakers and organizers to participate early to create social proof.</li>
+        <li><strong>T−5 · build assignments.</strong><br>Create round 1 from shared topics, round 2 for cross-pollination, and randomize round 3 while avoiding repeated pairs.</li>
+        <li><strong>T−3 · rehearse.</strong><br>Run a full transition test with 15–20 volunteers; verify captions, timing, help requests, mobile access and the fallback.</li>
+        <li><strong>T−1 · send one clear brief.</strong><br>Share the single Meet link, exact purpose, accessibility options, prompts, directory link and Slack follow-up location.</li>
+        <li><strong>T+1 day · close the loop.</strong><br>Send connections/digest, run a 2-question survey, publish next steps, and schedule data deletion.</li>
+      </ol>
+      <div class="callout"><strong>Minimum evaluation:</strong> ask (1) “Did you make at least one connection you intend to follow up?” and (2) “Which format should we keep/change?” Track directory opt-in, introduction posts, live attendance, completed rounds and follow-up intent—avoid vanity metrics such as raw message count.</div>
+    </div></section>
+
+    <section id="sources"><div class="wrap">
+      <div class="section-head"><div class="section-no">08</div><div><p class="eyebrow">Evidence and current product facts</p><h2>Sources</h2><p class="lead">Primary research, organizer guidance and official vendor documentation were preferred. Product availability and pricing are volatile; all were checked on 14 September 2026.</p></div></div>
+      <ol class="sources">
+        <li id="s1"><a href="https://www.aiai.ed.ac.uk/project/ix/documents/2020/ACM_Virtual_Conferences_Guide_To_Best_Practices_v1.2.pdf">ACM Presidential Task Force, <em>Virtual Conferences: A Guide to Best Practices</em></a> (2020), especially pp. 27–32.</li>
+        <li id="s2"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7244398/">Rubinger et al., “Maximizing virtual meetings and conferences: a review of best practices”</a>, <em>International Orthopaedics</em> (2020).</li>
+        <li id="s3"><a href="https://cci.mit.edu/wp-content/uploads/2021/05/Online-Mingling-Supporting-Ad-Hoc-Private-Conversations-at-Virtual-Conferences_compressed.pdf">Song, Riedl &amp; Malone, “Online Mingling”</a>, CHI (2021).</li>
+        <li id="s4"><a href="https://github.com/CCI-MIT/minglr">CCI-MIT Minglr open-source repository</a>.</li>
+        <li id="s5"><a href="https://support.google.com/meet/answer/13054147?hl=en">Google Meet Help: Use breakout rooms</a>.</li>
+        <li id="s6"><a href="https://support.google.com/meet/answer/10620582?hl=en">Google Meet Help: participant limits by Workspace edition</a>.</li>
+        <li id="s7"><a href="https://support.google.com/docs/answer/2839588?hl=en">Google Forms Help: publish and share forms with responders</a>.</li>
+        <li id="s8"><a href="https://support.airtable.com/articles/2277136852-airtable-plans-overview">Airtable: plans overview</a>, <a href="https://support.airtable.com/docs/test-form-permissions">form permissions</a>, and <a href="https://support.airtable.com/articles/4130354023-using-the-view-share-menu-in-airtable">shared-view access controls</a>.</li>
+        <li id="s9"><a href="https://slack.com/help/articles/27204752526611-Feature-limitations-on-the-free-version-of-Slack">Slack: Free plan limitations</a> and <a href="https://slack.com/help/articles/4402059015315-Use-huddles-in-Slack">huddle limits</a>.</li>
+        <li id="s10"><a href="https://miro.com/pricing/">Miro pricing and visitor editing</a>.</li>
+        <li id="s11"><a href="https://www.discourse.org/pricing">Discourse hosting plans</a>.</li>
+        <li id="s12"><a href="https://www.nature.com/articles/s41467-020-18656-6">Nature Communications: “Navigating virtual conferences as a junior researcher”</a> (2020).</li>
+        <li id="s13"><a href="https://www.frontiersin.org/journals/research-metrics-and-analytics/articles/10.3389/frma.2021.699782/full">Sarabipour et al., “The Multi-hub Academic Conference”</a> (2021).</li>
+        <li id="s14"><a href="https://support.gather.town/articles/3900581575-create-and-manage-your-gather-1-0-one-time-reservation">Gather 1.0 one-time reservation pricing</a>.</li>
+        <li id="s15"><a href="https://workadventu.re/pricing/">WorkAdventure pricing</a>.</li>
+        <li id="s16"><a href="https://www.spatial.chat/pricing">SpatialChat pricing</a>.</li>
+        <li id="s17"><a href="https://www.conversationstarter.net/">Conversation Starter product and event-size guidance</a>.</li>
+        <li id="s18"><a href="https://www.ringcentral.com/pricing/events.html">RingCentral Events pricing</a>.</li>
+        <li id="s19"><a href="https://www.airmeet.com/hub/pricing/">Airmeet pricing</a>; <a href="https://www.grip.events/products/event-matchmaking">Grip matchmaking</a>; <a href="https://www.brella.io/event-app">Brella event app</a>.</li>
+        <li id="s20"><a href="https://www.kumospace.com/pricing">Kumospace pricing and guest limits</a>.</li>
+        <li id="s21"><a href="https://www.linkedin.com/posts/jakobknutzen_were-sunsetting-butter-acquired-by-miro-activity-7420441151406665728-MJNN">Butter founder’s sunset announcement</a>.</li>
+        <li id="s22"><a href="https://doi.org/10.1145/3544549.3573858">Kowalski et al., “How to Organise Engaging Online Conferences and Escape the Zoom Rectangle”</a>, CHI EA (2023).</li>
+      </ol>
+    </div></section>
+  </main>
+
+  <footer class="footer"><div class="wrap"><strong>Bottom line:</strong> spend organizer attention before platform money. A good directory, explicit social prompts and three well-run 12-minute conversations will produce more useful connections than an impressive but empty virtual lobby.</div></footer>
+  <script>
+    const buttons = document.querySelectorAll('.filter');
+    const tools = document.querySelectorAll('.tool');
+    buttons.forEach(button => button.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      button.classList.add('active');
+      const wanted = button.dataset.filter;
+      tools.forEach(card => {
+        const tags = (card.dataset.tags || '').split(' ');
+        card.classList.toggle('hide', wanted !== 'all' && !tags.includes(wanted));
+      });
+    }));
+  </script>
+</body>
+</html>
