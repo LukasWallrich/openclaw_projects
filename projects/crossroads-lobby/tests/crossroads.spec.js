@@ -21,20 +21,20 @@ test('adapts room supply to attendance', async ({ page }) => {
   await expect(page.locator('.room.closed')).toHaveCount(0);
 });
 
-test('supports selecting, walking, and Meet handoff', async ({ page }) => {
+test('supports doorway listening, entry, and Meet handoff', async ({ page }) => {
   await page.locator('.room[data-id="eval"]').click();
   await expect(page.getByRole('heading', { name: 'Evaluation headaches' })).toBeVisible();
-  await page.getByRole('button', { name: 'Walk to this room' }).click();
-  await expect(page.getByRole('button', { name: 'Open Google Meet ↗' })).toBeEnabled();
+  await page.getByRole('button', { name: 'Listen at the doorway' }).click();
+  await expect(page.getByText('Open doorway · listening now')).toBeVisible();
+  await expect(page.getByText('You are listening at the doorway of Evaluation headaches')).toBeVisible();
+  await page.getByRole('button', { name: 'Join this conversation ↗' }).click();
   await expect(page.getByText('You are at Evaluation headaches')).toBeVisible();
-
-  await page.getByRole('button', { name: 'Open Google Meet ↗' }).click();
   await expect(page.getByRole('heading', { name: 'Meet opens next' })).toBeVisible();
 });
 
 test('offers interest-aware automatic routing', async ({ page }) => {
   await page.getByRole('button', { name: 'Take me somewhere' }).click();
-  await expect(page.getByRole('button', { name: 'Open Google Meet ↗' })).toBeEnabled();
+  await expect(page.getByText('Open doorway · listening now')).toBeVisible();
   await expect(page.locator('#yourStatus')).not.toHaveText(/lobby/);
 });
 
@@ -43,7 +43,9 @@ test('keyboard navigation and mobile layout remain usable', async ({ page }) => 
   await page.keyboard.press('ArrowRight');
   await expect(page.getByRole('heading', { name: 'Human-centred automation' })).toBeVisible();
   await page.keyboard.press('Enter');
-  await expect(page.getByRole('button', { name: 'Open Google Meet ↗' })).toBeEnabled();
+  await expect(page.getByText('Open doorway · listening now')).toBeVisible();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { name: 'Meet opens next' })).toBeVisible();
 
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.getByRole('heading', { name: /Find the conversation/ })).toBeVisible();
