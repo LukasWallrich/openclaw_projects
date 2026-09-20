@@ -1,0 +1,1134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2e8d6">
+  <title>Crossroads — Commons</title>
+  <style>
+    :root {
+      --ink: #27342f;
+      --muted: #66716b;
+      --paper: #fbf7ed;
+      --paper-deep: #f1e6d0;
+      --rust: #a44f36;
+      --rust-dark: #713323;
+      --moss: #526d58;
+      --moss-dark: #34483a;
+      --mustard: #d2a745;
+      --blue: #607c82;
+      --line: rgba(39, 52, 47, .16);
+      --shadow: 0 16px 45px rgba(65, 50, 35, .11), 0 3px 8px rgba(65, 50, 35, .08);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 5%, rgba(210, 167, 69, .13), transparent 24rem),
+        radial-gradient(circle at 96% 34%, rgba(96, 124, 130, .11), transparent 27rem),
+        #eee4d3;
+      font-family: ui-rounded, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+
+    button, input { font: inherit; }
+
+    button { color: inherit; }
+
+    button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+      outline: 3px solid var(--mustard);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: .7rem;
+      left: .7rem;
+      padding: .7rem 1rem;
+      background: var(--ink);
+      color: white;
+      border-radius: 8px;
+      transform: translateY(-180%);
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .page {
+      width: min(1180px, calc(100% - 28px));
+      margin: 14px auto 32px;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid rgba(74, 57, 40, .12);
+      border-radius: 28px;
+      box-shadow: 0 26px 80px rgba(69, 50, 31, .13);
+    }
+
+    .topbar {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 12px 24px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.38);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      position: relative;
+      flex: 0 0 auto;
+      border-radius: 50% 50% 44% 56%;
+      background: var(--rust);
+      transform: rotate(-8deg);
+      box-shadow: inset 0 0 0 5px rgba(255,255,255,.15);
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      background: var(--paper);
+      border-radius: 99px;
+    }
+
+    .brand-mark::before { width: 19px; height: 5px; left: 7px; top: 14px; }
+    .brand-mark::after { width: 5px; height: 19px; left: 14px; top: 7px; }
+
+    .brand small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .68rem;
+      font-weight: 650;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .live-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--moss-dark);
+      font-size: .82rem;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .live-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #5f865d;
+      box-shadow: 0 0 0 5px rgba(95,134,93,.12);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(310px, .85fr);
+      gap: 42px;
+      padding: clamp(38px, 6vw, 74px) clamp(22px, 6vw, 72px) 48px;
+      border-bottom: 1px solid var(--line);
+      isolation: isolate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      right: -64px;
+      top: -70px;
+      border: 28px solid rgba(164,79,54,.055);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 18px;
+      color: var(--rust-dark);
+      font-size: .77rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: var(--rust);
+    }
+
+    h1 {
+      max-width: 690px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.8rem, 6vw, 5.35rem);
+      font-weight: 500;
+      line-height: .96;
+      letter-spacing: -.055em;
+    }
+
+    h1 em {
+      color: var(--rust);
+      font-weight: 500;
+    }
+
+    .lede {
+      max-width: 620px;
+      margin: 24px 0 0;
+      color: #58645e;
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-top: 28px;
+    }
+
+    .button {
+      min-height: 47px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 17px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 780;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button-primary {
+      background: var(--rust);
+      color: white;
+      box-shadow: 0 8px 20px rgba(164,79,54,.22);
+    }
+
+    .button-primary:hover { background: #91412b; }
+
+    .button-secondary {
+      color: var(--ink);
+      background: transparent;
+      border-color: rgba(39,52,47,.25);
+    }
+
+    .button-secondary:hover { background: white; }
+
+    .button-ghost {
+      min-height: 40px;
+      padding: 7px 11px;
+      background: rgba(255,255,255,.44);
+      border-color: var(--line);
+      font-size: .82rem;
+    }
+
+    .arrival-card {
+      position: relative;
+      align-self: center;
+      padding: 25px 25px 23px;
+      background: #fffdf7;
+      border: 1px solid rgba(71, 64, 48, .15);
+      border-radius: 6px 18px 18px 18px;
+      box-shadow: var(--shadow);
+      transform: rotate(1deg);
+    }
+
+    .arrival-card::before {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 20px;
+      left: calc(50% - 35px);
+      top: -11px;
+      background: rgba(210,167,69,.67);
+      transform: rotate(-3deg);
+      box-shadow: 0 1px 3px rgba(70,50,30,.1);
+    }
+
+    .arrival-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 21px;
+    }
+
+    .arrival-card h2 {
+      margin: 0 0 4px;
+      font-family: Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+    }
+
+    .arrival-card p { margin: 0; color: var(--muted); font-size: .84rem; line-height: 1.5; }
+
+    .headcount {
+      min-width: 66px;
+      text-align: right;
+      color: var(--rust);
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .headcount span { display: block; color: var(--muted); font: 700 .64rem ui-rounded, sans-serif; text-transform: uppercase; letter-spacing: .1em; margin-top: 6px; }
+
+    .scenario-options {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .scenario-options legend {
+      margin-bottom: 9px;
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .scenario-option { position: relative; }
+    .scenario-option input { position: absolute; opacity: 0; pointer-events: none; }
+
+    .scenario-option label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 46px;
+      padding: 10px 13px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: .87rem;
+      font-weight: 730;
+      transition: border-color .18s ease, background .18s ease;
+    }
+
+    .scenario-option label small { color: var(--muted); font-weight: 650; }
+    .scenario-option input:checked + label { background: #edf1e8; border-color: var(--moss); box-shadow: inset 4px 0 var(--moss); }
+    .scenario-option input:focus-visible + label { outline: 3px solid var(--mustard); outline-offset: 2px; }
+
+    .scenario-note {
+      min-height: 38px;
+      margin-top: 15px !important;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .board {
+      position: relative;
+      padding: 44px clamp(18px, 4vw, 48px) 54px;
+      background:
+        linear-gradient(rgba(255,255,255,.22), rgba(255,255,255,.22)),
+        repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(75,62,42,.025) 32px),
+        var(--paper-deep);
+    }
+
+    .board-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 27px;
+    }
+
+    .board h2 {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 500;
+      letter-spacing: -.03em;
+    }
+
+    .board-intro { max-width: 560px; margin: 7px 0 0; color: var(--muted); font-size: .93rem; line-height: 1.5; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 7px 13px;
+      color: var(--muted);
+      font-size: .73rem;
+      font-weight: 700;
+    }
+
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend i { width: 8px; height: 8px; border-radius: 50%; background: var(--moss); }
+    .legend span:nth-child(2) i { background: var(--mustard); }
+    .legend span:nth-child(3) i { background: #9d9180; }
+
+    .rooms {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .room-card {
+      --accent: var(--rust);
+      position: relative;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      padding: 22px 21px 18px;
+      color: inherit;
+      text-align: left;
+      background: #fffdf8;
+      border: 1px solid rgba(60,53,43,.16);
+      border-radius: 5px 16px 16px 16px;
+      cursor: pointer;
+      box-shadow: 0 7px 18px rgba(70,54,38,.065);
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .room-card:nth-child(3n+2) { transform: rotate(.35deg); }
+    .room-card:nth-child(3n+3) { transform: rotate(-.3deg); }
+    .room-card:hover { transform: translateY(-4px) rotate(0); box-shadow: var(--shadow); border-color: var(--accent); }
+    .room-card[data-family="methods"] { --accent: var(--blue); }
+    .room-card[data-family="collaboration"] { --accent: var(--moss); }
+
+    .room-card::before {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      top: 13px;
+      left: 50%;
+      background: var(--accent);
+      border: 3px solid rgba(255,255,255,.7);
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(30,30,20,.22);
+    }
+
+    .room-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 11px;
+    }
+
+    .family-label {
+      color: var(--accent);
+      font-size: .67rem;
+      font-weight: 850;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 7px;
+      color: var(--moss-dark);
+      background: #edf3e8;
+      border-radius: 99px;
+      font-size: .66rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--moss); }
+    .status.forming { color: #745b1e; background: #f8edcf; }
+    .status.forming::before { background: var(--mustard); }
+    .status.closed { color: #6d675e; background: #ece8df; }
+    .status.closed::before { background: #9d9180; }
+    .status.busy { color: #773f2f; background: #f5e3dc; }
+    .status.busy::before { background: var(--rust); }
+
+    .room-card h3 {
+      margin: 20px 0 7px;
+      font-family: Georgia, serif;
+      font-size: 1.43rem;
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -.025em;
+    }
+
+    .intent { margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.45; }
+
+    .room-bottom {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 23px;
+    }
+
+    .people-stack { display: flex; align-items: center; }
+
+    .avatar {
+      width: 29px;
+      height: 29px;
+      display: grid;
+      place-items: center;
+      margin-left: -7px;
+      color: #fff;
+      background: var(--avatar, var(--blue));
+      border: 2px solid #fffdf8;
+      border-radius: 50%;
+      font-size: .58rem;
+      font-weight: 850;
+      letter-spacing: .02em;
+    }
+
+    .avatar:first-child { margin-left: 0; }
+
+    .count { text-align: right; }
+    .count strong { display: block; color: var(--accent); font-family: Georgia, serif; font-size: 1.45rem; line-height: .9; }
+    .count span { color: var(--muted); font-size: .65rem; font-weight: 750; }
+    .closed-copy { color: var(--muted); font-size: .72rem; font-weight: 700; }
+
+    .synthetic-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      color: #726a5e;
+      background: #e7dcc8;
+      font-size: .71rem;
+      font-weight: 650;
+      text-align: center;
+    }
+
+    .synthetic-note span { font-size: 1rem; }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 27px;
+      color: var(--muted);
+      background: var(--ink);
+      color: rgba(255,255,255,.68);
+      font-size: .75rem;
+    }
+
+    .footer strong { color: white; letter-spacing: .04em; }
+
+    dialog {
+      width: min(650px, calc(100% - 24px));
+      max-height: min(780px, calc(100vh - 24px));
+      padding: 0;
+      color: var(--ink);
+      background: var(--paper);
+      border: 0;
+      border-radius: 22px;
+      box-shadow: 0 35px 90px rgba(34,29,23,.3);
+      overflow: auto;
+    }
+
+    dialog::backdrop { background: rgba(30,38,34,.53); backdrop-filter: blur(4px); }
+
+    .dialog-shell { position: relative; }
+
+    .dialog-close {
+      position: absolute;
+      z-index: 2;
+      top: 15px;
+      right: 15px;
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      background: rgba(255,255,255,.76);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.25rem;
+    }
+
+    .dialog-accent { height: 9px; background: var(--dialog-accent, var(--rust)); }
+
+    .dialog-body { padding: 34px clamp(21px, 5vw, 40px) 32px; }
+
+    .recommendation-banner {
+      display: none;
+      margin: 0 0 20px;
+      padding: 10px 13px;
+      color: #5e4a1b;
+      background: #faedc9;
+      border: 1px solid #e5cf94;
+      border-radius: 10px;
+      font-size: .79rem;
+      line-height: 1.4;
+    }
+
+    .recommendation-banner.show { display: block; }
+
+    .dialog-kicker {
+      margin: 0 48px 8px 0;
+      color: var(--dialog-accent, var(--rust));
+      font-size: .71rem;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .dialog-title {
+      margin: 0 50px 6px 0;
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 7vw, 3.1rem);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .dialog-intent { margin: 0; color: var(--muted); font-size: .92rem; }
+
+    .dialog-grid {
+      display: grid;
+      grid-template-columns: .82fr 1.18fr;
+      gap: 17px;
+      margin-top: 28px;
+    }
+
+    .panel {
+      padding: 18px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .panel-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: .68rem;
+      font-weight: 850;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .person-list { display: grid; gap: 10px; }
+    .person { display: flex; align-items: center; gap: 9px; font-size: .82rem; font-weight: 720; }
+    .person .avatar { width: 31px; height: 31px; margin: 0; border-color: white; }
+
+    .pulse blockquote {
+      position: relative;
+      margin: 0;
+      padding: 0 0 0 15px;
+      color: #3f4b45;
+      font-family: Georgia, serif;
+      font-size: 1.03rem;
+      line-height: 1.52;
+    }
+
+    .pulse blockquote::before { content: ""; position: absolute; inset: 2px auto 2px 0; width: 3px; border-radius: 4px; background: var(--dialog-accent, var(--rust)); }
+    .pulse small { display: block; margin-top: 13px; color: var(--muted); font-size: .67rem; line-height: 1.45; }
+
+    .dialog-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .capacity-hint { margin-right: auto; color: var(--muted); font-size: .74rem; line-height: 1.4; }
+
+    .doorway { display: none; }
+    .doorway.active { display: block; }
+    .approach.hidden { display: none; }
+
+    .doorway-card {
+      position: relative;
+      margin-top: 25px;
+      padding: 25px;
+      color: #edf1e8;
+      background: var(--moss-dark);
+      border-radius: 18px 18px 7px 18px;
+      overflow: hidden;
+    }
+
+    .doorway-card::after {
+      content: "";
+      position: absolute;
+      width: 115px;
+      height: 115px;
+      right: -36px;
+      bottom: -48px;
+      border: 18px solid rgba(255,255,255,.06);
+      border-radius: 50%;
+    }
+
+    .listener-state {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 16px;
+      padding: 7px 10px;
+      color: #203027;
+      background: #dbe6d6;
+      border-radius: 99px;
+      font-size: .72rem;
+      font-weight: 850;
+    }
+
+    .listener-state::before { content: ""; width: 8px; height: 8px; background: #58815d; border-radius: 50%; box-shadow: 0 0 0 4px rgba(88,129,93,.15); }
+
+    .doorway-card h3 { margin: 0 0 10px; font: 500 1.65rem Georgia, serif; }
+    .doorway-card p { max-width: 500px; margin: 0; color: rgba(255,255,255,.73); font-size: .85rem; line-height: 1.6; }
+    .doorway-card strong { color: white; }
+
+    .doorway-actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 21px; }
+    .doorway-actions .button-primary { background: #f7efe1; color: var(--moss-dark); box-shadow: none; }
+    .doorway-actions .button-secondary { color: white; border-color: rgba(255,255,255,.35); }
+
+    .toast {
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      bottom: 22px;
+      width: min(430px, calc(100% - 28px));
+      padding: 13px 16px;
+      color: white;
+      background: var(--ink);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px;
+      box-shadow: 0 10px 35px rgba(20,20,18,.25);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 14px);
+      transition: opacity .22s ease, transform .22s ease;
+      font-size: .82rem;
+      font-weight: 680;
+      text-align: center;
+    }
+
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .arrival-card { max-width: 570px; transform: none; }
+      .rooms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 590px) {
+      .page { width: 100%; margin: 0; border: 0; border-radius: 0; }
+      .topbar { padding: 11px 16px; }
+      .live-note { font-size: 0; }
+      .live-note::after { content: "Open"; font-size: .76rem; }
+      .hero { gap: 34px; padding: 37px 18px 34px; }
+      h1 { font-size: clamp(2.75rem, 15vw, 4rem); }
+      .hero-actions .button { flex: 1 1 100%; }
+      .arrival-card { padding: 24px 18px 19px; }
+      .board { padding: 36px 14px 42px; }
+      .board-head { display: block; }
+      .legend { justify-content: flex-start; margin-top: 17px; }
+      .rooms { grid-template-columns: 1fr; gap: 12px; }
+      .room-card { min-height: 220px; }
+      .room-card:nth-child(n) { transform: none; }
+      .footer { align-items: flex-start; flex-direction: column; }
+      .dialog-body { padding: 30px 18px 23px; }
+      .dialog-grid { grid-template-columns: 1fr; }
+      .dialog-actions .button { flex: 1 1 100%; }
+      .capacity-hint { width: 100%; margin-bottom: 3px; }
+      .doorway-card { padding: 22px 18px; }
+      .doorway-actions .button { flex: 1 1 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+      .button:hover, .room-card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#rooms">Skip to rooms</a>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand" aria-label="Crossroads">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Crossroads <small>conference commons</small></span>
+      </div>
+      <span class="live-note"><i class="live-dot" aria-hidden="true"></i> The commons is open</span>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Drop in, at your own pace</p>
+          <h1 id="page-title">Find a good table.<br><em>Stay as long as you like.</em></h1>
+          <p class="lede">Nine small conversations for curious researchers. Look around, approach quietly, or let Crossroads suggest somewhere with room for one more.</p>
+          <div class="hero-actions">
+            <button class="button button-primary" id="take-me" type="button"><span aria-hidden="true">↝</span> Take me somewhere</button>
+            <button class="button button-secondary" id="browse-button" type="button">Browse all tables <span aria-hidden="true">↓</span></button>
+          </div>
+        </div>
+
+        <aside class="arrival-card" aria-labelledby="arrival-title">
+          <div class="arrival-head">
+            <div>
+              <h2 id="arrival-title">Today’s room plan</h2>
+              <p>Try a different turnout to see the commons adapt.</p>
+            </div>
+            <div class="headcount" id="headcount">54<span>here now</span></div>
+          </div>
+          <fieldset class="scenario-options">
+            <legend>Attendance scenario</legend>
+            <div class="scenario-option">
+              <input type="radio" name="scenario" id="calm" value="calm">
+              <label for="calm"><span>Quiet morning</span><small>26 attending</small></label>
+            </div>
+            <div class="scenario-option">
+              <input type="radio" name="scenario" id="gathering" value="gathering" checked>
+              <label for="gathering"><span>Gathering pace</span><small>54 attending</small></label>
+            </div>
+            <div class="scenario-option">
+              <input type="radio" name="scenario" id="full" value="full">
+              <label for="full"><span>Full house</span><small>88 attending</small></label>
+            </div>
+          </fieldset>
+          <p class="scenario-note" id="scenario-note" aria-live="polite">All nine tables are open; the best conversations are staying small.</p>
+        </aside>
+      </section>
+
+      <section class="board" id="rooms" aria-labelledby="rooms-title">
+        <div class="board-head">
+          <div>
+            <h2 id="rooms-title">What’s on the tables</h2>
+            <p class="board-intro">Every card is a doorway. Open one to see who’s there and read its consented, synthetic pulse before deciding anything.</p>
+          </div>
+          <div class="legend" aria-label="Room status legend">
+            <span><i></i> Roomy</span><span><i></i> Forming</span><span><i></i> Opens later</span>
+          </div>
+        </div>
+        <div class="rooms" id="room-grid" aria-live="polite"></div>
+      </section>
+
+      <div class="synthetic-note"><span aria-hidden="true">◎</span> Prototype note: every name, headcount and conversation snippet on this page is synthetic.</div>
+    </main>
+
+    <footer class="footer">
+      <strong>Commons · GPT-5.6 Sol</strong>
+      <span>Crossroads frontend study · no real meeting links</span>
+    </footer>
+  </div>
+
+  <dialog id="room-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-shell">
+      <div class="dialog-accent" aria-hidden="true"></div>
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="Close room details">×</button>
+      <div class="dialog-body">
+        <div id="approach-view" class="approach">
+          <p class="recommendation-banner" id="recommendation-banner"><strong>A gentle suggestion:</strong> this relevant table has space to welcome another voice. You haven’t joined it.</p>
+          <p class="dialog-kicker" id="dialog-kicker"></p>
+          <h2 class="dialog-title" id="dialog-title"></h2>
+          <p class="dialog-intent" id="dialog-intent"></p>
+
+          <div class="dialog-grid">
+            <section class="panel" aria-labelledby="people-label">
+              <span class="panel-label" id="people-label">At the table</span>
+              <div class="person-list" id="person-list"></div>
+            </section>
+            <section class="panel pulse" aria-labelledby="pulse-label">
+              <span class="panel-label" id="pulse-label">Consented doorway pulse</span>
+              <blockquote id="pulse-text"></blockquote>
+              <small>A short synthetic summary shared by participants for people considering the room — not live transcription.</small>
+            </section>
+          </div>
+
+          <div class="dialog-actions">
+            <span class="capacity-hint" id="capacity-hint"></span>
+            <button class="button button-secondary" id="back-button" type="button">Not this one</button>
+            <button class="button button-primary" id="listen-button" type="button">Listen from the doorway</button>
+          </div>
+        </div>
+
+        <div class="doorway" id="doorway-view">
+          <p class="dialog-kicker" id="doorway-kicker">Doorway mode</p>
+          <h2 class="dialog-title" id="doorway-title"></h2>
+          <div class="doorway-card">
+            <span class="listener-state">You are visible as a listener</span>
+            <h3>You’re at the doorway.</h3>
+            <p>The people inside can see <strong>“Guest is listening at the doorway”</strong>. This prototype plays no audio; in a live room, you would only hear the short pulse that participants chose to share.</p>
+            <div class="doorway-actions">
+              <button class="button button-primary" id="join-button" type="button">Join in Google Meet <span aria-hidden="true">↗</span></button>
+              <button class="button button-secondary" id="return-button" type="button">Return to the commons</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const rooms = [
+      {
+        id: "messy-data", family: "puzzles", familyLabel: "Bring a puzzle", topic: "Data & evidence", title: "The Messy Data Table",
+        intent: "Bring a stubborn dataset", color: "#a44f36",
+        people: ["Amina Diallo", "Jonas Meyer", "Priya Nair", "Luca Rossi", "Mei Chen", "Daniel Costa"],
+        pulse: "We’re comparing notes on what counts as ‘missing’ when the absence itself might be the signal."
+      },
+      {
+        id: "surprising-null", family: "puzzles", familyLabel: "Bring a puzzle", topic: "Research practice", title: "The Surprising Null",
+        intent: "Unpack a result that won’t behave", color: "#a44f36",
+        people: ["Sofia Grant", "Kwame Boateng", "Noor Haddad", "Ellis Park", "Tom Becker", "Aya Mori"],
+        pulse: "A null result has turned into a conversation about whether our measure is asking the wrong question."
+      },
+      {
+        id: "unfinished-question", family: "puzzles", familyLabel: "Bring a puzzle", topic: "People & systems", title: "One Unfinished Question",
+        intent: "Think aloud without a polished pitch", color: "#a44f36",
+        people: ["Rosa Jiménez", "David Okafor", "Elena Petrova", "Samir Shah", "Marta Silva", "Nico Larsen"],
+        pulse: "We’re trading half-formed questions about how communities keep knowledge alive between projects."
+      },
+      {
+        id: "fieldnotes", family: "methods", familyLabel: "Compare methods", topic: "Research practice", title: "Fieldnotes & Friction",
+        intent: "Compare qualitative practice", color: "#607c82",
+        people: ["Nadia Flores", "Theo Wilson", "Ines Costa", "Akira Sato", "Grace Kim", "Peter Mensah"],
+        pulse: "The table is discussing what gets lost between taking fieldnotes and making them legible to a team."
+      },
+      {
+        id: "measurement", family: "methods", familyLabel: "Compare methods", topic: "People & systems", title: "Measurement Without Maps",
+        intent: "Find language across disciplines", color: "#607c82",
+        people: ["Hana Lee", "Omar Farouk", "June Patel", "Alex Murphy", "Leila Mensah", "Milo Jensen"],
+        pulse: "We’ve found three disciplines using the same word for very different kinds of validity."
+      },
+      {
+        id: "small-samples", family: "methods", familyLabel: "Compare methods", topic: "Data & evidence", title: "Small Samples, Big Claims",
+        intent: "Stress-test an inference", color: "#607c82",
+        people: ["Felix Bauer", "Maya Singh", "Ibrahim Ali", "Chloe Martin", "Ren Ito", "Sara Popov"],
+        pulse: "People are sharing ways to be honest about uncertainty without making careful work sound inconclusive."
+      },
+      {
+        id: "methods-match", family: "collaboration", familyLabel: "Find collaborators", topic: "Research practice", title: "Methods Matchmaking",
+        intent: "Trade a skill, find a complement", color: "#526d58",
+        people: ["Tara Osei", "Ben Novak", "Yuki Tan", "Marisol Reed", "Adam Green", "Keisha Cole"],
+        pulse: "One person has a spatial question, another has geospatial tools; they’re sketching a tiny pilot together."
+      },
+      {
+        id: "slow-collab", family: "collaboration", familyLabel: "Find collaborators", topic: "People & systems", title: "The Slow Collaboration Club",
+        intent: "Build something with breathing room", color: "#526d58",
+        people: ["Clara Evans", "Jamal Price", "Lin Wei", "Eva Novak", "Pablo Ruiz", "Neha Rao"],
+        pulse: "The conversation is on practical rituals for collaborations that last longer than the funding cycle."
+      },
+      {
+        id: "next-study", family: "collaboration", familyLabel: "Find collaborators", topic: "Data & evidence", title: "Sketch the Next Study",
+        intent: "Turn a shared curiosity into a plan", color: "#526d58",
+        people: ["Zara Khan", "Oscar Lind", "Mae Thompson", "Ravi Desai", "Ana Pereira", "Louis Martin"],
+        pulse: "The table is building a one-page study idea around trust in AI-assisted peer review."
+      }
+    ];
+
+    const scenarios = {
+      calm: {
+        count: 26,
+        note: "Six tables are open; three are resting until a few more people arrive.",
+        occupancy: [3, 2, 0, 4, 3, 0, 2, 0, 3],
+        status: ["roomy", "forming", "closed", "roomy", "roomy", "closed", "forming", "closed", "roomy"]
+      },
+      gathering: {
+        count: 54,
+        note: "All nine tables are open; the best conversations are staying small.",
+        occupancy: [4, 3, 2, 5, 4, 3, 2, 4, 3],
+        status: ["roomy", "roomy", "forming", "busy", "roomy", "roomy", "forming", "roomy", "roomy"]
+      },
+      full: {
+        count: 88,
+        note: "A lively house: popular tables are marked, and roomier ones are easy to spot.",
+        occupancy: [5, 4, 6, 5, 6, 4, 3, 5, 3],
+        status: ["busy", "roomy", "busy", "busy", "busy", "roomy", "roomy", "busy", "roomy"]
+      }
+    };
+
+    const palette = ["#8c5d48", "#55777c", "#65765a", "#a2753d", "#6f607b"];
+    const statusText = { roomy: "Roomy", forming: "Forming", busy: "Lively", closed: "Opens later" };
+    const grid = document.querySelector("#room-grid");
+    const dialog = document.querySelector("#room-dialog");
+    const approachView = document.querySelector("#approach-view");
+    const doorwayView = document.querySelector("#doorway-view");
+    const banner = document.querySelector("#recommendation-banner");
+    const toast = document.querySelector("#toast");
+    let scenario = "gathering";
+    let activeRoom = null;
+    let lastTrigger = null;
+    let toastTimer;
+
+    function initials(name) {
+      return name.split(" ").map(part => part[0]).join("");
+    }
+
+    function getRoomState(index) {
+      return {
+        occupancy: scenarios[scenario].occupancy[index],
+        status: scenarios[scenario].status[index]
+      };
+    }
+
+    function renderRooms() {
+      grid.innerHTML = rooms.map((room, index) => {
+        const state = getRoomState(index);
+        const visiblePeople = room.people.slice(0, Math.min(state.occupancy, 3));
+        const people = state.occupancy > 0
+          ? `<div class="people-stack" aria-hidden="true">${visiblePeople.map((person, i) => `<span class="avatar" style="--avatar:${palette[(index + i) % palette.length]}">${initials(person)}</span>`).join("")}</div>`
+          : `<span class="closed-copy">Resting for now</span>`;
+        const count = state.occupancy > 0
+          ? `<div class="count"><strong>${state.occupancy}</strong><span>at this table</span></div>`
+          : `<div class="count"><strong>—</strong><span>opens as needed</span></div>`;
+        return `<button class="room-card" type="button" data-room="${room.id}" data-family="${room.family}" aria-label="Inspect ${room.title}, ${statusText[state.status]}${state.occupancy ? `, ${state.occupancy} people` : ""}">
+          <span class="room-top"><span class="family-label">${room.topic} · ${room.familyLabel}</span><span class="status ${state.status}">${statusText[state.status]}</span></span>
+          <h3>${room.title}</h3>
+          <p class="intent">${room.intent}</p>
+          <span class="room-bottom">${people}${count}</span>
+        </button>`;
+      }).join("");
+
+      grid.querySelectorAll(".room-card").forEach(card => {
+        card.addEventListener("click", () => openRoom(card.dataset.room, false, card));
+      });
+    }
+
+    function updateScenario(nextScenario) {
+      scenario = nextScenario;
+      const data = scenarios[scenario];
+      document.querySelector("#headcount").innerHTML = `${data.count}<span>here now</span>`;
+      document.querySelector("#scenario-note").textContent = data.note;
+      renderRooms();
+      showToast(`Room plan updated for ${data.count} attendees.`);
+    }
+
+    function openRoom(id, recommended = false, trigger = null) {
+      const index = rooms.findIndex(room => room.id === id);
+      const room = rooms[index];
+      const state = getRoomState(index);
+      activeRoom = room;
+      lastTrigger = trigger || document.activeElement;
+      approachView.classList.remove("hidden");
+      doorwayView.classList.remove("active");
+      banner.classList.toggle("show", recommended);
+      document.querySelector("#dialog-kicker").textContent = `${room.topic} · ${room.familyLabel} · ${statusText[state.status]}`;
+      document.querySelector("#dialog-title").textContent = room.title;
+      document.querySelector("#dialog-intent").textContent = room.intent;
+      document.querySelector("#pulse-text").textContent = `“${room.pulse}”`;
+      document.querySelector("#doorway-title").textContent = room.title;
+      dialog.style.setProperty("--dialog-accent", room.color);
+
+      const personList = document.querySelector("#person-list");
+      if (state.occupancy === 0) {
+        personList.innerHTML = `<p style="margin:0;color:var(--muted);font-size:.82rem;line-height:1.5">This table is resting in the quiet scenario. Its prompt and pulse stay available to browse.</p>`;
+      } else {
+        personList.innerHTML = room.people.slice(0, state.occupancy).map((person, i) => `<div class="person"><span class="avatar" style="--avatar:${palette[(index + i) % palette.length]}">${initials(person)}</span><span>${person}</span></div>`).join("");
+      }
+
+      const hint = document.querySelector("#capacity-hint");
+      const listen = document.querySelector("#listen-button");
+      if (state.occupancy === 0) {
+        hint.textContent = "This table opens as attendance grows.";
+        listen.textContent = "Doorway unavailable";
+        listen.disabled = true;
+        listen.style.opacity = ".52";
+        listen.style.cursor = "not-allowed";
+      } else {
+        hint.textContent = `${state.occupancy} here now · ${state.occupancy < 5 ? "space for another" : "a lively table"}`;
+        listen.textContent = "Listen from the doorway";
+        listen.disabled = false;
+        listen.style.opacity = "";
+        listen.style.cursor = "";
+      }
+
+      if (!dialog.open) dialog.showModal();
+      requestAnimationFrame(() => document.querySelector("#dialog-close").focus());
+    }
+
+    function closeDialog() {
+      dialog.close();
+      if (lastTrigger && document.contains(lastTrigger)) lastTrigger.focus();
+    }
+
+    function showToast(message) {
+      clearTimeout(toastTimer);
+      toast.textContent = message;
+      toast.classList.add("show");
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+    }
+
+    function enterDoorway() {
+      if (!activeRoom) return;
+      approachView.classList.add("hidden");
+      doorwayView.classList.add("active");
+      document.querySelector("#join-button").focus();
+    }
+
+    function recommendRoom() {
+      const candidates = rooms.map((room, index) => ({ room, index, ...getRoomState(index) }))
+        .filter(item => item.occupancy > 0 && item.occupancy < 5 && item.status !== "busy")
+        .sort((a, b) => a.occupancy - b.occupancy);
+      const smallest = candidates[0].occupancy;
+      const best = candidates.filter(item => item.occupancy === smallest);
+      const choice = best[Math.floor(Math.random() * best.length)];
+      openRoom(choice.room.id, true, document.querySelector("#take-me"));
+    }
+
+    function openMeetSimulation() {
+      const roomName = activeRoom ? activeRoom.title : "Crossroads room";
+      const handoff = window.open("", "_blank");
+      if (!handoff) {
+        showToast("Your browser blocked the new tab. Allow pop-ups to try the handoff.");
+        return;
+      }
+      handoff.document.write(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Meet handoff simulation</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;box-sizing:border-box;color:#eef3ed;background:#24342d;font-family:system-ui,sans-serif}.card{max-width:560px;padding:34px;border:1px solid #587064;border-radius:20px;background:#30463c;box-shadow:0 25px 70px #17211d}small{color:#b6c8bd;text-transform:uppercase;letter-spacing:.12em;font-weight:700}h1{font:500 clamp(2rem,8vw,3.5rem) Georgia,serif;line-height:1;margin:.55em 0 .35em}p{color:#c9d6ce;line-height:1.6}.pill{display:inline-block;margin-top:12px;padding:9px 13px;border-radius:99px;color:#26352e;background:#e9ddbd;font-weight:700;font-size:.85rem}</style></head><body><main class="card"><small>Crossroads prototype</small><h1>${roomName}</h1><p>This is the simulated Google Meet handoff. No real meeting link was opened, and no call has started.</p><span class="pill">Demo destination only</span></main></body></html>`);
+      handoff.document.close();
+      showToast("Opened a simulated Meet handoff in a new tab.");
+    }
+
+    document.querySelectorAll('input[name="scenario"]').forEach(input => {
+      input.addEventListener("change", event => updateScenario(event.target.value));
+    });
+
+    document.querySelector("#browse-button").addEventListener("click", () => document.querySelector("#rooms").scrollIntoView({ behavior: "smooth" }));
+    document.querySelector("#take-me").addEventListener("click", recommendRoom);
+    document.querySelector("#dialog-close").addEventListener("click", closeDialog);
+    document.querySelector("#back-button").addEventListener("click", closeDialog);
+    document.querySelector("#listen-button").addEventListener("click", enterDoorway);
+    document.querySelector("#return-button").addEventListener("click", closeDialog);
+    document.querySelector("#join-button").addEventListener("click", openMeetSimulation);
+    dialog.addEventListener("click", event => { if (event.target === dialog) closeDialog(); });
+    dialog.addEventListener("cancel", event => { event.preventDefault(); closeDialog(); });
+
+    renderRooms();
+  </script>
+</body>
+</html>

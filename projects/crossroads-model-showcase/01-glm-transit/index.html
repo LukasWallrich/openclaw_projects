@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transit · Crossroads Departure Board</title>
+<style>
+  :root{
+    --bg:#0b1220;
+    --panel:#101a2e;
+    --panel2:#16233c;
+    --line:#22334f;
+    --ink:#e8eef8;
+    --dim:#93a5c1;
+    --amber:#ffb02e;
+    --green:#37d67a;
+    --cyan:#4fc3f7;
+    --red:#ff6b6b;
+    --focus:#ffd166;
+    --mono:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    min-height:100vh;
+    background-image:
+      linear-gradient(180deg,rgba(79,195,247,.05),transparent 240px);
+  }
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:2px}
+  a{color:var(--cyan)}
+
+  header{
+    border-bottom:2px solid var(--line);
+    padding:14px 18px 10px;
+    display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;
+    background:var(--panel);
+  }
+  .brand{font-family:var(--mono);letter-spacing:.18em;text-transform:uppercase;font-size:.85rem;color:var(--amber)}
+  h1{font-size:1.25rem;letter-spacing:.02em}
+  .attr{font-family:var(--mono);font-size:.72rem;color:var(--dim);margin-left:auto}
+  .attr strong{color:var(--cyan);font-weight:600}
+
+  .controlbar{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    padding:12px 18px;border-bottom:1px solid var(--line);background:var(--panel2);
+  }
+  .scenario{display:flex;gap:6px;align-items:center}
+  .scenario span{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--dim)}
+  button{
+    font:inherit;color:var(--ink);background:#0d1526;border:1px solid var(--line);
+    padding:7px 14px;border-radius:4px;cursor:pointer;font-size:.85rem;
+    transition:background .15s,border-color .15s;
+  }
+  button:hover{background:#1a2946;border-color:#3a537e}
+  button[aria-pressed="true"],button.active{background:var(--amber);color:#141414;border-color:var(--amber);font-weight:600}
+  #takeMe{border-color:var(--cyan);color:var(--cyan);font-weight:600}
+  #takeMe:hover{background:#123247}
+
+  .clock{margin-left:auto;font-family:var(--mono);font-size:.9rem;color:var(--green)}
+  .clock small{color:var(--dim);font-size:.65rem;display:block;letter-spacing:.15em}
+
+  main{max-width:1100px;margin:0 auto;padding:16px 18px 60px}
+
+  .boardnote{font-family:var(--mono);font-size:.72rem;color:var(--dim);margin:8px 0 14px;letter-spacing:.04em}
+
+  /* Departure board table */
+  .board{width:100%;border-collapse:collapse;font-size:.9rem}
+  .board caption{text-align:left;font-family:var(--mono);font-size:.7rem;color:var(--dim);padding-bottom:8px;letter-spacing:.12em;text-transform:uppercase}
+  .board th{
+    font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;
+    color:var(--dim);text-align:left;padding:8px 10px;border-bottom:2px solid var(--line);
+  }
+  .board td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .board tr.rrow{cursor:pointer}
+  .board tr.rrow:hover td{background:#13203a}
+  .board tr.rrow.current td{background:#1a2b4d}
+  .linebadge{
+    display:inline-block;font-family:var(--mono);font-weight:700;font-size:.8rem;
+    padding:3px 9px;border-radius:3px;color:#0b1220;white-space:nowrap;
+  }
+  .dest{font-weight:600}
+  .via{display:block;font-size:.75rem;color:var(--dim);margin-top:2px}
+  .status{font-family:var(--mono);font-size:.8rem;white-space:nowrap}
+  .s-ok{color:var(--green)}
+  .s-warn{color:var(--amber)}
+  .s-full{color:var(--red)}
+  .s-cold{color:var(--dim)}
+  .loadbar{width:70px;height:6px;background:#0d1526;border:1px solid var(--line);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:6px}
+  .loadbar i{display:block;height:100%;background:var(--green);transition:width .4s}
+  .loadbar i.warn{background:var(--amber)}
+  .loadbar i.full{background:var(--red)}
+
+  /* Platform panel */
+  #platform{
+    position:sticky;bottom:0;margin-top:18px;background:var(--panel);
+    border:2px solid var(--amber);border-radius:8px;padding:16px;
+    box-shadow:0 -8px 30px rgba(0,0,0,.5);
+    display:none;
+  }
+  #platform.open{display:block}
+  #platform h2{font-size:1.05rem;margin-bottom:2px}
+  #platform .plline{font-family:var(--mono);font-size:.72rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+  .pulse{
+    border-left:4px solid var(--cyan);background:#0d1a30;padding:10px 14px;border-radius:0 6px 6px 0;
+    font-size:.9rem;margin:10px 0;
+  }
+  .pulse .who{font-family:var(--mono);font-size:.7rem;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+  .roster{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+  .roster li{list-style:none;font-size:.78rem;background:var(--panel2);border:1px solid var(--line);padding:4px 10px;border-radius:14px}
+  .roster li b{color:var(--cyan);font-weight:600}
+  .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  #joinBtn{background:var(--green);border-color:var(--green);color:#062012;font-weight:700}
+  #leaveDoorway{border-color:var(--red);color:var(--red)}
+  .doorway-note{font-size:.78rem;color:var(--dim);margin-top:8px}
+  #doorState{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em}
+  #doorState.listening{color:var(--amber)}
+  .synthetic{
+    font-family:var(--mono);font-size:.66rem;color:var(--dim);letter-spacing:.06em;
+    border-top:1px dashed var(--line);margin-top:14px;padding-top:8px;
+  }
+
+  /* Toast */
+  #toast{
+    position:fixed;top:14px;left:50%;transform:translateX(-50%) translateY(-8px);
+    background:var(--amber);color:#141414;font-weight:600;font-size:.85rem;
+    padding:10px 18px;border-radius:6px;opacity:0;pointer-events:none;
+    transition:opacity .25s,transform .25s;z-index:50;max-width:90vw;
+  }
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media (max-width:560px){
+    .board th:nth-child(1),.board td:nth-child(1){display:none}
+    .board{font-size:.84rem}
+    header{padding:12px 14px 8px}
+    main{padding:12px 12px 70px}
+    .clock{margin-left:0;width:100%}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="brand">Transit</span>
+  <h1>Crossroads Central Interchange</h1>
+  <span class="attr">Concept: Transit · <strong>OpenRouter GLM-5.3-Flash</strong></span>
+</header>
+
+<div class="controlbar">
+  <div class="scenario" role="group" aria-label="Attendance scenario">
+    <span>Service level:</span>
+    <button type="button" class="scen active" data-scen="busy" aria-pressed="true">Peak service</button>
+    <button type="button" class="scen" data-scen="quiet" aria-pressed="false">Quiet hours</button>
+  </div>
+  <button type="button" id="takeMe">▶ Take me somewhere</button>
+  <div class="clock"><small>Interchange time</small><span id="clock">--:--:--</span></div>
+</div>
+
+<main>
+  <p class="boardnote" id="boardNote">All departures synthetic · occupancy self-reported · no covert listening, ever.</p>
+  <table class="board" id="board">
+    <caption>Departure board — conversation lines</caption>
+    <thead>
+      <tr>
+        <th scope="col">Line</th>
+        <th scope="col">Destination</th>
+        <th scope="col">On board</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+  <section id="platform" aria-live="polite" aria-label="Selected platform">
+    <h2 id="plName">—</h2>
+    <p class="plline" id="plLine">Platform</p>
+    <div class="pulse" id="plPulse">
+      <span class="who">Consented doorway pulse</span>
+      <span id="plCaption"></span>
+    </div>
+    <ul class="roster" id="plRoster"></ul>
+    <p><span id="doorState">At the barrier · not listening</span></p>
+    <div class="actions">
+      <button type="button" id="doorBtn">Step onto platform (doorway)</button>
+      <button type="button" id="joinBtn">Board now → Meet</button>
+      <button type="button" id="leaveDoorway">Step back</button>
+    </div>
+    <p class="doorway-note">Doorway pulses use only what speakers chose to share — a caption and visible listener count. Nothing is intercepted.</p>
+    <p class="synthetic">SYNTHETIC SERVICE · All names, occupancy and captions are fictional demo data · No real Meet links in this prototype</p>
+  </section>
+</main>
+
+<div id="toast" role="status"></div>
+
+<script>
+"use strict";
+
+const ROOMS = [
+  {id:"L1", name:"Causal Puzzles Exchange", family:"Causal Inference", intent:"bring a puzzle",
+   color:"#ffb02e", busy:{n:4,people:["Priya N.","Tomás R.","Ada K.","Wei L."],cap:6,
+   caption:"“…backdoor adjustment breaks here — anyone got a counterexample?”"},
+   quiet:{n:1,people:["Priya N."],cap:6,caption:"Holding a DAG open; first puzzle lands shortly."}},
+  {id:"L2", name:"Instrumental Variables Platform", family:"Causal Inference", intent:"compare methods",
+   color:"#4fc3f7", busy:{n:3,people:["Marta S.","Jun P.","Felix D."],cap:5,
+   caption:"Comparing weak-IV diagnostics across two field designs."},
+   quiet:{n:0,people:[],cap:5,caption:"Empty platform — lines reopening on demand."}},
+  {id:"L3", name:"Collaborators: Longitudinal", family:"Causal Inference", intent:"find collaborators",
+   color:"#37d67a", busy:{n:5,people:["Nora B.","Sam T.","Ines V.","Ravi M.","Kim H."],cap:5,
+   caption:"Full capacity — pitching a 3-country panel study."},
+   quiet:{n:2,people:["Nora B.","Sam T."],cap:5,caption:"Two aboard, seeking a data-side collaborator."}},
+  {id:"L4", name:"Benchmark Bakes", family:"Evaluation", intent:"bring a puzzle",
+   color:"#ff6b6b", busy:{n:2,people:["Lena F.","Otto G."],cap:5,
+   caption:"“My eval set leaks via paraphrase — how bad is this?”"},
+   quiet:{n:1,people:["Lena F."],cap:5,caption:"Solo conductor; bring a broken benchmark."}},
+  {id:"L5", name:"Human Eval Alternatives", family:"Evaluation", intent:"compare methods",
+   color:"#b39ddb", busy:{n:4,people:["Grace O.","Hugo M.","Yara A.","Dan W."],cap:6,
+   caption:"Debating LLM-judge vs. pairwise human protocols, with spreadsheets."},
+   quiet:{n:2,people:["Grace O.","Hugo M."],cap:6,caption:"Low-frequency service; judges still on the table."}},
+  {id:"L6", name:"Co-author Signal Exchange", family:"Evaluation", intent:"find collaborators",
+   color:"#ffd166", busy:{n:3,people:["Bea C.","Ali N.","Sofia P."],cap:5,
+   caption:"Looking for a systems person for a meta-eval paper."},
+   quiet:{n:1,people:["Bea C."],cap:5,caption:"One aboard, timetable open for co-authors."}},
+  {id:"L7", name:"Scaling Law Curveball", family:"Frontier Science", intent:"bring a puzzle",
+   color:"#26c6da", busy:{n:6,people:["Ingrid E.","Paulo S.","Mei Z.","Arjun L.","Tessa K.","Owen J."],cap:6,
+   caption:"Standing room only — “does the 7B bump replicate at 13B?”"},
+   quiet:{n:2,people:["Ingrid E.","Paulo S."],cap:6,caption:"Quiet carriage; curveballs welcome."}},
+  {id:"L8", name:"Interpretability Depot", family:"Frontier Science", intent:"compare methods",
+   color:"#81c784", busy:{n:3,people:["Clara H.","Nate V.","Rosa D."],cap:5,
+   caption:"Comparing probing vs. ablation notes on the same toy model."},
+   quiet:{n:0,people:[],cap:5,caption:"Depot closed for quiet hours; reopens with demand."}},
+  {id:"L9", name:"Open Problems Carriage", family:"Frontier Science", intent:"find collaborators",
+   color:"#f48fb1", busy:{n:4,people:["Yusuf A.","Greta W.","Bo L.","Elsa M."],cap:6,
+   caption:"Brainstorming which open problem is ‘shovel-ready’ for a small team."},
+   quiet:{n:1,people:["Yusuf A."],cap:6,caption:"One aboard with a list of three open problems."}}
+];
+
+let scenario = "busy";
+let selected = null;
+let doorOpen = false;
+
+const $ = (s) => document.querySelector(s);
+const tbody = $("#tbody");
+const platform = $("#platform");
+const toast = $("#toast");
+
+function statusFor(n, cap) {
+  if (n === 0) return {cls:"s-cold", label:"Not in service", bar:0};
+  if (n >= cap) return {cls:"s-full", label:"At capacity", bar:100};
+  if (cap - n <= 1) return {cls:"s-warn", label:n + "/" + cap + " · last seats", bar:(n/cap)*100};
+  return {cls:"s-ok", label:n + "/" + cap + " · good pace", bar:(n/cap)*100};
+}
+
+function renderBoard() {
+  tbody.innerHTML = "";
+  ROOMS.forEach((r) => {
+    const d = r[scenario];
+    const st = statusFor(d.n, d.cap);
+    const tr = document.createElement("tr");
+    tr.className = "rrow" + (selected === r.id ? " current" : "");
+    tr.tabIndex = 0;
+    tr.setAttribute("role", "button");
+    tr.setAttribute("aria-label", r.name + ", line " + r.id + ", " + st.label);
+    tr.innerHTML =
+      '<td><span class="linebadge" style="background:' + r.color + '">' + r.id + "</span></td>" +
+      '<td><span class="dest">' + r.name + '</span><span class="via">' +
+        r.family + " · " + r.intent + "</span></td>" +
+      '<td><span class="loadbar"><i class="' + (st.cls === "s-ok" ? "" : st.cls.slice(2)) +
+        '" style="width:' + st.bar + '%"></i></span>' + d.n + "/" + d.cap + "</td>" +
+      '<td><span class="status ' + st.cls + '">' + st.label + "</span></td>";
+    const open = () => selectRoom(r.id);
+    tr.addEventListener("click", open);
+    tr.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+    tbody.appendChild(tr);
+  });
+  const occupied = ROOMS.filter(r => r[scenario].n > 0).length;
+  $("#boardNote").textContent =
+    "Service level: " + (scenario === "busy" ? "PEAK" : "QUIET") +
+    " · " + occupied + "/" + ROOMS.length + " lines in service · all data synthetic · no covert listening, ever.";
+}
+
+function selectRoom(id, fromRecommendation) {
+  selected = id;
+  doorOpen = false;
+  const r = ROOMS.find(x => x.id === id);
+  const d = r[scenario];
+  platform.classList.add("open");
+  $("#plName").textContent = "Line " + r.id + " · " + r.name;
+  $("#plLine").textContent = "Platform for " + r.family + " · " + r.intent;
+  $("#plCaption").textContent = d.caption;
+  const roster = $("#plRoster");
+  roster.innerHTML = "";
+  if (d.people.length === 0) {
+    const li = document.createElement("li");
+    li.textContent = "No visible listeners yet";
+    roster.appendChild(li);
+  } else {
+    d.people.forEach((p) => {
+      const li = document.createElement("li");
+      li.innerHTML = "<b>◉</b> " + p;
+      roster.appendChild(li);
+    });
+  }
+  const st = statusFor(d.n, d.cap);
+  $("#doorState").textContent = "At the barrier · " + (d.people.length) + " visible listener(s) · " + st.label;
+  $("#doorState").className = "";
+  $("#doorBtn").disabled = d.n === 0 || d.n >= d.cap;
+  $("#joinBtn").disabled = d.n >= d.cap;
+  renderBoard();
+  if (fromRecommendation) {
+    announce("Dispatch: " + r.name + " — platform selected. Review the pulse before boarding.");
+  }
+  platform.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+
+$("#doorBtn").addEventListener("click", () => {
+  doorOpen = true;
+  $("#doorState").textContent = "On the platform · listening to consented pulse only · not yet boarded";
+  $("#doorState").className = "listening";
+  $("#doorBtn").textContent = "Listening… (doorway active)";
+  announce("Doorway open — you can hear the shared caption only. Board or step back.");
+});
+
+$("#leaveDoorway").addEventListener("click", () => {
+  doorOpen = false;
+  if (selected) {
+    const d = ROOMS.find(x => x.id === selected)[scenario];
+    $("#doorState").textContent = "At the barrier · " + d.people.length + " visible listener(s)";
+    $("#doorState").className = "";
+    $("#doorBtn").textContent = "Step onto platform (doorway)";
+  }
+  announce("Stepped back from the platform edge.");
+});
+
+$("#joinBtn").addEventListener("click", () => {
+  if (!selected) return;
+  const r = ROOMS.find(x => x.id === selected);
+  announce("Boarding " + r.name + " — simulated Meet handoff would open in a new tab (disabled in prototype).");
+});
+
+function pickRecommendation() {
+  const open = ROOMS.filter(r => {
+    const d = r[scenario];
+    return d.n > 0 && d.n < d.cap;
+  });
+  if (open.length === 0) {
+    announce("No under-filled lines in service right now — try the other service level.");
+    return;
+  }
+  open.sort((a, b) => (a[scenario].n / a[scenario].cap) - (b[scenario].n / b[scenario].cap));
+  selectRoom(open[0].id, true);
+}
+$("#takeMe").addEventListener("click", pickRecommendation);
+
+document.querySelectorAll(".scen").forEach((b) => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll(".scen").forEach(x => { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+    b.classList.add("active");
+    b.setAttribute("aria-pressed", "true");
+    scenario = b.dataset.scen;
+    if (selected) selectRoom(selected);
+    else renderBoard();
+    announce("Service level switched to " + (scenario === "busy" ? "Peak" : "Quiet") + " — board has re-staffed.");
+  });
+});
+
+function announce(msg) {
+  toast.textContent = msg;
+  toast.classList.add("show");
+  clearTimeout(announce._t);
+  announce._t = setTimeout(() => toast.classList.remove("show"), 3500);
+}
+
+function tick() {
+  const t = new Date();
+  const p = (n) => String(n).padStart(2, "0");
+  $("#clock").textContent = p(t.getHours()) + ":" + p(t.getMinutes()) + ":" + p(t.getSeconds());
+}
+setInterval(tick, 1000);
+tick();
+renderBoard();
+selectRoom("L1");
+</script>
+</body>
+</html>

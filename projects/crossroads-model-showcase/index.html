@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Six independently generated frontend directions for the Open Crossroads networking lobby.">
+  <title>Crossroads · six-model frontend review</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #171814;
+      --muted: #64655d;
+      --paper: #f4f0e7;
+      --surface: #fffdf8;
+      --line: #cec7b8;
+      --accent: #e54f2b;
+      --accent-dark: #9f2b14;
+      --blue: #264f9e;
+      --shadow: 0 14px 38px rgb(48 39 23 / 10%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 9% 2%, rgb(229 79 43 / 13%), transparent 27rem),
+        radial-gradient(circle at 95% 20%, rgb(38 79 158 / 10%), transparent 30rem),
+        var(--paper);
+      color: var(--ink);
+      font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; text-underline-offset: .18em; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    header, main, footer { width: min(1180px, calc(100% - 36px)); margin-inline: auto; }
+    header { padding: 72px 0 36px; }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent-dark);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1, h2 { font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif; line-height: 1.06; }
+    h1 { max-width: 820px; margin: 0; font-size: clamp(2.7rem, 8vw, 6.2rem); letter-spacing: -.055em; }
+    .lede { max-width: 720px; margin: 24px 0 0; color: #41423b; font-size: clamp(1.04rem, 2.3vw, 1.32rem); }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 25px; }
+    .pill { border: 1px solid var(--line); border-radius: 999px; background: rgb(255 253 248 / 65%); padding: 7px 11px; font-size: .82rem; }
+    .review {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(250px, .65fr);
+      gap: 24px;
+      margin: 16px 0 42px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .review h2 { margin: 0 0 8px; font-size: 1.65rem; }
+    .review p { margin: 0; color: var(--muted); }
+    .rubric { margin: 0; padding-left: 1.25rem; }
+    .rubric li + li { margin-top: 5px; }
+    .models { display: grid; gap: 34px; }
+    .concept {
+      overflow: clip;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .concept-copy { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: end; padding: 24px; }
+    .number { color: var(--accent-dark); font-size: .75rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .concept h2 { margin: 5px 0 7px; font-size: clamp(1.75rem, 4vw, 2.7rem); letter-spacing: -.025em; }
+    .attribution { margin: 0 0 8px; color: var(--blue); font-weight: 750; }
+    .description { max-width: 720px; margin: 0; color: var(--muted); }
+    .open-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      padding: 10px 16px;
+      text-decoration: none;
+      white-space: nowrap;
+      font-weight: 750;
+    }
+    .open-link:hover { background: var(--accent-dark); }
+    .frame-wrap { position: relative; aspect-ratio: 1200 / 760; overflow: hidden; border-top: 1px solid var(--line); background: #ddd8cd; }
+    .frame-wrap img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .note {
+      margin: 0 24px 22px;
+      border-left: 3px solid var(--accent);
+      padding: 9px 12px;
+      background: #fff2ec;
+      color: #633424;
+      font-size: .88rem;
+    }
+    footer { padding: 40px 0 90px; color: var(--muted); font-size: .9rem; }
+    footer a { color: var(--blue); }
+    @media (max-width: 720px) {
+      header { padding-top: 45px; }
+      .review, .concept-copy { grid-template-columns: 1fr; }
+      .concept-copy { align-items: start; }
+      .open-link { width: 100%; }
+      .frame-wrap { aspect-ratio: 1200 / 760; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Open Crossroads · frontend review</p>
+    <h1>Six models. Six ways into a room.</h1>
+    <p class="lede">Independent interface directions for a self-sorting research-conference lobby: inspect who is talking, approach a consented doorway, listen to a synthetic conversation pulse, then choose whether to enter the Google Meet.</p>
+    <div class="meta-row" aria-label="Prototype status">
+      <span class="pill">Synthetic people and conversations</span>
+      <span class="pill">No real Meet links</span>
+      <span class="pill">Desktop + mobile</span>
+      <span class="pill">Public review page</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="review" aria-labelledby="review-title">
+      <div>
+        <h2 id="review-title">How to review</h2>
+        <p>Try the attendance switcher, inspect several rooms, use “Take me somewhere,” enter a doorway, and test the Meet handoff. Open a draft full-screen for a fair mobile test. Use the comment button at bottom-right to leave feedback on this page.</p>
+      </div>
+      <ol class="rubric">
+        <li>Can you tell where the good conversations are?</li>
+        <li>Does approaching feel low-risk and socially legible?</li>
+        <li>Would you understand what “listening” means?</li>
+        <li>Does the interface help rather than gamify?</li>
+      </ol>
+    </section>
+
+    <div class="models">
+      <article class="concept" id="glm-transit">
+        <div class="concept-copy">
+          <div><span class="number">Direction 01</span><h2>Transit Board</h2><p class="attribution">OpenRouter · GLM-5.3-Flash</p><p class="description">A live departure-board metaphor: conversations become services, occupancy becomes capacity, and approaching a room feels like choosing a platform.</p></div>
+          <a class="open-link" href="01-glm-transit/" target="_blank" rel="noopener">Open full draft ↗</a>
+        </div>
+        <div class="frame-wrap"><img src="images/01-glm-transit.png" alt="Desktop preview of the Transit Board draft by GLM-5.3-Flash" width="1200" height="760" loading="lazy"></div>
+      </article>
+
+      <article class="concept" id="claude-companion">
+        <div class="concept-copy">
+          <div><span class="number">Direction 02</span><h2>Companion</h2><p class="attribution">Claude Code · earlier Claude pass</p><p class="description">A narrow companion strip designed to stay beside the Meet window, keeping movement and room discovery available after a conversation starts.</p></div>
+          <a class="open-link" href="02-claude-salon/" target="_blank" rel="noopener">Open full draft ↗</a>
+        </div>
+        <p class="note"><strong>Provenance note:</strong> both fresh <code>claude -p</code> attempts failed without producing a file, so this reuses an existing Claude-generated Crossroads draft. It predates the current doorway requirement.</p>
+        <div class="frame-wrap"><img src="images/02-claude-salon.png" alt="Desktop preview of the Companion draft from an earlier Claude Code pass" width="1200" height="760" loading="lazy"></div>
+      </article>
+
+      <article class="concept" id="astra-constellation">
+        <div class="concept-copy">
+          <div><span class="number">Direction 03</span><h2>Constellation</h2><p class="attribution">Codex · GPT-6 Astra</p><p class="description">A spatial, night-sky field where rooms form a social constellation and recommendations draw a path toward an inviting conversation.</p></div>
+          <a class="open-link" href="03-astra-constellation/" target="_blank" rel="noopener">Open full draft ↗</a>
+        </div>
+        <div class="frame-wrap"><img src="images/03-astra-constellation.png" alt="Desktop preview of the Constellation draft by GPT-6 Astra" width="1200" height="760" loading="lazy"></div>
+      </article>
+
+      <article class="concept" id="sol-commons">
+        <div class="concept-copy">
+          <div><span class="number">Direction 04</span><h2>The Commons</h2><p class="attribution">Codex · GPT-5.6 Sol</p><p class="description">A warm civic commons with rooms arranged as open tables: socially explicit, information-rich, and centred on visible invitations.</p></div>
+          <a class="open-link" href="04-sol-commons/" target="_blank" rel="noopener">Open full draft ↗</a>
+        </div>
+        <div class="frame-wrap"><img src="images/04-sol-commons.png" alt="Desktop preview of The Commons draft by GPT-5.6 Sol" width="1200" height="760" loading="lazy"></div>
+      </article>
+
+      <article class="concept" id="terra-atlas">
+        <div class="concept-copy">
+          <div><span class="number">Direction 05</span><h2>Atlas</h2><p class="attribution">Codex · GPT-5.6 Terra</p><p class="description">A cartographic field guide that makes each room a place, doorway pulses field notes, and attendance changes the navigable territory.</p></div>
+          <a class="open-link" href="05-terra-atlas/" target="_blank" rel="noopener">Open full draft ↗</a>
+        </div>
+        <div class="frame-wrap"><img src="images/05-terra-atlas.png" alt="Desktop preview of the Atlas draft by GPT-5.6 Terra" width="1200" height="760" loading="lazy"></div>
+      </article>
+
+      <article class="concept" id="luna-pocket">
+        <div class="concept-copy">
+          <div><span class="number">Direction 06</span><h2>Pocket Guide</h2><p class="attribution">Codex · GPT-5.6 Luna</p><p class="description">A fast one-handed field guide with transit-ticket clarity, designed to get a mobile visitor from uncertainty to a suitable doorway quickly.</p></div>
+          <a class="open-link" href="06-luna-pocket/" target="_blank" rel="noopener">Open full draft ↗</a>
+        </div>
+        <div class="frame-wrap"><img src="images/06-luna-pocket.png" alt="Desktop preview of the Pocket Guide draft by GPT-5.6 Luna" width="1200" height="760" loading="lazy"></div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    These are disposable product probes, not production UI. Runtime pages are self-contained and make no network requests. <a href="https://github.com/LukasWallrich/openclaw_projects/tree/main/projects/crossroads-model-showcase">View source</a>.
+  </footer>
+
+  <script>
+  (function () {
+    window.HC_CONFIG = {
+      endpoint: 'https://script.google.com/macros/s/AKfycbxWIpG_nDPGadPapQRFe1vtuPGIzZtubCZSwRQJSWQgvGnJ2rQQicNtJYNahN1kJyzIdQ/exec',
+      project: 'crossroads-six-model-showcase-2026'
+    };
+    var BASE = 'https://html-comments.surge.sh/';
+    var link = document.createElement('link');
+    link.rel = 'stylesheet'; link.href = BASE + 'html-comments.css';
+    document.head.appendChild(link);
+    var s = document.createElement('script');
+    s.src = BASE + 'html-comments.js';
+    document.head.appendChild(s);
+  })();
+  </script>
+</body>
+</html>
